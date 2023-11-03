@@ -5,22 +5,16 @@ import java.util.Scanner;
 public class DataReader {
     public String readString() {
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        scanner.close();
-        return input;
+        return scanner.nextLine();
     }
 
-    public Integer readInt() {
+    public Integer readInteger() {
         Scanner scanner = new Scanner(System.in);
-        Integer input = Integer.parseInt(scanner.nextLine());
-        scanner.close();
-        return input;
+        return scanner.nextInt();
     }
 
     public Float readFloat() {
         Scanner scanner = new Scanner(System.in);
-        Float input = Float.parseFloat(scanner.nextLine());
-        scanner.close();
-        return input;
+        return scanner.nextFloat();
     }
 }

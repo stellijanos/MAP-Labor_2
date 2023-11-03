@@ -11,15 +11,15 @@ public class FavouriteRepository {
         return true;
     }
 
-    public Favourite read(int _id) {
-
-
-        return;
-    }
-
-    public List<Favourite> readAll() {
-
-    }
+//    public Favourite read(int _id) {
+//
+//
+//        return;
+//    }
+//
+//    public List<Favourite> readAll() {
+//
+//    }
 
     public boolean update(Favourite favourite) {
 

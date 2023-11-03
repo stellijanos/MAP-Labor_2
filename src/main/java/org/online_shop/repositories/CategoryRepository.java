@@ -11,15 +11,15 @@ public class CategoryRepository {
         return true;
     }
 
-    public Category read(int _id) {
+//    public Category read(int _id) {
+//
+//
+//        return;
+//    }
 
-
-        return;
-    }
-
-    public List<Category> readAll() {
-
-    }
+//    public List<Category> readAll() {
+//
+//    }
 
     public boolean update(Category category) {
 

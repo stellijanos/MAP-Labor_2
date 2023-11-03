@@ -11,15 +11,15 @@ public class UserRepository {
         return true;
     }
 
-    public User read(int _id) {
-
-
-        return;
-    }
-
-    public List<User> readAll() {
-
-    }
+//    public User read(int _id) {
+//
+//
+//        return;
+//    }
+//
+//    public List<User> readAll() {
+//
+//    }
 
     public boolean update(User user) {
 

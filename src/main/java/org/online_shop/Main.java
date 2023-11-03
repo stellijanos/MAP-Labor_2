@@ -1,7 +1,13 @@
 package org.online_shop;
 
+import org.online_shop.controllers.AppController;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        AppController appController = new AppController();
+
+        appController.mainMenu();
+
     }
 }

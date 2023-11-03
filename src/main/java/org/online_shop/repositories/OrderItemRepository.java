@@ -11,15 +11,15 @@ public class OrderItemRepository {
         return true;
     }
 
-    public OrderItem read(int _id) {
-
-
-        return;
-    }
-
-    public List<OrderItem> readAll() {
-
-    }
+//    public OrderItem read(int _id) {
+//
+//
+//        return;
+//    }
+//
+//    public List<OrderItem> readAll() {
+//
+//    }
 
     public boolean update(OrderItem orderItem) {
 

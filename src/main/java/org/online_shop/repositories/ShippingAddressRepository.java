@@ -11,15 +11,15 @@ public class ShippingAddressRepository {
         return true;
     }
 
-    public ShippingAddress read(int _id) {
-
-
-        return;
-    }
-
-    public List<ShippingAddress> readAll() {
-
-    }
+//    public ShippingAddress read(int _id) {
+//
+//
+//        return;
+//    }
+//
+//    public List<ShippingAddress> readAll() {
+//
+//    }
 
     public boolean update(ShippingAddress shippingAddress) {
 

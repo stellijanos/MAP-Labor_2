@@ -11,15 +11,15 @@ public class ProductRepository {
         return true;
     }
 
-    public Product read(int _id) {
-
-
-        return;
-    }
-
-    public List<Product> readAll() {
-
-    }
+//    public Product read(int _id) {
+//
+//
+//        return;
+//    }
+//
+//    public List<Product> readAll() {
+//
+//    }
 
     public boolean update(Product product) {
 

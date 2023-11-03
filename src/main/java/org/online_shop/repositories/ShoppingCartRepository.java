@@ -11,15 +11,15 @@ public class ShoppingCartRepository {
         return true;
     }
 
-    public ShoppingCart read(int _id) {
-
-
-        return;
-    }
-
-    public List<ShoppingCart> readAll() {
-
-    }
+//    public ShoppingCart read(int _id) {
+//
+//
+//        return;
+//    }
+//
+//    public List<ShoppingCart> readAll() {
+//
+//    }
 
     public boolean update(ShoppingCart shoppingCart) {
 

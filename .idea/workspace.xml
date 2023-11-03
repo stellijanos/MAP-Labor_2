@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement the metthods for the models that are in the Database">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/DataReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/AppRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement create user part in AppView method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/DataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/DataReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/CategoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/FavouriteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/FavouriteRepository.java" afterDir="false" />
@@ -21,15 +20,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/CategoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/CategoryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/FavouriteView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/FavouriteView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/OrderItemView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/OrderItemView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/OrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/OrderView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ProductSpecView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ProductSpecView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ProductView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ShippingAddressView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ShippingAddressView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ShoppingCartItemView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ShoppingCartItemView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ShoppingCartView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ShoppingCartView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +58,26 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.online_shop.Main" />
+      <module name="MAP-Labor_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.online_shop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -100,13 +111,22 @@
       <option name="project" value="LOCAL" />
       <updated>1698737408152</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="implement create user part in AppView method">
+      <option name="closed" value="true" />
+      <created>1698945285711</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698945285711</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create initial files for MVC+Repository Design Patterns" />
     <MESSAGE value="create in memory 'database' connection" />
     <MESSAGE value="implement the metthods for the models that are in the Database" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement the metthods for the models that are in the Database" />
+    <MESSAGE value="implement create user part in AppView method" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement create user part in AppView method" />
   </component>
 </project>

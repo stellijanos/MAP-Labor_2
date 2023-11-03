@@ -1,56 +1,35 @@
 package org.online_shop.views;
 
-import org.online_shop.controllers.AppController;
-import org.online_shop.controllers.UserController;
-
 public class AppView {
+   public final CategoryView categoryView = new CategoryView();
+   public final FavouriteView favouriteView = new FavouriteView();
+   public final OrderItemView orderItemView = new OrderItemView();
+   public final OrderView orderView = new OrderView();
+   public final ProductSpecView productSpecView = new ProductSpecView();
+   public final ProductView productView = new ProductView();
+   public final ShippingAddressView shippingAddressView = new ShippingAddressView();
+   public final ShoppingCartItemView shoppingCartItemView = new ShoppingCartItemView();
+   public final ShoppingCartView shoppingCartView = new ShoppingCartView();
+   public final UserView userView = new UserView();
 
-//    private AppController _appController = new AppController();
+   public String enterOption() {
+       return "\n\nEnter option please:";
+   }
 
-    private final UserController _userController = new UserController();
-
-
-    public void mainMenu() {
-        System.out.println("@author Janos Stelli" +
-                "Welcome to the online shop\n" +
-                "Options" +
-                "1. LogIn " +
-                "2. SignIn");
+    public void logIn_signUp() {
+        System.out.println("\n------------------------------------------------\n" +
+                "@author Janos Stelli" +
+                "\n------------------------------------------------\n" +
+                "Welcome to the online shop" +
+                "\n------------------------------------------------\n" +
+                "Options:\n" +
+                "1. LogIn\n" +
+                "2. SignUp" +
+                enterOption());
     }
 
-    private String getFirstname() {
-        System.out.println("Enter firstname: ");
-        return _userController.readString();
-    }
-
-    private String getLastname() {
-        System.out.println("Enter lastname: ");
-        return _userController.readString();
-    }
-
-    private String getEmail() {
-        System.out.println("Enter email address: ");
-        return _userController.readString();
-    }
-
-    private String getPassword() {
-        System.out.println("Enter password: ");
-        return _userController.readString();
-    }
-
-    public void logIn() {
-        String email = getEmail();
-        String password = getPassword();
-        _userController.getUser(email, password);
-    }
-
-    public void createUser() {
-        String firstName = getFirstname();
-        String lastName = getLastname();
-        String email = getEmail();
-        String password = getPassword();
-        _userController.createUser(firstName, lastName, email, password);
+    public void optionNotFound() {
+        System.out.println("!!!!!!!!!!!!!!! Option not found, please try again! !!!!!!!!!!!!!!!\n");
     }
 
 }
-

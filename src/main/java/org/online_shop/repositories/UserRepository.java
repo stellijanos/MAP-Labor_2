@@ -9,7 +9,8 @@ import java.util.List;
 public class UserRepository extends DatabaseInMemory {
 
     public boolean create(User user) {
-        user.set_id(this.users.size());
+        user.set_id(this.users.size()+1);
+
         return this.users.add(user);
     }
 

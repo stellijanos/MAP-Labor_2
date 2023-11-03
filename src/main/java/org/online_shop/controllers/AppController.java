@@ -28,14 +28,17 @@ public class AppController extends DataReader {
             _appView.logIn_signUp();
             Integer option = readInteger();
 
-            switch (option) {
-                case 0 -> running = false;
-                case 1 -> _userController.logIn();
-                case 2 -> _userController.signUp();
-                default -> _appView.optionNotFound();
-            }
+            if (option == 0)
+                running = false;
+            else if (option == 1)
+                _userController.logIn();
+            else if (option == 2)
+                _userController.signUp();
+            else
+                _appView.optionNotFound();
             sleep(1000);
         }
         _appView.goodBye();
+        _userController.listAllUsers();
     }
 }

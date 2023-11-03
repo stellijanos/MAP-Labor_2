@@ -11,17 +11,22 @@ public class UserController extends DataReader {
     private final UserRepository _userRepository = new UserRepository();
 
 
-    private boolean createUser(String firstname, String lastname, String email, String password) {
-        if (logInUser(email, password) == null) {
-            return false;
+    private void createUser(String firstname, String lastname, String email, String password) {
+        if (logInUser(email, password) != null) {
+            _userView.userExists();
+            return;
         }
         User user = new User();
         user.set_firstname(firstname);
         user.set_lastname(lastname);
         user.set_email(email);
-        user.set_password(password);
+        user.set_password(String.valueOf(password.hashCode()));
 
-        return _userRepository.create(user);
+        if (_userRepository.create(user)) {
+            _userView.userCreatedSuccessfully();
+        } else {
+            _userView.somethingWentWrong();
+        }
     }
 
 
@@ -49,10 +54,10 @@ public class UserController extends DataReader {
         _userView.enterPassword();
         String password = readString();
 
-        if (createUser(firstname, lastname, email, password)) {
-            _userView.userCreatedSuccessfully();
-        } else {
-            _userView.somethingWentWrong();
-        }
+        createUser(firstname, lastname, email, password);
+    }
+
+    public void listAllUsers() {
+        _userView.viewAll(_userRepository.users);
     }
 }

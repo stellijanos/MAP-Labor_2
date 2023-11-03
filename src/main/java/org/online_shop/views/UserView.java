@@ -12,6 +12,7 @@ public class UserView {
     }
 
     public void viewAll(List<User> users) {
+        System.out.println("Here are all the registered users:\n----------------------------\n");
         for (User user : users) {
             System.out.println(user);
         }

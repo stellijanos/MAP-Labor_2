@@ -31,5 +31,4 @@ public class AppView {
     public void optionNotFound() {
         System.out.println("!!!!!!!!!!!!!!! Option not found, please try again! !!!!!!!!!!!!!!!\n");
     }
-
 }

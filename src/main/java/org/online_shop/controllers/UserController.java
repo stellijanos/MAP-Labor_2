@@ -1,22 +1,41 @@
 package org.online_shop.controllers;
 
 import org.online_shop.models.User;
+import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.UserView;
 
-import java.util.Scanner;
 
 public class UserController extends DataReader {
 
     private final UserView _userView = new UserView();
+    private final UserRepository _userRepository = new UserRepository();
 
-    public boolean getUser(String email, String password) {
+
+
+
+    private boolean createUser(String firstname, String lastname, String email, String password) {
+        if (logInUser(email, password)) {
+            return false;
+        }
+        User user = new User();
+
+        user.set_firstname(firstname);
+        user.set_lastname(lastname);
+        user.set_email(email);
+        user.set_password(password);
+
+        return _userRepository.create(user);
+    }
+
+
+    private boolean logInUser(String email, String password) {
+
+//        _userRepository.
+
 
         return true;
     }
 
-    public void createUser(String firstName, String lastName, String email, String password) {
-
-    }
 
 
     public void logIn(){
@@ -24,8 +43,9 @@ public class UserController extends DataReader {
         String email = readString();
         _userView.enterPassword();
         String password = readString();
-    }
 
+        logInUser(email, password);
+    }
 
     public void signUp() {
         _userView.enterFirstname();
@@ -37,12 +57,10 @@ public class UserController extends DataReader {
         _userView.enterPassword();
         String password = readString();
 
-        createUser(firstname, lastname, email, password);
+        if (createUser(firstname, lastname, email, password)) {
+            _userView.userCreatedSuccessfully();
+        } else {
+            _userView.somethingWentWrong();
+        }
     }
-
-
-
-
-
-
 }

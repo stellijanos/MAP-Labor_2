@@ -1,20 +1,17 @@
 package org.online_shop.models;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class User {
     private int _id;
     private String _firstname;
     private String _lastname;
     private String _email;
-    private Timestamp _createdAt;
+    private String _password;
+    private final String _createdAt;
 
-    public User(int _id, String _firstname, String _lastname, String _email, Timestamp _createdAt) {
-        this._id = _id;
-        this._firstname = _firstname;
-        this._lastname = _lastname;
-        this._email = _email;
-        this._createdAt = _createdAt;
+    public User() {
+        this._createdAt = getCurrentDateTIme();
     }
 
     public int get_id() {
@@ -49,13 +46,19 @@ public class User {
         this._email = _email;
     }
 
-    public Timestamp get_createdAt() {
+
+    public String get_password() {
+        return _password;
+    }
+
+    public void set_password(String _password) {
+        this._password = _password;
+    }
+
+    public String get_createdAt() {
         return _createdAt;
     }
 
-    public void set_createdAt(Timestamp _createdAt) {
-        this._createdAt = _createdAt;
-    }
 
     @Override
     public String toString() {
@@ -66,5 +69,12 @@ public class User {
                 ", _email='" + _email + '\'' +
                 ", _createdAt=" + _createdAt +
                 '}';
+    }
+
+
+    private String getCurrentDateTIme() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
     }
 }

@@ -11,11 +11,12 @@ public class UserRepository {
         return true;
     }
 
-//    public User read(int _id) {
-//
-//
-//        return;
-//    }
+    public User read(String email) {
+
+        User user = new User();
+
+        return user;
+    }
 //
 //    public List<User> readAll() {
 //

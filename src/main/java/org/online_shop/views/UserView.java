@@ -12,11 +12,10 @@ public class UserView {
     }
 
     public void viewAll(List<User> users) {
-        for (User user:users) {
+        for (User user : users) {
             System.out.println(user);
         }
     }
-
 
     public void enterFirstname() {
         System.out.println("Enter firstname: ");
@@ -34,5 +33,24 @@ public class UserView {
         System.out.println("Enter password: ");
     }
 
+    public void userExists() {
+        System.out.println("User already exists");
+    }
+
+    public void incorrectPassword() {
+        System.out.println("Incorrect password");
+    }
+
+    public void incorrectEmail() {
+        System.out.println("Incorrect email");
+    }
+
+    public void userCreatedSuccessfully() {
+        System.out.println("User created successfully!");
+    }
+
+    public void somethingWentWrong() {
+        System.out.println("Something went wrong!");
+    }
 
 }

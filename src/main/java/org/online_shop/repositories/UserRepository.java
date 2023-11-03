@@ -1,26 +1,30 @@
 package org.online_shop.repositories;
 
+import org.online_shop.models.DatabaseInMemory;
 import org.online_shop.models.ProductSpec;
 import org.online_shop.models.User;
 
 import java.util.List;
 
-public class UserRepository {
-    public boolean create(User user) {
+public class UserRepository extends DatabaseInMemory {
 
-        return true;
+    public boolean create(User user) {
+        user.set_id(this.users.size());
+        return this.users.add(user);
     }
 
     public User read(String email) {
-
-        User user = new User();
-
-        return user;
+        for (User user : this.users) {
+            if (user.get_email().equals(email)) {
+                return user;
+            }
+        }
+        return new User();
     }
-//
-//    public List<User> readAll() {
-//
-//    }
+
+    public List<User> readAll() {
+        return this.users;
+    }
 
     public boolean update(User user) {
 

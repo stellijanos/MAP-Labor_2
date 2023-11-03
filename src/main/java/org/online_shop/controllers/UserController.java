@@ -11,14 +11,11 @@ public class UserController extends DataReader {
     private final UserRepository _userRepository = new UserRepository();
 
 
-
-
     private boolean createUser(String firstname, String lastname, String email, String password) {
-        if (logInUser(email, password)) {
+        if (logInUser(email, password) == null) {
             return false;
         }
         User user = new User();
-
         user.set_firstname(firstname);
         user.set_lastname(lastname);
         user.set_email(email);
@@ -28,17 +25,12 @@ public class UserController extends DataReader {
     }
 
 
-    private boolean logInUser(String email, String password) {
-
-//        _userRepository.
-
-
-        return true;
+    private String logInUser(String email, String password) {
+        User user = _userRepository.read(email);
+        return user.get_email();
     }
 
-
-
-    public void logIn(){
+    public void logIn() {
         _userView.enterEmail();
         String email = readString();
         _userView.enterPassword();

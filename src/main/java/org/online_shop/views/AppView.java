@@ -36,4 +36,35 @@ public class AppView {
     public void goodBye() {
         System.out.println("Goodbye, see you next time!\n---------------------\n");
     }
+
+
+    public void userPanel() {
+        System.out.println("\n------------------------------\n    User Menu\n------------------------------\n" +
+                "0. LogOut" +
+                "1. Account details" +
+                "2. Update Account Info" +
+                "3. Change Password" +
+                "4. Delete Account" +
+                "5. Favourites" +
+                "6. Shopping Cart" +
+                "7. Search product" +
+                "8. View all products"
+        );
+    }
+
+    public void adminOption() {
+        System.out.println("9. Admin Panel");
+    }
+
+    public void adminPanel() {
+        System.out.println("\n------------------------------\n     Admin Panel\n------------------------------\n" +
+                "1. View all users" +
+                "2. Remove user" +
+                "3. View all products" +
+                "4. Search product" +
+                "5. Add product" +
+                "6. Update product" +
+                "7. Delete product"
+        );
+    }
 }

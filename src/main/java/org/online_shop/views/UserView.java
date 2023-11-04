@@ -61,11 +61,4 @@ public class UserView {
         System.out.println("Login failed");
     }
 
-    public void userPanel() {
-        System.out.println("\n------------------------------\nUser Menu\n------------------------------\n" +
-                "0. LogOut" +
-                "1. Account details" +
-                "2. Favourites" +
-                "3. Shopping Cart");
-    }
 }

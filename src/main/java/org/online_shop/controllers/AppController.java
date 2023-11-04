@@ -12,7 +12,7 @@ public class AppController extends Controller {
 
     private final AppView _appView = new AppView();
     private final UserController _userController = new UserController(new UserView(), new UserRepository());
-    private  Response _session = Response.SESSION_DESTROY;
+    private Response _session = Response.SESSION_DESTROY;
 
     private String _sessionId = null;
 
@@ -22,6 +22,50 @@ public class AppController extends Controller {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void logOut() {
+        _session = Response.SESSION_DESTROY;
+        _sessionId = null;
+    }
+
+    private void userDetails() {}
+    private void updateUserInfo() {}
+    private void changePassword() {}
+    private void deleteAccount() {}
+    private void favourites() {}
+    private void shoppingCart() {}
+    private void searchProduct() {}
+    private void viewAllProducts() {}
+    private void adminPanel() {}
+
+    public void userPanel() {
+        boolean running = true;
+        while (running) {
+            _appView.userPanel();
+            Integer option = readInteger();
+
+            switch (option) {
+                case 0 -> logOut();
+                case 1 -> userDetails();
+                case 2 -> updateUserInfo();
+                case 3 -> changePassword();
+                case 4 -> deleteAccount();
+                case 5 -> favourites();
+                case 6 -> shoppingCart();
+                case 7 -> searchProduct();
+                case 8 -> viewAllProducts();
+                case 9 -> {
+                    if (_sessionId.equals("admin@janos")) {
+                        adminPanel();
+                    }
+                }
+                default -> _appView.optionNotFound();
+            }
+            sleep(1000);
+        }
+        _appView.goodBye();
+        _userController.listAllUsers();
     }
 
 
@@ -36,7 +80,9 @@ public class AppController extends Controller {
             _sessionId = email;
             _appView.userView.logInSuccessful();
 
-            _appView.userView.userPanel();
+            sleep(500);
+
+            userPanel();
 
         } else {
             _appView.userView.logInFailed();
@@ -55,14 +101,9 @@ public class AppController extends Controller {
         Response response = _userController.createUser(firstname, lastname, email, password);
 
         switch (response) {
-            case USER_EXISTS:
-                _appView.userView.userExists();
-                break;
-            case SOMETHING_WENT_WRONG:
-                _appView.userView.somethingWentWrong();
-                break;
-            case USER_CREATED_SUCCESSFULLY:
-                _appView.userView.userCreatedSuccessfully();
+            case USER_EXISTS -> _appView.userView.userExists();
+            case USER_CREATED_SUCCESSFULLY -> _appView.userView.userCreatedSuccessfully();
+            case SOMETHING_WENT_WRONG, default -> _appView.userView.somethingWentWrong();
         }
     }
 
@@ -73,15 +114,14 @@ public class AppController extends Controller {
             _appView.logIn_signUp();
             Integer option = readInteger();
 
-            if (option == 0)
-                running = false;
-            else if (option == 1)
-                logIn();
-            else if (option == 2)
-                signUp();
-            else
-                _appView.optionNotFound();
+            switch (option) {
+                case 0 -> running = false;
+                case 1 -> logIn();
+                case 2 -> signUp();
+                default -> _appView.optionNotFound();
+            }
             sleep(1000);
+
         }
         _appView.goodBye();
         _userController.listAllUsers();

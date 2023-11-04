@@ -3,23 +3,66 @@ package org.online_shop.controllers;
 
 import java.lang.Thread;
 
-import org.online_shop.repositories.AppRepository;
+import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.AppView;
+import org.online_shop.views.UserView;
 
 
-public class AppController extends DataReader {
+public class AppController extends Controller {
 
     private final AppView _appView = new AppView();
-    private final UserController _userController = new UserController();
+    private final UserController _userController = new UserController(new UserView(), new UserRepository());
+    private  Response _session = Response.SESSION_DESTROY;
 
-    private String _session;
-
+    private String _sessionId = null;
 
     private void sleep(Integer milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+
+    public void logIn() {
+        _appView.userView.enterEmail();
+        String email = readString();
+        _appView.userView.enterPassword();
+        String password = readString();
+
+        _session = _userController.logInUser(email, password);
+        if (_session == Response.SESSION_START) {
+            _sessionId = email;
+            _appView.userView.logInSuccessful();
+
+            _appView.userView.userPanel();
+
+        } else {
+            _appView.userView.logInFailed();
+        }
+    }
+
+    public void signUp() {
+        _appView.userView.enterFirstname();
+        String firstname = readString();
+        _appView.userView.enterLastname();
+        String lastname = readString();
+        _appView.userView.enterEmail();
+        String email = readString();
+        _appView.userView.enterPassword();
+        String password = readString();
+        Response response = _userController.createUser(firstname, lastname, email, password);
+
+        switch (response) {
+            case USER_EXISTS:
+                _appView.userView.userExists();
+                break;
+            case SOMETHING_WENT_WRONG:
+                _appView.userView.somethingWentWrong();
+                break;
+            case USER_CREATED_SUCCESSFULLY:
+                _appView.userView.userCreatedSuccessfully();
         }
     }
 
@@ -33,9 +76,9 @@ public class AppController extends DataReader {
             if (option == 0)
                 running = false;
             else if (option == 1)
-                _session = _userController.logIn();
+                logIn();
             else if (option == 2)
-                _userController.signUp();
+                signUp();
             else
                 _appView.optionNotFound();
             sleep(1000);

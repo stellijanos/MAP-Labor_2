@@ -5,63 +5,47 @@ import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.UserView;
 
 
-public class UserController extends DataReader {
+public class UserController extends Controller {
 
-    private final UserView _userView = new UserView();
-    private final UserRepository _userRepository = new UserRepository();
+    private final UserView _userView;
+    private final UserRepository _userRepository;
 
 
-    private void createUser(String firstname, String lastname, String email, String password) {
-        if (logInUser(email, password) != null) {
-            _userView.userExists();
-            return;
+    public UserController(UserView userView, UserRepository userRepository) {
+        _userView = userView;
+        _userRepository = userRepository;
+    }
+
+    public Response createUser(String firstname, String lastname, String email, String password) {
+        if (logInUser(email, password) == Response.SESSION_START) {
+            return Response.USER_EXISTS;
         }
         User user = new User();
         user.set_firstname(firstname);
         user.set_lastname(lastname);
         user.set_email(email);
-        user.set_password(String.valueOf(password.hashCode()));
+        user.set_password(password);
 
-        if (_userRepository.create(user)) {
-            _userView.userCreatedSuccessfully();
-        } else {
-            _userView.somethingWentWrong();
+        if (!_userRepository.create(user)) {
+            return Response.SOMETHING_WENT_WRONG;
         }
+        return Response.USER_CREATED_SUCCESSFULLY;
     }
 
-
-    private String logInUser(String email, String password) {
+    public Response logInUser(String email, String password) {
         User user = _userRepository.read(email);
-        return user.get_email();
+        if (user.get_email() == null) {
+            return Response.SESSION_DESTROY;
+        }
+        return Response.SESSION_START;
     }
 
-    public String logIn() {
-        _userView.enterEmail();
-        String email = readString();
-        _userView.enterPassword();
-        String password = readString();
+    public User getUser(String email) {
 
-        return logInUser(email, password);
-    }
-
-    public void signUp() {
-        _userView.enterFirstname();
-        String firstname = readString();
-        _userView.enterLastname();
-        String lastname = readString();
-        _userView.enterEmail();
-        String email = readString();
-        _userView.enterPassword();
-        String password = readString();
-
-        createUser(firstname, lastname, email, password);
+        return _userRepository.read(email);
     }
 
     public void listAllUsers() {
         _userView.viewAll(_userRepository.users);
-    }
-
-    public Object logout() {
-        return null;
     }
 }

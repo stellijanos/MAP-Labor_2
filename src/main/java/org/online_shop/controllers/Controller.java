@@ -2,7 +2,16 @@ package org.online_shop.controllers;
 
 import java.util.Scanner;
 
-public class DataReader {
+public class Controller {
+
+    enum Response {
+        USER_EXISTS,
+        USER_CREATED_SUCCESSFULLY,
+        SOMETHING_WENT_WRONG,
+        SESSION_START,
+        SESSION_DESTROY
+    }
+
     public String readString() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();

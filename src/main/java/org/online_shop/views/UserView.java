@@ -3,7 +3,6 @@ package org.online_shop.views;
 import org.online_shop.models.User;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class UserView {
 
@@ -54,4 +53,19 @@ public class UserView {
         System.out.println("Something went wrong!");
     }
 
+    public void logInSuccessful() {
+        System.out.println("Login successful!");
+    }
+
+    public void logInFailed() {
+        System.out.println("Login failed");
+    }
+
+    public void userPanel() {
+        System.out.println("\n------------------------------\nUser Menu\n------------------------------\n" +
+                "0. LogOut" +
+                "1. Account details" +
+                "2. Favourites" +
+                "3. Shopping Cart");
+    }
 }

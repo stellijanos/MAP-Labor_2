@@ -69,6 +69,7 @@ public class User {
                 ", _lastname='" + _lastname + '\'' +
                 ", _email='" + _email + '\'' +
                 ", _createdAt=" + _createdAt +
+                ", _password=" + _password +
                 "}\n";
     }
 

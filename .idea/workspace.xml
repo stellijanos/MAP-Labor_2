@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement signUp, login and getAll users methods">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserRepositoryTest.java" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement login session part in AppController and initialise User tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/DataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/online_shop/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/online_shop/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +62,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UserTest.test_signUp">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.online_shop.Main" />
       <module name="MAP-Labor_2" />
@@ -77,8 +76,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserTest.test_signUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MAP-Labor_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.online_shop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.online_shop" />
+      <option name="MAIN_CLASS_NAME" value="org.online_shop.UserTest" />
+      <option name="METHOD_NAME" value="test_signUp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserTest.test_signUp" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -156,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699013168382</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="implement login session part in AppController and initialise User tests">
+      <option name="closed" value="true" />
+      <created>1699080371310</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699080371310</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -168,6 +192,7 @@
     <MESSAGE value="implement signUp in controller and also the in Memory Database class" />
     <MESSAGE value="implement a part of the users mvc part" />
     <MESSAGE value="implement signUp, login and getAll users methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement signUp, login and getAll users methods" />
+    <MESSAGE value="implement login session part in AppController and initialise User tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement login session part in AppController and initialise User tests" />
   </component>
 </project>

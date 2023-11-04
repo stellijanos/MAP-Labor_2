@@ -10,55 +10,68 @@ public class UserView {
         System.out.println(user);
     }
 
-    public void viewAll(List<User> users) {
+    public void print_viewAll(List<User> users) {
         System.out.println("Here are all the registered users:\n----------------------------\n");
         for (User user : users) {
             System.out.println(user);
         }
     }
 
-    public void enterFirstname() {
+    public void print_enterFirstname() {
         System.out.println("Enter firstname: ");
     }
 
-    public void enterLastname() {
+    public void print_enterLastname() {
         System.out.println("Enter lastname: ");
     }
 
-    public void enterEmail() {
+    public void print_enterEmail() {
         System.out.println("Enter email address: ");
     }
 
-    public void enterPassword() {
+    public void print_enterPassword() {
         System.out.println("Enter password: ");
     }
 
-    public void userExists() {
+    public void print_userExists() {
         System.out.println("User already exists");
     }
 
-    public void incorrectPassword() {
+    public void print_incorrectPassword() {
         System.out.println("Incorrect password");
     }
 
-    public void incorrectEmail() {
-        System.out.println("Incorrect email");
-    }
-
-    public void userCreatedSuccessfully() {
+    public void print_userCreatedSuccessfully() {
         System.out.println("User created successfully!");
     }
 
-    public void somethingWentWrong() {
+    public void print_somethingWentWrong() {
         System.out.println("Something went wrong!");
     }
 
-    public void logInSuccessful() {
+    public void print_logInSuccessful() {
         System.out.println("Login successful!");
     }
 
-    public void logInFailed() {
+    public void print_logInFailed() {
         System.out.println("Login failed");
     }
 
+    public void print_accountDetails(User user) {
+        System.out.printf("\n-------------------\n Account details\n-------------------\n" +
+                "Member since: %s\nFirstname:    %s\nLastname:     %s\nEmail:        %s\n",
+                user.get_createdAt(), user.get_firstname(), user.get_lastname(),  user.get_email());
+    }
+
+    public void print_enterNewPassword() {
+        System.out.println("Enter new Password: ");
+    }
+
+    public void print_confirmPassword() {
+        System.out.println("Confirm password: ");
+    }
+
+    public void print_passwordsDoNotMatch() {
+        System.out.println("Passwords don't match: ");
+    }
 }

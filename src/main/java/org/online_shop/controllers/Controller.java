@@ -8,6 +8,7 @@ public class Controller {
         USER_EXISTS,
         USER_CREATED_SUCCESSFULLY,
         SOMETHING_WENT_WRONG,
+        INCORRECT_PASSWORD,
         SESSION_START,
         SESSION_DESTROY
     }

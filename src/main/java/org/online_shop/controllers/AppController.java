@@ -13,7 +13,6 @@ public class AppController extends Controller {
     private final AppView _appView = new AppView();
     private final UserController _userController = new UserController(new UserView(), new UserRepository());
     private Response _session = Response.SESSION_DESTROY;
-
     private String _sessionId = null;
 
     private void sleep(Integer milliseconds) {
@@ -29,20 +28,57 @@ public class AppController extends Controller {
         _sessionId = null;
     }
 
-    private void userDetails() {}
-    private void updateUserInfo() {}
-    private void changePassword() {}
-    private void deleteAccount() {}
-    private void favourites() {}
-    private void shoppingCart() {}
-    private void searchProduct() {}
-    private void viewAllProducts() {}
-    private void adminPanel() {}
+
+//     while (true) {
+//        try {
+//            System.out.println("Enter an integer: ");
+//            number = scanner.nextInt();
+//            break; // break out of the loop if the input is an integer
+//        } catch (InputMismatchException e) {
+//            System.out.println("Invalid input. Please enter an integer.");
+//            scanner.nextLine(); // clear the input buffer
+//        }
+//    }
+
+    private void userDetails() {
+
+        _appView.userView.print_accountDetails(_userController.getUser(_sessionId));
+
+        while (true) {
+            _appView.print_back();
+            if (readInteger() == 0) {
+                userPanel();
+            }
+        }
+    }
+
+    private void updateUserInfo() {
+    }
+
+    private void changePassword() {
+    }
+
+    private void deleteAccount() {
+    }
+
+    private void favourites() {
+    }
+
+    private void shoppingCart() {
+    }
+
+    private void searchProduct() {
+    }
+
+    private void viewAllProducts() {
+    }
+
+    private void adminPanel() {
+    }
 
     public void userPanel() {
-        boolean running = true;
-        while (running) {
-            _appView.userPanel();
+        while (true) {
+            _appView.print_userPanel();
             Integer option = readInteger();
 
             switch (option) {
@@ -60,70 +96,74 @@ public class AppController extends Controller {
                         adminPanel();
                     }
                 }
-                default -> _appView.optionNotFound();
+                default -> _appView.print_optionNotFound();
             }
             sleep(1000);
         }
-        _appView.goodBye();
-        _userController.listAllUsers();
     }
 
 
     public void logIn() {
-        _appView.userView.enterEmail();
+        _appView.userView.print_enterEmail();
         String email = readString();
-        _appView.userView.enterPassword();
+        _appView.userView.print_enterPassword();
         String password = readString();
 
         _session = _userController.logInUser(email, password);
         if (_session == Response.SESSION_START) {
             _sessionId = email;
-            _appView.userView.logInSuccessful();
+            _appView.userView.print_logInSuccessful();
 
             sleep(500);
 
             userPanel();
 
         } else {
-            _appView.userView.logInFailed();
+            _session = null;
+            _appView.userView.print_logInFailed();
+
         }
     }
 
     public void signUp() {
-        _appView.userView.enterFirstname();
+        _appView.userView.print_enterFirstname();
         String firstname = readString();
-        _appView.userView.enterLastname();
+
+        _appView.userView.print_enterLastname();
         String lastname = readString();
-        _appView.userView.enterEmail();
+
+        _appView.userView.print_enterEmail();
         String email = readString();
-        _appView.userView.enterPassword();
+
+        _appView.userView.print_enterPassword();
         String password = readString();
+
         Response response = _userController.createUser(firstname, lastname, email, password);
 
         switch (response) {
-            case USER_EXISTS -> _appView.userView.userExists();
-            case USER_CREATED_SUCCESSFULLY -> _appView.userView.userCreatedSuccessfully();
-            case SOMETHING_WENT_WRONG, default -> _appView.userView.somethingWentWrong();
+            case USER_EXISTS -> _appView.userView.print_userExists();
+            case USER_CREATED_SUCCESSFULLY -> _appView.userView.print_userCreatedSuccessfully();
+            case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
         }
     }
 
 
     public void mainMenu() {
+        _userController.createAdmin();
         boolean running = true;
-        while (running) {
-            _appView.logIn_signUp();
-            Integer option = readInteger();
 
-            switch (option) {
+        while (running) {
+            _appView.print_logIn_signUp();
+
+            switch (readInteger()) {
                 case 0 -> running = false;
                 case 1 -> logIn();
                 case 2 -> signUp();
-                default -> _appView.optionNotFound();
+                default -> _appView.print_optionNotFound();
             }
             sleep(1000);
-
         }
-        _appView.goodBye();
+        _appView.print_goodBye();
         _userController.listAllUsers();
     }
 }

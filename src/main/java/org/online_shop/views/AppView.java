@@ -16,7 +16,7 @@ public class AppView {
         return "\n\nEnter option please:";
     }
 
-    public void logIn_signUp() {
+    public void print_logIn_signUp() {
         System.out.println("\n------------------------------------------------\n" +
                 "@author Janos Stelli" +
                 "\n------------------------------------------------\n" +
@@ -29,34 +29,34 @@ public class AppView {
                 enterOption());
     }
 
-    public void optionNotFound() {
+    public void print_optionNotFound() {
         System.out.println("!!!!!!!!!!!!!!! Option not found, please try again! !!!!!!!!!!!!!!!\n");
     }
 
-    public void goodBye() {
+    public void print_goodBye() {
         System.out.println("Goodbye, see you next time!\n---------------------\n");
     }
 
 
-    public void userPanel() {
+    public void print_userPanel() {
         System.out.println("\n------------------------------\n    User Menu\n------------------------------\n" +
-                "0. LogOut" +
-                "1. Account details" +
-                "2. Update Account Info" +
-                "3. Change Password" +
-                "4. Delete Account" +
-                "5. Favourites" +
-                "6. Shopping Cart" +
-                "7. Search product" +
-                "8. View all products"
+                "0. LogOut\n" +
+                "1. Account details\n" +
+                "2. Update Account Info\n" +
+                "3. Change Password\n" +
+                "4. Delete Account\n" +
+                "5. Favourites\n" +
+                "6. Shopping Cart\n" +
+                "7. Search product\n" +
+                "8. View all products\n\n"
         );
     }
 
-    public void adminOption() {
+    public void print_adminOption() {
         System.out.println("9. Admin Panel");
     }
 
-    public void adminPanel() {
+    public void print_adminPanel() {
         System.out.println("\n------------------------------\n     Admin Panel\n------------------------------\n" +
                 "1. View all users" +
                 "2. Remove user" +
@@ -66,5 +66,9 @@ public class AppView {
                 "6. Update product" +
                 "7. Delete product"
         );
+    }
+
+    public void print_back() {
+        System.out.println("0. Back");
     }
 }

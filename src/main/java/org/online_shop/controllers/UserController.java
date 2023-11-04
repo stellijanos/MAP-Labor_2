@@ -37,6 +37,9 @@ public class UserController extends Controller {
         if (user.get_email() == null) {
             return Response.SESSION_DESTROY;
         }
+        if (!user.get_password().equals(password)) {
+            return Response.INCORRECT_PASSWORD;
+        }
         return Response.SESSION_START;
     }
 
@@ -46,6 +49,18 @@ public class UserController extends Controller {
     }
 
     public void listAllUsers() {
-        _userView.viewAll(_userRepository.users);
+        _userView.print_viewAll(_userRepository.users);
     }
+
+
+    public void createAdmin() {
+        User user = new User();
+        user.set_firstname("Janos");
+        user.set_lastname("Admin");
+        user.set_email("admin@janos");
+        user.set_password("Micutaetop5");
+
+        _userRepository.create(user);
+    }
+
 }

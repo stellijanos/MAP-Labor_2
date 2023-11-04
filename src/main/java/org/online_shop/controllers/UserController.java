@@ -35,13 +35,13 @@ public class UserController extends DataReader {
         return user.get_email();
     }
 
-    public void logIn() {
+    public String logIn() {
         _userView.enterEmail();
         String email = readString();
         _userView.enterPassword();
         String password = readString();
 
-        logInUser(email, password);
+        return logInUser(email, password);
     }
 
     public void signUp() {
@@ -59,5 +59,9 @@ public class UserController extends DataReader {
 
     public void listAllUsers() {
         _userView.viewAll(_userRepository.users);
+    }
+
+    public Object logout() {
+        return null;
     }
 }

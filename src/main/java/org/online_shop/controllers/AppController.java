@@ -9,6 +9,12 @@ import org.online_shop.views.AppView;
 
 public class AppController extends DataReader {
 
+    private final AppView _appView = new AppView();
+    private final UserController _userController = new UserController();
+
+    private String _session;
+
+
     private void sleep(Integer milliseconds) {
         try {
             Thread.sleep(milliseconds);
@@ -17,10 +23,6 @@ public class AppController extends DataReader {
         }
     }
 
-    private final AppView _appView = new AppView();
-    private final UserController _userController = new UserController();
-
-    private String _session;
 
     public void mainMenu() {
         boolean running = true;
@@ -31,7 +33,7 @@ public class AppController extends DataReader {
             if (option == 0)
                 running = false;
             else if (option == 1)
-                _userController.logIn();
+                _session = _userController.logIn();
             else if (option == 2)
                 _userController.signUp();
             else

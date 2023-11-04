@@ -32,6 +32,7 @@ public class AppView {
     public void optionNotFound() {
         System.out.println("!!!!!!!!!!!!!!! Option not found, please try again! !!!!!!!!!!!!!!!\n");
     }
+
     public void goodBye() {
         System.out.println("Goodbye, see you next time!\n---------------------\n");
     }

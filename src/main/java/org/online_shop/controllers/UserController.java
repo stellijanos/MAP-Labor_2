@@ -1,5 +1,6 @@
 package org.online_shop.controllers;
 
+import org.online_shop.Env;
 import org.online_shop.models.User;
 import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.UserView;
@@ -26,6 +27,9 @@ public class UserController extends Controller {
         user.set_email(email);
         user.set_password(password);
 
+        user.set_id(_userRepository.readAll().size() + 1);
+
+
         if (!_userRepository.create(user)) {
             return Response.SOMETHING_WENT_WRONG;
         }
@@ -49,18 +53,21 @@ public class UserController extends Controller {
     }
 
     public void listAllUsers() {
-        _userView.print_viewAll(_userRepository.users);
+        _userView.print_viewAll(_userRepository.readAll());
     }
 
 
+    // hardcode admin values until real database connection does not exist
     public void createAdmin() {
+
+        Env env = new Env();
         User user = new User();
-        user.set_firstname("Janos");
-        user.set_lastname("Admin");
-        user.set_email("admin@janos");
-        user.set_password("Micutaetop5");
+
+        user.set_firstname(env.load().get("ADMIN_FIRSTNAME"));
+        user.set_lastname(env.load().get("ADMIN_LASTNAME"));
+        user.set_email(env.load().get("ADMIN_EMAIL"));
+        user.set_password(env.load().get("ADMIN_PASSWORD"));
 
         _userRepository.create(user);
     }
-
 }

@@ -1,12 +1,18 @@
 package org.online_shop.controllers;
 
-
 import java.lang.Thread;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.AppView;
 import org.online_shop.views.UserView;
 
+
+@FunctionalInterface
+interface Action {
+    void perform();
+}
 
 public class AppController extends Controller {
 
@@ -28,17 +34,54 @@ public class AppController extends Controller {
         _sessionId = null;
     }
 
+    private String getStringFromConsole(Action message) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                message.perform();
+                return scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+                sleep(500);
+                scanner.nextLine(); // clear the input buffer
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 
-//     while (true) {
-//        try {
-//            System.out.println("Enter an integer: ");
-//            number = scanner.nextInt();
-//            break; // break out of the loop if the input is an integer
-//        } catch (InputMismatchException e) {
-//            System.out.println("Invalid input. Please enter an integer.");
-//            scanner.nextLine(); // clear the input buffer
-//        }
-//    }
+    private Integer getIntegerFromConsole(Action message) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                message.perform();
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+                sleep(500);
+                scanner.nextLine(); // clear the input buffer
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private Float getFloatFromConsole(Action message) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                message.perform();
+                return scanner.nextFloat();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+                sleep(500);
+                scanner.nextFloat(); // clear the input buffer
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
 
     private void userDetails() {
 
@@ -126,17 +169,11 @@ public class AppController extends Controller {
     }
 
     public void signUp() {
-        _appView.userView.print_enterFirstname();
-        String firstname = readString();
 
-        _appView.userView.print_enterLastname();
-        String lastname = readString();
-
-        _appView.userView.print_enterEmail();
-        String email = readString();
-
-        _appView.userView.print_enterPassword();
-        String password = readString();
+        String firstname = getStringFromConsole(_appView.userView::print_enterFirstname);
+        String lastname = getStringFromConsole(_appView.userView::print_enterLastname);
+        String email = getStringFromConsole(_appView.userView::print_enterEmail);
+        String password = getStringFromConsole(_appView.userView::print_enterPassword);
 
         Response response = _userController.createUser(firstname, lastname, email, password);
 
@@ -153,9 +190,7 @@ public class AppController extends Controller {
         boolean running = true;
 
         while (running) {
-            _appView.print_logIn_signUp();
-
-            switch (readInteger()) {
+            switch (getIntegerFromConsole(_appView::print_logIn_signUp)) {
                 case 0 -> running = false;
                 case 1 -> logIn();
                 case 2 -> signUp();

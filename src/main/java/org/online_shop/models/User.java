@@ -73,7 +73,6 @@ public class User {
                 "}\n";
     }
 
-
     private String getCurrentDateTIme() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();

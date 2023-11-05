@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseInMemory {
-    public List<Category> categories = new ArrayList<>();
-    public List<Favourite> favourites = new ArrayList<>();
-    public List<Order> orders = new ArrayList<>();
-    public List<OrderItem> orderItems = new ArrayList<>();
-    public List<Product> products = new ArrayList<>();
-    public List<ProductSpec> productSpecs = new ArrayList<>();
-    public List<ShippingAddress> shippingAddresses = new ArrayList<>();
-    public List<ShoppingCart> shoppingCarts = new ArrayList<>();
-    public List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
-    public List<User> users = new ArrayList<>();
+    protected List<Category> categories = new ArrayList<>();
+    protected List<Favourite> favourites = new ArrayList<>();
+    protected List<Order> orders = new ArrayList<>();
+    protected List<OrderItem> orderItems = new ArrayList<>();
+    protected List<Product> products = new ArrayList<>();
+    protected List<ProductSpec> productSpecs = new ArrayList<>();
+    protected List<ShippingAddress> shippingAddresses = new ArrayList<>();
+    protected List<ShoppingCart> shoppingCarts = new ArrayList<>();
+    protected List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
+    protected List<User> users = new ArrayList<>();
 }

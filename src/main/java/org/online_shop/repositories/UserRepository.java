@@ -9,8 +9,6 @@ import java.util.List;
 public class UserRepository extends DatabaseInMemory {
 
     public boolean create(User user) {
-        user.set_id(this.users.size()+1);
-
         return this.users.add(user);
     }
 
@@ -27,14 +25,14 @@ public class UserRepository extends DatabaseInMemory {
         return this.users;
     }
 
-    public boolean update(User user) {
+    public boolean update(User user, int _id) {
 
         return true;
     }
 
-    public boolean delete(int _id) {
-
-        return true;
+    public boolean delete(String email) {
+        User user = read(email);
+        return this.users.removeIf(u -> u.equals(user));
     }
 
     public boolean deleteAll() {

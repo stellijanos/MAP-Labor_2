@@ -1,6 +1,9 @@
 package org.online_shop.controllers;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static java.lang.Thread.sleep;
 
 public class Controller {
 
@@ -13,17 +16,18 @@ public class Controller {
         SESSION_DESTROY
     }
 
-    public String readString() {
+
+    protected String readString() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
-    public Integer readInteger() {
+    protected Integer readInteger() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
-    public Float readFloat() {
+    protected Float readFloat() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextFloat();
     }

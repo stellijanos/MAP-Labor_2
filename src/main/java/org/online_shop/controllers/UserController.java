@@ -36,10 +36,32 @@ public class UserController extends Controller {
         return Response.USER_CREATED_SUCCESSFULLY;
     }
 
+
+    public Response updateUser(String newFirstname, String newLastname, String newEmail, String currentEmail) {
+        User user = _userRepository.read(currentEmail);
+
+        if (!newFirstname.isEmpty())
+            user.set_firstname(newFirstname);
+        if (!newLastname.isEmpty())
+            user.set_lastname(newLastname);
+        if (!newEmail.isEmpty()) {
+            User existingUser = _userRepository.read(newEmail);
+            if (existingUser.get_email() != null)
+                return Response.USER_EXISTS;
+            user.set_email(newEmail);
+        }
+
+        if (_userRepository.update(user, currentEmail)) {
+            return Response.USER_UPDATED_SUCCESSFULLY;
+        }
+        return Response.SOMETHING_WENT_WRONG;
+    }
+
+
     public Response logInUser(String email, String password) {
         User user = _userRepository.read(email);
         if (user.get_email() == null) {
-            return Response.SESSION_DESTROY;
+            return Response.INCORRECT_EMAIL;
         }
         if (!user.get_password().equals(password)) {
             return Response.INCORRECT_PASSWORD;

@@ -59,8 +59,8 @@ public class UserView {
 
     public void print_accountDetails(User user) {
         System.out.printf("\n-------------------\n Account details\n-------------------\n" +
-                "Member since: %s\nFirstname:    %s\nLastname:     %s\nEmail:        %s\n",
-                user.get_createdAt(), user.get_firstname(), user.get_lastname(),  user.get_email());
+                        "Member since: %s\nFirstname:    %s\nLastname:     %s\nEmail:        %s\n",
+                user.get_createdAt(), user.get_firstname(), user.get_lastname(), user.get_email());
     }
 
     public void print_enterNewPassword() {
@@ -74,4 +74,29 @@ public class UserView {
     public void print_passwordsDoNotMatch() {
         System.out.println("Passwords don't match: ");
     }
+
+
+    public void print_updateUserInfo() {
+        System.out.println("0. Back\n" +
+                "1. Update firstname\n" +
+                "2. Update lastname\n" +
+                "3. Update email\n");
+    }
+
+    public void enterNewFirstname() {
+        System.out.println("Enter new firstname: ");
+    }
+
+    public void enterNewLastname() {
+        System.out.println("Enter new lastname");
+    }
+
+    public void enterNewEmail() {
+        System.out.println("Enter new email address: ");
+    }
+
+    public void print_userUpdatedSuccessfully() {
+        System.out.println("User updated successfully!");
+    }
+
 }

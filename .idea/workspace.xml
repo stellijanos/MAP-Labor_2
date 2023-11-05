@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement appcontroller functionalities and initialise methods in it">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/Env.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement ENV and implement parts from MVC user part">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/DatabaseInMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/DatabaseInMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699133921718</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="implement ENV and implement parts from MVC user part">
+      <option name="closed" value="true" />
+      <created>1699197355363</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1699197355363</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -224,6 +229,7 @@
     <MESSAGE value="implement signup test for UserController and UserRepository" />
     <MESSAGE value="implement user panel and declar their methods" />
     <MESSAGE value="implement appcontroller functionalities and initialise methods in it" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement appcontroller functionalities and initialise methods in it" />
+    <MESSAGE value="implement ENV and implement parts from MVC user part" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement ENV and implement parts from MVC user part" />
   </component>
 </project>

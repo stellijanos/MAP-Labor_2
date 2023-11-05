@@ -1,12 +1,13 @@
 package org.online_shop;
 
 import org.junit.*;
+import static org.junit.Assert.*;
 import org.online_shop.controllers.UserController;
 import org.online_shop.models.User;
 import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.UserView;
 
-import static org.junit.Assert.*;
+
 
 public class UserTest {
 
@@ -21,7 +22,7 @@ public class UserTest {
         System.out.println(
                 userController.createUser("Janos", "Stelli", "stellijanos23@gmail.com", "12345")
         );
-        userController.listAllUsers();
+//        userController.listAllUsers();
         assertEquals(1, userRepository.readAll().size());
 
 

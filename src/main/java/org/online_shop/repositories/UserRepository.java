@@ -25,9 +25,16 @@ public class UserRepository extends DatabaseInMemory {
         return this.users;
     }
 
-    public boolean update(User user, int _id) {
+    public boolean update(User updatedUser, String email) {
 
-        return true;
+        for (int i = 0; i  < this.users.size(); i++)
+            if (users.get(i).get_email().equals(email)) {
+                users.get(i).set_firstname(updatedUser.get_firstname());
+                users.get(i).set_lastname(updatedUser.get_firstname());
+                users.get(i).set_email(updatedUser.get_email());
+                return true;
+            }
+        return false;
     }
 
     public boolean delete(String email) {

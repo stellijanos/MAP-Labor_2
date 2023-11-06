@@ -62,6 +62,22 @@ public class UserController extends Controller {
         return Response.SOMETHING_WENT_WRONG;
     }
 
+    public Response deleteUser(String email, String password) {
+        User user = _userRepository.read(email);
+        if (user.get_email() == null) {
+            return Response.INCORRECT_EMAIL;
+        }
+
+        if (!user.get_password().equals(password)) {
+            return Response.INCORRECT_PASSWORD;
+        }
+
+        if (_userRepository.delete(email)) {
+            return Response.USER_DELETED_SUCCESSFULLY;
+        }
+        return Response.SOMETHING_WENT_WRONG;
+    }
+
 
     public Response logInUser(String email, String password) {
         User user = _userRepository.read(email);

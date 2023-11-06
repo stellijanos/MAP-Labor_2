@@ -4,6 +4,7 @@ import org.online_shop.models.DatabaseInMemory;
 import org.online_shop.models.ProductSpec;
 import org.online_shop.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository extends DatabaseInMemory {
@@ -47,7 +48,7 @@ public class UserRepository extends DatabaseInMemory {
     }
 
     public boolean deleteAll() {
-
+        users = new ArrayList<>();
         return true;
     }
 }

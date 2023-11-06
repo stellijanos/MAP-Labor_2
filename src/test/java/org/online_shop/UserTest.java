@@ -1,12 +1,13 @@
 package org.online_shop;
 
 import org.junit.*;
+
 import static org.junit.Assert.*;
+
 import org.online_shop.controllers.UserController;
 import org.online_shop.models.User;
 import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.UserView;
-
 
 
 public class UserTest {
@@ -19,10 +20,7 @@ public class UserTest {
 
         assertEquals(0, userRepository.readAll().size());
 
-        System.out.println(
-                userController.createUser("Janos", "Stelli", "stellijanos23@gmail.com", "12345")
-        );
-//        userController.listAllUsers();
+        userController.createUser("Janos", "Stelli", "stellijanos23@gmail.com", "12345");
         assertEquals(1, userRepository.readAll().size());
 
 
@@ -42,6 +40,29 @@ public class UserTest {
 
     @Test
     public void test_updateUser() {
+        UserView userView = new UserView();
+        UserRepository userRepository = new UserRepository();
+        UserController userController = new UserController(userView, userRepository);
+
+        assertEquals(0, userRepository.readAll().size());
+
+        userController.createUser("Janos", "Stelli", "stellijanos23@gmail.com", "12345");
+        assertEquals(1, userRepository.readAll().size());
+
+        User createdUser = userController.getUser("stellijanos23@gmail.com");
+
+        assertNotNull(createdUser);
+
+        createdUser.set_firstname("Max");
+        createdUser.set_lastname("Mustermann");
+        createdUser.set_email("max.mustermann@gmail.com");
+        createdUser.set_password("max123");
+
+
+        assertEquals("Max", createdUser.get_firstname());
+        assertEquals("Mustermann", createdUser.get_lastname());
+        assertEquals("max.mustermann@gmail.com", createdUser.get_email());
+        assertEquals("max123", createdUser.get_password());
 
     }
 }

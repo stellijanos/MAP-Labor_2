@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement user update method">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="fix user update functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +61,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.UserTest.test_updateUser">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.online_shop.Main" />
       <module name="MAP-Labor_2" />
@@ -94,10 +91,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserTest.test_updateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MAP-Labor_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.online_shop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.online_shop" />
+      <option name="MAIN_CLASS_NAME" value="org.online_shop.UserTest" />
+      <option name="METHOD_NAME" value="test_updateUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.UserTest.test_updateUser" />
         <item itemvalue="JUnit.UserTest.test_signUp" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -222,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699220114506</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix user update functionality">
+      <option name="closed" value="true" />
+      <created>1699267561766</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1699267561766</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -240,6 +262,7 @@
     <MESSAGE value="implement appcontroller functionalities and initialise methods in it" />
     <MESSAGE value="implement ENV and implement parts from MVC user part" />
     <MESSAGE value="implement user update method" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement user update method" />
+    <MESSAGE value="fix user update functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix user update functionality" />
   </component>
 </project>

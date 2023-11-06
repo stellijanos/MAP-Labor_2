@@ -40,7 +40,9 @@ public class UserView {
     public void print_incorrectPassword() {
         System.out.println("Incorrect password");
     }
-
+    public void print_incorrectEmail() {
+        System.out.println("Incorrect email address!");
+    }
     public void print_userCreatedSuccessfully() {
         System.out.println("User created successfully!");
     }

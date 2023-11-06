@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement ENV and implement parts from MVC user part">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement user update method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" afterDir="false" />
@@ -213,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699197355363</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="implement user update method">
+      <option name="closed" value="true" />
+      <created>1699220114506</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1699220114506</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -230,6 +239,7 @@
     <MESSAGE value="implement user panel and declar their methods" />
     <MESSAGE value="implement appcontroller functionalities and initialise methods in it" />
     <MESSAGE value="implement ENV and implement parts from MVC user part" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement ENV and implement parts from MVC user part" />
+    <MESSAGE value="implement user update method" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement user update method" />
   </component>
 </project>

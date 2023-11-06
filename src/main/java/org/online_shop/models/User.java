@@ -11,9 +11,11 @@ public class User {
     private String _password;
     private final String _createdAt;
 
+
     public User() {
         this._createdAt = getCurrentDateTIme();
     }
+
 
     public int get_id() {
         return _id;

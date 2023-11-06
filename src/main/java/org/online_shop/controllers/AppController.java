@@ -14,6 +14,7 @@ interface Action {
     void perform();
 }
 
+
 public class AppController extends Controller {
 
     private final AppView _appView = new AppView();
@@ -60,6 +61,7 @@ public class AppController extends Controller {
     }
 
     private void userDetails() {
+        _userController.listAllUsers();
         _appView.userView.print_accountDetails(_userController.getUser(_sessionId));
 
         while (true) {
@@ -75,7 +77,12 @@ public class AppController extends Controller {
 
         Response response = _userController.updateUser(firstname, lastname, email, _sessionId);
         switch (response) {
-            case USER_UPDATED_SUCCESSFULLY -> _appView.userView.print_userUpdatedSuccessfully();
+            case USER_UPDATED_SUCCESSFULLY -> {
+                _appView.userView.print_userUpdatedSuccessfully();
+                if (!email.isEmpty()) {
+                    _sessionId = email;
+                }
+            }
             case USER_EXISTS -> _appView.userView.print_userExists();
             case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
         }
@@ -136,18 +143,23 @@ public class AppController extends Controller {
         String password = (String) readFromConsole(_appView.userView::print_enterPassword, String.class);
 
         _session = _userController.logInUser(email, password);
-        if (_session == Response.SESSION_START) {
-            _sessionId = email;
-            _appView.userView.print_logInSuccessful();
 
-            sleep(500);
+        switch (_session) {
+            case SESSION_START -> {
+                _sessionId = email;
+                _appView.userView.print_logInSuccessful();
 
-            userPanel();
-
-        } else {
-            _session = Response.SESSION_DESTROY;
-            _appView.userView.print_logInFailed();
-
+                sleep(500);
+                userPanel();
+            }
+            case INCORRECT_EMAIL -> {
+                _session = Response.SESSION_DESTROY;
+                _appView.userView.print_incorrectEmail();
+            }
+            case INCORRECT_PASSWORD -> {
+                _session = Response.SESSION_DESTROY;
+                _appView.userView.print_incorrectPassword();
+            }
         }
     }
 
@@ -183,5 +195,6 @@ public class AppController extends Controller {
         }
         _appView.print_goodBye();
         _userController.listAllUsers();
+
     }
 }

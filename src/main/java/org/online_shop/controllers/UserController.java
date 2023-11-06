@@ -38,20 +38,25 @@ public class UserController extends Controller {
 
 
     public Response updateUser(String newFirstname, String newLastname, String newEmail, String currentEmail) {
-        User user = _userRepository.read(currentEmail);
+        User currentUser = _userRepository.read(currentEmail);
 
-        if (!newFirstname.isEmpty())
-            user.set_firstname(newFirstname);
-        if (!newLastname.isEmpty())
-            user.set_lastname(newLastname);
-        if (!newEmail.isEmpty()) {
-            User existingUser = _userRepository.read(newEmail);
-            if (existingUser.get_email() != null)
-                return Response.USER_EXISTS;
-            user.set_email(newEmail);
+        if (currentUser.get_email() == null) {
+            return Response.USER_NOT_FOUND;
         }
 
-        if (_userRepository.update(user, currentEmail)) {
+        User existingUser = _userRepository.read(newEmail);
+
+        if (!newEmail.isEmpty() && existingUser.get_email() != null)
+            return Response.USER_EXISTS;
+
+        User updatedUser = new User();
+
+        updatedUser.set_firstname(newFirstname.isEmpty() ? currentUser.get_firstname() : newFirstname);
+        updatedUser.set_lastname(newLastname.isEmpty() ? currentUser.get_lastname() : newLastname);
+        updatedUser.set_email(newEmail.isEmpty() ? currentUser.get_email() : newEmail);
+
+
+        if (_userRepository.update(updatedUser, currentEmail)) {
             return Response.USER_UPDATED_SUCCESSFULLY;
         }
         return Response.SOMETHING_WENT_WRONG;
@@ -76,6 +81,7 @@ public class UserController extends Controller {
 
     public void listAllUsers() {
         _userView.print_viewAll(_userRepository.readAll());
+        System.out.println(_userRepository.readAll().size());
     }
 
 

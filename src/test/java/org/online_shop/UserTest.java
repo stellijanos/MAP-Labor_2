@@ -39,4 +39,9 @@ public class UserTest {
         assertEquals(1, userRepository.readAll().size());
 
     }
+
+    @Test
+    public void test_updateUser() {
+
+    }
 }

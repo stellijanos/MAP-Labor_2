@@ -20,11 +20,11 @@ public class Session {
         return instance;
     }
 
-    public String getSessionId() {
+    public String getId() {
         return sessionId;
     }
 
-    public void setSessionId(String id) {
+    public void setId(String id) {
         if (sessionId == null)
             sessionId = id;
     }

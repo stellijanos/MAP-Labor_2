@@ -9,19 +9,17 @@ import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.AppView;
 import org.online_shop.views.UserView;
 
-
 @FunctionalInterface
 interface Action {
     void perform();
 }
-
 
 public class AppController extends Controller {
 
     private final AppView _appView = new AppView();
     private final UserController _userController = new UserController(new UserView(), new UserRepository());
     private Session _session;
-    private String _sessionId = null;
+//    private String _sessionId = null;
 
     private void sleep(Integer milliseconds) {
         try {
@@ -61,7 +59,7 @@ public class AppController extends Controller {
 
     private void userDetails() {
         _userController.listAllUsers();
-        _appView.userView.print_accountDetails(_userController.getUser(_sessionId));
+        _appView.userView.print_accountDetails(_userController.getUser(_session.getId()));
 
         while (true) {
             if (readFromConsole(_appView::print_back, Integer.class) == 0)
@@ -74,12 +72,14 @@ public class AppController extends Controller {
         String lastname = readFromConsole(_appView.userView::enterNewLastname, String.class);
         String email = readFromConsole(_appView.userView::enterNewEmail, String.class);
 
-        Response response = _userController.updateUser(firstname, lastname, email, _sessionId);
+        Response response = _userController.updateUser(firstname, lastname, email, _session.getId());
         switch (response) {
             case USER_UPDATED_SUCCESSFULLY -> {
                 _appView.userView.print_userUpdatedSuccessfully();
                 if (!email.isEmpty()) {
-                    _sessionId = email;
+                    _session.destroy();
+                    _session = Session.getInstance();
+                    _session.setId(email);
                 }
             }
             case USER_EXISTS -> _appView.userView.print_userExists();
@@ -96,7 +96,7 @@ public class AppController extends Controller {
     private void deleteAccount() {
         String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
 
-        Response response = _userController.deleteUser(_sessionId, password);
+        Response response = _userController.deleteUser(_session.getId(), password);
 
         switch (response) {
             case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
@@ -142,7 +142,7 @@ public class AppController extends Controller {
                 case 7 -> searchProduct();
                 case 8 -> viewAllProducts();
                 case 9 -> {
-                    if (_sessionId.equals("admin@janos")) {
+                    if (_session.getId().equals("admin@janos")) {
                         adminPanel();
                     }
                 }
@@ -162,7 +162,7 @@ public class AppController extends Controller {
         switch (response) {
             case LOGIN_SUCCESSFUL -> {
                 _session = Session.getInstance();
-                _session.setSessionId(email);
+                _session.setId(email);
                 _appView.userView.print_logInSuccessful();
 
                 sleep(500);

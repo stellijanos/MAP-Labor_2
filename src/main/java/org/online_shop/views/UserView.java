@@ -101,4 +101,8 @@ public class UserView {
         System.out.println("User updated successfully!");
     }
 
+    public void print_userDeletedSuccessfully() {
+        System.out.println("User deleted successfully");
+    }
+
 }

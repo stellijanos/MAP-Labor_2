@@ -1,5 +1,7 @@
 package org.online_shop.models;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
@@ -49,7 +51,6 @@ public class User {
         this._email = _email;
     }
 
-
     public String get_password() {
         return _password;
     }
@@ -61,7 +62,6 @@ public class User {
     public String get_createdAt() {
         return _createdAt;
     }
-
 
     @Override
     public String toString() {
@@ -75,6 +75,7 @@ public class User {
                 "}\n";
     }
 
+    @NotNull
     private String getCurrentDateTIme() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();

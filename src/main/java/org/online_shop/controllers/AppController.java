@@ -4,6 +4,7 @@ import java.lang.Thread;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.online_shop.models.Session;
 import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.AppView;
 import org.online_shop.views.UserView;
@@ -19,7 +20,7 @@ public class AppController extends Controller {
 
     private final AppView _appView = new AppView();
     private final UserController _userController = new UserController(new UserView(), new UserRepository());
-    private Response _session = Response.SESSION_DESTROY;
+    private Session _session;
     private String _sessionId = null;
 
     private void sleep(Integer milliseconds) {
@@ -31,27 +32,25 @@ public class AppController extends Controller {
     }
 
     private void logOut() {
-        _session = Response.SESSION_DESTROY;
-        _sessionId = null;
-
-        mainMenu();
+        if (_session.destroy())
+            mainMenu();
     }
 
-    private Object readFromConsole(Action message, Class<?> dataType) {
+    private <T> T readFromConsole(Action message, Class<T> type) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             try {
                 message.perform();
 
-                if (dataType.equals(String.class))
-                    return scanner.nextLine();
-                if (dataType.equals(Integer.class))
-                    return scanner.nextInt();
-                if (dataType.equals(Float.class))
-                    return scanner.nextFloat();
+                if (type.equals(String.class))
+                    return type.cast(scanner.nextLine());
+                if (type.equals(Integer.class))
+                    return type.cast(scanner.nextInt());
+                if (type.equals(Float.class))
+                    return type.cast(scanner.nextFloat());
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer.");
+                System.out.println("Invalid input. Please enter valid option.");
                 sleep(500);
                 scanner.nextLine(); // clear the input buffer
             } catch (Exception e) {
@@ -65,15 +64,15 @@ public class AppController extends Controller {
         _appView.userView.print_accountDetails(_userController.getUser(_sessionId));
 
         while (true) {
-            if ((Integer) readFromConsole(_appView::print_back, Integer.class) == 0)
+            if (readFromConsole(_appView::print_back, Integer.class) == 0)
                 userPanel();
         }
     }
 
     private void updateUserInfo() {
-        String firstname = (String) readFromConsole(_appView.userView::enterNewFirstname, String.class);
-        String lastname = (String) readFromConsole(_appView.userView::enterNewLastname, String.class);
-        String email = (String) readFromConsole(_appView.userView::enterNewEmail, String.class);
+        String firstname = readFromConsole(_appView.userView::enterNewFirstname, String.class);
+        String lastname = readFromConsole(_appView.userView::enterNewLastname, String.class);
+        String email = readFromConsole(_appView.userView::enterNewEmail, String.class);
 
         Response response = _userController.updateUser(firstname, lastname, email, _sessionId);
         switch (response) {
@@ -91,9 +90,25 @@ public class AppController extends Controller {
     }
 
     private void changePassword() {
+        String currentPassword = readFromConsole(_appView.userView::print_enterPassword, String.class);
     }
 
     private void deleteAccount() {
+        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
+
+        Response response = _userController.deleteUser(_sessionId, password);
+
+        switch (response) {
+            case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
+            case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
+            case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
+            case USER_DELETED_SUCCESSFULLY -> {
+                if (_session.destroy()) {
+                    sleep(1500);
+                    mainMenu();
+                }
+            }
+        }
     }
 
     private void favourites() {
@@ -114,7 +129,7 @@ public class AppController extends Controller {
     public void userPanel() {
         while (true) {
 
-            Integer option = (Integer) readFromConsole(_appView::print_userPanel, Integer.class);
+            Integer option = readFromConsole(_appView::print_userPanel, Integer.class);
 
             switch (option) {
                 case 0 -> logOut();
@@ -139,36 +154,31 @@ public class AppController extends Controller {
 
 
     public void logIn() {
-        String email = (String) readFromConsole(_appView.userView::print_enterEmail, String.class);
-        String password = (String) readFromConsole(_appView.userView::print_enterPassword, String.class);
+        String email = readFromConsole(_appView.userView::print_enterEmail, String.class);
+        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
 
-        _session = _userController.logInUser(email, password);
+        Response response = _userController.logInUser(email, password);
 
-        switch (_session) {
-            case SESSION_START -> {
-                _sessionId = email;
+        switch (response) {
+            case LOGIN_SUCCESSFUL -> {
+                _session = Session.getInstance();
+                _session.setSessionId(email);
                 _appView.userView.print_logInSuccessful();
 
                 sleep(500);
                 userPanel();
             }
-            case INCORRECT_EMAIL -> {
-                _session = Response.SESSION_DESTROY;
-                _appView.userView.print_incorrectEmail();
-            }
-            case INCORRECT_PASSWORD -> {
-                _session = Response.SESSION_DESTROY;
-                _appView.userView.print_incorrectPassword();
-            }
+            case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
+            case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
         }
     }
 
     public void signUp() {
 
-        String firstname = (String) readFromConsole(_appView.userView::print_enterFirstname, String.class);
-        String lastname = (String) readFromConsole(_appView.userView::print_enterLastname, String.class);
-        String email = (String) readFromConsole(_appView.userView::print_enterEmail, String.class);
-        String password = (String) readFromConsole(_appView.userView::print_enterPassword, String.class);
+        String firstname = readFromConsole(_appView.userView::print_enterFirstname, String.class);
+        String lastname = readFromConsole(_appView.userView::print_enterLastname, String.class);
+        String email = readFromConsole(_appView.userView::print_enterEmail, String.class);
+        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
 
         Response response = _userController.createUser(firstname, lastname, email, password);
 
@@ -185,7 +195,7 @@ public class AppController extends Controller {
         boolean running = true;
 
         while (running) {
-            switch ((Integer) readFromConsole(_appView::print_logIn_signUp, Integer.class)) {
+            switch (readFromConsole(_appView::print_logIn_signUp, Integer.class)) {
                 case 0 -> running = false;
                 case 1 -> logIn();
                 case 2 -> signUp();

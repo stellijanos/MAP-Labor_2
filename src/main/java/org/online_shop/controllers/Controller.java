@@ -1,8 +1,5 @@
 package org.online_shop.controllers;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import static java.lang.Thread.sleep;
 
 public class Controller {
@@ -16,7 +13,7 @@ public class Controller {
         SOMETHING_WENT_WRONG,
         INCORRECT_EMAIL,
         INCORRECT_PASSWORD,
-        SESSION_START,
+        LOGIN_SUCCESSFUL,
         SESSION_DESTROY
     }
 

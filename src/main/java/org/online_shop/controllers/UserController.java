@@ -18,7 +18,7 @@ public class UserController extends Controller {
     }
 
     public Response createUser(String firstname, String lastname, String email, String password) {
-        if (logInUser(email, password) == Response.SESSION_START) {
+        if (logInUser(email, password) == Response.LOGIN_SUCCESSFUL) {
             return Response.USER_EXISTS;
         }
         User user = new User();
@@ -87,7 +87,7 @@ public class UserController extends Controller {
         if (!user.get_password().equals(password)) {
             return Response.INCORRECT_PASSWORD;
         }
-        return Response.SESSION_START;
+        return Response.LOGIN_SUCCESSFUL;
     }
 
     public User getUser(String email) {

@@ -30,12 +30,21 @@ public class UserRepository extends DatabaseInMemory {
 
         System.out.println(updatedUser);
 
-        for (int i = 0; i  < this.users.size(); i++) {
-            System.out.println(users.get(i));
+        for (int i = 0; i < this.users.size(); i++) {
             if (users.get(i).get_email().equals(email)) {
                 users.get(i).set_firstname(updatedUser.get_firstname());
                 users.get(i).set_lastname(updatedUser.get_firstname());
                 users.get(i).set_email(updatedUser.get_email());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean updatePassword(String newPassword, String email) {
+        for (int i = 0; i < this.users.size(); i++) {
+            if (users.get(i).get_email().equals(email)) {
+                users.get(i).set_password(newPassword);
                 return true;
             }
         }

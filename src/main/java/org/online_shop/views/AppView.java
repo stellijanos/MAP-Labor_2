@@ -47,8 +47,9 @@ public class AppView {
                 "4. Delete Account\n" +
                 "5. Favourites\n" +
                 "6. Shopping Cart\n" +
-                "7. Search product\n" +
-                "8. View all products\n\n"
+                "7. Orders\n" +
+                "8. Search product\n" +
+                "9. View all products\n\n"
         );
     }
 

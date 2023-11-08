@@ -91,6 +91,19 @@ public class AppController extends Controller {
 
     private void changePassword() {
         String currentPassword = readFromConsole(_appView.userView::print_enterPassword, String.class);
+        String newPassword = readFromConsole(_appView.userView::print_enterNewPassword, String.class);
+        String confirmPassword = readFromConsole(_appView.userView::print_confirmPassword, String.class);
+
+        Response response = _userController.updateUserPassword(currentPassword, newPassword, confirmPassword, _session.getId());
+
+        switch (response) {
+            case USER_NOT_FOUND -> _appView.userView.print_userNotFound();
+            case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
+            case PASSWORDS_DO_NOT_MATCH -> _appView.userView.print_passwordsDoNotMatch();
+            case PASSWORD_UPDATED_SUCCESSFULLY -> _appView.userView.print_passwordUpdatedSuccessfully();
+            case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
+        }
+        sleep(750);
     }
 
     private void deleteAccount() {
@@ -117,6 +130,10 @@ public class AppController extends Controller {
     private void shoppingCart() {
     }
 
+    private void orders() {
+
+    }
+
     private void searchProduct() {
     }
 
@@ -126,11 +143,11 @@ public class AppController extends Controller {
     private void adminPanel() {
     }
 
+
     public void userPanel() {
         while (true) {
 
             Integer option = readFromConsole(_appView::print_userPanel, Integer.class);
-
             switch (option) {
                 case 0 -> logOut();
                 case 1 -> userDetails();
@@ -139,9 +156,10 @@ public class AppController extends Controller {
                 case 4 -> deleteAccount();
                 case 5 -> favourites();
                 case 6 -> shoppingCart();
-                case 7 -> searchProduct();
-                case 8 -> viewAllProducts();
-                case 9 -> {
+                case 7 -> orders();
+                case 8 -> searchProduct();
+                case 9 -> viewAllProducts();
+                case 10 -> {
                     if (_session.getId().equals("admin@janos")) {
                         adminPanel();
                     }

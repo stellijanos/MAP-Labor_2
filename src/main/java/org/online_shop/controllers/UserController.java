@@ -62,6 +62,25 @@ public class UserController extends Controller {
         return Response.SOMETHING_WENT_WRONG;
     }
 
+
+    public Response updateUserPassword(String currentPassword, String newPassword, String confirmPassword, String currentEmail) {
+        User currentUser = _userRepository.read(currentEmail);
+
+        if (currentUser.get_email() == null) {
+            return Response.USER_NOT_FOUND;
+        }
+        if (!currentUser.get_password().equals(currentPassword)) {
+            return Response.INCORRECT_PASSWORD;
+        }
+        if (!newPassword.equals(confirmPassword)) {
+            return Response.PASSWORDS_DO_NOT_MATCH;
+        }
+        if (_userRepository.updatePassword(newPassword, currentEmail)) {
+            return Response.PASSWORD_UPDATED_SUCCESSFULLY;
+        }
+        return Response.SOMETHING_WENT_WRONG;
+    }
+
     public Response deleteUser(String email, String password) {
         User user = _userRepository.read(email);
         if (user.get_email() == null) {

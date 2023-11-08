@@ -74,7 +74,7 @@ public class UserView {
     }
 
     public void print_passwordsDoNotMatch() {
-        System.out.println("Passwords don't match: ");
+        System.out.println("Passwords don't match!");
     }
 
 
@@ -103,6 +103,14 @@ public class UserView {
 
     public void print_userDeletedSuccessfully() {
         System.out.println("User deleted successfully");
+    }
+
+    public void print_userNotFound() {
+        System.out.println("User not found!");
+    }
+
+    public void print_passwordUpdatedSuccessfully() {
+        System.out.println("Password updated successfully");
     }
 
 }

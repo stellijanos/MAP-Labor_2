@@ -28,7 +28,7 @@ public class UserRepository extends DatabaseInMemory {
 
     public boolean update(User updatedUser, String email) {
 
-        System.out.println(updatedUser);
+//        System.out.println(updatedUser);
 
         for (int i = 0; i < this.users.size(); i++) {
             if (users.get(i).get_email().equals(email)) {

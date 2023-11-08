@@ -9,15 +9,15 @@ public class Product {
     private String _imageLink;
     private int _stock;
 
-    public Product(int _id, String _name, float _price, int _categoryId, String _description, String _imageLink, int _stock) {
-        this._id = _id;
-        this._name = _name;
-        this._price = _price;
-        this._categoryId = _categoryId;
-        this._description = _description;
-        this._imageLink = _imageLink;
-        this._stock = _stock;
-    }
+//    public Product(int _id, String _name, float _price, int _categoryId, String _description, String _imageLink, int _stock) {
+//        this._id = _id;
+//        this._name = _name;
+//        this._price = _price;
+//        this._categoryId = _categoryId;
+//        this._description = _description;
+//        this._imageLink = _imageLink;
+//        this._stock = _stock;
+//    }
 
     public int get_id() {
         return _id;

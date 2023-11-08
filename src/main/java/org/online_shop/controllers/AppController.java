@@ -19,7 +19,6 @@ public class AppController extends Controller {
     private final AppView _appView = new AppView();
     private final UserController _userController = new UserController(new UserView(), new UserRepository());
     private Session _session;
-//    private String _sessionId = null;
 
     private void sleep(Integer milliseconds) {
         try {
@@ -29,7 +28,7 @@ public class AppController extends Controller {
         }
     }
 
-    private void logOut() {
+    public void logOut() {
         if (_session.destroy())
             mainMenu();
     }
@@ -57,7 +56,7 @@ public class AppController extends Controller {
         }
     }
 
-    private void userDetails() {
+    public void userDetails() {
         _userController.listAllUsers();
         _appView.userView.print_accountDetails(_userController.getUser(_session.getId()));
 
@@ -67,7 +66,7 @@ public class AppController extends Controller {
         }
     }
 
-    private void updateUserInfo() {
+    public void updateUserInfo() {
         String firstname = readFromConsole(_appView.userView::enterNewFirstname, String.class);
         String lastname = readFromConsole(_appView.userView::enterNewLastname, String.class);
         String email = readFromConsole(_appView.userView::enterNewEmail, String.class);
@@ -89,7 +88,7 @@ public class AppController extends Controller {
         userPanel();
     }
 
-    private void changePassword() {
+    public void changePassword() {
         String currentPassword = readFromConsole(_appView.userView::print_enterPassword, String.class);
         String newPassword = readFromConsole(_appView.userView::print_enterNewPassword, String.class);
         String confirmPassword = readFromConsole(_appView.userView::print_confirmPassword, String.class);
@@ -106,7 +105,7 @@ public class AppController extends Controller {
         sleep(750);
     }
 
-    private void deleteAccount() {
+    public void deleteAccount() {
         String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
 
         Response response = _userController.deleteUser(_session.getId(), password);
@@ -124,50 +123,51 @@ public class AppController extends Controller {
         }
     }
 
-    private void favourites() {
+    public void favourites() {
     }
 
-    private void shoppingCart() {
+    public void shoppingCart() {
     }
 
-    private void orders() {
+    public void orders() {
 
     }
 
-    private void searchProduct() {
+    public void searchProduct() {
     }
 
-    private void viewAllProducts() {
+    public void viewAllProducts() {
     }
 
-    private void adminPanel() {
+    public void viewAllUsers() {
+
+    }
+
+    public void removeAllUsers() {
+
+    }
+
+    public void removeUser() {
+
+    }
+
+    public void addProduct() {
+
     }
 
 
-    public void userPanel() {
-        while (true) {
+    public void updateProduct() {
 
-            Integer option = readFromConsole(_appView::print_userPanel, Integer.class);
-            switch (option) {
-                case 0 -> logOut();
-                case 1 -> userDetails();
-                case 2 -> updateUserInfo();
-                case 3 -> changePassword();
-                case 4 -> deleteAccount();
-                case 5 -> favourites();
-                case 6 -> shoppingCart();
-                case 7 -> orders();
-                case 8 -> searchProduct();
-                case 9 -> viewAllProducts();
-                case 10 -> {
-                    if (_session.getId().equals("admin@janos")) {
-                        adminPanel();
-                    }
-                }
-                default -> _appView.print_optionNotFound();
-            }
-            sleep(1000);
-        }
+    }
+
+
+    public void deleteProduct() {
+
+    }
+
+
+    public void viewAllOrders() {
+
     }
 
 
@@ -207,6 +207,51 @@ public class AppController extends Controller {
         }
     }
 
+
+    public void userPanel() {
+        while (true) {
+
+            Integer option = readFromConsole(_appView::userPanel, Integer.class);
+            switch (option) {
+                case 0 -> logOut();
+                case 1 -> userDetails();
+                case 2 -> updateUserInfo();
+                case 3 -> changePassword();
+                case 4 -> deleteAccount();
+                case 5 -> favourites();
+                case 6 -> shoppingCart();
+                case 7 -> orders();
+                case 8 -> searchProduct();
+                case 9 -> viewAllProducts();
+                case 10 -> {
+                    if (_session.getId().equals("admin@janos")) {
+                        adminPanel();
+                    }
+                }
+                default -> _appView.print_optionNotFound();
+            }
+            sleep(1000);
+        }
+    }
+
+    public void adminPanel() {
+
+        while (true) {
+            Integer option = readFromConsole(_appView::print_adminPanel, Integer.class);
+            switch (option) {
+                case 0 -> userPanel();
+                case 1 -> viewAllUsers();
+                case 2 -> removeAllUsers();
+                case 3 -> removeUser();
+                case 4 -> viewAllProducts();
+                case 5 -> searchProduct();
+                case 6 -> addProduct();
+                case 7 -> updateProduct();
+                case 8 -> deleteProduct();
+                case 9 -> viewAllOrders();
+            }
+        }
+    }
 
     public void mainMenu() {
         _userController.createAdmin();

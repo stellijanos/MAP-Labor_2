@@ -37,19 +37,56 @@ public class AppView {
         System.out.println("Goodbye, see you next time!\n---------------------\n");
     }
 
-
-    public void print_userPanel() {
-        System.out.println("\n------------------------------\n    User Menu\n------------------------------\n" +
+    public void userPanel() {
+        System.out.println("\n------------------------------\n" +
+                "User Menu\n------------------------------\n" +
                 "0. LogOut\n" +
-                "1. Account details\n" +
-                "2. Update Account Info\n" +
-                "3. Change Password\n" +
-                "4. Delete Account\n" +
-                "5. Favourites\n" +
-                "6. Shopping Cart\n" +
-                "7. Orders\n" +
-                "8. Search product\n" +
-                "9. View all products\n\n"
+                "1. Account settings\n" +
+                "2. Shipping Address options\n" +
+                "3. Orders\n" +
+                "3. Favourites\n" +
+                "4. ShoppingCarts\n" +
+                "5. Products\n" +
+                "Enter option: "
+        );
+    }
+
+    // userPanel option 1
+    public void accountSettings() {
+        System.out.println("\n------------------------------\n" +
+                "Account settings\n------------------------------\n" +
+                "0. Back\n" +
+                "1. View profile details\n" +
+                "2. Edit profile details\n" +
+                "3. Change password\n" +
+                "4. Delete account\n" +
+                "Enter option: "
+        );
+    }
+
+    // userPanel option 2
+    public void shippingAddressOptions() {
+        System.out.println("\n------------------------------\n" +
+                "Shipping Address options\n------------------------------\n" +
+                "0. Back\n" +
+                "1. View all addresses\n" +
+                "2. Add address\n" +
+                "3. Edit address\n" +
+                "4. Delete address\n" +
+                "Enter option: "
+        );
+    }
+
+    // userPanel option 3
+    public void orders() {
+        System.out.println("\n------------------------------\n" +
+                "Shipping Address options\n------------------------------\n" +
+                "0. Back\n" +
+                "1. View all addresses\n" +
+                "2. Add address\n" +
+                "3. Edit address\n" +
+                "4. Delete address\n" +
+                "Enter option: "
         );
     }
 
@@ -58,14 +95,13 @@ public class AppView {
     }
 
     public void print_adminPanel() {
-        System.out.println("\n------------------------------\n     Admin Panel\n------------------------------\n" +
-                "1. View all users" +
-                "2. Remove user" +
-                "3. View all products" +
-                "4. Search product" +
-                "5. Add product" +
-                "6. Update product" +
-                "7. Delete product"
+        System.out.println("\n------------------------------\n" +
+                "Admin Panel\n------------------------------\n" +
+                "0. Back\n" +
+                "1. User option\n" +
+                "2. Product options\n" +
+                "3. Order options\n" +
+                "Enter option: "
         );
     }
 

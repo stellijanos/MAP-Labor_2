@@ -60,6 +60,10 @@ public class ProductController {
         return _productRepository.delete(id) ? Response.PRODUCT_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
     }
 
+    public Response deleteAllProducts() {
+        return _productRepository.deleteAll() ? Response.ALL_PRODUCTS_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+    }
+
     public String generateImageLink(String name) {
         return name + CustomControllerTools.getCurrentDateTIme();
     }

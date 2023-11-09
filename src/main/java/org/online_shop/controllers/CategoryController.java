@@ -38,4 +38,12 @@ public class CategoryController {
         updatedCategory.set_name(name.isEmpty() ? currentCategory.get_name() : name);
         return _categoryRepository.update(updatedCategory) ? Response.CATEGORY_UPDATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
     }
+
+    public Response deleteCategory(Integer id) {
+        return _categoryRepository.delete(id) ? Response.CATEGORY_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+    }
+
+    public Response deleteAllCategories() {
+        return _categoryRepository.deleteAll() ? Response.ALL_CATEGORIES_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+    }
 }

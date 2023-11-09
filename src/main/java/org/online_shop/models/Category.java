@@ -5,10 +5,6 @@ public class Category {
     private int _id;
     private String _name;
 
-    public Category(int _id, String _name) {
-        this._id = _id;
-        this._name = _name;
-    }
 
     public int get_id() {
         return _id;
@@ -18,11 +14,11 @@ public class Category {
         this._id = _id;
     }
 
-    public String getName() {
+    public String get_name() {
         return _name;
     }
 
-    public void setName(String name) {
+    public void set_name(String name) {
         this._name = name;
     }
 
@@ -30,7 +26,7 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "_id=" + _id +
-                ", name='" + _name + '\'' +
+                ", _name='" + _name + '\'' +
                 '}';
     }
 }

@@ -30,7 +30,6 @@ public class ProductController {
     }
 
     public Product readProduct(Integer id) {
-
         return _productRepository.read(id);
     }
 
@@ -38,29 +37,28 @@ public class ProductController {
         return _productRepository.readAll();
     }
 
-    public Response update(Product updatedProduct) {
+    public Response update(String name, String price_str, String description, String stock_str, String categoryId_str, Integer id) {
 
-        Product currentProduct = _productRepository.read(updatedProduct.get_id());
+        Product currentProduct = _productRepository.read(id);
         if (currentProduct.get_name() == null) {
             return Response.PRODUCT_NOT_FOUND;
         }
 
-        Product product = new Product();
+        Product updatedProduct = new Product();
 
-        product.set_id(updatedProduct.get_id());
-        product.set_name(updatedProduct.get_name().isEmpty() ? currentProduct.get_name() : updatedProduct.get_name());
-        product.set_price(updatedProduct.get_price() == Integer.MAX_VALUE ? currentProduct.get_price() : updatedProduct.get_price());
-        product.set_description(updatedProduct.get_description().isEmpty() ? currentProduct.get_description() : updatedProduct.get_description());
-        product.set_stock(updatedProduct.get_stock() == Integer.MAX_VALUE ? currentProduct.get_stock() : updatedProduct.get_stock());
-        product.set_categoryId(updatedProduct.get_categoryId() == Integer.MAX_VALUE ? currentProduct.get_categoryId() : updatedProduct.get_categoryId());
+        updatedProduct.set_id(id);
+        updatedProduct.set_name(name.isEmpty() ? currentProduct.get_name() : name);
+        updatedProduct.set_price(price_str.isEmpty() ? currentProduct.get_price() : Integer.parseInt(price_str));
+        updatedProduct.set_description(description.isEmpty() ? currentProduct.get_description() : description);
+        updatedProduct.set_stock(stock_str.isEmpty() ? currentProduct.get_stock() : Integer.parseInt(stock_str));
+        updatedProduct.set_categoryId(categoryId_str.isEmpty() ? currentProduct.get_categoryId() : Integer.parseInt(stock_str));
 
-        return _productRepository.update(product) ? Response.PRODUCT_UPDATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _productRepository.update(updatedProduct) ? Response.PRODUCT_UPDATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
     }
 
     public Response deleteProduct(Integer id) {
         return _productRepository.delete(id) ? Response.PRODUCT_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
     }
-
 
     public String generateImageLink(String name) {
         return name + CustomControllerTools.getCurrentDateTIme();

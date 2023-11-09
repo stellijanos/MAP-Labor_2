@@ -57,6 +57,6 @@ public class UserRepository extends DatabaseInMemory {
 
     public boolean deleteAll() {
         _users = new ArrayList<>();
-        return true;
+        return _users.equals(new ArrayList<>());
     }
 }

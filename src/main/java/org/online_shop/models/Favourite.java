@@ -5,9 +5,9 @@ public class Favourite {
     private int _userId;
     private int _productId;
 
-    public Favourite(int _userId, int _productId) {
-        this._userId = _userId;
-        this._productId = _productId;
+    public Favourite(int userId, int productId) {
+        _userId = userId;
+        _productId = productId;
     }
 
     public int get_userId() {

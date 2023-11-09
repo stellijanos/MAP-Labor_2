@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement and modify parts of app controller and product controller">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement constructor for all controllers">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/CustomControllerTools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/FavouriteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/FavouriteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderItemController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ProductSpecController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ProductSpecController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShippingAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShippingAddressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,8 +130,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.UserTest" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.UserTest.test_updateUser" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.UserTest.test_signUp" />
       </list>
     </recent_temporary>
@@ -312,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699446483892</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="implement constructor for all controllers">
+      <option name="closed" value="true" />
+      <created>1699517365441</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1699517365441</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -336,6 +337,7 @@
     <MESSAGE value="simplify session handling in AppController" />
     <MESSAGE value="implement user password update" />
     <MESSAGE value="implement and modify parts of app controller and product controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement and modify parts of app controller and product controller" />
+    <MESSAGE value="implement constructor for all controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement constructor for all controllers" />
   </component>
 </project>

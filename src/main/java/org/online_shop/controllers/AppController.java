@@ -5,8 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.online_shop.enums.Response;
-import org.online_shop.models.Order;
-import org.online_shop.models.Session;
+import org.online_shop.models.*;
 import org.online_shop.repositories.*;
 import org.online_shop.views.AppView;
 
@@ -270,12 +269,14 @@ public class AppController {
         boolean running = true;
 
         while (running) {
-            switch (readFromConsole(_appView::print_logIn_signUp, Integer.class)) {
+            Integer read = readFromConsole(_appView::print_logIn_signUp, Integer.class);
+            switch (read) {
                 case 0 -> running = false;
                 case 1 -> logIn();
                 case 2 -> signUp();
                 default -> _appView.print_optionNotFound();
             }
+            System.out.println(read);
             sleep(1000);
         }
         _appView.print_goodBye();

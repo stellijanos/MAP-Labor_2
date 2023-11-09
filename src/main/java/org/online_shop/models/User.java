@@ -1,9 +1,7 @@
 package org.online_shop.models;
 
-import org.jetbrains.annotations.NotNull;
+import org.online_shop.controllers.CustomControllerTools;
 
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
 
 public class User {
     private int _id;
@@ -15,7 +13,7 @@ public class User {
 
 
     public User() {
-        this._createdAt = getCurrentDateTIme();
+        this._createdAt = CustomControllerTools.getCurrentDateTIme();
     }
 
 
@@ -73,12 +71,5 @@ public class User {
                 ", _createdAt=" + _createdAt +
                 ", _password=" + _password +
                 "}\n";
-    }
-
-    @NotNull
-    private String getCurrentDateTIme() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        return dtf.format(now);
     }
 }

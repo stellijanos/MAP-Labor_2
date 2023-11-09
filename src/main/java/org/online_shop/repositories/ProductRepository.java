@@ -1,6 +1,5 @@
 package org.online_shop.repositories;
 
-import org.online_shop.models.Category;
 import org.online_shop.models.DatabaseInMemory;
 import org.online_shop.models.Product;
 
@@ -25,10 +24,10 @@ public class ProductRepository extends DatabaseInMemory {
         return this.products;
     }
 
-    public boolean update(Product updatedProduct, int id) {
+    public boolean update(Product updatedProduct) {
 
         for (int i=0; i<this.products.size(); i++) {
-            if (products.get(i).get_id() == id) {
+            if (products.get(i).get_id() == updatedProduct.get_id()) {
                 products.get(i).set_name(updatedProduct.get_name());
                 products.get(i).set_price(updatedProduct.get_price());
                 products.get(i).set_description(updatedProduct.get_description());
@@ -37,7 +36,6 @@ public class ProductRepository extends DatabaseInMemory {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -48,6 +46,6 @@ public class ProductRepository extends DatabaseInMemory {
 
     public boolean deleteAll() {
         products = new ArrayList<>();
-        return true;
+        return products.equals(new ArrayList<>());
     }
 }

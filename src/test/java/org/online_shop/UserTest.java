@@ -39,6 +39,7 @@ public class UserTest {
 
     @Test
     public void test_updateUser() {
+
         UserRepository userRepository = new UserRepository();
         UserController userController = new UserController(userRepository);
 

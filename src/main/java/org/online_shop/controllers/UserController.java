@@ -1,19 +1,20 @@
 package org.online_shop.controllers;
 
 import org.online_shop.Env;
+import org.online_shop.enums.Response;
 import org.online_shop.models.User;
 import org.online_shop.repositories.UserRepository;
 import org.online_shop.views.UserView;
 
+import java.util.List;
 
-public class UserController extends Controller {
 
-    private final UserView _userView;
+public class UserController {
+
     private final UserRepository _userRepository;
 
 
-    public UserController(UserView userView, UserRepository userRepository) {
-        _userView = userView;
+    public UserController(UserRepository userRepository) {
         _userRepository = userRepository;
     }
 
@@ -114,9 +115,8 @@ public class UserController extends Controller {
         return _userRepository.read(email);
     }
 
-    public void listAllUsers() {
-        _userView.print_viewAll(_userRepository.readAll());
-        System.out.println(_userRepository.readAll().size());
+    public List<User> listAllUsers() {
+        return _userRepository.readAll();
     }
 
 

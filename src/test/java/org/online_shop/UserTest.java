@@ -14,9 +14,8 @@ public class UserTest {
 
     @Test
     public void test_signUp() {
-        UserView userView = new UserView();
         UserRepository userRepository = new UserRepository();
-        UserController userController = new UserController(userView, userRepository);
+        UserController userController = new UserController(userRepository);
 
         assertEquals(0, userRepository.readAll().size());
 
@@ -40,9 +39,8 @@ public class UserTest {
 
     @Test
     public void test_updateUser() {
-        UserView userView = new UserView();
         UserRepository userRepository = new UserRepository();
-        UserController userController = new UserController(userView, userRepository);
+        UserController userController = new UserController(userRepository);
 
         assertEquals(0, userRepository.readAll().size());
 

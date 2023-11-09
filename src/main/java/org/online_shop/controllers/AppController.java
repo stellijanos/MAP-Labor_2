@@ -4,20 +4,32 @@ import java.lang.Thread;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.online_shop.enums.Response;
+import org.online_shop.models.Order;
 import org.online_shop.models.Session;
-import org.online_shop.repositories.UserRepository;
+import org.online_shop.repositories.*;
 import org.online_shop.views.AppView;
-import org.online_shop.views.UserView;
+
 
 @FunctionalInterface
 interface Action {
     void perform();
 }
 
-public class AppController extends Controller {
+public class AppController {
 
     private final AppView _appView = new AppView();
-    private final UserController _userController = new UserController(new UserView(), new UserRepository());
+
+    private final CategoryController categoryController = new CategoryController(new CategoryRepository());
+    private final FavouriteController favouriteController = new FavouriteController(new FavouriteRepository());
+    private final OrderController orderController = new OrderController(new OrderRepository());
+    private final OrderItemController orderItemController = new OrderItemController(new OrderItemRepository());
+    private final ProductController _productController = new ProductController(new ProductRepository());
+    private final ProductSpecController _productSpecController = new ProductSpecController(new ProductSpecRepository());
+    private final ShippingAddressController shippingAddressController = new ShippingAddressController(new ShippingAddressRepository());
+    private final ShoppingCartController shoppingCartController = new ShoppingCartController(new ShoppingCartRepository());
+    private final ShoppingCartItemController shoppingCartItemController = new ShoppingCartItemController(new ShoppingCartItemRepository());
+    private final UserController _userController = new UserController(new UserRepository());
     private Session _session;
 
     private void sleep(Integer milliseconds) {

@@ -44,9 +44,9 @@ public class AppView {
                 "1. Account settings\n" +
                 "2. Shipping Address options\n" +
                 "3. Orders\n" +
-                "3. Favourites\n" +
-                "4. ShoppingCarts\n" +
-                "5. Products\n" +
+                "4. Favourites\n" +
+                "5. ShoppingCart\n" +
+                "6. Products\n\n" +
                 "Enter option: "
         );
     }
@@ -88,6 +88,39 @@ public class AppView {
                 "4. Delete address\n" +
                 "Enter option: "
         );
+    }
+
+    // userPanel option 4
+
+    public void favourites() {
+        System.out.println("\n---------------------\n" +
+                "Shopping cart" +
+                "\n---------------------\n" +
+                "Options:" +
+                "0. Back" +
+                "\n---------------------\n");
+    }
+
+    // userPanel option 5
+
+    public void shoppingCart() {
+        System.out.println("\n---------------------\n" +
+                "Shopping cart" +
+                "\n---------------------\n" +
+                "Options:" +
+                "0. Back" +
+                "\n---------------------\n");
+    }
+
+    // userPanel option 6
+
+    public void products() {
+        System.out.println("\n---------------------\n" +
+                "Products" +
+                "\n---------------------\n" +
+                "Options:" +
+                "0. Back" +
+                "\n---------------------\n");
     }
 
     public void print_adminOption() {

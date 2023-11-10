@@ -11,15 +11,15 @@ public class Order {
     private String _status;
     private float _shippingFee;
 
-    public Order(int _id, int _userId, int _shippingAddressId, String _paymentMethod, Timestamp _date, String _status, float _shippingFee) {
-        this._id = _id;
-        this._userId = _userId;
-        this._shippingAddressId = _shippingAddressId;
-        this._paymentMethod = _paymentMethod;
-        this._date = _date;
-        this._status = _status;
-        this._shippingFee = _shippingFee;
-    }
+//    public Order(int _id, int _userId, int _shippingAddressId, String _paymentMethod, Timestamp _date, String _status, float _shippingFee) {
+//        this._id = _id;
+//        this._userId = _userId;
+//        this._shippingAddressId = _shippingAddressId;
+//        this._paymentMethod = _paymentMethod;
+//        this._date = _date;
+//        this._status = _status;
+//        this._shippingFee = _shippingFee;
+//    }
 
     public int get_id() {
         return _id;

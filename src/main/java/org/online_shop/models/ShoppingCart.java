@@ -4,10 +4,6 @@ public class ShoppingCart {
     private int _id;
     private int _userId;
 
-    public ShoppingCart(int _id, int _userId) {
-        this._id = _id;
-        this._userId = _userId;
-    }
 
     public int get_id() {
         return _id;

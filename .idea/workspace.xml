@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement deleteAll for product- and category controllers">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement favourite mvc part and fix other mvc parts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/FavouriteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/FavouriteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/Env.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/Env.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Favourite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Favourite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/FavouriteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/FavouriteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShoppingCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,21 +59,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="JUnit.UserTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.online_shop.Main" />
       <module name="MAP-Labor_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.online_shop.*" />
+          <option name="PATTERN" value="org.online_shop.repositories.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -81,7 +88,7 @@
       <module name="MAP-Labor_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.online_shop.*" />
+          <option name="PATTERN" value="org.online_shop.repositories.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -96,7 +103,7 @@
       <module name="MAP-Labor_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.online_shop.*" />
+          <option name="PATTERN" value="org.online_shop.repositories.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,7 +119,7 @@
       <module name="MAP-Labor_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.online_shop.*" />
+          <option name="PATTERN" value="org.online_shop.repositories.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -127,8 +134,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.UserTest" />
-        <item itemvalue="JUnit.UserTest.test_updateUser" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.UserTest.test_updateUser" />
         <item itemvalue="JUnit.UserTest.test_signUp" />
       </list>
     </recent_temporary>
@@ -334,7 +341,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699556550378</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="implement favourite mvc part and fix other mvc parts">
+      <option name="closed" value="true" />
+      <created>1699558206104</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1699558206104</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -362,6 +377,7 @@
     <MESSAGE value="implement product controller and simplify other controllers" />
     <MESSAGE value="implement category controller and fix other controllers" />
     <MESSAGE value="implement deleteAll for product- and category controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement deleteAll for product- and category controllers" />
+    <MESSAGE value="implement favourite mvc part and fix other mvc parts" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement favourite mvc part and fix other mvc parts" />
   </component>
 </project>

@@ -29,11 +29,11 @@ public class UserRepository extends DatabaseInMemory {
 
 //        System.out.println(updatedUser);
 
-        for (int i = 0; i < this._users.size(); i++) {
-            if (_users.get(i).get_email().equals(email)) {
-                _users.get(i).set_firstname(updatedUser.get_firstname());
-                _users.get(i).set_lastname(updatedUser.get_firstname());
-                _users.get(i).set_email(updatedUser.get_email());
+        for (User user : this._users) {
+            if (user.get_email().equals(email)) {
+                user.set_firstname(updatedUser.get_firstname());
+                user.set_lastname(updatedUser.get_firstname());
+                user.set_email(updatedUser.get_email());
                 return true;
             }
         }
@@ -41,9 +41,9 @@ public class UserRepository extends DatabaseInMemory {
     }
 
     public boolean updatePassword(String newPassword, String email) {
-        for (int i = 0; i < this._users.size(); i++) {
-            if (_users.get(i).get_email().equals(email)) {
-                _users.get(i).set_password(newPassword);
+        for (User user : this._users) {
+            if (user.get_email().equals(email)) {
+                user.set_password(newPassword);
                 return true;
             }
         }

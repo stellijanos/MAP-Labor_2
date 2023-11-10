@@ -1,10 +1,9 @@
 package org.online_shop.controllers;
 
-import org.online_shop.Env;
+import org.online_shop.repositories.Env;
 import org.online_shop.enums.Response;
 import org.online_shop.models.User;
 import org.online_shop.repositories.UserRepository;
-import org.online_shop.views.UserView;
 
 import java.util.List;
 

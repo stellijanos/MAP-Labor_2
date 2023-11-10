@@ -1,4 +1,4 @@
-package org.online_shop;
+package org.online_shop.repositories;
 
 import io.github.cdimascio.dotenv.Dotenv;
 

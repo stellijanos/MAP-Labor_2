@@ -14,18 +14,6 @@ public class Favourite {
         return _userId;
     }
 
-    public void set_userId(int _userId) {
-        this._userId = _userId;
-    }
-
-    public int get_productId() {
-        return _productId;
-    }
-
-    public void set_productId(int _productId) {
-        this._productId = _productId;
-    }
-
     @Override
     public String toString() {
         return "Favourite{" +

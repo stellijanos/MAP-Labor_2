@@ -1,23 +1,23 @@
 package org.online_shop.models;
 
 public class ShoppingCart {
-    private int _id;
-    private int _userId;
+    private Integer _id;
+    private Integer _userId;
 
 
-    public int get_id() {
+    public Integer get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(Integer _id) {
         this._id = _id;
     }
 
-    public int get_userId() {
+    public Integer get_userId() {
         return _userId;
     }
 
-    public void set_userId(int _userId) {
+    public void set_userId(Integer _userId) {
         this._userId = _userId;
     }
 

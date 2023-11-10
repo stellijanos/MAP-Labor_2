@@ -18,7 +18,7 @@ public class CategoryController {
         Category category = new Category();
         category.set_name(name);
         category.set_id(_categoryRepository.readAll().size() + 1);
-        return _categoryRepository.create(category) ? Response.CATEGORY_CREATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _categoryRepository.create(category) ? Response.CATEGORY_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public Category readCategory(Integer id) {
@@ -36,14 +36,14 @@ public class CategoryController {
 
         Category updatedCategory = new Category();
         updatedCategory.set_name(name.isEmpty() ? currentCategory.get_name() : name);
-        return _categoryRepository.update(updatedCategory) ? Response.CATEGORY_UPDATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _categoryRepository.update(updatedCategory) ? Response.CATEGORY_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public Response deleteCategory(Integer id) {
-        return _categoryRepository.delete(id) ? Response.CATEGORY_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _categoryRepository.delete(id) ? Response.CATEGORY_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public Response deleteAllCategories() {
-        return _categoryRepository.deleteAll() ? Response.ALL_CATEGORIES_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _categoryRepository.deleteAll() ? Response.ALL_CATEGORIES_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 }

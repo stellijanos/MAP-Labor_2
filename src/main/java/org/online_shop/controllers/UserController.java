@@ -18,7 +18,7 @@ public class UserController {
     }
 
     public Response createUser(String firstname, String lastname, String email, String password) {
-        if (logInUser(email, password) == Response.LOGIN_SUCCESSFUL) {
+        if (logInUser(email, password) == Response.USER_LOGIN_SUCCESSFUL) {
             return Response.USER_EXISTS;
         }
         User user = new User();
@@ -29,7 +29,7 @@ public class UserController {
 
         user.set_id(_userRepository.readAll().size() + 1);
 
-        return _userRepository.create(user) ? Response.USER_CREATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _userRepository.create(user) ? Response.USER_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
 
@@ -51,7 +51,7 @@ public class UserController {
         updatedUser.set_lastname(newLastname.isEmpty() ? currentUser.get_lastname() : newLastname);
         updatedUser.set_email(newEmail.isEmpty() ? currentUser.get_email() : newEmail);
 
-        return _userRepository.update(updatedUser, currentEmail) ? Response.USER_UPDATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _userRepository.update(updatedUser, currentEmail) ? Response.USER_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public Response updateUserPassword(String currentPassword, String newPassword, String confirmPassword, String currentEmail) {
@@ -60,7 +60,7 @@ public class UserController {
         return currentUser.get_email() == null ? Response.USER_NOT_FOUND :
                 !currentUser.get_password().equals(currentPassword) ? Response.INCORRECT_PASSWORD :
                         !newPassword.equals(confirmPassword) ? Response.PASSWORDS_DO_NOT_MATCH :
-                                _userRepository.updatePassword(newPassword, currentEmail) ? Response.PASSWORD_UPDATED_SUCCESSFULLY :
+                                _userRepository.updatePassword(newPassword, currentEmail) ? Response.PASSWORD_UPDATE_SUCCESSFUL :
                                         Response.SOMETHING_WENT_WRONG;
     }
 
@@ -69,14 +69,14 @@ public class UserController {
 
         return user.get_email() == null ? Response.INCORRECT_EMAIL :
                 !user.get_password().equals(password) ? Response.INCORRECT_PASSWORD :
-                        _userRepository.delete(email) ? Response.USER_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+                        _userRepository.delete(email) ? Response.USER_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public Response logInUser(String email, String password) {
         User user = _userRepository.read(email);
 
         return user.get_email() == null ? Response.INCORRECT_EMAIL :
-                user.get_password().equals(password) ? Response.LOGIN_SUCCESSFUL : Response.INCORRECT_PASSWORD;
+                user.get_password().equals(password) ? Response.USER_LOGIN_SUCCESSFUL : Response.INCORRECT_PASSWORD;
     }
 
     public User getUser(String email) {

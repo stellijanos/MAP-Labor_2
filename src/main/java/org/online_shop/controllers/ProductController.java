@@ -26,7 +26,7 @@ public class ProductController {
         product.set_id(_productRepository.readAll().size() + 1);
         product.set_imageLink(generateImageLink(name));
 
-        return _productRepository.create(product) ? Response.PRODUCT_CREATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _productRepository.create(product) ? Response.PRODUCT_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public Product readProduct(Integer id) {
@@ -53,15 +53,15 @@ public class ProductController {
         updatedProduct.set_stock(stock_str.isEmpty() ? currentProduct.get_stock() : Integer.parseInt(stock_str));
         updatedProduct.set_categoryId(categoryId_str.isEmpty() ? currentProduct.get_categoryId() : Integer.parseInt(stock_str));
 
-        return _productRepository.update(updatedProduct) ? Response.PRODUCT_UPDATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _productRepository.update(updatedProduct) ? Response.PRODUCT_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public Response deleteProduct(Integer id) {
-        return _productRepository.delete(id) ? Response.PRODUCT_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _productRepository.delete(id) ? Response.PRODUCT_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public Response deleteAllProducts() {
-        return _productRepository.deleteAll() ? Response.ALL_PRODUCTS_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+        return _productRepository.deleteAll() ? Response.ALL_PRODUCTS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public String generateImageLink(String name) {

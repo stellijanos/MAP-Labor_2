@@ -84,7 +84,7 @@ public class AppController {
 
         Response response = _userController.updateUser(firstname, lastname, email, _session.getId());
         switch (response) {
-            case USER_UPDATED_SUCCESSFULLY -> {
+            case USER_UPDATE_SUCCESSFUL -> {
                 _appView.userView.print_userUpdatedSuccessfully();
                 if (!email.isEmpty()) {
                     _session.destroy();
@@ -110,7 +110,7 @@ public class AppController {
             case USER_NOT_FOUND -> _appView.userView.print_userNotFound();
             case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
             case PASSWORDS_DO_NOT_MATCH -> _appView.userView.print_passwordsDoNotMatch();
-            case PASSWORD_UPDATED_SUCCESSFULLY -> _appView.userView.print_passwordUpdatedSuccessfully();
+            case PASSWORD_UPDATE_SUCCESSFUL -> _appView.userView.print_passwordUpdatedSuccessfully();
             case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
         }
         sleep(750);
@@ -125,7 +125,7 @@ public class AppController {
             case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
             case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
             case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
-            case USER_DELETED_SUCCESSFULLY -> {
+            case USER_DELETE_SUCCESSFUL -> {
                 if (_session.destroy()) {
                     sleep(1500);
                     mainMenu();
@@ -189,7 +189,7 @@ public class AppController {
         Response response = _userController.logInUser(email, password);
 
         switch (response) {
-            case LOGIN_SUCCESSFUL -> {
+            case USER_LOGIN_SUCCESSFUL -> {
                 _session = Session.getInstance();
                 _session.setId(email);
                 _appView.userView.print_logInSuccessful();
@@ -213,7 +213,7 @@ public class AppController {
 
         switch (response) {
             case USER_EXISTS -> _appView.userView.print_userExists();
-            case USER_CREATED_SUCCESSFULLY -> _appView.userView.print_userCreatedSuccessfully();
+            case USER_CREATE_SUCCESSFUL -> _appView.userView.print_userCreatedSuccessfully();
             case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
         }
     }

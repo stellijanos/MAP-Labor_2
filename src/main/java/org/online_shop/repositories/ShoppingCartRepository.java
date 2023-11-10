@@ -19,4 +19,9 @@ public class ShoppingCartRepository extends DatabaseInMemory {
     public boolean delete(ShoppingCart shoppingCart) {
         return _shoppingCarts.remove(shoppingCart);
     }
+
+    public int totalNumber() {
+        return _shoppingCarts.size();
+    }
+
 }

@@ -18,10 +18,10 @@ public class FavouriteController {
 
         if (_favouriteRepository.readAll(userId).contains(favourite)) {
             _favouriteRepository.readAll(userId).remove(favourite);
-            return Response.PRODUCT_REMOVED_FROM_FAVOURITES;
+            return Response.PRODUCT_REMOVE_FROM_FAVOURITES;
         }
         _favouriteRepository.readAll(userId).add(favourite);
-        return Response.PRODUCT_ADDED_TO_FAVOURITES;
+        return Response.PRODUCT_ADD_TO_FAVOURITES;
     }
     public List<Favourite> viewAll(Integer userId) {
         return _favouriteRepository.readAll(userId);

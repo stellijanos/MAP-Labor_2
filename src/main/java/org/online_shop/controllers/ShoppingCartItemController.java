@@ -18,18 +18,22 @@ public class ShoppingCartItemController {
     }
 
     public Response addToShoppingCart(Integer shoppingCartId, Integer productId, Integer quantity) {
-        ShoppingCartItem shoppingCartItem = _shoppingCartItemRepository.read(shoppingCartId, productId);
+        return Response.SOMETHING_WENT_WRONG;
 
-        if (shoppingCartItem.get_shoppingCartId() == null) {
-            ShoppingCartItem newItem = new ShoppingCartItem();
-            newItem.set_shoppingCartId(shoppingCartId);
-            newItem.set_productId(productId);
-            newItem.set_quantity(1);
-
-            return _shoppingCartItemRepository.create(newItem) ? Response.PRODUCT_ADD_TO_CART : Response.SOMETHING_WENT_WRONG;
-
-        }
-        return shoppingCartItem.set_quantity(quantity.equals(Integer.MAX_VALUE) ? shoppingCartItem.get_quantity() : quantity ) ?
-                Response.PRODUCT_ADD_TO_CART : Response.SOMETHING_WENT_WRONG;
     }
-}
+//        ShoppingCartItem shoppingCartItem = _shoppingCartItemRepository.readAll(shoppingCartId, productId);
+
+//        if (shoppingCartItem.get_shoppingCartId() == null) {
+//            ShoppingCartItem newItem = new ShoppingCartItem();
+//            newItem.set_shoppingCartId(shoppingCartId);
+//            newItem.set_productId(productId);
+//            newItem.set_quantity(1);
+//
+//            return _shoppingCartItemRepository.create(newItem) ? Response.PRODUCT_ADD_TO_CART : Response.SOMETHING_WENT_WRONG;
+//
+//        }
+//        return shoppingCartItem.set_quantity(quantity.equals(Integer.MAX_VALUE) ? shoppingCartItem.get_quantity() : quantity ) ?
+//                Response.PRODUCT_ADD_TO_CART : Response.SOMETHING_WENT_WRONG;
+//    }
+
+    }

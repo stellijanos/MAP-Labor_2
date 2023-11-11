@@ -13,10 +13,10 @@ public class AppView {
     public final UserView userView = new UserView();
 
     public String enterOption() {
-        return "\n\nEnter option please:";
+        return "\n\nEnter option please:\n";
     }
 
-    public void print_logIn_signUp() {
+    public void mainMenu() {
         System.out.println("\n------------------------------------------------\n" +
                 "@author Janos Stelli" +
                 "\n------------------------------------------------\n" +
@@ -26,7 +26,8 @@ public class AppView {
                 "0. Quit App\n" +
                 "1. LogIn\n" +
                 "2. SignUp" +
-                enterOption());
+                enterOption()
+        );
     }
 
     public void print_optionNotFound() {
@@ -46,8 +47,8 @@ public class AppView {
                 "3. Orders\n" +
                 "4. Favourites\n" +
                 "5. ShoppingCart\n" +
-                "6. Products\n\n" +
-                "Enter option: "
+                "6. Products" +
+                enterOption()
         );
     }
 
@@ -59,8 +60,8 @@ public class AppView {
                 "1. View profile details\n" +
                 "2. Edit profile details\n" +
                 "3. Change password\n" +
-                "4. Delete account\n" +
-                "Enter option: "
+                "4. Delete account" +
+                enterOption()
         );
     }
 
@@ -72,8 +73,8 @@ public class AppView {
                 "1. View all addresses\n" +
                 "2. Add address\n" +
                 "3. Edit address\n" +
-                "4. Delete address\n" +
-                "Enter option: "
+                "4. Delete address" +
+                enterOption()
         );
     }
 

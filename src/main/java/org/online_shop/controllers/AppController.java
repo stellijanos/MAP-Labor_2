@@ -1,6 +1,7 @@
 package org.online_shop.controllers;
 
 import java.lang.Thread;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -31,17 +32,15 @@ public class AppController {
     private final UserController _userController = new UserController(new UserRepository());
     private Session _session;
 
+    private final Route route = new Route();
+
+
     private void sleep(Integer milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void logOut() {
-        if (_session.destroy())
-            mainMenu();
     }
 
     private <T> T readFromConsole(Action message, Class<T> type) {
@@ -66,6 +65,98 @@ public class AppController {
             }
         }
     }
+
+
+    public void setRoute(String path, Runnable function) {
+        route.definePath(path, function);
+    }
+
+    public void quit() {
+        _appView.print_goodBye();
+        _userController.listAllUsers();
+        System.exit(0);
+    }
+
+    public void run() {
+        mainMenu();
+    }
+
+    private void getRoute() {
+        route.getRoute();
+    }
+
+
+    // Menu classes
+    public void mainMenu() {
+        _userController.createAdmin();
+
+        switch (readFromConsole(_appView::mainMenu, Integer.class)) {
+            case 0 -> route.currentPath = "";
+            case 1 -> route.currentPath = "/login";
+            case 2 -> route.currentPath = "/signup";
+            default -> _appView.print_optionNotFound();
+        }
+        getRoute();
+    }
+
+
+
+    public void logIn() {
+        String email = readFromConsole(_appView.userView::print_enterEmail, String.class);
+        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
+
+        Response response = _userController.logInUser(email, password);
+
+        switch (response) {
+            case USER_LOGIN_SUCCESSFUL -> {
+                _session = Session.getInstance();
+                _session.setId(email);
+                _appView.userView.print_logInSuccessful();
+
+                sleep(500);
+                route.currentPath = "/user-panel";
+            }
+            case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
+            case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
+        }
+        getRoute();
+    }
+
+    public void signUp() {
+
+        String firstname = readFromConsole(_appView.userView::print_enterFirstname, String.class);
+        String lastname = readFromConsole(_appView.userView::print_enterLastname, String.class);
+        String email = readFromConsole(_appView.userView::print_enterEmail, String.class);
+        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
+
+        Response response = _userController.createUser(firstname, lastname, email, password);
+
+        switch (response) {
+            case USER_EXISTS -> _appView.userView.print_userExists();
+            case USER_CREATE_SUCCESSFUL -> _appView.userView.print_userCreatedSuccessfully();
+            case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void logOut() {
+        if (_session.destroy())
+            mainMenu();
+    }
+
 
     public void userDetails() {
         _userController.listAllUsers();
@@ -182,41 +273,7 @@ public class AppController {
     }
 
 
-    public void logIn() {
-        String email = readFromConsole(_appView.userView::print_enterEmail, String.class);
-        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
 
-        Response response = _userController.logInUser(email, password);
-
-        switch (response) {
-            case USER_LOGIN_SUCCESSFUL -> {
-                _session = Session.getInstance();
-                _session.setId(email);
-                _appView.userView.print_logInSuccessful();
-
-                sleep(500);
-                userPanel();
-            }
-            case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
-            case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
-        }
-    }
-
-    public void signUp() {
-
-        String firstname = readFromConsole(_appView.userView::print_enterFirstname, String.class);
-        String lastname = readFromConsole(_appView.userView::print_enterLastname, String.class);
-        String email = readFromConsole(_appView.userView::print_enterEmail, String.class);
-        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
-
-        Response response = _userController.createUser(firstname, lastname, email, password);
-
-        switch (response) {
-            case USER_EXISTS -> _appView.userView.print_userExists();
-            case USER_CREATE_SUCCESSFUL -> _appView.userView.print_userCreatedSuccessfully();
-            case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
-        }
-    }
 
 
     public void userPanel() {
@@ -264,23 +321,5 @@ public class AppController {
         }
     }
 
-    public void mainMenu() {
-        _userController.createAdmin();
-        boolean running = true;
 
-        while (running) {
-            Integer read = readFromConsole(_appView::print_logIn_signUp, Integer.class);
-            switch (read) {
-                case 0 -> running = false;
-                case 1 -> logIn();
-                case 2 -> signUp();
-                default -> _appView.print_optionNotFound();
-            }
-            System.out.println(read);
-            sleep(1000);
-        }
-        _appView.print_goodBye();
-        _userController.listAllUsers();
-
-    }
 }

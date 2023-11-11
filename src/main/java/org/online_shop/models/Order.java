@@ -3,45 +3,36 @@ package org.online_shop.models;
 import java.sql.Timestamp;
 
 public class Order {
-    private int _id;
-    private int _userId;
-    private int _shippingAddressId;
+    private Integer _id;
+    private Integer _userId;
+    private Integer _shippingAddressId;
     private String _paymentMethod;
     private Timestamp _date;
     private String _status;
-    private float _shippingFee;
+    private Float _shippingFee;
 
-//    public Order(int _id, int _userId, int _shippingAddressId, String _paymentMethod, Timestamp _date, String _status, float _shippingFee) {
-//        this._id = _id;
-//        this._userId = _userId;
-//        this._shippingAddressId = _shippingAddressId;
-//        this._paymentMethod = _paymentMethod;
-//        this._date = _date;
-//        this._status = _status;
-//        this._shippingFee = _shippingFee;
-//    }
 
-    public int get_id() {
+    public Integer get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(Integer _id) {
         this._id = _id;
     }
 
-    public int get_userId() {
+    public Integer get_userId() {
         return _userId;
     }
 
-    public void set_userId(int _userId) {
+    public void set_userId(Integer _userId) {
         this._userId = _userId;
     }
 
-    public int get_shippingAddressId() {
+    public Integer get_shippingAddressId() {
         return _shippingAddressId;
     }
 
-    public void set_shippingAddressId(int _shippingAddressId) {
+    public void set_shippingAddressId(Integer _shippingAddressId) {
         this._shippingAddressId = _shippingAddressId;
     }
 
@@ -69,11 +60,11 @@ public class Order {
         this._status = _status;
     }
 
-    public float get_shippingFee() {
+    public Float get_shippingFee() {
         return _shippingFee;
     }
 
-    public void set_shippingFee(float _shippingFee) {
+    public void set_shippingFee(Float _shippingFee) {
         this._shippingFee = _shippingFee;
     }
 

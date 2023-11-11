@@ -3,7 +3,6 @@ package org.online_shop.repositories;
 import org.online_shop.models.DatabaseInMemory;
 import org.online_shop.models.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepository extends DatabaseInMemory {
@@ -12,12 +11,10 @@ public class ProductRepository extends DatabaseInMemory {
     }
 
     public Product read(int id) {
-
-        for (Product product : this._products) {
-            if (product.get_id() == id)
-                return product;
-        }
-        return new Product();
+        return _products.stream()
+                .filter(product -> product.get_id().equals(id))
+                .findFirst()
+                .orElse(new Product());
     }
 
     public List<Product> readAll() {
@@ -25,27 +22,25 @@ public class ProductRepository extends DatabaseInMemory {
     }
 
     public boolean update(Product updatedProduct) {
-
-        for (int i = 0; i<this._products.size(); i++) {
-            if (_products.get(i).get_id() == updatedProduct.get_id()) {
-                _products.get(i).set_name(updatedProduct.get_name());
-                _products.get(i).set_price(updatedProduct.get_price());
-                _products.get(i).set_description(updatedProduct.get_description());
-                _products.get(i).set_categoryId(updatedProduct.get_categoryId());
-                _products.get(i).set_imageLink(updatedProduct.get_imageLink());
-                return true;
-            }
-        }
-        return false;
+        return _products.stream()
+                .filter(p -> p.get_id().equals(updatedProduct.get_id()))
+                .findFirst()
+                .map(product -> {
+                    product.set_name(updatedProduct.get_name());
+                    product.set_price(updatedProduct.get_price());
+                    product.set_description(updatedProduct.get_description());
+                    product.set_categoryId(updatedProduct.get_categoryId());
+                    product.set_imageLink(updatedProduct.get_imageLink());
+                    return true;
+                }).orElse(false);
     }
 
     public boolean delete(int id) {
-        Product product = read(id);
-        return this._products.removeIf(p -> p.equals(product));
+        return this._products.removeIf(p -> p.get_id().equals(id));
     }
 
     public boolean deleteAll() {
-        _products = new ArrayList<>();
-        return _products.equals(new ArrayList<>());
+        _products.clear();
+        return true;
     }
 }

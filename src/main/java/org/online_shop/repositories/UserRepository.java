@@ -3,11 +3,7 @@ package org.online_shop.repositories;
 import org.online_shop.models.DatabaseInMemory;
 import org.online_shop.models.User;
 
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class UserRepository extends DatabaseInMemory {
 

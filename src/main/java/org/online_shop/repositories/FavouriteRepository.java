@@ -3,7 +3,6 @@ package org.online_shop.repositories;
 import org.online_shop.models.DatabaseInMemory;
 import org.online_shop.models.Favourite;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +12,7 @@ public class FavouriteRepository extends DatabaseInMemory {
     }
 
     public List<Favourite> readAll(Integer userId) {
-        return _favourites.stream().filter(favourite -> favourite.get_userId() == userId).collect(Collectors.toList());
+        return _favourites.stream().filter(favourite -> favourite.get_userId().equals(userId)).collect(Collectors.toList());
     }
 
     public boolean delete(Favourite favourite) {
@@ -21,7 +20,7 @@ public class FavouriteRepository extends DatabaseInMemory {
     }
 
     public boolean deleteAll() {
-        _favourites = new ArrayList<>();
-        return _favourites.equals(new ArrayList<>());
+        _favourites.clear();
+        return true;
     }
 }

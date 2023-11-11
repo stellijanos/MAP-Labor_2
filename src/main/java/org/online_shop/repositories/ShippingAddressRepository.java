@@ -12,10 +12,10 @@ public class ShippingAddressRepository extends DatabaseInMemory {
     }
 
     public ShippingAddress read(Integer id, Integer userId) {
-        for (ShippingAddress address : _shippingAddresses)
-            if (address.get_id().equals(id) && address.get_userId().equals(userId))
-                return address;
-        return new ShippingAddress();
+        return _shippingAddresses.stream()
+                .filter(address -> address.get_id().equals(id) && address.get_userId().equals(userId))
+                .findFirst()
+                .orElse(new ShippingAddress());
     }
 
     public List<ShippingAddress> readAll(Integer userId) {
@@ -23,16 +23,17 @@ public class ShippingAddressRepository extends DatabaseInMemory {
     }
 
     public boolean update(ShippingAddress shippingAddress) {
-        for (ShippingAddress address : _shippingAddresses)
-            if (address.get_id().equals(shippingAddress.get_id())) {
-                address.set_name(shippingAddress.get_name());
-                address.set_phone(shippingAddress.get_phone());
-                address.set_address(shippingAddress.get_address());
-                address.set_city(shippingAddress.get_city());
-                address.set_zipCode(shippingAddress.get_zipCode());
-                return true;
-            }
-        return false;
+        return _shippingAddresses.stream()
+                .filter(address -> address.get_id().equals(shippingAddress.get_id()) && address.get_userId().equals(shippingAddress.get_userId()))
+                .findFirst()
+                .map(address -> {
+                    address.set_name(shippingAddress.get_name());
+                    address.set_phone(shippingAddress.get_phone());
+                    address.set_address(shippingAddress.get_address());
+                    address.set_city(shippingAddress.get_city());
+                    address.set_zipCode(shippingAddress.get_zipCode());
+                    return true;
+                }).orElse(false);
     }
 
     public boolean delete(ShippingAddress shippingAddress) {

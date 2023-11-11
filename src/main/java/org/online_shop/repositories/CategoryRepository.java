@@ -3,7 +3,6 @@ package org.online_shop.repositories;
 import org.online_shop.models.Category;
 import org.online_shop.models.DatabaseInMemory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryRepository extends DatabaseInMemory {
@@ -12,8 +11,7 @@ public class CategoryRepository extends DatabaseInMemory {
         return _categories.add(category);
     }
 
-    public Category read(int id) {
-
+    public Category read(Integer id) {
         return _categories.stream()
                 .filter(category -> category.get_id().equals(id))
                 .findFirst().orElse(new Category());
@@ -25,20 +23,20 @@ public class CategoryRepository extends DatabaseInMemory {
     }
 
     public boolean update(Category updatedCategory) {
-        for (int i = 0; i <= _categories.size(); i++)
-            if (_categories.get(i).get_id() == updatedCategory.get_id()) {
-                _categories.get(i).set_name(updatedCategory.get_name());
-                return true;
-            }
-        return false;
+        return _categories.stream()
+                .filter(category -> category.get_id().equals(updatedCategory.get_id()))
+                .findFirst().map(category -> {
+                    category.set_name(updatedCategory.get_name());
+                    return true;
+                }).orElse(false);
     }
 
-    public boolean delete(int id) {
-        return _categories.removeIf(category -> category.get_id() == id);
+    public boolean delete(Integer id) {
+        return _categories.removeIf(category -> category.get_id().equals(id));
     }
 
     public boolean deleteAll() {
-        _categories = new ArrayList<>();
-        return _categories.equals(new ArrayList<>());
+        _categories.clear();
+        return true;
     }
 }

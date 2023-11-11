@@ -1,29 +1,20 @@
 package org.online_shop.models;
 
 public class Product {
-    private int _id;
+    private Integer _id;
     private String _name;
-    private float _price;
-    private int _categoryId;
+    private Float _price;
+    private Integer _categoryId;
     private String _description;
     private String _imageLink;
-    private int _stock;
+    private Integer _stock;
 
-//    public Product(int _id, String _name, float _price, int _categoryId, String _description, String _imageLink, int _stock) {
-//        this._id = _id;
-//        this._name = _name;
-//        this._price = _price;
-//        this._categoryId = _categoryId;
-//        this._description = _description;
-//        this._imageLink = _imageLink;
-//        this._stock = _stock;
-//    }
 
-    public int get_id() {
+    public Integer get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(Integer _id) {
         this._id = _id;
     }
 
@@ -35,19 +26,19 @@ public class Product {
         this._name = _name;
     }
 
-    public float get_price() {
+    public Float get_price() {
         return _price;
     }
 
-    public void set_price(float _price) {
+    public void set_price(Float _price) {
         this._price = _price;
     }
 
-    public int get_categoryId() {
+    public Integer get_categoryId() {
         return _categoryId;
     }
 
-    public void set_categoryId(int _categoryId) {
+    public void set_categoryId(Integer _categoryId) {
         this._categoryId = _categoryId;
     }
 
@@ -67,11 +58,11 @@ public class Product {
         this._imageLink = _imageLink;
     }
 
-    public int get_stock() {
+    public Integer get_stock() {
         return _stock;
     }
 
-    public void set_stock(int _stock) {
+    public void set_stock(Integer _stock) {
         this._stock = _stock;
     }
 

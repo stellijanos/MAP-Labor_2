@@ -1,31 +1,25 @@
 package org.online_shop.models;
 
 public class ProductSpec {
-    private int _id;
-    private int _productId;
+    private Integer _id;
+    private Integer _productId;
     private String _specName;
     private String _specValue;
 
-    public ProductSpec(int _id, int _productId, String _specName, String _specValue) {
-        this._id = _id;
-        this._productId = _productId;
-        this._specName = _specName;
-        this._specValue = _specValue;
-    }
 
-    public int get_id() {
+    public Integer get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(Integer _id) {
         this._id = _id;
     }
 
-    public int get_productId() {
+    public Integer get_productId() {
         return _productId;
     }
 
-    public void set_productId(int _productId) {
+    public void set_productId(Integer _productId) {
         this._productId = _productId;
     }
 

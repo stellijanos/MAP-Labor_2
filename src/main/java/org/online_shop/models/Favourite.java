@@ -10,7 +10,7 @@ public class Favourite {
         _productId = productId;
     }
 
-    public int get_userId() {
+    public Integer get_userId() {
         return _userId;
     }
 

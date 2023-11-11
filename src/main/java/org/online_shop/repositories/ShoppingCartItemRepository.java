@@ -13,24 +13,18 @@ public class ShoppingCartItemRepository extends DatabaseInMemory {
         return _shoppingCartItems.add(shoppingCartItem);
     }
 
-    public ShoppingCartItem read(Integer cartId, Integer productId) {
-        for (ShoppingCartItem item : _shoppingCartItems)
-            if (item.get_shoppingCartId().equals(cartId) && item.get_productId().equals(productId))
-                return item;
-        return new ShoppingCartItem();
-    }
-
     public List<ShoppingCartItem> readAll(Integer shoppingCartId) {
         return _shoppingCartItems.stream().filter(cartItem -> Objects.equals(cartItem.get_shoppingCartId(), shoppingCartId)).collect(Collectors.toList());
     }
 
     public boolean update(ShoppingCartItem shoppingCartItem) {
-        for (ShoppingCartItem item : _shoppingCartItems)
-            if (Objects.equals(item.get_shoppingCartId(), shoppingCartItem.get_shoppingCartId())) {
-                item.set_quantity(shoppingCartItem.get_quantity());
-                return true;
-            }
-        return false;
+        return _shoppingCartItems.stream()
+                .filter(item -> item.get_shoppingCartId().equals(shoppingCartItem.get_productId()))
+                .findFirst()
+                .map(item -> {
+                    item.set_quantity(shoppingCartItem.get_quantity());
+                    return true;
+                }).orElse(false);
     }
 
     public boolean delete(ShoppingCartItem shoppingCartItem) {

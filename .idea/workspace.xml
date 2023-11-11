@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement repositories">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement controllers and fix mvc parts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/FavouriteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/FavouriteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShoppingCart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShoppingCartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShoppingCartItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -359,11 +351,18 @@
       <option name="project" value="LOCAL" />
       <updated>1699647153119</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="implement controllers and fix mvc parts">
+      <option name="closed" value="true" />
+      <created>1699650478000</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1699650478000</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="create in memory 'database' connection" />
     <MESSAGE value="implement the metthods for the models that are in the Database" />
     <MESSAGE value="implement create user part in AppView method" />
     <MESSAGE value="fix MVC design and implement login signup in the cnosole view" />
@@ -388,6 +387,7 @@
     <MESSAGE value="implement deleteAll for product- and category controllers" />
     <MESSAGE value="implement favourite mvc part and fix other mvc parts" />
     <MESSAGE value="implement repositories" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement repositories" />
+    <MESSAGE value="implement controllers and fix mvc parts" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement controllers and fix mvc parts" />
   </component>
 </project>

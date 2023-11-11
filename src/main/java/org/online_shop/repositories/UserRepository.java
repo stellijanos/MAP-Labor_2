@@ -3,8 +3,11 @@ package org.online_shop.repositories;
 import org.online_shop.models.DatabaseInMemory;
 import org.online_shop.models.User;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class UserRepository extends DatabaseInMemory {
 
@@ -13,50 +16,43 @@ public class UserRepository extends DatabaseInMemory {
     }
 
     public User read(String email) {
-        for (User user : this._users) {
-            if (user.get_email().equals(email)) {
-                return user;
-            }
-        }
-        return new User();
+        return _users.stream()
+                .filter(u -> u.get_email().equals(email))
+                .findFirst()
+                .orElse(new User());
     }
-
     public List<User> readAll() {
         return this._users;
     }
 
     public boolean update(User updatedUser, String email) {
-
-//        System.out.println(updatedUser);
-
-        for (User user : this._users) {
-            if (user.get_email().equals(email)) {
-                user.set_firstname(updatedUser.get_firstname());
-                user.set_lastname(updatedUser.get_firstname());
-                user.set_email(updatedUser.get_email());
-                return true;
-            }
-        }
-        return false;
+        return _users.stream()
+                .filter(user -> user.get_email().equals(email))
+                .findFirst()
+                .map(user -> {
+                    user.set_firstname(updatedUser.get_firstname());
+                    user.set_lastname(updatedUser.get_lastname());
+                    user.set_email(updatedUser.get_email());
+                    return true;
+                }).orElse(false);
     }
 
     public boolean updatePassword(String newPassword, String email) {
-        for (User user : this._users) {
-            if (user.get_email().equals(email)) {
-                user.set_password(newPassword);
-                return true;
-            }
-        }
-        return false;
+        return _users.stream()
+                .filter(user -> user.get_email().equals(email))
+                .findFirst()
+                .map(user -> {
+                    user.set_password(newPassword);
+                    return true;
+                }).orElse(false);
     }
 
     public boolean delete(String email) {
-        User user = read(email);
-        return this._users.removeIf(u -> u.equals(user));
+        return this._users.removeIf(u -> u.get_email().equals(email));
     }
 
     public boolean deleteAll() {
-        _users = new ArrayList<>();
-        return _users.equals(new ArrayList<>());
+        _users.clear();
+        return true;
     }
 }

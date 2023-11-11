@@ -64,4 +64,17 @@ public class UserTest {
         assertEquals("max123", createdUser.get_password());
 
     }
+
+    @Test
+    public void test_logIn() {
+        UserRepository userRepository = new UserRepository();
+        UserController userController = new UserController(userRepository);
+        User user = userController.getUser("stellijanos@gmail.com");
+
+        assertNull(user.get_id());
+        assertNull(user.get_email());
+        assertNull(user.get_firstname());
+        assertNull(user.get_lastname());
+        assertNull(user.get_password());
+    }
 }

@@ -2,10 +2,10 @@ package org.online_shop.models;
 
 public class Favourite {
 
-    private int _userId;
-    private int _productId;
+    private Integer _userId;
+    private Integer _productId;
 
-    public Favourite(int userId, int productId) {
+    public Favourite(Integer userId, Integer productId) {
         _userId = userId;
         _productId = productId;
     }

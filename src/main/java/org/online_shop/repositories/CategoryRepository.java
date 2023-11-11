@@ -13,11 +13,11 @@ public class CategoryRepository extends DatabaseInMemory {
     }
 
     public Category read(int id) {
-        for (Category category : _categories) {
-            if (category.get_id() == id)
-                return category;
-        }
-        return new Category();
+
+        return _categories.stream()
+                .filter(category -> category.get_id().equals(id))
+                .findFirst().orElse(new Category());
+
     }
 
     public List<Category> readAll() {

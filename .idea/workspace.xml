@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement controllers and fix mvc parts">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement shopping cart related mvc part">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShoppingCartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShoppingCartItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShippingAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShippingAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShippingAddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShippingAddressRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +95,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserTest.test_logIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MAP-Labor_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.online_shop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.online_shop" />
+      <option name="MAIN_CLASS_NAME" value="org.online_shop.UserTest" />
+      <option name="METHOD_NAME" value="test_logIn" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserTest.test_signUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MAP-Labor_2" />
       <extension name="coverage">
@@ -128,6 +146,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="JUnit.UserTest.test_logIn" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.UserTest.test_updateUser" />
         <item itemvalue="JUnit.UserTest.test_signUp" />
@@ -359,11 +378,18 @@
       <option name="project" value="LOCAL" />
       <updated>1699650478000</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="implement shopping cart related mvc part">
+      <option name="closed" value="true" />
+      <created>1699691668289</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1699691668289</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement the metthods for the models that are in the Database" />
     <MESSAGE value="implement create user part in AppView method" />
     <MESSAGE value="fix MVC design and implement login signup in the cnosole view" />
     <MESSAGE value="implement signUp in controller and also the in Memory Database class" />
@@ -388,6 +414,7 @@
     <MESSAGE value="implement favourite mvc part and fix other mvc parts" />
     <MESSAGE value="implement repositories" />
     <MESSAGE value="implement controllers and fix mvc parts" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement controllers and fix mvc parts" />
+    <MESSAGE value="implement shopping cart related mvc part" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement shopping cart related mvc part" />
   </component>
 </project>

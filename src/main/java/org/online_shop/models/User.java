@@ -4,7 +4,7 @@ import org.online_shop.controllers.CustomControllerTools;
 
 
 public class User {
-    private int _id;
+    private Integer _id;
     private String _firstname;
     private String _lastname;
     private String _email;
@@ -17,11 +17,11 @@ public class User {
     }
 
 
-    public int get_id() {
+    public Integer get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(Integer _id) {
         this._id = _id;
     }
 

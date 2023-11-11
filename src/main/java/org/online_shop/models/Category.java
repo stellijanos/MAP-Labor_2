@@ -2,11 +2,10 @@ package org.online_shop.models;
 
 public class Category {
 
-    private int _id;
+    private Integer _id;
     private String _name;
 
-
-    public int get_id() {
+    public Integer get_id() {
         return _id;
     }
 

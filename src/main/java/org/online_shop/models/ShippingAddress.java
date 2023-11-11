@@ -1,46 +1,36 @@
 package org.online_shop.models;
 
 public class ShippingAddress {
-    private int _id;
-    private int _userId;
-    private String name;
+    private Integer _id;
+    private Integer _userId;
+    private String _name;
     private String _phone;
     private String _address;
     private String _city;
     private String _zipCode;
 
-    public ShippingAddress(int _id, int _userId, String name, String _phone, String _address, String _city, String _zipCode) {
-        this._id = _id;
-        this._userId = _userId;
-        this.name = name;
-        this._phone = _phone;
-        this._address = _address;
-        this._city = _city;
-        this._zipCode = _zipCode;
-    }
-
-    public int get_id() {
+    public Integer get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(Integer _id) {
         this._id = _id;
     }
 
-    public int get_userId() {
+    public Integer get_userId() {
         return _userId;
     }
 
-    public void set_userId(int _userId) {
+    public void set_userId(Integer _userId) {
         this._userId = _userId;
     }
 
-    public String getName() {
-        return name;
+    public String get_name() {
+        return _name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void set_name(String name) {
+        this._name = name;
     }
 
     public String get_phone() {
@@ -80,7 +70,7 @@ public class ShippingAddress {
         return "ShippingAddress{" +
                 "_id=" + _id +
                 ", _userId=" + _userId +
-                ", name='" + name + '\'' +
+                ", name='" + _name + '\'' +
                 ", _phone='" + _phone + '\'' +
                 ", _address='" + _address + '\'' +
                 ", _city='" + _city + '\'' +

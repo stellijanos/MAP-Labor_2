@@ -1,13 +1,17 @@
 package org.online_shop.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ShippingAddress {
     private Integer _id;
-    private Integer _userId;
+    private User user;
     private String _name;
     private String _phone;
     private String _address;
     private String _city;
     private String _zipCode;
+    private final List<Order> orders = new ArrayList<>();
 
     public Integer get_id() {
         return _id;
@@ -17,20 +21,20 @@ public class ShippingAddress {
         this._id = _id;
     }
 
-    public Integer get_userId() {
-        return _userId;
+    public User getUser() {
+        return user;
     }
 
-    public void set_userId(Integer _userId) {
-        this._userId = _userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String get_name() {
         return _name;
     }
 
-    public void set_name(String name) {
-        this._name = name;
+    public void set_name(String _name) {
+        this._name = _name;
     }
 
     public String get_phone() {
@@ -65,16 +69,21 @@ public class ShippingAddress {
         this._zipCode = _zipCode;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     @Override
     public String toString() {
         return "ShippingAddress{" +
                 "_id=" + _id +
-                ", _userId=" + _userId +
-                ", name='" + _name + '\'' +
+                ", user=" + user +
+                ", _name='" + _name + '\'' +
                 ", _phone='" + _phone + '\'' +
                 ", _address='" + _address + '\'' +
                 ", _city='" + _city + '\'' +
                 ", _zipCode='" + _zipCode + '\'' +
+                ", orders=" + orders +
                 '}';
     }
 }

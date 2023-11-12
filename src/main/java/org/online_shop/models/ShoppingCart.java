@@ -1,9 +1,12 @@
 package org.online_shop.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ShoppingCart {
     private Integer _id;
-    private Integer _userId;
-
+    private User user;
+    private final List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
 
     public Integer get_id() {
         return _id;
@@ -13,19 +16,24 @@ public class ShoppingCart {
         this._id = _id;
     }
 
-    public Integer get_userId() {
-        return _userId;
+    public User getUser() {
+        return user;
     }
 
-    public void set_userId(Integer _userId) {
-        this._userId = _userId;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<ShoppingCartItem> getShoppingCartItems() {
+        return shoppingCartItems;
     }
 
     @Override
     public String toString() {
         return "ShoppingCart{" +
                 "_id=" + _id +
-                ", _userId=" + _userId +
+                ", user=" + user +
+                ", shoppingCartItems=" + shoppingCartItems +
                 '}';
     }
 }

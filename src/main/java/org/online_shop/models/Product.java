@@ -1,14 +1,17 @@
 package org.online_shop.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
     private Integer _id;
     private String _name;
     private Float _price;
-    private Integer _categoryId;
+    private Category category;
     private String _description;
     private String _imageLink;
     private Integer _stock;
-
+    private final List<ProductSpec> productSpecs = new ArrayList<>();
 
     public Integer get_id() {
         return _id;
@@ -34,12 +37,12 @@ public class Product {
         this._price = _price;
     }
 
-    public Integer get_categoryId() {
-        return _categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void set_categoryId(Integer _categoryId) {
-        this._categoryId = _categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String get_description() {
@@ -66,16 +69,21 @@ public class Product {
         this._stock = _stock;
     }
 
+    public List<ProductSpec> getProductSpecs() {
+        return productSpecs;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "_id=" + _id +
                 ", _name='" + _name + '\'' +
                 ", _price=" + _price +
-                ", _categoryId=" + _categoryId +
+                ", category=" + category +
                 ", _description='" + _description + '\'' +
                 ", _imageLink='" + _imageLink + '\'' +
                 ", _stock=" + _stock +
+                ", productSpecs=" + productSpecs +
                 '}';
     }
 }

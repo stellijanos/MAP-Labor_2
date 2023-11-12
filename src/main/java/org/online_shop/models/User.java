@@ -14,19 +14,15 @@ public class User {
     private String _password;
     private final String _createdAt;
 
-
-    private final List<ShippingAddress> shippingAddresses = new ArrayList<>();
-    private final List<Order> orders = new ArrayList<>();
-
     private final List<Favourite> favourites = new ArrayList<>();
-
+    private final List<Order> orders = new ArrayList<>();
+    private final List<ShippingAddress> shippingAddresses = new ArrayList<>();
     private ShoppingCart shoppingCart;
 
 
     public User() {
         this._createdAt = CustomControllerTools.getCurrentDateTIme();
     }
-
 
     public Integer get_id() {
         return _id;
@@ -72,6 +68,26 @@ public class User {
         return _createdAt;
     }
 
+    public List<Favourite> getFavourites() {
+        return favourites;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public List<ShippingAddress> getShippingAddresses() {
+        return shippingAddresses;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -79,8 +95,12 @@ public class User {
                 ", _firstname='" + _firstname + '\'' +
                 ", _lastname='" + _lastname + '\'' +
                 ", _email='" + _email + '\'' +
-                ", _createdAt=" + _createdAt +
-                ", _password=" + _password +
-                "}\n";
+                ", _password='" + _password + '\'' +
+                ", _createdAt='" + _createdAt + '\'' +
+                ", favourites=" + favourites +
+                ", orders=" + orders +
+                ", shippingAddresses=" + shippingAddresses +
+                ", shoppingCart=" + shoppingCart +
+                '}';
     }
 }

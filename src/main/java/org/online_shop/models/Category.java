@@ -7,7 +7,6 @@ public class Category {
 
     private Integer _id;
     private String _name;
-
     private final List<Product> products = new ArrayList<>();
 
     public Integer get_id() {
@@ -22,8 +21,12 @@ public class Category {
         return _name;
     }
 
-    public void set_name(String name) {
-        this._name = name;
+    public void set_name(String _name) {
+        this._name = _name;
+    }
+
+    public List<Product> getProducts() {
+        return products;
     }
 
     @Override
@@ -31,6 +34,7 @@ public class Category {
         return "Category{" +
                 "_id=" + _id +
                 ", _name='" + _name + '\'' +
+                ", products=" + products +
                 '}';
     }
 }

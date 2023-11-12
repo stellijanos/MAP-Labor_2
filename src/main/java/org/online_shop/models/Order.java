@@ -13,7 +13,6 @@ public class Order {
     private String _status;
     private Float _shippingFee;
 
-
     public Integer get_id() {
         return _id;
     }

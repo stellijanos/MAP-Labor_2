@@ -2,10 +2,9 @@ package org.online_shop.models;
 
 public class ProductSpec {
     private Integer _id;
-    private Integer _productId;
+    private Product product;
     private String _specName;
     private String _specValue;
-
 
     public Integer get_id() {
         return _id;
@@ -15,12 +14,12 @@ public class ProductSpec {
         this._id = _id;
     }
 
-    public Integer get_productId() {
-        return _productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void set_productId(Integer _productId) {
-        this._productId = _productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public String get_specName() {
@@ -43,7 +42,7 @@ public class ProductSpec {
     public String toString() {
         return "ProductSpec{" +
                 "_id=" + _id +
-                ", _productId=" + _productId +
+                ", product=" + product +
                 ", _specName='" + _specName + '\'' +
                 ", _specValue='" + _specValue + '\'' +
                 '}';

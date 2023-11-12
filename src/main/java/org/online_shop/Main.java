@@ -13,6 +13,17 @@ public class Main {
         appController.setRoute("/signup", appController::signUp);
         appController.setRoute("/logout", appController::logOut);
         appController.setRoute("/user-panel", appController::userPanel);
+        appController.setRoute("/account-settings", appController::accountSettings);
+        appController.setRoute("/account-settings/profile-details", appController::accountSettings);
+        appController.setRoute("/shipping-address-options", appController::shippingAddressOptions);
+        appController.setRoute("/orders", appController::orders);
+        appController.setRoute("/favourites", appController::favourites);
+        appController.setRoute("/shopping-cart", appController::shoppingCart);
+        appController.setRoute("/products", appController::products);
+
+
+
+
         appController.setRoute("/admin-panel", appController::adminPanel);
 
         appController.run();

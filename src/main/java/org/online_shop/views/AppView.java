@@ -66,7 +66,8 @@ public class AppView {
                 "1. View saved addresses\n" +
                 "2. Add address\n" +
                 "3. Edit address\n" +
-                "4. Delete address" +
+                "4. Delete address\n" +
+                "5. Delete all addresses" +
                 enterOption()
         );
     }
@@ -77,9 +78,7 @@ public class AppView {
                 "Shipping Address options\n------------------------------\n" +
                 "0. Back\n" +
                 "1. View all orders\n" +
-                "2. Add address\n" +
-                "3. Edit address\n" +
-                "4. Delete address\n" +
+                "2. View order\n" +
                 "Enter option: "
         );
     }
@@ -165,7 +164,7 @@ public class AppView {
         System.out.println("\n------------------------------\n" +
                 "User options\n------------------------------\n" +
                 "0. Back\n" +
-                "1. View all orders\n" +
+                "1. View all users orders\n" +
                 "2. Edit order\n" +
                 "3. Remove order\n" +
                 "4. Remove all orders" +

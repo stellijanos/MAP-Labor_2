@@ -132,6 +132,50 @@ public class AppController {
         }
     }
 
+
+    public void profileDetails() {
+
+    }
+
+    public void editProfileDetails() {
+
+    }
+
+    public void changePassword() {
+        String currentPassword = readFromConsole(_appView::enter_password, String.class);
+        String newPassword = readFromConsole(_appView::enter_new_password, String.class);
+        String confirmPassword = readFromConsole(_appView::confirm_password, String.class);
+
+        Response response = _userController.updateUserPassword(currentPassword, newPassword, confirmPassword, _session.getId());
+
+        switch (response) {
+            case USER_NOT_FOUND -> _appView.user_not_found();
+            case INCORRECT_PASSWORD -> _appView.incorrect_password();
+            case PASSWORDS_DO_NOT_MATCH -> _appView.passwords_do_not_match();
+            case PASSWORD_UPDATE_SUCCESSFUL -> _appView.password_updated_successfully();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
+        }
+        sleep(750);
+    }
+
+    public void deleteAccount() {
+        String password = readFromConsole(_appView::enter_password, String.class);
+
+        Response response = _userController.deleteUser(_session.getId(), password);
+
+        switch (response) {
+            case INCORRECT_EMAIL -> _appView.incorrect_email();
+            case INCORRECT_PASSWORD -> _appView.incorrect_password();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
+            case USER_DELETE_SUCCESSFUL -> {
+                if (_session.destroy()) {
+                    sleep(1500);
+                    mainMenu();
+                }
+            }
+        }
+    }
+
     public void shippingAddressOptions() {
         switch (readFromConsole(_appView::shippingAddressOptions, Integer.class)) {
             case 0 -> getRoute("/user-panel");
@@ -139,18 +183,50 @@ public class AppController {
             case 2 -> getRoute("/shipping-address-options/add-address");
             case 3 -> getRoute("/shipping-address-options/edit-address");
             case 4 -> getRoute("/shipping-address-options/delete-address");
+            case 5 -> getRoute("/shipping-address-options/delete-all-addresses");
             default -> getRoute("/shipping-address-options?option_not_found");
         }
     }
+
+
+    public void viewSavedAddresses() {
+
+    }
+
+    public void addAddress() {
+
+    }
+
+    public void editAddress() {
+
+    }
+
+    public void deleteAddress() {
+
+    }
+
+    public void deleteAllAddresses() {
+
+    }
+
 
     public void orders() {
         switch (readFromConsole(_appView::orders, Integer.class)) {
             case 0 -> getRoute("/user-panel");
             case 1 -> getRoute("/orders/view-all-orders");
-            case 2 -> getRoute("/");
+            case 2 -> getRoute("/orders/view-order");
             default -> getRoute("/orders?option_not_found");
         }
     }
+
+    public void viewAllOrders() {
+
+    }
+
+    public void viewOrder() {
+
+    }
+
 
     public void favourites() {
         switch (readFromConsole(_appView::favourites, Integer.class)) {
@@ -173,6 +249,14 @@ public class AppController {
             case 2 -> getRoute("/products/add-to-cart");
             default -> getRoute("/products?option_not_found");
         }
+    }
+
+    public void addToFavourites() {
+
+    }
+
+    public void addToCart() {
+
     }
 
     public void adminPanel() {
@@ -200,6 +284,23 @@ public class AppController {
         }
     }
 
+
+    public void viewAllUsers() {
+
+    }
+
+    public void editUser(){
+
+    }
+
+    public void removeUser() {
+
+    }
+
+    public void removeAllUsers() {
+
+    }
+
     public void productOptions() {
         switch (readFromConsole(_appView::productOptions, Integer.class)) {
             case 0 -> getRoute("/admin-panel");
@@ -212,15 +313,52 @@ public class AppController {
         }
     }
 
+    public void viewAllProducts() {
+
+    }
+
+    public void addProduct() {
+
+    }
+
+    public void editProduct() {
+
+    }
+
+    public void removeProduct() {
+
+    }
+
+    public void removeAllProducts() {
+
+    }
+
+
     public void orderOptions() {
         switch (readFromConsole(_appView::orderOptions, Integer.class)) {
             case 0 -> getRoute("/admin-panel");
-            case 1 -> getRoute("/view-all-orders");
+            case 1 -> getRoute("/view-all-users-orders");
             case 2 -> getRoute("/edit order");
             case 3 -> getRoute("/remove-order");
             case 4 -> getRoute("/remove-all-orders");
             default -> getRoute("/order-options?option_not_found");
         }
+    }
+
+    public void viewAllUsersOrders() {
+
+    }
+
+    public void editOrder() {
+
+    }
+
+    public void removeOrder() {
+
+    }
+
+    public void removeAllOrders() {
+
     }
 
 
@@ -259,6 +397,10 @@ public class AppController {
     }
 
 
+
+//    -----------------------------------------------------------------------------------------------------------------
+
+
     public void userDetails() {
         _userController.listAllUsers();
         _appView.account_details(_userController.getUser(_session.getId()));
@@ -291,40 +433,9 @@ public class AppController {
         userPanel();
     }
 
-    public void changePassword() {
-        String currentPassword = readFromConsole(_appView::enter_password, String.class);
-        String newPassword = readFromConsole(_appView::enter_new_password, String.class);
-        String confirmPassword = readFromConsole(_appView::confirm_password, String.class);
 
-        Response response = _userController.updateUserPassword(currentPassword, newPassword, confirmPassword, _session.getId());
 
-        switch (response) {
-            case USER_NOT_FOUND -> _appView.user_not_found();
-            case INCORRECT_PASSWORD -> _appView.incorrect_password();
-            case PASSWORDS_DO_NOT_MATCH -> _appView.passwords_do_not_match();
-            case PASSWORD_UPDATE_SUCCESSFUL -> _appView.password_updated_successfully();
-            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
-        }
-        sleep(750);
-    }
 
-    public void deleteAccount() {
-        String password = readFromConsole(_appView::enter_password, String.class);
-
-        Response response = _userController.deleteUser(_session.getId(), password);
-
-        switch (response) {
-            case INCORRECT_EMAIL -> _appView.incorrect_email();
-            case INCORRECT_PASSWORD -> _appView.incorrect_password();
-            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
-            case USER_DELETE_SUCCESSFUL -> {
-                if (_session.destroy()) {
-                    sleep(1500);
-                    mainMenu();
-                }
-            }
-        }
-    }
 
 
     private void setUpSession(String email) {

@@ -1,8 +1,7 @@
 package org.online_shop.controllers;
 
-import java.awt.desktop.UserSessionEvent;
 import java.lang.Thread;
-import java.util.Arrays;
+import java.lang.reflect.Method;
 import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -67,16 +66,24 @@ public class AppController {
     }
 
     private void getRoute(String path) {
-        String actualPath;
-        if (path.contains("?")) {
-             actualPath = path.split("\\?")[1];
-             _appView.print_optionNotFound();
-        } else {
-            actualPath = path;
+        String[] url = path.split("\\?");
+        String actualPath = url[0];
+        String response = url.length == 1 ? "no_response" : url[1];
+
+        try {
+            if (!response.equals("no_response") && !response.isEmpty()) {
+                Method method = _appView.getClass().getDeclaredMethod(response);
+                method.invoke(_appView);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         sleep(500);
-        route.get(actualPath);
+
+        if (!route.get(actualPath)) {
+            route.get("/");
+        }
     }
 
     public void quit() {
@@ -89,12 +96,6 @@ public class AppController {
         getRoute("/");
     }
 
-
-    public void _404() {
-
-    }
-
-
     // Menu classes
     public void mainMenu() {
         _userController.createAdmin();
@@ -103,7 +104,7 @@ public class AppController {
             case 0 -> getRoute("");
             case 1 -> getRoute("/login");
             case 2 -> getRoute("/signup");
-            default -> getRoute("404?/");
+            default -> getRoute("/?option_not_found");
         }
     }
 
@@ -116,7 +117,7 @@ public class AppController {
             case 4 -> getRoute("/favourites");
             case 5 -> getRoute("/shopping-cart");
             case 6 -> getRoute("/products");
-            default -> getRoute("404?/user-panel");
+            default -> getRoute("/user-panel?option_not_found");
         }
     }
 
@@ -127,7 +128,7 @@ public class AppController {
             case 2 -> getRoute("/account-settings/edit-profile-details");
             case 3 -> getRoute("/account-settings/change-password");
             case 4 -> getRoute("/account-settings/delete-account");
-            default -> getRoute("404?/account-settings");
+            default -> getRoute("/account-settings?option_not_found");
         }
     }
 
@@ -138,7 +139,7 @@ public class AppController {
             case 2 -> getRoute("/shipping-address-options/add-address");
             case 3 -> getRoute("/shipping-address-options/edit-address");
             case 4 -> getRoute("/shipping-address-options/delete-address");
-            default -> getRoute("404?/shipping-address-options");
+            default -> getRoute("/shipping-address-options?option_not_found");
         }
     }
 
@@ -147,30 +148,30 @@ public class AppController {
             case 0 -> getRoute("/user-panel");
             case 1 -> getRoute("/orders/view-all-orders");
             case 2 -> getRoute("/");
-            default -> getRoute("404?/orders");
+            default -> getRoute("/orders?option_not_found");
         }
     }
 
     public void favourites() {
-        switch(readFromConsole(_appView::favourites, Integer.class)) {
+        switch (readFromConsole(_appView::favourites, Integer.class)) {
             case 0 -> getRoute("/user-panel");
-            default -> getRoute("404?/favourites");
+            default -> getRoute("/favourites?option_not_found");
         }
     }
 
     public void shoppingCart() {
-        switch(readFromConsole(_appView::shoppingCart, Integer.class)) {
+        switch (readFromConsole(_appView::shoppingCart, Integer.class)) {
             case 0 -> getRoute("/user-panel");
-            default -> getRoute("404?/shopping-cart");
+            default -> getRoute("/shopping-cart?option_not_found");
         }
     }
 
     public void products() {
-        switch(readFromConsole(_appView::products, Integer.class)) {
+        switch (readFromConsole(_appView::products, Integer.class)) {
             case 0 -> getRoute("/user-panel");
             case 1 -> getRoute("/products/add-to-favourites");
             case 2 -> getRoute("/products/add-to-cart");
-            default -> getRoute("404?/products");
+            default -> getRoute("/products?option_not_found");
         }
     }
 
@@ -184,92 +185,83 @@ public class AppController {
             case 1 -> getRoute("/user-options");
             case 2 -> getRoute("/product-options");
             case 3 -> getRoute("/order-options");
-            default -> getRoute("404?/admin-panel");
+            default -> getRoute("/admin-panel?option_not_found");
         }
     }
 
     public void userOptions() {
-        switch(readFromConsole(_appView::userOptions, Integer.class)) {
+        switch (readFromConsole(_appView::userOptions, Integer.class)) {
             case 0 -> getRoute("/admin-panel");
             case 1 -> getRoute("/view-all-users");
             case 2 -> getRoute("/edit-user");
             case 3 -> getRoute("/remove-user");
             case 4 -> getRoute("/remove-all-users");
-            default -> getRoute("404?/user-options");
+            default -> getRoute("/user-options?option_not_found");
         }
     }
 
     public void productOptions() {
-        switch(readFromConsole(_appView::productOptions, Integer.class)) {
+        switch (readFromConsole(_appView::productOptions, Integer.class)) {
             case 0 -> getRoute("/admin-panel");
             case 1 -> getRoute("/view-all-products");
             case 2 -> getRoute("/add-product");
             case 3 -> getRoute("/edit-product");
             case 4 -> getRoute("/remove-product");
             case 5 -> getRoute("/remove-all-products");
-            default -> getRoute("404?/product-options");
+            default -> getRoute("/product-options?option_not_found");
         }
     }
 
     public void orderOptions() {
-        switch(readFromConsole(_appView::orderOptions, Integer.class)) {
+        switch (readFromConsole(_appView::orderOptions, Integer.class)) {
             case 0 -> getRoute("/admin-panel");
             case 1 -> getRoute("/view-all-orders");
             case 2 -> getRoute("/edit order");
             case 3 -> getRoute("/remove-order");
             case 4 -> getRoute("/remove-all-orders");
-            default -> getRoute("404?/order-options");
+            default -> getRoute("/order-options?option_not_found");
         }
     }
 
+
     public void logIn() {
-        String email = readFromConsole(_appView.userView::print_enterEmail, String.class);
-        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
+        String email = readFromConsole(_appView::enter_email, String.class);
+        String password = readFromConsole(_appView::enter_password, String.class);
 
         Response response = _userController.logInUser(email, password);
 
         switch (response) {
-            case USER_LOGIN_SUCCESSFUL -> {
-                _session = Session.getInstance();
-                _session.setId(email);
-                _appView.userView.print_logInSuccessful();
-
-                Env env = new Env();
-
-                String route = Objects.equals(env.load().get("ADMIN_EMAIL"), email) ? "/admin-panel" : "/user-panel";
-
-                getRoute(route);
-            }
-            case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
-            case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
+            case USER_LOGIN_SUCCESSFUL -> setUpSession(email);
+            case INCORRECT_EMAIL -> getRoute("/?incorrect_email");
+            case INCORRECT_PASSWORD -> getRoute("/?incorrect_password");
         }
     }
 
     public void signUp() {
 
-        String firstname = readFromConsole(_appView.userView::print_enterFirstname, String.class);
-        String lastname = readFromConsole(_appView.userView::print_enterLastname, String.class);
-        String email = readFromConsole(_appView.userView::print_enterEmail, String.class);
-        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
+        String firstname = readFromConsole(_appView::enter_firstname, String.class);
+        String lastname = readFromConsole(_appView::enter_lastname, String.class);
+        String email = readFromConsole(_appView::enter_email, String.class);
+        String password = readFromConsole(_appView::enter_password, String.class);
 
         Response response = _userController.createUser(firstname, lastname, email, password);
 
         switch (response) {
-            case USER_EXISTS -> _appView.userView.print_userExists();
-            case USER_CREATE_SUCCESSFUL -> _appView.userView.print_userCreatedSuccessfully();
-            case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
+            case USER_EXISTS -> getRoute("/?user_exists");
+            case USER_CREATE_SUCCESSFUL -> getRoute("/?user_created_successfully");
+            case SOMETHING_WENT_WRONG -> getRoute("/?something_went_wrong");
         }
     }
 
     public void logOut() {
         if (_session.destroy())
-            getRoute("/");
+            getRoute("/?logout_successful");
     }
 
 
     public void userDetails() {
         _userController.listAllUsers();
-        _appView.userView.print_accountDetails(_userController.getUser(_session.getId()));
+        _appView.account_details(_userController.getUser(_session.getId()));
 
         while (true) {
             if (readFromConsole(_appView::print_back, Integer.class) == 0)
@@ -278,53 +270,53 @@ public class AppController {
     }
 
     public void updateUserInfo() {
-        String firstname = readFromConsole(_appView.userView::enterNewFirstname, String.class);
-        String lastname = readFromConsole(_appView.userView::enterNewLastname, String.class);
-        String email = readFromConsole(_appView.userView::enterNewEmail, String.class);
+        String firstname = readFromConsole(_appView::enter_new_firstname, String.class);
+        String lastname = readFromConsole(_appView::enter_new_lastname, String.class);
+        String email = readFromConsole(_appView::enter_new_email, String.class);
 
         Response response = _userController.updateUser(firstname, lastname, email, _session.getId());
         switch (response) {
             case USER_UPDATE_SUCCESSFUL -> {
-                _appView.userView.print_userUpdatedSuccessfully();
+                _appView.user_updated_successfully();
                 if (!email.isEmpty()) {
                     _session.destroy();
                     _session = Session.getInstance();
                     _session.setId(email);
                 }
             }
-            case USER_EXISTS -> _appView.userView.print_userExists();
-            case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
+            case USER_EXISTS -> _appView.user_exists();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
         sleep(500);
         userPanel();
     }
 
     public void changePassword() {
-        String currentPassword = readFromConsole(_appView.userView::print_enterPassword, String.class);
-        String newPassword = readFromConsole(_appView.userView::print_enterNewPassword, String.class);
-        String confirmPassword = readFromConsole(_appView.userView::print_confirmPassword, String.class);
+        String currentPassword = readFromConsole(_appView::enter_password, String.class);
+        String newPassword = readFromConsole(_appView::enter_new_password, String.class);
+        String confirmPassword = readFromConsole(_appView::confirm_password, String.class);
 
         Response response = _userController.updateUserPassword(currentPassword, newPassword, confirmPassword, _session.getId());
 
         switch (response) {
-            case USER_NOT_FOUND -> _appView.userView.print_userNotFound();
-            case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
-            case PASSWORDS_DO_NOT_MATCH -> _appView.userView.print_passwordsDoNotMatch();
-            case PASSWORD_UPDATE_SUCCESSFUL -> _appView.userView.print_passwordUpdatedSuccessfully();
-            case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
+            case USER_NOT_FOUND -> _appView.user_not_found();
+            case INCORRECT_PASSWORD -> _appView.incorrect_password();
+            case PASSWORDS_DO_NOT_MATCH -> _appView.passwords_do_not_match();
+            case PASSWORD_UPDATE_SUCCESSFUL -> _appView.password_updated_successfully();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
         sleep(750);
     }
 
     public void deleteAccount() {
-        String password = readFromConsole(_appView.userView::print_enterPassword, String.class);
+        String password = readFromConsole(_appView::enter_password, String.class);
 
         Response response = _userController.deleteUser(_session.getId(), password);
 
         switch (response) {
-            case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
-            case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
-            case SOMETHING_WENT_WRONG -> _appView.userView.print_somethingWentWrong();
+            case INCORRECT_EMAIL -> _appView.incorrect_email();
+            case INCORRECT_PASSWORD -> _appView.incorrect_password();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
             case USER_DELETE_SUCCESSFUL -> {
                 if (_session.destroy()) {
                     sleep(1500);
@@ -335,6 +327,15 @@ public class AppController {
     }
 
 
+    private void setUpSession(String email) {
+        _session = Session.getInstance();
+        _session.setId(email);
+        _appView.login_successful();
+
+        Env env = new Env();
+        String route = Objects.equals(env.load().get("ADMIN_EMAIL"), email) ? "/admin-panel" : "/user-panel";
+        getRoute(route);
+    }
 
 
 }

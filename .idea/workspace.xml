@@ -4,12 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement more efficient routing system">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement routing system in appcontroller and define all functionalities for app">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Route.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/CategoryView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/FavouriteView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/OrderItemView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/OrderView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ProductSpecView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ProductView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ShippingAddressView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ShoppingCartItemView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/ShoppingCartView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/UserView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -425,7 +437,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699771950411</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="implement routing system in appcontroller and define all functionalities for app">
+      <option name="closed" value="true" />
+      <created>1699780452738</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1699780452738</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -440,7 +460,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement login session part in AppController and initialise User tests" />
     <MESSAGE value="implement signup test for UserController and UserRepository" />
     <MESSAGE value="implement user panel and declar their methods" />
     <MESSAGE value="implement appcontroller functionalities and initialise methods in it" />
@@ -465,6 +484,7 @@
     <MESSAGE value="implement routing system for the whole app" />
     <MESSAGE value="use routing system in the app controller" />
     <MESSAGE value="implement more efficient routing system" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement more efficient routing system" />
+    <MESSAGE value="implement routing system in appcontroller and define all functionalities for app" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement routing system in appcontroller and define all functionalities for app" />
   </component>
 </project>

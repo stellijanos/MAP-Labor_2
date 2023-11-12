@@ -10,13 +10,15 @@ public class Route {
         paths.put(path, function);
     }
 
-    protected void get(String currentPath) {
+    protected boolean get(String currentPath) {
         Runnable function = paths.get(currentPath);
 
         if (function != null) {
             function.run();
+            return true;
         } else {
             System.out.println("No route found for path '" + currentPath + "'.");
+            return false;
         }
     }
 }

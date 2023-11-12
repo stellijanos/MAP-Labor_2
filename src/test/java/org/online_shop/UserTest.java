@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 import org.online_shop.controllers.UserController;
 import org.online_shop.models.User;
 import org.online_shop.repositories.UserRepository;
-import org.online_shop.views.UserView;
 
 
 public class UserTest {

@@ -13,6 +13,7 @@ public class Main {
         appController.setRoute("/signup", appController::signUp);
         appController.setRoute("/logout", appController::logOut);
         appController.setRoute("/user-panel", appController::userPanel);
+        appController.setRoute("/admin-panel", appController::adminPanel);
 
         appController.run();
     }

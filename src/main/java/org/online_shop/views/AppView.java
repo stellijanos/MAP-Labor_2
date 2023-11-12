@@ -1,17 +1,10 @@
 package org.online_shop.views;
 
-public class AppView {
-    public final CategoryView categoryView = new CategoryView();
-    public final FavouriteView favouriteView = new FavouriteView();
-    public final OrderItemView orderItemView = new OrderItemView();
-    public final OrderView orderView = new OrderView();
-    public final ProductSpecView productSpecView = new ProductSpecView();
-    public final ProductView productView = new ProductView();
-    public final ShippingAddressView shippingAddressView = new ShippingAddressView();
-    public final ShoppingCartItemView shoppingCartItemView = new ShoppingCartItemView();
-    public final ShoppingCartView shoppingCartView = new ShoppingCartView();
-    public final UserView userView = new UserView();
+import org.online_shop.models.User;
 
+import java.util.List;
+
+public class AppView {
     public String enterOption() {
         return "\n\nEnter option please:\n";
     }
@@ -30,7 +23,7 @@ public class AppView {
         );
     }
 
-    public void print_optionNotFound() {
+    public void option_not_found() {
         System.out.println("!!!!!!!!!!!!!!! Option not found, please try again! !!!!!!!!!!!!!!!\n");
     }
 
@@ -184,4 +177,111 @@ public class AppView {
     public void print_back() {
         System.out.println("0. Back");
     }
+
+    public void no_response() {}
+
+
+    public void view(User user) {
+        System.out.println(user);
+    }
+
+    public void print_viewAll(List<User> users) {
+        System.out.println("Here are all the registered users:\n----------------------------\n");
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
+    public void enter_firstname() {
+        System.out.println("Enter firstname: ");
+    }
+
+    public void enter_lastname() {
+        System.out.println("Enter lastname: ");
+    }
+
+    public void enter_email() {
+        System.out.println("Enter email address: ");
+    }
+
+    public void enter_password() {
+        System.out.println("Enter password: ");
+    }
+
+    public void user_exists() {
+        System.out.println("User already exists");
+    }
+
+    public void incorrect_password() {
+        System.out.println("Incorrect password");
+    }
+    public void incorrect_email() {
+        System.out.println("Incorrect email address!");
+    }
+    public void user_created_successfully() {
+        System.out.println("User created successfully!");
+    }
+
+    public void something_went_wrong() {
+        System.out.println("Something went wrong!");
+    }
+
+    public void login_successful() {
+        System.out.println("Login successful!");
+    }
+
+    public void login_failed() {
+        System.out.println("Login failed");
+    }
+
+    public void account_details(User user) {
+        System.out.printf("\n-------------------\n Account details\n-------------------\n" +
+                        "Member since: %s\nFirstname:    %s\nLastname:     %s\nEmail:        %s\n",
+                user.get_createdAt(), user.get_firstname(), user.get_lastname(), user.get_email());
+    }
+
+    public void enter_new_password() {
+        System.out.println("Enter new Password: ");
+    }
+
+    public void confirm_password() {
+        System.out.println("Confirm password: ");
+    }
+
+    public void passwords_do_not_match() {
+        System.out.println("Passwords don't match!");
+    }
+
+    public void enter_new_firstname() {
+        System.out.println("Enter new firstname: ");
+    }
+
+    public void enter_new_lastname() {
+        System.out.println("Enter new lastname");
+    }
+
+    public void enter_new_email() {
+        System.out.println("Enter new email address: ");
+    }
+
+    public void user_updated_successfully() {
+        System.out.println("User updated successfully!");
+    }
+
+    public void user_deleted_successfully() {
+        System.out.println("User deleted successfully");
+    }
+
+    public void user_not_found() {
+        System.out.println("User not found!");
+    }
+
+    public void password_updated_successfully() {
+        System.out.println("Password updated successfully");
+    }
+
+    public void logout_successful() {
+        System.out.println("\n----------------\nLogout successful!\n----------------\n");
+    }
+
 }

@@ -29,7 +29,7 @@ public class ProductRepository extends DatabaseInMemory {
                     product.set_name(updatedProduct.get_name());
                     product.set_price(updatedProduct.get_price());
                     product.set_description(updatedProduct.get_description());
-                    product.setCategory(updatedProduct.getCategory());
+                    product.set_category(updatedProduct.get_category());
                     product.set_imageLink(updatedProduct.get_imageLink());
                     return true;
                 }).orElse(false);

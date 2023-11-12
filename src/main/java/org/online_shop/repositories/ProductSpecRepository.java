@@ -1,6 +1,7 @@
 package org.online_shop.repositories;
 
 import org.online_shop.models.DatabaseInMemory;
+import org.online_shop.models.Product;
 import org.online_shop.models.ProductSpec;
 
 import java.util.List;
@@ -11,9 +12,9 @@ public class ProductSpecRepository extends DatabaseInMemory {
         return _productSpecs.add(productSpec);
     }
 
-    public List<ProductSpec> readAll(Integer productId) {
+    public List<ProductSpec> readAll(Product product) {
         return _productSpecs.stream()
-                .filter(spec -> spec.get_productId().equals(productId))
+                .filter(spec -> spec.get_product().equals(product))
                 .collect(Collectors.toList());
     }
 

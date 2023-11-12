@@ -40,7 +40,7 @@ public class AppView {
 
     public void userPanel() {
         System.out.println("\n------------------------------\n" +
-                "User Menu\n------------------------------\n" +
+                "User Panel\n------------------------------\n" +
                 "0. LogOut\n" +
                 "1. Account settings\n" +
                 "2. Shipping Address options\n" +
@@ -70,7 +70,7 @@ public class AppView {
         System.out.println("\n------------------------------\n" +
                 "Shipping Address options\n------------------------------\n" +
                 "0. Back\n" +
-                "1. View all addresses\n" +
+                "1. View saved addresses\n" +
                 "2. Add address\n" +
                 "3. Edit address\n" +
                 "4. Delete address" +
@@ -83,7 +83,7 @@ public class AppView {
         System.out.println("\n------------------------------\n" +
                 "Shipping Address options\n------------------------------\n" +
                 "0. Back\n" +
-                "1. View all addresses\n" +
+                "1. View all orders\n" +
                 "2. Add address\n" +
                 "3. Edit address\n" +
                 "4. Delete address\n" +
@@ -128,11 +128,11 @@ public class AppView {
         System.out.println("9. Admin Panel");
     }
 
-    public void print_adminPanel() {
+    public void adminPanel() {
         System.out.println("\n------------------------------\n" +
                 "Admin Panel\n------------------------------\n" +
                 "0. Back\n" +
-                "1. User option\n" +
+                "1. User options\n" +
                 "2. Product options\n" +
                 "3. Order options\n" +
                 "Enter option: "

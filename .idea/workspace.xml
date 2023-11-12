@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="remove primitive Data types in repos and models and use advanced methods">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Route.java" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement routing system for the whole app">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Route.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -402,11 +401,18 @@
       <option name="project" value="LOCAL" />
       <updated>1699699434290</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="implement routing system for the whole app">
+      <option name="closed" value="true" />
+      <created>1699710422983</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1699710422983</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement signUp in controller and also the in Memory Database class" />
     <MESSAGE value="implement a part of the users mvc part" />
     <MESSAGE value="implement signUp, login and getAll users methods" />
     <MESSAGE value="implement login session part in AppController and initialise User tests" />
@@ -431,6 +437,7 @@
     <MESSAGE value="implement shopping cart related mvc part" />
     <MESSAGE value="simplify whole project and use only object types" />
     <MESSAGE value="remove primitive Data types in repos and models and use advanced methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove primitive Data types in repos and models and use advanced methods" />
+    <MESSAGE value="implement routing system for the whole app" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement routing system for the whole app" />
   </component>
 </project>

@@ -1,7 +1,6 @@
 package org.online_shop.controllers;
 
 import java.lang.Thread;
-import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -10,11 +9,6 @@ import org.online_shop.models.*;
 import org.online_shop.repositories.*;
 import org.online_shop.views.AppView;
 
-
-@FunctionalInterface
-interface Action {
-    void perform();
-}
 
 public class AppController {
 
@@ -31,8 +25,13 @@ public class AppController {
     private final ShoppingCartItemController shoppingCartItemController = new ShoppingCartItemController(new ShoppingCartItemRepository());
     private final UserController _userController = new UserController(new UserRepository());
     private Session _session;
-
     private final Route route = new Route();
+
+
+    private void getRoute() {
+        sleep(750);
+        route.getRoute();
+    }
 
 
     private void sleep(Integer milliseconds) {
@@ -43,11 +42,11 @@ public class AppController {
         }
     }
 
-    private <T> T readFromConsole(Action message, Class<T> type) {
+    private <T> T readFromConsole(Runnable message, Class<T> type) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             try {
-                message.perform();
+                message.run();
 
                 if (type.equals(String.class))
                     return type.cast(scanner.nextLine());
@@ -78,11 +77,7 @@ public class AppController {
     }
 
     public void run() {
-        mainMenu();
-    }
-
-    private void getRoute() {
-        route.getRoute();
+        route.get("/");
     }
 
 
@@ -91,12 +86,72 @@ public class AppController {
         _userController.createAdmin();
 
         switch (readFromConsole(_appView::mainMenu, Integer.class)) {
-            case 0 -> route.currentPath = "";
-            case 1 -> route.currentPath = "/login";
-            case 2 -> route.currentPath = "/signup";
+            case 0 -> route.get("");
+            case 1 -> route.get("/login");
+            case 2 -> route.get("/signup");
+            default -> route.get("/404");
+        }
+    }
+
+    public void userPanel() {
+        switch (readFromConsole(_appView::userPanel, Integer.class)) {
+            case 0 -> route.get("/logout");
+            case 1 -> route.get("/account-settings");
+            case 2 -> route.get("/shipping-address-options");
+            case 3 -> route.get("/orders");
+            case 4 -> route.get("/favourites");
+            case 5 -> route.get("/shopping-cart");
+            case 6 -> route.get("/products");
+            case 7 -> route.get("/admin-panel");
             default -> _appView.print_optionNotFound();
         }
         getRoute();
+    }
+
+    public void adminPanel() {
+
+        if (!_session.getId().equals("admin@janos"))
+            route.set_currentPath("/user-panel");
+
+        switch (readFromConsole(_appView::adminPanel, Integer.class)) {
+            case 0 -> route.set_currentPath("/user-panel");
+            case 1 -> route.set_currentPath("/user-options");
+            case 2 -> route.set_currentPath("/product-options");
+            case 3 -> route.set_currentPath("/order-options");
+            default -> route.set_currentPath("/404");
+        }
+        getRoute();
+    }
+
+
+    public void accountSettings() {
+        switch (readFromConsole(_appView::accountSettings, Integer.class)) {
+            case 0 -> route.set_currentPath("/user-panel");
+            case 1 -> route.set_currentPath("/account-settings/profile-details");
+            case 2 -> route.set_currentPath("/account-settings/edit-profile-details");
+            case 3 -> route.set_currentPath("/account-settings/change-password");
+            case 4 -> route.set_currentPath("/account-settings/delete-account");
+            default -> route.set_currentPath("/404");
+        }
+        getRoute();
+    }
+
+    public void shippingAddressOptions() {
+        switch(readFromConsole(_appView::shippingAddressOptions, Integer.class)) {
+            case 0 -> route.set_currentPath("/user-panel");
+            case 1 -> route.set_currentPath("/shipping-address-options/view-saved-addresses");
+            case 2 -> route.set_currentPath("/shipping-address-options/add-address");
+            case 3 -> route.set_currentPath("/shipping-address-options/edit-address");
+            case 4 -> route.set_currentPath("/shipping-address-options/delete-address");
+        }
+        getRoute();
+    }
+
+
+    public void orders() {
+        switch(readFromConsole(_appView::orders, Integer.class)) {
+
+        }
     }
 
 
@@ -113,8 +168,7 @@ public class AppController {
                 _session.setId(email);
                 _appView.userView.print_logInSuccessful();
 
-                sleep(500);
-                route.currentPath = "/user-panel";
+                route.set_currentPath("/user-panel");
             }
             case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
             case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
@@ -138,23 +192,10 @@ public class AppController {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void logOut() {
         if (_session.destroy())
-            mainMenu();
+            route.set_currentPath("/");
+        getRoute();
     }
 
 
@@ -231,10 +272,6 @@ public class AppController {
     public void shoppingCart() {
     }
 
-    public void orders() {
-
-    }
-
     public void searchProduct() {
     }
 
@@ -270,55 +307,6 @@ public class AppController {
 
     public void viewAllOrders() {
 
-    }
-
-
-
-
-
-    public void userPanel() {
-        while (true) {
-
-            Integer option = readFromConsole(_appView::userPanel, Integer.class);
-            switch (option) {
-                case 0 -> logOut();
-                case 1 -> userDetails();
-                case 2 -> updateUserInfo();
-                case 3 -> changePassword();
-                case 4 -> deleteAccount();
-                case 5 -> favourites();
-                case 6 -> shoppingCart();
-                case 7 -> orders();
-                case 8 -> searchProduct();
-                case 9 -> viewAllProducts();
-                case 10 -> {
-                    if (_session.getId().equals("admin@janos")) {
-                        adminPanel();
-                    }
-                }
-                default -> _appView.print_optionNotFound();
-            }
-            sleep(1000);
-        }
-    }
-
-    public void adminPanel() {
-
-        while (true) {
-            Integer option = readFromConsole(_appView::print_adminPanel, Integer.class);
-            switch (option) {
-                case 0 -> userPanel();
-                case 1 -> viewAllUsers();
-                case 2 -> removeAllUsers();
-                case 3 -> removeUser();
-                case 4 -> viewAllProducts();
-                case 5 -> searchProduct();
-                case 6 -> addProduct();
-                case 7 -> updateProduct();
-                case 8 -> deleteProduct();
-                case 9 -> viewAllOrders();
-            }
-        }
     }
 
 

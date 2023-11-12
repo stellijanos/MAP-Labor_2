@@ -15,7 +15,6 @@ import org.online_shop.views.AppView;
 public class AppController {
 
     private final AppView _appView = new AppView();
-
     private final CategoryController categoryController = new CategoryController(new CategoryRepository());
     private final FavouriteController favouriteController = new FavouriteController(new FavouriteRepository());
     private final OrderController orderController = new OrderController(new OrderRepository());
@@ -134,11 +133,34 @@ public class AppController {
 
 
     public void profileDetails() {
+        _userController.listAllUsers();
+        _appView.account_details(_userController.getUser(_session.getId()));
 
+        while (true) {
+            if (readFromConsole(_appView::print_back, Integer.class) == 0)
+                userPanel();
+        }
     }
 
     public void editProfileDetails() {
+        String firstname = readFromConsole(_appView::enter_new_firstname, String.class);
+        String lastname = readFromConsole(_appView::enter_new_lastname, String.class);
+        String email = readFromConsole(_appView::enter_new_email, String.class);
 
+        Response response = _userController.updateUser(firstname, lastname, email, _session.getId());
+        switch (response) {
+            case USER_UPDATE_SUCCESSFUL -> {
+                _appView.user_updated_successfully();
+                if (!email.isEmpty()) {
+                    _session.destroy();
+                    _session = Session.getInstance();
+                    _session.setId(email);
+                }
+                getRoute("/account-settings");
+            }
+            case USER_EXISTS -> getRoute("/account-settings?user_exists");
+            case SOMETHING_WENT_WRONG -> getRoute("/account-settings?something_went_wrong");
+        }
     }
 
     public void changePassword() {
@@ -149,13 +171,12 @@ public class AppController {
         Response response = _userController.updateUserPassword(currentPassword, newPassword, confirmPassword, _session.getId());
 
         switch (response) {
-            case USER_NOT_FOUND -> _appView.user_not_found();
-            case INCORRECT_PASSWORD -> _appView.incorrect_password();
-            case PASSWORDS_DO_NOT_MATCH -> _appView.passwords_do_not_match();
-            case PASSWORD_UPDATE_SUCCESSFUL -> _appView.password_updated_successfully();
-            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
+            case USER_NOT_FOUND -> getRoute("/account-settings?user_not_found");
+            case INCORRECT_PASSWORD -> getRoute("/account-settings?incorrect_password");
+            case PASSWORDS_DO_NOT_MATCH -> getRoute("/account-settings?passwords_do_not_match");
+            case PASSWORD_UPDATE_SUCCESSFUL -> getRoute("/account-settings?password_updated_successfully");
+            case SOMETHING_WENT_WRONG -> getRoute("/account-settings?something_went_wrong");
         }
-        sleep(750);
     }
 
     public void deleteAccount() {
@@ -399,40 +420,6 @@ public class AppController {
 
 
 //    -----------------------------------------------------------------------------------------------------------------
-
-
-    public void userDetails() {
-        _userController.listAllUsers();
-        _appView.account_details(_userController.getUser(_session.getId()));
-
-        while (true) {
-            if (readFromConsole(_appView::print_back, Integer.class) == 0)
-                userPanel();
-        }
-    }
-
-    public void updateUserInfo() {
-        String firstname = readFromConsole(_appView::enter_new_firstname, String.class);
-        String lastname = readFromConsole(_appView::enter_new_lastname, String.class);
-        String email = readFromConsole(_appView::enter_new_email, String.class);
-
-        Response response = _userController.updateUser(firstname, lastname, email, _session.getId());
-        switch (response) {
-            case USER_UPDATE_SUCCESSFUL -> {
-                _appView.user_updated_successfully();
-                if (!email.isEmpty()) {
-                    _session.destroy();
-                    _session = Session.getInstance();
-                    _session.setId(email);
-                }
-            }
-            case USER_EXISTS -> _appView.user_exists();
-            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
-        }
-        sleep(500);
-        userPanel();
-    }
-
 
 
 

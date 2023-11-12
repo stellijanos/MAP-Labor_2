@@ -11,6 +11,7 @@ public class Main {
         appController.setRoute("/", appController::mainMenu);
         appController.setRoute("/login", appController::logIn);
         appController.setRoute("/signup", appController::signUp);
+        appController.setRoute("/logout", appController::logOut);
         appController.setRoute("/user-panel", appController::userPanel);
 
         appController.run();

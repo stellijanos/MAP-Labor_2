@@ -1,7 +1,10 @@
 package org.online_shop.controllers;
 
+import java.awt.desktop.UserSessionEvent;
 import java.lang.Thread;
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 import org.online_shop.enums.Response;
@@ -64,7 +67,16 @@ public class AppController {
     }
 
     private void getRoute(String path) {
-        route.get(path);
+        String actualPath;
+        if (path.contains("?")) {
+             actualPath = path.split("\\?")[1];
+             _appView.print_optionNotFound();
+        } else {
+            actualPath = path;
+        }
+
+        sleep(500);
+        route.get(actualPath);
     }
 
     public void quit() {
@@ -78,6 +90,11 @@ public class AppController {
     }
 
 
+    public void _404() {
+
+    }
+
+
     // Menu classes
     public void mainMenu() {
         _userController.createAdmin();
@@ -86,7 +103,7 @@ public class AppController {
             case 0 -> getRoute("");
             case 1 -> getRoute("/login");
             case 2 -> getRoute("/signup");
-            default -> getRoute("/404");
+            default -> getRoute("404?/");
         }
     }
 
@@ -99,22 +116,7 @@ public class AppController {
             case 4 -> getRoute("/favourites");
             case 5 -> getRoute("/shopping-cart");
             case 6 -> getRoute("/products");
-            case 7 -> getRoute("/admin-panel");
-            default -> getRoute("404");
-        }
-    }
-
-    public void adminPanel() {
-
-        if (!_session.getId().equals("admin@janos"))
-            getRoute("/user-panel");
-
-        switch (readFromConsole(_appView::adminPanel, Integer.class)) {
-            case 0 -> getRoute("/user-panel");
-            case 1 -> getRoute("/user-options");
-            case 2 -> getRoute("/product-options");
-            case 3 -> getRoute("/order-options");
-            default -> getRoute("/404");
+            default -> getRoute("404?/user-panel");
         }
     }
 
@@ -125,7 +127,7 @@ public class AppController {
             case 2 -> getRoute("/account-settings/edit-profile-details");
             case 3 -> getRoute("/account-settings/change-password");
             case 4 -> getRoute("/account-settings/delete-account");
-            default -> getRoute("/404");
+            default -> getRoute("404?/account-settings");
         }
     }
 
@@ -136,15 +138,89 @@ public class AppController {
             case 2 -> getRoute("/shipping-address-options/add-address");
             case 3 -> getRoute("/shipping-address-options/edit-address");
             case 4 -> getRoute("/shipping-address-options/delete-address");
+            default -> getRoute("404?/shipping-address-options");
         }
     }
 
     public void orders() {
         switch (readFromConsole(_appView::orders, Integer.class)) {
-
+            case 0 -> getRoute("/user-panel");
+            case 1 -> getRoute("/orders/view-all-orders");
+            case 2 -> getRoute("/");
+            default -> getRoute("404?/orders");
         }
     }
 
+    public void favourites() {
+        switch(readFromConsole(_appView::favourites, Integer.class)) {
+            case 0 -> getRoute("/user-panel");
+            default -> getRoute("404?/favourites");
+        }
+    }
+
+    public void shoppingCart() {
+        switch(readFromConsole(_appView::shoppingCart, Integer.class)) {
+            case 0 -> getRoute("/user-panel");
+            default -> getRoute("404?/shopping-cart");
+        }
+    }
+
+    public void products() {
+        switch(readFromConsole(_appView::products, Integer.class)) {
+            case 0 -> getRoute("/user-panel");
+            case 1 -> getRoute("/products/add-to-favourites");
+            case 2 -> getRoute("/products/add-to-cart");
+            default -> getRoute("404?/products");
+        }
+    }
+
+    public void adminPanel() {
+
+        if (!_session.getId().equals("admin@janos"))
+            getRoute("/user-panel");
+
+        switch (readFromConsole(_appView::adminPanel, Integer.class)) {
+            case 0 -> getRoute("/logout");
+            case 1 -> getRoute("/user-options");
+            case 2 -> getRoute("/product-options");
+            case 3 -> getRoute("/order-options");
+            default -> getRoute("404?/admin-panel");
+        }
+    }
+
+    public void userOptions() {
+        switch(readFromConsole(_appView::userOptions, Integer.class)) {
+            case 0 -> getRoute("/admin-panel");
+            case 1 -> getRoute("/view-all-users");
+            case 2 -> getRoute("/edit-user");
+            case 3 -> getRoute("/remove-user");
+            case 4 -> getRoute("/remove-all-users");
+            default -> getRoute("404?/user-options");
+        }
+    }
+
+    public void productOptions() {
+        switch(readFromConsole(_appView::productOptions, Integer.class)) {
+            case 0 -> getRoute("/admin-panel");
+            case 1 -> getRoute("/view-all-products");
+            case 2 -> getRoute("/add-product");
+            case 3 -> getRoute("/edit-product");
+            case 4 -> getRoute("/remove-product");
+            case 5 -> getRoute("/remove-all-products");
+            default -> getRoute("404?/product-options");
+        }
+    }
+
+    public void orderOptions() {
+        switch(readFromConsole(_appView::orderOptions, Integer.class)) {
+            case 0 -> getRoute("/admin-panel");
+            case 1 -> getRoute("/view-all-orders");
+            case 2 -> getRoute("/edit order");
+            case 3 -> getRoute("/remove-order");
+            case 4 -> getRoute("/remove-all-orders");
+            default -> getRoute("404?/order-options");
+        }
+    }
 
     public void logIn() {
         String email = readFromConsole(_appView.userView::print_enterEmail, String.class);
@@ -158,7 +234,11 @@ public class AppController {
                 _session.setId(email);
                 _appView.userView.print_logInSuccessful();
 
-                getRoute("/user-panel");
+                Env env = new Env();
+
+                String route = Objects.equals(env.load().get("ADMIN_EMAIL"), email) ? "/admin-panel" : "/user-panel";
+
+                getRoute(route);
             }
             case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
             case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
@@ -254,48 +334,7 @@ public class AppController {
         }
     }
 
-    public void favourites() {
-    }
 
-    public void shoppingCart() {
-    }
-
-    public void searchProduct() {
-    }
-
-    public void viewAllProducts() {
-    }
-
-    public void viewAllUsers() {
-
-    }
-
-    public void removeAllUsers() {
-
-    }
-
-    public void removeUser() {
-
-    }
-
-    public void addProduct() {
-
-    }
-
-
-    public void updateProduct() {
-
-    }
-
-
-    public void deleteProduct() {
-
-    }
-
-
-    public void viewAllOrders() {
-
-    }
 
 
 }

@@ -16,7 +16,7 @@ public class Route {
         if (function != null) {
             function.run();
         } else {
-            System.out.println("No route found for path \"" + currentPath + "\".");
+            System.out.println("No route found for path '" + currentPath + "'.");
         }
     }
 }

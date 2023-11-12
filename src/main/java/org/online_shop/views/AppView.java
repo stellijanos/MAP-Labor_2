@@ -121,6 +121,8 @@ public class AppView {
                 "\n---------------------\n" +
                 "Options:" +
                 "0. Back" +
+                "1. Add To Favourites" +
+                "2. Add To Cart" +
                 "\n---------------------\n");
     }
 
@@ -134,10 +136,50 @@ public class AppView {
                 "0. Back\n" +
                 "1. User options\n" +
                 "2. Product options\n" +
-                "3. Order options\n" +
-                "Enter option: "
+                "3. Order options" +
+                enterOption()
         );
     }
+
+    // adminPanel option 1
+    public void userOptions() {
+        System.out.println("\n------------------------------\n" +
+                "User options\n------------------------------\n" +
+                "0. Back\n" +
+                "1. View all users\n" +
+                "2. Edit user\n" +
+                "3. Remove user\n" +
+                "4. Remove all users" +
+                enterOption()
+        );
+    }
+
+    // adminPanel option 2
+    public void productOptions() {
+        System.out.println("\n------------------------------\n" +
+                "Product options\n------------------------------\n" +
+                "0. Back\n" +
+                "1. View all products\n" +
+                "2. Add product\n" +
+                "3. Edit product\n" +
+                "4. Remove product\n" +
+                "5. Remove all products" +
+                enterOption()
+        );
+    }
+
+    public void orderOptions() {
+        System.out.println("\n------------------------------\n" +
+                "User options\n------------------------------\n" +
+                "0. Back\n" +
+                "1. View all orders\n" +
+                "2. Edit order\n" +
+                "3. Remove order\n" +
+                "4. Remove all orders" +
+                enterOption()
+        );
+    }
+
 
     public void print_back() {
         System.out.println("0. Back");

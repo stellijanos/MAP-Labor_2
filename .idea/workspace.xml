@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement routing system for the whole app">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="use routing system in the app controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Route.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -409,11 +406,29 @@
       <option name="project" value="LOCAL" />
       <updated>1699710422983</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="use routing system in the app controller">
+      <option name="closed" value="true" />
+      <created>1699771222841</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1699771222841</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement a part of the users mvc part" />
     <MESSAGE value="implement signUp, login and getAll users methods" />
     <MESSAGE value="implement login session part in AppController and initialise User tests" />
     <MESSAGE value="implement signup test for UserController and UserRepository" />
@@ -438,6 +453,7 @@
     <MESSAGE value="simplify whole project and use only object types" />
     <MESSAGE value="remove primitive Data types in repos and models and use advanced methods" />
     <MESSAGE value="implement routing system for the whole app" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement routing system for the whole app" />
+    <MESSAGE value="use routing system in the app controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="use routing system in the app controller" />
   </component>
 </project>

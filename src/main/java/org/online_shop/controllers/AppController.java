@@ -28,12 +28,6 @@ public class AppController {
     private final Route route = new Route();
 
 
-    private void getRoute() {
-        sleep(750);
-        route.getRoute();
-    }
-
-
     private void sleep(Integer milliseconds) {
         try {
             Thread.sleep(milliseconds);
@@ -65,9 +59,12 @@ public class AppController {
         }
     }
 
-
     public void setRoute(String path, Runnable function) {
         route.definePath(path, function);
+    }
+
+    private void getRoute(String path) {
+        route.get(path);
     }
 
     public void quit() {
@@ -77,7 +74,7 @@ public class AppController {
     }
 
     public void run() {
-        route.get("/");
+        getRoute("/");
     }
 
 
@@ -86,74 +83,67 @@ public class AppController {
         _userController.createAdmin();
 
         switch (readFromConsole(_appView::mainMenu, Integer.class)) {
-            case 0 -> route.get("");
-            case 1 -> route.get("/login");
-            case 2 -> route.get("/signup");
-            default -> route.get("/404");
+            case 0 -> getRoute("");
+            case 1 -> getRoute("/login");
+            case 2 -> getRoute("/signup");
+            default -> getRoute("/404");
         }
     }
 
     public void userPanel() {
         switch (readFromConsole(_appView::userPanel, Integer.class)) {
-            case 0 -> route.get("/logout");
-            case 1 -> route.get("/account-settings");
-            case 2 -> route.get("/shipping-address-options");
-            case 3 -> route.get("/orders");
-            case 4 -> route.get("/favourites");
-            case 5 -> route.get("/shopping-cart");
-            case 6 -> route.get("/products");
-            case 7 -> route.get("/admin-panel");
-            default -> _appView.print_optionNotFound();
+            case 0 -> getRoute("/logout");
+            case 1 -> getRoute("/account-settings");
+            case 2 -> getRoute("/shipping-address-options");
+            case 3 -> getRoute("/orders");
+            case 4 -> getRoute("/favourites");
+            case 5 -> getRoute("/shopping-cart");
+            case 6 -> getRoute("/products");
+            case 7 -> getRoute("/admin-panel");
+            default -> getRoute("404");
         }
-        getRoute();
     }
 
     public void adminPanel() {
 
         if (!_session.getId().equals("admin@janos"))
-            route.set_currentPath("/user-panel");
+            getRoute("/user-panel");
 
         switch (readFromConsole(_appView::adminPanel, Integer.class)) {
-            case 0 -> route.set_currentPath("/user-panel");
-            case 1 -> route.set_currentPath("/user-options");
-            case 2 -> route.set_currentPath("/product-options");
-            case 3 -> route.set_currentPath("/order-options");
-            default -> route.set_currentPath("/404");
+            case 0 -> getRoute("/user-panel");
+            case 1 -> getRoute("/user-options");
+            case 2 -> getRoute("/product-options");
+            case 3 -> getRoute("/order-options");
+            default -> getRoute("/404");
         }
-        getRoute();
     }
-
 
     public void accountSettings() {
         switch (readFromConsole(_appView::accountSettings, Integer.class)) {
-            case 0 -> route.set_currentPath("/user-panel");
-            case 1 -> route.set_currentPath("/account-settings/profile-details");
-            case 2 -> route.set_currentPath("/account-settings/edit-profile-details");
-            case 3 -> route.set_currentPath("/account-settings/change-password");
-            case 4 -> route.set_currentPath("/account-settings/delete-account");
-            default -> route.set_currentPath("/404");
+            case 0 -> getRoute("/user-panel");
+            case 1 -> getRoute("/account-settings/profile-details");
+            case 2 -> getRoute("/account-settings/edit-profile-details");
+            case 3 -> getRoute("/account-settings/change-password");
+            case 4 -> getRoute("/account-settings/delete-account");
+            default -> getRoute("/404");
         }
-        getRoute();
     }
 
     public void shippingAddressOptions() {
-        switch(readFromConsole(_appView::shippingAddressOptions, Integer.class)) {
-            case 0 -> route.set_currentPath("/user-panel");
-            case 1 -> route.set_currentPath("/shipping-address-options/view-saved-addresses");
-            case 2 -> route.set_currentPath("/shipping-address-options/add-address");
-            case 3 -> route.set_currentPath("/shipping-address-options/edit-address");
-            case 4 -> route.set_currentPath("/shipping-address-options/delete-address");
+        switch (readFromConsole(_appView::shippingAddressOptions, Integer.class)) {
+            case 0 -> getRoute("/user-panel");
+            case 1 -> getRoute("/shipping-address-options/view-saved-addresses");
+            case 2 -> getRoute("/shipping-address-options/add-address");
+            case 3 -> getRoute("/shipping-address-options/edit-address");
+            case 4 -> getRoute("/shipping-address-options/delete-address");
         }
-        getRoute();
     }
-
 
     public void orders() {
-        switch(readFromConsole(_appView::orders, Integer.class)) {
+        switch (readFromConsole(_appView::orders, Integer.class)) {
 
         }
     }
-
 
 
     public void logIn() {
@@ -168,12 +158,11 @@ public class AppController {
                 _session.setId(email);
                 _appView.userView.print_logInSuccessful();
 
-                route.set_currentPath("/user-panel");
+                getRoute("/user-panel");
             }
             case INCORRECT_EMAIL -> _appView.userView.print_incorrectEmail();
             case INCORRECT_PASSWORD -> _appView.userView.print_incorrectPassword();
         }
-        getRoute();
     }
 
     public void signUp() {
@@ -194,8 +183,7 @@ public class AppController {
 
     public void logOut() {
         if (_session.destroy())
-            route.set_currentPath("/");
-        getRoute();
+            getRoute("/");
     }
 
 

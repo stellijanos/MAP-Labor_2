@@ -59,7 +59,6 @@ public class Main {
         appController.setRoute("/remove-order", appController::removeOrder);
         appController.setRoute("/remove-all-orders", appController::removeAllOrders);
 
-
         appController.run();
     }
 }

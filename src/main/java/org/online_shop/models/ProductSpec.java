@@ -2,7 +2,7 @@ package org.online_shop.models;
 
 public class ProductSpec {
     private Integer _id;
-    private Product product;
+    private Product _product;
     private String _specName;
     private String _specValue;
 
@@ -14,12 +14,12 @@ public class ProductSpec {
         this._id = _id;
     }
 
-    public Product getProduct() {
-        return product;
+    public Product get_product() {
+        return _product;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void set_product(Product product) {
+        this._product = product;
     }
 
     public String get_specName() {
@@ -41,10 +41,10 @@ public class ProductSpec {
     @Override
     public String toString() {
         return "ProductSpec{" +
-                "_id=" + _id +
-                ", product=" + product +
-                ", _specName='" + _specName + '\'' +
-                ", _specValue='" + _specValue + '\'' +
+                "id=" + _id +
+                ", product=" + _product +
+                ", specName='" + _specName + '\'' +
+                ", specValue='" + _specValue + '\'' +
                 '}';
     }
 }

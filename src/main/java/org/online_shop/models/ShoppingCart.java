@@ -5,8 +5,8 @@ import java.util.List;
 
 public class ShoppingCart {
     private Integer _id;
-    private User user;
-    private final List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
+    private User _user;
+    private final List<ShoppingCartItem> _shoppingCartItems = new ArrayList<>();
 
     public Integer get_id() {
         return _id;
@@ -16,24 +16,24 @@ public class ShoppingCart {
         this._id = _id;
     }
 
-    public User getUser() {
-        return user;
+    public User get_user() {
+        return _user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void set_user(User user) {
+        this._user = user;
     }
 
-    public List<ShoppingCartItem> getShoppingCartItems() {
-        return shoppingCartItems;
+    public List<ShoppingCartItem> get_shoppingCartItems() {
+        return _shoppingCartItems;
     }
 
     @Override
     public String toString() {
         return "ShoppingCart{" +
-                "_id=" + _id +
-                ", user=" + user +
-                ", shoppingCartItems=" + shoppingCartItems +
+                "id=" + _id +
+                ", user=" + _user +
+                ", shoppingCartItems=" + _shoppingCartItems +
                 '}';
     }
 }

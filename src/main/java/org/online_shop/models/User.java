@@ -14,10 +14,10 @@ public class User {
     private String _password;
     private final String _createdAt;
 
-    private final List<Favourite> favourites = new ArrayList<>();
-    private final List<Order> orders = new ArrayList<>();
-    private final List<ShippingAddress> shippingAddresses = new ArrayList<>();
-    private ShoppingCart shoppingCart;
+    private final List<Favourite> _favourites = new ArrayList<>();
+    private final List<Order> _orders = new ArrayList<>();
+    private final List<ShippingAddress> _shippingAddresses = new ArrayList<>();
+    private ShoppingCart _shoppingCart;
 
 
     public User() {
@@ -68,39 +68,39 @@ public class User {
         return _createdAt;
     }
 
-    public List<Favourite> getFavourites() {
-        return favourites;
+    public List<Favourite> get_favourites() {
+        return _favourites;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<Order> get_orders() {
+        return _orders;
     }
 
-    public List<ShippingAddress> getShippingAddresses() {
-        return shippingAddresses;
+    public List<ShippingAddress> get_shippingAddresses() {
+        return _shippingAddresses;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public ShoppingCart get_shoppingCart() {
+        return _shoppingCart;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
+    public void set_shoppingCart(ShoppingCart shoppingCart) {
+        this._shoppingCart = shoppingCart;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "_id=" + _id +
-                ", _firstname='" + _firstname + '\'' +
-                ", _lastname='" + _lastname + '\'' +
-                ", _email='" + _email + '\'' +
-                ", _password='" + _password + '\'' +
-                ", _createdAt='" + _createdAt + '\'' +
-                ", favourites=" + favourites +
-                ", orders=" + orders +
-                ", shippingAddresses=" + shippingAddresses +
-                ", shoppingCart=" + shoppingCart +
+                "id=" + _id +
+                ", firstname='" + _firstname + '\'' +
+                ", lastname='" + _lastname + '\'' +
+                ", email='" + _email + '\'' +
+                ", password='" + _password + '\'' +
+                ", createdAt='" + _createdAt + '\'' +
+                ", favourites=" + _favourites +
+                ", orders=" + _orders +
+                ", shippingAddresses=" + _shippingAddresses +
+                ", shoppingCart=" + _shoppingCart +
                 '}';
     }
 }

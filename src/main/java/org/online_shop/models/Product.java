@@ -7,11 +7,11 @@ public class Product {
     private Integer _id;
     private String _name;
     private Float _price;
-    private Category category;
+    private Category _category;
     private String _description;
     private String _imageLink;
     private Integer _stock;
-    private final List<ProductSpec> productSpecs = new ArrayList<>();
+    private final List<ProductSpec> _productSpecs = new ArrayList<>();
 
     public Integer get_id() {
         return _id;
@@ -37,12 +37,12 @@ public class Product {
         this._price = _price;
     }
 
-    public Category getCategory() {
-        return category;
+    public Category get_category() {
+        return _category;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void set_category(Category category) {
+        this._category = category;
     }
 
     public String get_description() {
@@ -69,21 +69,20 @@ public class Product {
         this._stock = _stock;
     }
 
-    public List<ProductSpec> getProductSpecs() {
-        return productSpecs;
+    public List<ProductSpec> get_productSpecs() {
+        return _productSpecs;
     }
-
     @Override
     public String toString() {
         return "Product{" +
-                "_id=" + _id +
-                ", _name='" + _name + '\'' +
-                ", _price=" + _price +
-                ", category=" + category +
-                ", _description='" + _description + '\'' +
-                ", _imageLink='" + _imageLink + '\'' +
-                ", _stock=" + _stock +
-                ", productSpecs=" + productSpecs +
+                "id=" + _id +
+                ", name='" + _name + '\'' +
+                ", price=" + _price +
+                ", category=" + _category +
+                ", description='" + _description + '\'' +
+                ", imageLink='" + _imageLink + '\'' +
+                ", stock=" + _stock +
+                ", productSpecs=" + _productSpecs +
                 '}';
     }
 }

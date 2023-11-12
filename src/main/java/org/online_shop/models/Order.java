@@ -17,24 +17,24 @@ public class Order {
         return _id;
     }
 
-    public void set_id(Integer _id) {
-        this._id = _id;
+    public void set_id(Integer id) {
+        this._id = id;
     }
 
     public User get_user() {
         return _user;
     }
 
-    public void set_user(User _user) {
-        this._user = _user;
+    public void set_user(User user) {
+        this._user = user;
     }
 
     public ShippingAddress get_shippingAddress() {
         return _shippingAddress;
     }
 
-    public void set_shippingAddress(ShippingAddress _shippingAddress) {
-        this._shippingAddress = _shippingAddress;
+    public void set_shippingAddress(ShippingAddress shippingAddress) {
+        this._shippingAddress = shippingAddress;
     }
 
     public List<OrderItem> get_orderItems() {
@@ -45,16 +45,16 @@ public class Order {
         return _paymentMethod;
     }
 
-    public void set_paymentMethod(String _paymentMethod) {
-        this._paymentMethod = _paymentMethod;
+    public void set_paymentMethod(String paymentMethod) {
+        this._paymentMethod = paymentMethod;
     }
 
     public String get_date() {
         return _date;
     }
 
-    public void set_date(String _date) {
-        this._date = _date;
+    public void set_date(String date) {
+        this._date = date;
     }
 
     public String get_status() {
@@ -76,14 +76,14 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "_id=" + _id +
-                ", _user=" + _user +
-                ", _shippingAddress=" + _shippingAddress +
-                ", _orderItems=" + _orderItems +
-                ", _paymentMethod='" + _paymentMethod + '\'' +
-                ", _date='" + _date + '\'' +
-                ", _status='" + _status + '\'' +
-                ", _shippingFee=" + _shippingFee +
+                "id=" + _id +
+                ", user=" + _user +
+                ", shippingAddress=" + _shippingAddress +
+                ", orderItems=" + _orderItems +
+                ", paymentMethod='" + _paymentMethod + '\'' +
+                ", date='" + _date + '\'' +
+                ", status='" + _status + '\'' +
+                ", shippingFee=" + _shippingFee +
                 '}';
     }
 }

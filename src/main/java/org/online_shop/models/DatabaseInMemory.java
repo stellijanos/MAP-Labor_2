@@ -3,6 +3,10 @@ package org.online_shop.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class DatabaseInMemory {
     protected List<Category> _categories = new ArrayList<>();
     protected List<Favourite> _favourites = new ArrayList<>();

@@ -12,7 +12,7 @@ public class FavouriteRepository extends DatabaseInMemory {
     }
 
     public List<Favourite> readAll(Integer userId) {
-        return _favourites.stream().filter(favourite -> favourite.get_userId().equals(userId)).collect(Collectors.toList());
+        return _favourites.stream().filter(favourite -> favourite.get_user().get_id().equals(userId)).collect(Collectors.toList());
     }
 
     public boolean delete(Favourite favourite) {

@@ -5,13 +5,13 @@ import java.util.List;
 
 public class ShippingAddress {
     private Integer _id;
-    private User user;
+    private User _user;
     private String _name;
     private String _phone;
     private String _address;
     private String _city;
     private String _zipCode;
-    private final List<Order> orders = new ArrayList<>();
+    private final List<Order> _orders = new ArrayList<>();
 
     public Integer get_id() {
         return _id;
@@ -21,12 +21,12 @@ public class ShippingAddress {
         this._id = _id;
     }
 
-    public User getUser() {
-        return user;
+    public User get_user() {
+        return _user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void set_user(User user) {
+        this._user = user;
     }
 
     public String get_name() {
@@ -69,21 +69,21 @@ public class ShippingAddress {
         this._zipCode = _zipCode;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<Order> get_orders() {
+        return _orders;
     }
 
     @Override
     public String toString() {
         return "ShippingAddress{" +
-                "_id=" + _id +
-                ", user=" + user +
-                ", _name='" + _name + '\'' +
-                ", _phone='" + _phone + '\'' +
-                ", _address='" + _address + '\'' +
-                ", _city='" + _city + '\'' +
-                ", _zipCode='" + _zipCode + '\'' +
-                ", orders=" + orders +
+                "id=" + _id +
+                ", user=" + _user +
+                ", name='" + _name + '\'' +
+                ", phone='" + _phone + '\'' +
+                ", address='" + _address + '\'' +
+                ", city='" + _city + '\'' +
+                ", zipCode='" + _zipCode + '\'' +
+                ", orders=" + _orders +
                 '}';
     }
 }

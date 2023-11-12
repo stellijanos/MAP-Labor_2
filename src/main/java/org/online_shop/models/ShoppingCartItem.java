@@ -2,7 +2,7 @@ package org.online_shop.models;
 
 public class ShoppingCartItem {
     private ShoppingCart _shoppingCart;
-    private Product product;
+    private Product _product;
     private Integer _quantity;
 
     public ShoppingCart get_shoppingCart() {
@@ -13,12 +13,12 @@ public class ShoppingCartItem {
         this._shoppingCart = _shoppingCart;
     }
 
-    public Product getProduct() {
-        return product;
+    public Product get_product() {
+        return _product;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void set_product(Product product) {
+        this._product = product;
     }
 
     public Integer get_quantity() {
@@ -33,7 +33,7 @@ public class ShoppingCartItem {
     public String toString() {
         return "ShoppingCartItem{" +
                 "_shoppingCart=" + _shoppingCart +
-                ", product=" + product +
+                ", product=" + _product +
                 ", _quantity=" + _quantity +
                 '}';
     }

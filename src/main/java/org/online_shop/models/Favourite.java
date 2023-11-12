@@ -9,23 +9,23 @@ public class Favourite {
         return _product;
     }
 
-    public void set_product(Product _product) {
-        this._product = _product;
+    public void set_product(Product product) {
+        this._product = product;
     }
 
     public User get_user() {
         return _user;
     }
 
-    public void set_user(User _user) {
-        this._user = _user;
+    public void set_user(User user) {
+        this._user = user;
     }
 
     @Override
     public String toString() {
         return "Favourite{" +
-                "_product=" + _product +
-                ", _user=" + _user +
+                " product=" + _product +
+                ", user=" + _user +
                 '}';
     }
 }

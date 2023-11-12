@@ -1,9 +1,14 @@
 package org.online_shop.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Category {
 
     private Integer _id;
     private String _name;
+
+    private final List<Product> products = new ArrayList<>();
 
     public Integer get_id() {
         return _id;

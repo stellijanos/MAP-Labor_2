@@ -15,7 +15,7 @@ public class Main {
         appController.setRoute("/user-panel", appController::userPanel);
 
         appController.setRoute("/account-settings", appController::accountSettings);
-        appController.setRoute("/account-settings/profile-details", appController::accountSettings);
+        appController.setRoute("/account-settings/profile-details", appController::profileDetails);
         appController.setRoute("/account-settings/edit-profile-details", appController::editProfileDetails);
         appController.setRoute("/account-settings/change-password", appController::changePassword);
         appController.setRoute("/account-settings/delete-account", appController::deleteAccount);

@@ -2,23 +2,21 @@ package org.online_shop.models;
 
 public class Favourite {
 
-    private Integer _userId;
-    private Integer _productId;
+    private Product _product;
 
-    public Favourite(Integer userId, Integer productId) {
-        _userId = userId;
-        _productId = productId;
+    private User _user;
+
+    public Favourite(User user, Product product) {
+        _user = user;
+        _product = product;
     }
 
-    public Integer get_userId() {
-        return _userId;
-    }
 
     @Override
     public String toString() {
         return "Favourite{" +
-                "_userId=" + _userId +
-                ", _productId=" + _productId +
+                "_user=" + _user.get_email() +
+                ", _product=" + _product.get_name() +
                 '}';
     }
 }

@@ -1,13 +1,15 @@
 package org.online_shop.models;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
     private Integer _id;
-    private Integer _userId;
-    private Integer _shippingAddressId;
+    private User _user;
+    private ShippingAddress _shippingAddress;
+    private final List<OrderItem> _orderItems = new ArrayList<>();
     private String _paymentMethod;
-    private Timestamp _date;
+    private String _date;
     private String _status;
     private Float _shippingFee;
 
@@ -20,20 +22,24 @@ public class Order {
         this._id = _id;
     }
 
-    public Integer get_userId() {
-        return _userId;
+    public User get_user() {
+        return _user;
     }
 
-    public void set_userId(Integer _userId) {
-        this._userId = _userId;
+    public void set_user(User _user) {
+        this._user = _user;
     }
 
-    public Integer get_shippingAddressId() {
-        return _shippingAddressId;
+    public ShippingAddress get_shippingAddress() {
+        return _shippingAddress;
     }
 
-    public void set_shippingAddressId(Integer _shippingAddressId) {
-        this._shippingAddressId = _shippingAddressId;
+    public void set_shippingAddress(ShippingAddress _shippingAddress) {
+        this._shippingAddress = _shippingAddress;
+    }
+
+    public List<OrderItem> get_orderItems() {
+        return _orderItems;
     }
 
     public String get_paymentMethod() {
@@ -44,11 +50,11 @@ public class Order {
         this._paymentMethod = _paymentMethod;
     }
 
-    public Timestamp get_date() {
+    public String get_date() {
         return _date;
     }
 
-    public void set_date(Timestamp _date) {
+    public void set_date(String _date) {
         this._date = _date;
     }
 
@@ -72,11 +78,12 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "_id=" + _id +
-                ", _userId=" + _userId +
-                ", _shippingAddressId=" + _shippingAddressId +
+                ", _user=" + _user +
+                ", _shippingAddress=" + _shippingAddress +
+                ", _orderItems=" + _orderItems +
                 ", _paymentMethod='" + _paymentMethod + '\'' +
-                ", _date=" + _date +
-                ", status='" + _status + '\'' +
+                ", _date='" + _date + '\'' +
+                ", _status='" + _status + '\'' +
                 ", _shippingFee=" + _shippingFee +
                 '}';
     }

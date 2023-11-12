@@ -2,6 +2,9 @@ package org.online_shop.models;
 
 import org.online_shop.controllers.CustomControllerTools;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class User {
     private Integer _id;
@@ -10,6 +13,14 @@ public class User {
     private String _email;
     private String _password;
     private final String _createdAt;
+
+
+    private final List<ShippingAddress> shippingAddresses = new ArrayList<>();
+    private final List<Order> orders = new ArrayList<>();
+
+    private final List<Favourite> favourites = new ArrayList<>();
+
+    private ShoppingCart shoppingCart;
 
 
     public User() {

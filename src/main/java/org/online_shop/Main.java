@@ -1,11 +1,18 @@
 package org.online_shop;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.online_shop.controllers.AppController;
 
 public class Main {
     public static void main(String[] args) {
 
         AppController appController = new AppController();
+
+        String password = "Micutaetop5";
+       ;
+
+        System.out.println( BCrypt.hashpw(password, BCrypt.gensalt()));
+
 
         appController.setRoute("", appController::quit);
         appController.setRoute("/", appController::mainMenu);

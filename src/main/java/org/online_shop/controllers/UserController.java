@@ -6,6 +6,8 @@ import org.online_shop.models.User;
 import org.online_shop.repositories.UserRepository;
 
 import java.util.List;
+import java.util.Objects;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 public class UserController {
@@ -25,7 +27,7 @@ public class UserController {
         user.set_firstname(firstname);
         user.set_lastname(lastname);
         user.set_email(email);
-        user.set_password(password);
+        user.set_password(BCrypt.hashpw(password, BCrypt.gensalt()));
 
         user.set_id(_userRepository.readAll().size() + 1);
 
@@ -72,11 +74,18 @@ public class UserController {
                         _userRepository.delete(email) ? Response.USER_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
+
+    public Response removeALlUsers(String adminPassword) {
+        Env env = new Env();
+        return !Objects.equals(env.load().get("ADMIN_PASSWORD"), adminPassword) ?
+                Response.INCORRECT_PASSWORD: _userRepository.deleteAll() ? Response.ALL_USERS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+    }
+
     public Response logInUser(String email, String password) {
         User user = _userRepository.read(email);
 
         return user.get_email() == null ? Response.INCORRECT_EMAIL :
-                user.get_password().equals(password) ? Response.USER_LOGIN_SUCCESSFUL : Response.INCORRECT_PASSWORD;
+                BCrypt.checkpw(password,user.get_password()) ? Response.USER_LOGIN_SUCCESSFUL : Response.INCORRECT_PASSWORD;
     }
 
     public User getUser(String email) {

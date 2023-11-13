@@ -3,9 +3,11 @@ package org.online_shop.controllers;
 import org.online_shop.enums.Response;
 import org.online_shop.models.Category;
 import org.online_shop.models.Product;
+import org.online_shop.repositories.Env;
 import org.online_shop.repositories.ProductRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductController {
 
@@ -38,7 +40,7 @@ public class ProductController {
         return _productRepository.readAll();
     }
 
-    public Response modify(String name, String price_str, String description, String stock_str, Category category, Integer id) {
+    public Response modify(String name, String price_str, String description, Category category, String stock_str, Integer id) {
 
         Product currentProduct = _productRepository.read(id);
         if (currentProduct.get_name() == null) {
@@ -61,8 +63,10 @@ public class ProductController {
         return _productRepository.delete(id) ? Response.PRODUCT_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
-    public Response removeAllProducts() {
-        return _productRepository.deleteAll() ? Response.ALL_PRODUCTS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+    public Response removeAllProducts(String adminPassword) {
+        Env env = new Env();
+        return !Objects.equals(env.load().get("ADMIN_PASSWORD"), adminPassword) ?
+                Response.INCORRECT_PASSWORD: _productRepository.deleteAll() ? Response.ALL_PRODUCTS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public String generateImageLink(String name) {

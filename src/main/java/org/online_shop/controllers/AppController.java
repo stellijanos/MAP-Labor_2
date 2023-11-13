@@ -77,7 +77,6 @@ public class AppController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         sleep(500);
 
         if (!route.get(actualPath)) {
@@ -319,7 +318,16 @@ public class AppController {
     }
 
     public void removeAllUsers() {
+        _appView.remove_all_users();
+        String adminPassword = readFromConsole(_appView::enter_password, String.class);
 
+        Response response = _userController.removeALlUsers(adminPassword);
+
+        switch (response) {
+            case INCORRECT_PASSWORD -> getRoute("/remove-all-products?incorrect_password");
+            case ALL_PRODUCTS_DELETE_SUCCESSFUL -> getRoute("/admin-panel?all_products_deleted_successfully");
+            case SOMETHING_WENT_WRONG -> getRoute("/admin-panel?something_went_wrong");
+        }
     }
 
     public void productOptions() {
@@ -369,6 +377,22 @@ public class AppController {
 
         Integer productId = readFromConsole(_appView::enter_product_id, Integer.class);
 
+        String name = readFromConsole(_appView::enter_product_name, String.class);
+        String price_str = readFromConsole(_appView::enter_product_price, String.class);
+        String description = readFromConsole(_appView::enter_product_description, String.class);
+        _appView.view_all_categories(_categoryController.getAllCategories());
+
+        Category category = _categoryController.getCategory(readFromConsole(_appView::select_category, Integer.class));
+
+        String stock_str = readFromConsole(_appView::enter_stock, String.class);
+
+        Response response = _productController.modify(name, price_str, description, category, stock_str, productId);
+
+        switch (response) {
+            case PRODUCT_CREATE_SUCCESSFUL -> getRoute("/edit-product?product_not_found");
+            case PRODUCT_UPDATE_SUCCESSFUL -> getRoute("/admin-panel?product_updated_successfully");
+            case SOMETHING_WENT_WRONG -> getRoute("admin-panel?something_went_wrong");
+        }
     }
 
     public void removeProduct() {
@@ -376,14 +400,23 @@ public class AppController {
         Integer productId = readFromConsole(_appView::enter_product_id, Integer.class);
 
         Response response = _productController.removeProduct(productId);
-        switch(response) {
+        switch (response) {
             case PRODUCT_DELETE_SUCCESSFUL -> getRoute("/admin-panel?product_deleted_successfully");
             case SOMETHING_WENT_WRONG -> getRoute("/admin-panel?something_went_wrong");
         }
     }
 
     public void removeAllProducts() {
-        // possible that it will not be needed
+        _appView.remove_all_products();
+        String adminPassword = readFromConsole(_appView::enter_password, String.class);
+
+        Response response = _productController.removeAllProducts(adminPassword);
+
+        switch (response) {
+            case INCORRECT_PASSWORD -> getRoute("/remove-all-products?incorrect_password");
+            case ALL_PRODUCTS_DELETE_SUCCESSFUL -> getRoute("/admin-panel?all_products_deleted_successfully");
+            case SOMETHING_WENT_WRONG -> getRoute("/admin-panel?something_went_wrong");
+        }
     }
 
 

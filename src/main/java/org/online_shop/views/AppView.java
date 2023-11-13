@@ -336,6 +336,7 @@ public class AppView {
     public void remove_product() {
         System.out.println("\n-------------------\nRemove product\n-------------------\n");
     }
+
     public void remove_all_products() {
         System.out.println("\n-------------------\nRemove all product\n-------------------\n");
     }
@@ -348,4 +349,19 @@ public class AppView {
         System.out.println("\n-------------------\nEdit product\n-------------------\n");
     }
 
+    public void product_not_found() {
+        System.out.println("Product not found!");
+    }
+
+    public void product_updated_successfully() {
+        System.out.println("Product updated successfully!");
+    }
+
+    public void all_products_deleted_successfully() {
+        System.out.println("All products deleted successfully!");
+    }
+
+    public void remove_all_users() {
+        System.out.println("Remove all users");
+    }
 }

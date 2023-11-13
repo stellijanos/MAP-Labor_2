@@ -5,7 +5,7 @@ import org.online_shop.repositories.ProductSpecRepository;
 
 public class ProductSpecController {
 
-    private ProductSpecRepository _productRepository;
+    private final ProductSpecRepository _productRepository;
 
     public ProductSpecController(ProductSpecRepository productSpecRepository) {
         this._productRepository = productSpecRepository;

@@ -4,7 +4,7 @@ import org.online_shop.repositories.ShippingAddressRepository;
 
 public class ShippingAddressController {
 
-    private ShippingAddressRepository _shippingAddressRepository;
+    private final ShippingAddressRepository _shippingAddressRepository;
 
     public ShippingAddressController(ShippingAddressRepository shippingAddressRepository) {
         this._shippingAddressRepository = shippingAddressRepository;

@@ -1,6 +1,7 @@
 package org.online_shop.controllers;
 
 import org.online_shop.enums.Response;
+import org.online_shop.models.ShoppingCart;
 import org.online_shop.models.ShoppingCartItem;
 import org.online_shop.repositories.ShoppingCartItemRepository;
 
@@ -13,8 +14,8 @@ public class ShoppingCartItemController {
         this._shoppingCartItemRepository = shoppingCartItemRepository;
     }
 
-    public List<ShoppingCartItem> getAll(Integer shoppingCartId) {
-        return this._shoppingCartItemRepository.readAll(shoppingCartId);
+    public List<ShoppingCartItem> getAll(ShoppingCart shoppingCart) {
+        return this._shoppingCartItemRepository.readAll(shoppingCart);
     }
 
     public Response addToShoppingCart(Integer shoppingCartId, Integer productId, Integer quantity) {

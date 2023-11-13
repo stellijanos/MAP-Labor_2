@@ -1,6 +1,7 @@
 package org.online_shop.controllers;
 
 import org.online_shop.enums.Response;
+import org.online_shop.models.Category;
 import org.online_shop.models.Product;
 import org.online_shop.repositories.ProductRepository;
 
@@ -14,13 +15,13 @@ public class ProductController {
         _productRepository = productRepository;
     }
 
-    public Response createProduct(String name, Float price, Integer categoryId, String description, Integer stock) {
+    public Response createProduct(String name, Float price, Category category, String description, Integer stock) {
 
         Product product = new Product();
 
         product.set_name(name);
         product.set_price(price);
-        product.set_categoryId(categoryId);
+        product.set_category(category);
         product.set_description(description);
         product.set_stock(stock);
         product.set_id(_productRepository.readAll().size() + 1);
@@ -37,7 +38,7 @@ public class ProductController {
         return _productRepository.readAll();
     }
 
-    public Response update(String name, String price_str, String description, String stock_str, String categoryId_str, Integer id) {
+    public Response update(String name, String price_str, String description, String stock_str, Category category, Integer id) {
 
         Product currentProduct = _productRepository.read(id);
         if (currentProduct.get_name() == null) {
@@ -51,7 +52,7 @@ public class ProductController {
         updatedProduct.set_price(price_str.isEmpty() ? currentProduct.get_price() : Integer.parseInt(price_str));
         updatedProduct.set_description(description.isEmpty() ? currentProduct.get_description() : description);
         updatedProduct.set_stock(stock_str.isEmpty() ? currentProduct.get_stock() : Integer.parseInt(stock_str));
-        updatedProduct.set_categoryId(categoryId_str.isEmpty() ? currentProduct.get_categoryId() : Integer.parseInt(stock_str));
+        updatedProduct.set_category(category.get_name().isEmpty() ? currentProduct.get_category() : category);
 
         return _productRepository.update(updatedProduct) ? Response.PRODUCT_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }

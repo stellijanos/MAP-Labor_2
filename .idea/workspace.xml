@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement observer design pattern for users and favourites">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/FavouriteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/FavouriteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="simplify controller methods">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -536,7 +534,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699878900733</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="simplify controller methods">
+      <option name="closed" value="true" />
+      <created>1699879312639</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1699879312639</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -554,7 +560,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement constructor for all controllers" />
     <MESSAGE value="implement product controller and simplify other controllers" />
     <MESSAGE value="implement category controller and fix other controllers" />
     <MESSAGE value="implement deleteAll for product- and category controllers" />
@@ -579,6 +584,7 @@
     <MESSAGE value="implement bcrypt and other admin methods" />
     <MESSAGE value="implement tests for Product mvc part and upgrade app controller" />
     <MESSAGE value="implement observer design pattern for users and favourites" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement observer design pattern for users and favourites" />
+    <MESSAGE value="simplify controller methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="simplify controller methods" />
   </component>
 </project>

@@ -37,6 +37,16 @@ public class AppController {
         }
     }
 
+    private void setUpSession(String email) {
+        _session = Session.getInstance();
+        _session.setId(email);
+        _appView.login_successful();
+
+        Env env = new Env();
+        String route = Objects.equals(env.load().get("ADMIN_EMAIL"), email) ? "/admin-panel" : "/user-panel";
+        getRoute(route);
+    }
+
     private <T> T readFromConsole(Runnable message, Class<T> type) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -184,15 +194,17 @@ public class AppController {
         Response response = _userController.deleteUser(_session.getId(), password);
 
         switch (response) {
-            case INCORRECT_EMAIL -> _appView.incorrect_email();
-            case INCORRECT_PASSWORD -> _appView.incorrect_password();
-            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
-            case USER_DELETE_SUCCESSFUL -> {
-                if (_session.destroy()) {
-                    sleep(1500);
-                    mainMenu();
-                }
-            }
+            case INCORRECT_EMAIL -> getRoute("/account-settings?incorrect_email");
+            case INCORRECT_PASSWORD -> getRoute("/account-settings?incorrect_password");
+            case SOMETHING_WENT_WRONG -> getRoute("/account-settings?something_went_wrong");
+            case USER_DELETE_SUCCESSFUL -> getRoute("/update-session");
+        }
+    }
+
+    public void updateSession() {
+        if (_session.destroy()) {
+            sleep(1500);
+            getRoute("/account-settings");
         }
     }
 
@@ -480,20 +492,6 @@ public class AppController {
     public void logOut() {
         if (_session.destroy())
             getRoute("/?logout_successful");
-    }
-
-
-//    -----------------------------------------------------------------------------------------------------------------
-
-
-    private void setUpSession(String email) {
-        _session = Session.getInstance();
-        _session.setId(email);
-        _appView.login_successful();
-
-        Env env = new Env();
-        String route = Objects.equals(env.load().get("ADMIN_EMAIL"), email) ? "/admin-panel" : "/user-panel";
-        getRoute(route);
     }
 
 }

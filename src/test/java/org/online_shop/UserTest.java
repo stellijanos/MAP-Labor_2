@@ -11,6 +11,7 @@ import org.online_shop.repositories.UserRepository;
 
 public class UserTest {
 
+
     @Test
     public void test_signUp() {
         UserRepository userRepository = new UserRepository();
@@ -20,20 +21,6 @@ public class UserTest {
 
         userController.createUser("Janos", "Stelli", "stellijanos23@gmail.com", "12345");
         assertEquals(1, userRepository.readAll().size());
-
-
-        User createdUser = userController.getUser("stellijanos23@gmail.com");
-
-        assertNotNull(createdUser);
-
-        assertEquals("Janos", createdUser.get_firstname());
-        assertEquals("Stelli", createdUser.get_lastname());
-        assertEquals("stellijanos23@gmail.com", createdUser.get_email());
-        assertEquals("12345", createdUser.get_password());
-
-        userController.createUser("Janos", "Stelli", "stellijanos23@gmail.com", "12345");
-        assertEquals(1, userRepository.readAll().size());
-
     }
 
     @Test

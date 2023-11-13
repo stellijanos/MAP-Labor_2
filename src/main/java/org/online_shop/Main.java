@@ -9,9 +9,9 @@ public class Main {
         AppController appController = new AppController();
 
         String password = "Micutaetop5";
-       ;
+        ;
 
-        System.out.println( BCrypt.hashpw(password, BCrypt.gensalt()));
+        System.out.println(BCrypt.hashpw(password, BCrypt.gensalt()));
 
 
         appController.setRoute("", appController::quit);
@@ -19,6 +19,7 @@ public class Main {
         appController.setRoute("/login", appController::logIn);
         appController.setRoute("/signup", appController::signUp);
         appController.setRoute("/logout", appController::logOut);
+        appController.setRoute("/update-session", appController::updateSession);
         appController.setRoute("/user-panel", appController::userPanel);
 
         appController.setRoute("/account-settings", appController::accountSettings);

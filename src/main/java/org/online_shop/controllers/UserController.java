@@ -1,18 +1,26 @@
 package org.online_shop.controllers;
 
+import org.online_shop.models.Favourite;
+import org.online_shop.models.Product;
 import org.online_shop.repositories.Env;
 import org.online_shop.enums.Response;
 import org.online_shop.models.User;
+import org.online_shop.repositories.FavouriteRepository;
+import org.online_shop.repositories.ProductRepository;
 import org.online_shop.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Objects;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 
 public class UserController {
 
     private final UserRepository _userRepository;
+    private final FavouriteRepository _favouriteRepository = new FavouriteRepository();
+
+    private final ProductRepository _productRepository = new ProductRepository();
 
 
     public UserController(UserRepository userRepository) {
@@ -60,9 +68,9 @@ public class UserController {
         User currentUser = _userRepository.read(currentEmail);
 
         return currentUser.get_email() == null ? Response.USER_NOT_FOUND :
-                !currentUser.get_password().equals(currentPassword) ? Response.INCORRECT_PASSWORD :
+                !BCrypt.checkpw(currentPassword, currentUser.get_password()) ? Response.INCORRECT_PASSWORD :
                         !newPassword.equals(confirmPassword) ? Response.PASSWORDS_DO_NOT_MATCH :
-                                _userRepository.updatePassword(newPassword, currentEmail) ? Response.PASSWORD_UPDATE_SUCCESSFUL :
+                                _userRepository.updatePassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()), currentEmail) ? Response.PASSWORD_UPDATE_SUCCESSFUL :
                                         Response.SOMETHING_WENT_WRONG;
     }
 
@@ -70,22 +78,22 @@ public class UserController {
         User user = _userRepository.read(email);
 
         return user.get_email() == null ? Response.INCORRECT_EMAIL :
-                !user.get_password().equals(password) ? Response.INCORRECT_PASSWORD :
+                !BCrypt.checkpw(password, user.get_password()) ? Response.INCORRECT_PASSWORD :
                         _userRepository.delete(email) ? Response.USER_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
 
     public Response removeALlUsers(String adminPassword) {
         Env env = new Env();
-        return !Objects.equals(env.load().get("ADMIN_PASSWORD"), adminPassword) ?
-                Response.INCORRECT_PASSWORD: _userRepository.deleteAll() ? Response.ALL_USERS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+        return !BCrypt.checkpw(adminPassword, env.load().get("ADMIN_PASSWORD")) ?
+                Response.INCORRECT_PASSWORD : _userRepository.deleteAll() ? Response.ALL_USERS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public Response logInUser(String email, String password) {
         User user = _userRepository.read(email);
 
         return user.get_email() == null ? Response.INCORRECT_EMAIL :
-                BCrypt.checkpw(password,user.get_password()) ? Response.USER_LOGIN_SUCCESSFUL : Response.INCORRECT_PASSWORD;
+                BCrypt.checkpw(password, user.get_password()) ? Response.USER_LOGIN_SUCCESSFUL : Response.INCORRECT_PASSWORD;
     }
 
     public User getUser(String email) {
@@ -111,4 +119,21 @@ public class UserController {
 
         _userRepository.create(user);
     }
+
+
+//    ---------------------- Observer Pattern
+
+    public Response addToFavourites(Integer productId, String userEmail) {
+        User user = _userRepository.read(userEmail);
+
+        Product product = _productRepository.read(productId);
+
+        Favourite favourite = new Favourite(user, product);
+
+        _favouriteRepository.addToFavourites(favourite);
+
+        return favourite.addToFavourites() ? Response.PRODUCT_ADD_TO_FAVOURITES
+                : Response.SOMETHING_WENT_WRONG;
+    }
+
 }

@@ -1,6 +1,7 @@
 package org.online_shop.repositories;
 
 import org.online_shop.models.DatabaseInMemory;
+import org.online_shop.models.Product;
 import org.online_shop.models.User;
 
 import java.util.List;
@@ -51,4 +52,5 @@ public class UserRepository extends DatabaseInMemory {
         _users.clear();
         return true;
     }
+
 }

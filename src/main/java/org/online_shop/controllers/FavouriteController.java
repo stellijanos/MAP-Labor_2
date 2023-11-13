@@ -16,9 +16,7 @@ public class FavouriteController {
     }
 
     public Response addOrRemove(User user, Product product) {
-        Favourite favourite = new Favourite();
-        favourite.set_user(user);
-        favourite.set_product(product);
+        Favourite favourite = new Favourite(user, product);
 
         if (_favouriteRepository.readAll(user).contains(favourite)) {
             _favouriteRepository.delete(favourite);

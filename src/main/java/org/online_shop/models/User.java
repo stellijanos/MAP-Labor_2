@@ -14,9 +14,9 @@ public class User {
     private String _password;
     private final String _createdAt;
 
-    private final List<Favourite> _favourites = new ArrayList<>();
-    private final List<Order> _orders = new ArrayList<>();
-    private final List<ShippingAddress> _shippingAddresses = new ArrayList<>();
+    private List<Product> _favourites = new ArrayList<>();
+    private List<Order> _orders = new ArrayList<>();
+    private List<ShippingAddress> _shippingAddresses = new ArrayList<>();
     private ShoppingCart _shoppingCart;
 
 
@@ -68,7 +68,7 @@ public class User {
         return _createdAt;
     }
 
-    public List<Favourite> get_favourites() {
+    public List<Product> get_favourites() {
         return _favourites;
     }
 
@@ -88,6 +88,18 @@ public class User {
         this._shoppingCart = shoppingCart;
     }
 
+    public void set_favourites(List<Product> _favourites) {
+        this._favourites = _favourites;
+    }
+
+    public void set_orders(List<Order> _orders) {
+        this._orders = _orders;
+    }
+
+    public void set_shippingAddresses(List<ShippingAddress> _shippingAddresses) {
+        this._shippingAddresses = _shippingAddresses;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -103,4 +115,10 @@ public class User {
                 ", shoppingCart=" + _shoppingCart +
                 '}';
     }
+
+
+    public boolean addToFavourites(Product product) {
+        return _favourites.add(product);
+    }
+
 }

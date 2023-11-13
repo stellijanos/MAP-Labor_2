@@ -1,5 +1,6 @@
 package org.online_shop.controllers;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.online_shop.enums.Response;
 import org.online_shop.models.Category;
 import org.online_shop.models.Product;
@@ -65,8 +66,8 @@ public class ProductController {
 
     public Response removeAllProducts(String adminPassword) {
         Env env = new Env();
-        return !Objects.equals(env.load().get("ADMIN_PASSWORD"), adminPassword) ?
-                Response.INCORRECT_PASSWORD: _productRepository.deleteAll() ? Response.ALL_PRODUCTS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+        return !BCrypt.checkpw(adminPassword, env.load().get("ADMIN_PASSWORD")) ?
+                Response.INCORRECT_PASSWORD : _productRepository.deleteAll() ? Response.ALL_PRODUCTS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
     public String generateImageLink(String name) {

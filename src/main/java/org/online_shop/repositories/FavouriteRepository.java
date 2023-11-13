@@ -2,6 +2,7 @@ package org.online_shop.repositories;
 
 import org.online_shop.models.DatabaseInMemory;
 import org.online_shop.models.Favourite;
+import org.online_shop.models.Product;
 import org.online_shop.models.User;
 
 import java.util.List;
@@ -24,4 +25,13 @@ public class FavouriteRepository extends DatabaseInMemory {
         _favourites.clear();
         return true;
     }
+
+    public void addToFavourites(Favourite favourite) {
+        _favourites.add(favourite);
+    }
+
+    public void removeFromFavourites() {
+//        _user.
+    }
+
 }

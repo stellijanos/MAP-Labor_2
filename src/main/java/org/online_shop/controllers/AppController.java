@@ -3,6 +3,7 @@ package org.online_shop.controllers;
 import java.lang.Thread;
 import java.lang.reflect.Method;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -98,6 +99,13 @@ public class AppController {
         _appView.print_goodBye();
         _userController.listAllUsers();
         System.exit(0);
+    }
+
+    public void updateSession() {
+        if (_session.destroy()) {
+            sleep(1500);
+            getRoute("/account-settings");
+        }
     }
 
     public void run() {
@@ -201,13 +209,6 @@ public class AppController {
         }
     }
 
-    public void updateSession() {
-        if (_session.destroy()) {
-            sleep(1500);
-            getRoute("/account-settings");
-        }
-    }
-
     public void shippingAddressOptions() {
         switch (readFromConsole(_appView::shippingAddressOptions, Integer.class)) {
             case 0 -> getRoute("/user-panel");
@@ -223,6 +224,9 @@ public class AppController {
 
     public void viewSavedAddresses() {
 
+        User user = _userController.getUser(_session.getId());
+        List<ShippingAddress> addresses = _shippingAddressController.getAll(user);
+        user.set_shippingAddresses(addresses);
     }
 
     public void addAddress() {
@@ -284,6 +288,16 @@ public class AppController {
     }
 
     public void addToFavourites() {
+        _appView.add_to_favourites();
+
+        Integer productId = readFromConsole(_appView::enter_product_id, Integer.class);
+
+        Response response = _userController.addToFavourites(productId, _session.getId());
+
+        switch(response) {
+            case PRODUCT_ADD_TO_FAVOURITES -> getRoute("/user-panel?product_added_to_favourites");
+            case PRODUCT_REMOVE_FROM_FAVOURITES -> getRoute("/user-panel?product_removed_to_favourites");
+        }
 
     }
 

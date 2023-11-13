@@ -364,4 +364,16 @@ public class AppView {
     public void remove_all_users() {
         System.out.println("Remove all users");
     }
+    public void add_to_favourites() {
+        System.out.println("\n-------------------\nAdd to favourites\n-------------------\n");
+    }
+
+
+    public void product_added_to_favourites() {
+        System.out.println("Product added to favourites");
+    }
+    public void product_removed_from_favourites() {
+        System.out.println("Product removed from favourites");
+    }
+
 }

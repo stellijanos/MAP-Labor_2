@@ -15,7 +15,7 @@ public class ProductController {
         _productRepository = productRepository;
     }
 
-    public Response createProduct(String name, Float price, Category category, String description, Integer stock) {
+    public Response addProduct(String name, Float price, Category category, String description, Integer stock) {
 
         Product product = new Product();
 
@@ -30,15 +30,15 @@ public class ProductController {
         return _productRepository.create(product) ? Response.PRODUCT_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
-    public Product readProduct(Integer id) {
+    public Product getProduct(Integer id) {
         return _productRepository.read(id);
     }
 
-    public List<Product> readAll() {
+    public List<Product> getALl() {
         return _productRepository.readAll();
     }
 
-    public Response update(String name, String price_str, String description, String stock_str, Category category, Integer id) {
+    public Response modify(String name, String price_str, String description, String stock_str, Category category, Integer id) {
 
         Product currentProduct = _productRepository.read(id);
         if (currentProduct.get_name() == null) {
@@ -57,11 +57,11 @@ public class ProductController {
         return _productRepository.update(updatedProduct) ? Response.PRODUCT_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
-    public Response deleteProduct(Integer id) {
+    public Response removeProduct(Integer id) {
         return _productRepository.delete(id) ? Response.PRODUCT_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
-    public Response deleteAllProducts() {
+    public Response removeAllProducts() {
         return _productRepository.deleteAll() ? Response.ALL_PRODUCTS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 

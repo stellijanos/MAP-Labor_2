@@ -15,15 +15,15 @@ import org.online_shop.views.AppView;
 public class AppController {
 
     private final AppView _appView = new AppView();
-    private final CategoryController categoryController = new CategoryController(new CategoryRepository());
-    private final FavouriteController favouriteController = new FavouriteController(new FavouriteRepository());
-    private final OrderController orderController = new OrderController(new OrderRepository());
-    private final OrderItemController orderItemController = new OrderItemController(new OrderItemRepository());
+    private final CategoryController _categoryController = new CategoryController(new CategoryRepository());
+    private final FavouriteController _favouriteController = new FavouriteController(new FavouriteRepository());
+    private final OrderController _orderController = new OrderController(new OrderRepository());
+    private final OrderItemController _orderItemController = new OrderItemController(new OrderItemRepository());
     private final ProductController _productController = new ProductController(new ProductRepository());
     private final ProductSpecController _productSpecController = new ProductSpecController(new ProductSpecRepository());
-    private final ShippingAddressController shippingAddressController = new ShippingAddressController(new ShippingAddressRepository());
-    private final ShoppingCartController shoppingCartController = new ShoppingCartController(new ShoppingCartRepository());
-    private final ShoppingCartItemController shoppingCartItemController = new ShoppingCartItemController(new ShoppingCartItemRepository());
+    private final ShippingAddressController _shippingAddressController = new ShippingAddressController(new ShippingAddressRepository());
+    private final ShoppingCartController _shoppingCartController = new ShoppingCartController(new ShoppingCartRepository());
+    private final ShoppingCartItemController _shoppingCartItemController = new ShoppingCartItemController(new ShoppingCartItemRepository());
     private final UserController _userController = new UserController(new UserRepository());
     private Session _session;
     private final Route route = new Route();
@@ -310,7 +310,7 @@ public class AppController {
 
     }
 
-    public void editUser(){
+    public void editUser() {
 
     }
 
@@ -335,23 +335,55 @@ public class AppController {
     }
 
     public void viewAllProducts() {
+        _appView.view_all_products(_productController.getALl());
 
+        while (true) {
+            if (readFromConsole(_appView::print_back, Integer.class) == 0)
+                userPanel();
+        }
     }
 
     public void addProduct() {
+        _appView.add_product();
+        String name = readFromConsole(_appView::enter_product_name, String.class);
+        Float price = readFromConsole(_appView::enter_product_price, Float.class);
+
+        _appView.view_all_categories(_categoryController.getAllCategories());
+        Category category = _categoryController.getCategory(readFromConsole(_appView::select_category, Integer.class));
+
+        String description = readFromConsole(_appView::enter_product_description, String.class);
+
+        Integer stock = readFromConsole(_appView::enter_stock, Integer.class);
+
+        Response response = _productController.addProduct(name, price, category, description, stock);
+
+        switch (response) {
+            case PRODUCT_CREATE_SUCCESSFUL -> getRoute("/admin-panel?product_added_successfully");
+            case SOMETHING_WENT_WRONG -> getRoute("/admin-panel?something_went_wrong");
+        }
 
     }
 
     public void editProduct() {
+        _appView.edit_product();
+
+        Integer productId = readFromConsole(_appView::enter_product_id, Integer.class);
 
     }
 
     public void removeProduct() {
+        _appView.remove_product();
+        Integer productId = readFromConsole(_appView::enter_product_id, Integer.class);
 
+        Response response = _productController.removeProduct(productId);
+        switch(response) {
+            case PRODUCT_DELETE_SUCCESSFUL -> getRoute("/admin-panel?product_deleted_successfully");
+            case SOMETHING_WENT_WRONG -> getRoute("/admin-panel?something_went_wrong");
+        }
     }
 
     public void removeAllProducts() {
-
+        // possible that it will not be needed
     }
 
 
@@ -418,11 +450,7 @@ public class AppController {
     }
 
 
-
 //    -----------------------------------------------------------------------------------------------------------------
-
-
-
 
 
     private void setUpSession(String email) {
@@ -434,6 +462,5 @@ public class AppController {
         String route = Objects.equals(env.load().get("ADMIN_EMAIL"), email) ? "/admin-panel" : "/user-panel";
         getRoute(route);
     }
-
 
 }

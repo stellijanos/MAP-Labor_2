@@ -21,15 +21,15 @@ public class CategoryController {
         return _categoryRepository.create(category) ? Response.CATEGORY_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
-    public Category readCategory(Integer id) {
+    public Category getCategory(Integer id) {
         return _categoryRepository.read(id);
     }
 
-    public List<Category> readAllCategories() {
+    public List<Category> getAllCategories() {
         return _categoryRepository.readAll();
     }
 
-    public Response updateCategory(String name, Integer id) {
+    public Response modifyCategory(String name, Integer id) {
         Category currentCategory = _categoryRepository.read(id);
         if (currentCategory.get_name() == null)
             return Response.CATEGORY_NOT_FOUND;
@@ -39,11 +39,11 @@ public class CategoryController {
         return _categoryRepository.update(updatedCategory) ? Response.CATEGORY_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
-    public Response deleteCategory(Integer id) {
+    public Response removeCategory(Integer id) {
         return _categoryRepository.delete(id) ? Response.CATEGORY_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
-    public Response deleteAllCategories() {
+    public Response removeAllCategories() {
         return _categoryRepository.deleteAll() ? Response.ALL_CATEGORIES_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 }

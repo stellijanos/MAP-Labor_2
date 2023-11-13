@@ -1,7 +1,10 @@
 package org.online_shop.views;
 
+import org.online_shop.models.Category;
+import org.online_shop.models.Product;
 import org.online_shop.models.User;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 public class AppView {
@@ -177,7 +180,8 @@ public class AppView {
         System.out.println("0. Back");
     }
 
-    public void no_response() {}
+    public void no_response() {
+    }
 
 
     public void view(User user) {
@@ -214,9 +218,11 @@ public class AppView {
     public void incorrect_password() {
         System.out.println("Incorrect password");
     }
+
     public void incorrect_email() {
         System.out.println("Incorrect email address!");
     }
+
     public void user_created_successfully() {
         System.out.println("User created successfully!");
     }
@@ -281,6 +287,65 @@ public class AppView {
 
     public void logout_successful() {
         System.out.println("\n----------------\nLogout successful!\n----------------\n");
+    }
+
+
+    public void view_all_products(List<Product> products) {
+        System.out.println(products);
+    }
+
+    public void add_product() {
+        System.out.println("\n-------------------\nAdd new product\n-------------------\n");
+    }
+
+    public void enter_product_name() {
+        System.out.println("Enter product name: ");
+    }
+
+
+    public void enter_product_price() {
+        System.out.println("Enter product price: ");
+    }
+
+    public void select_category() {
+        System.out.println("Select a category: ");
+    }
+
+
+    public void view_all_categories(List<Category> categories) {
+        System.out.println("Here are all the categories:\n" + categories);
+    }
+
+
+    public void enter_product_description() {
+        System.out.println("Enter product description: ");
+    }
+
+    public void enter_stock() {
+        System.out.println("Enter stock");
+    }
+
+    public void product_added_successfully() {
+        System.out.println("Product added successfully!");
+    }
+
+    public void enter_product_id() {
+        System.out.println("Enter product id: ");
+    }
+
+    public void remove_product() {
+        System.out.println("\n-------------------\nRemove product\n-------------------\n");
+    }
+    public void remove_all_products() {
+        System.out.println("\n-------------------\nRemove all product\n-------------------\n");
+    }
+
+    public void product_deleted_successfully() {
+        System.out.println("Product deleted successfully");
+    }
+
+    public void edit_product() {
+        System.out.println("\n-------------------\nEdit product\n-------------------\n");
     }
 
 }

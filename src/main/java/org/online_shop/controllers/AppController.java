@@ -298,7 +298,6 @@ public class AppController {
             case PRODUCT_ADD_TO_FAVOURITES -> getRoute("/user-panel?product_added_to_favourites");
             case PRODUCT_REMOVE_FROM_FAVOURITES -> getRoute("/user-panel?product_removed_to_favourites");
         }
-
     }
 
     public void addToCart() {
@@ -507,5 +506,4 @@ public class AppController {
         if (_session.destroy())
             getRoute("/?logout_successful");
     }
-
 }

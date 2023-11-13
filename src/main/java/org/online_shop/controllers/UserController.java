@@ -43,16 +43,18 @@ public class UserController {
     }
 
 
+    public boolean isAvailableEmail(String email) {
+        User user = _userRepository.read(email);
+        return user.get_email() == null;
+    }
+
     public Response updateUser(String newFirstname, String newLastname, String newEmail, String currentEmail) {
         User currentUser = _userRepository.read(currentEmail);
 
-        if (currentUser.get_email() == null) {
+        if (currentUser.get_email() == null)
             return Response.USER_NOT_FOUND;
-        }
 
-        User existingUser = _userRepository.read(newEmail);
-
-        if (!newEmail.isEmpty() && existingUser.get_email() != null)
+        if (!newEmail.isEmpty() && !isAvailableEmail(newEmail))
             return Response.USER_EXISTS;
 
         User updatedUser = new User();
@@ -125,15 +127,11 @@ public class UserController {
 
     public Response addToFavourites(Integer productId, String userEmail) {
         User user = _userRepository.read(userEmail);
-
         Product product = _productRepository.read(productId);
 
         Favourite favourite = new Favourite(user, product);
 
-        _favouriteRepository.addToFavourites(favourite);
-
-        return favourite.addToFavourites() ? Response.PRODUCT_ADD_TO_FAVOURITES
-                : Response.SOMETHING_WENT_WRONG;
+        return  _favouriteRepository.addToFavourites(favourite) && favourite.addToFavourites()
+                ? Response.PRODUCT_ADD_TO_FAVOURITES : Response.SOMETHING_WENT_WRONG;
     }
-
 }

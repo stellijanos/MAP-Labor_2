@@ -18,6 +18,7 @@ public class UserRepository extends DatabaseInMemory {
                 .findFirst()
                 .orElse(new User());
     }
+
     public List<User> readAll() {
         return this._users;
     }

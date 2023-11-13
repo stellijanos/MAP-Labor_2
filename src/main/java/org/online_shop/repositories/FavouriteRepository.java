@@ -26,8 +26,8 @@ public class FavouriteRepository extends DatabaseInMemory {
         return true;
     }
 
-    public void addToFavourites(Favourite favourite) {
-        _favourites.add(favourite);
+    public boolean addToFavourites(Favourite favourite) {
+        return _favourites.add(favourite);
     }
 
     public void removeFromFavourites() {

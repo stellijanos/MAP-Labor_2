@@ -4,24 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="include mysql dependency">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/interfaces/PaymentStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/interfaces/Subject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/interfaces/UserObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Cash.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement database connection class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/Route.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Favourite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Favourite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShippingAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShippingAddress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -567,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699879512543</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="implement database connection class">
+      <option name="closed" value="true" />
+      <created>1700325933136</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1700325933136</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -585,7 +585,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement category controller and fix other controllers" />
     <MESSAGE value="implement deleteAll for product- and category controllers" />
     <MESSAGE value="implement favourite mvc part and fix other mvc parts" />
     <MESSAGE value="implement repositories" />
@@ -610,7 +609,8 @@
     <MESSAGE value="implement observer design pattern for users and favourites" />
     <MESSAGE value="simplify controller methods" />
     <MESSAGE value="include mysql dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="include mysql dependency" />
+    <MESSAGE value="implement database connection class" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement database connection class" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -17,6 +17,7 @@ public class User implements Subject {
     private final String _createdAt;
     private ShoppingCart _shoppingCart;
     private final List<UserObserver> observers = new ArrayList<>();
+    private final List<Product> favourites = new ArrayList<>();
 
 
     public User() {
@@ -101,7 +102,7 @@ public class User implements Subject {
 
     @Override
     public void notifyObservers() {
-        for (UserObserver observer: observers) {
+        for (UserObserver observer : observers) {
             observer.update(_firstname, _lastname, _email, _password, _shoppingCart);
         }
     }

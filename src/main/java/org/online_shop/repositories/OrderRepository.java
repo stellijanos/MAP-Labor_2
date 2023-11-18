@@ -19,6 +19,10 @@ public class OrderRepository extends DatabaseInMemory {
                 .findFirst().orElse(new Order());
     }
 
+    public List<Order> readAll() {
+        return _orders;
+    }
+
     public List<Order> readAll(User user) {
         return _orders.stream().filter(order -> order.get_user().equals(user)).collect(Collectors.toList());
     }

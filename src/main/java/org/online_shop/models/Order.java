@@ -1,6 +1,8 @@
 package org.online_shop.models;
 
+import org.online_shop.interfaces.PaymentStrategy;
 import org.online_shop.interfaces.UserObserver;
+import org.online_shop.controllers.CustomControllerTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +12,15 @@ public class Order implements UserObserver {
     private User _user;
     private ShippingAddress _shippingAddress;
     private final List<OrderItem> _orderItems = new ArrayList<>();
-    private String _paymentMethod;
-    private String _date;
+    private PaymentStrategy _payment;
+    private final String _date;
     private String _status;
     private Float _shippingFee;
+
+
+    public Order() {
+        _date = CustomControllerTools.getCurrentDateTIme();
+    }
 
     public Integer get_id() {
         return _id;
@@ -43,20 +50,16 @@ public class Order implements UserObserver {
         return _orderItems;
     }
 
-    public String get_paymentMethod() {
-        return _paymentMethod;
+    public PaymentStrategy get_paymentMethod() {
+        return _payment;
     }
 
-    public void set_paymentMethod(String paymentMethod) {
-        this._paymentMethod = paymentMethod;
+    public void set_paymentMethod(PaymentStrategy paymentMethod) {
+        this._payment = paymentMethod;
     }
 
     public String get_date() {
         return _date;
-    }
-
-    public void set_date(String date) {
-        this._date = date;
     }
 
     public String get_status() {
@@ -82,7 +85,7 @@ public class Order implements UserObserver {
                 ", user=" + _user +
                 ", shippingAddress=" + _shippingAddress +
                 ", orderItems=" + _orderItems +
-                ", paymentMethod='" + _paymentMethod + '\'' +
+                ", paymentMethod='" + _payment+ '\'' +
                 ", date='" + _date + '\'' +
                 ", status='" + _status + '\'' +
                 ", shippingFee=" + _shippingFee +

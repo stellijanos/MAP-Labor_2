@@ -1,9 +1,11 @@
 package org.online_shop.models;
 
+import org.online_shop.interfaces.UserObserver;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShippingAddress {
+public class ShippingAddress implements UserObserver {
     private Integer _id;
     private User _user;
     private String _name;
@@ -85,5 +87,14 @@ public class ShippingAddress {
                 ", zipCode='" + _zipCode + '\'' +
                 ", orders=" + _orders +
                 '}';
+    }
+
+    @Override
+    public void update(String firstname, String lastname, String email, String password, ShoppingCart shoppingCart) {
+        this._user.set_firstname(firstname);
+        this._user.set_lastname(lastname);
+        this._user.set_email(email);
+        this._user.set_password(password);
+        this._user.set_shoppingCart(shoppingCart);
     }
 }

@@ -59,6 +59,8 @@ public class UserController {
 
         User updatedUser = new User();
 
+        currentUser.notifyObservers();
+
         updatedUser.set_firstname(newFirstname.isEmpty() ? currentUser.get_firstname() : newFirstname);
         updatedUser.set_lastname(newLastname.isEmpty() ? currentUser.get_lastname() : newLastname);
         updatedUser.set_email(newEmail.isEmpty() ? currentUser.get_email() : newEmail);
@@ -122,16 +124,4 @@ public class UserController {
         _userRepository.create(user);
     }
 
-
-//    ---------------------- Observer Pattern
-
-//    public Response addToFavourites(Integer productId, String userEmail) {
-//        User user = _userRepository.read(userEmail);
-//        Product product = _productRepository.read(productId);
-//
-//        Favourite favourite = new Favourite(user, product);
-//
-//        return  _favouriteRepository.addToFavourites(favourite) && favourite.addToFavourites()
-//                ? Response.PRODUCT_ADD_TO_FAVOURITES : Response.SOMETHING_WENT_WRONG;
-//    }
 }

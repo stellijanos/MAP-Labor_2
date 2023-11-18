@@ -9,13 +9,9 @@ public class Session {
     private Session() {
     }
 
-    public static Session getInstance() {
+    public static synchronized Session getInstance() {
         if (instance == null) {
-            synchronized (Session.class) {
-                if (instance == null) {
-                    instance = new Session();
-                }
-            }
+            instance = new Session();
         }
         return instance;
     }
@@ -34,5 +30,4 @@ public class Session {
         instance = null;
         return true;
     }
-
 }

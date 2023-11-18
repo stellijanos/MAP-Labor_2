@@ -20,13 +20,13 @@ public class Favourite {
     }
 
 
-    public boolean addToFavourites() {
-        return notifyObserver();
-    }
+//    public boolean addToFavourites() {
+//        return notifyObserver();
+//    }
 
-    public boolean notifyObserver() {
-        return _user.addToFavourites(_product);
-    }
+//    public boolean notifyObserver() {
+//        return _user.addToFavourites(_product);
+//    }
 
 
     @Override

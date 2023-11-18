@@ -27,7 +27,6 @@ public class AppController {
     private final ShoppingCartItemController _shoppingCartItemController = new ShoppingCartItemController(new ShoppingCartItemRepository());
     private final UserController _userController = new UserController(new UserRepository());
     private Session _session;
-    private final Route route = new Route();
 
 
     private void sleep(Integer milliseconds) {
@@ -44,8 +43,9 @@ public class AppController {
         _appView.login_successful();
 
         Env env = new Env();
-        String route = Objects.equals(env.load().get("ADMIN_EMAIL"), email) ? "/admin-panel" : "/user-panel";
-        getRoute(route);
+        if (Objects.equals(env.load().get("ADMIN_EMAIL"), email))
+            adminPanel();
+        userPanel();
     }
 
     private <T> T readFromConsole(Runnable message, Class<T> type) {
@@ -71,29 +71,6 @@ public class AppController {
         }
     }
 
-    public void setRoute(String path, Runnable function) {
-        route.definePath(path, function);
-    }
-
-    private void getRoute(String path) {
-        String[] url = path.split("\\?");
-        String actualPath = url[0];
-        String response = url.length == 1 ? "no_response" : url[1];
-
-        try {
-            if (!response.equals("no_response") && !response.isEmpty()) {
-                Method method = _appView.getClass().getDeclaredMethod(response);
-                method.invoke(_appView);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        sleep(500);
-
-        if (!route.get(actualPath)) {
-            route.get("/");
-        }
-    }
 
     public void quit() {
         _appView.print_goodBye();
@@ -104,47 +81,68 @@ public class AppController {
     public void updateSession() {
         if (_session.destroy()) {
             sleep(1500);
-            getRoute("/account-settings");
+            accountSettings();
         }
     }
 
+    public void restart_session(String email) {
+        if (!email.isEmpty()) {
+            _session.destroy();
+            _session = Session.getInstance();
+            _session.setId(email);
+        }
+        _appView.user_updated_successfully();
+    }
+
+    public void deleteUser() {
+        logOut();
+        _appView.user_deleted_successfully();
+    }
+
     public void run() {
-        getRoute("/");
+        mainMenu();
     }
 
     // Menu classes
     public void mainMenu() {
         _userController.createAdmin();
-
-        switch (readFromConsole(_appView::mainMenu, Integer.class)) {
-            case 0 -> getRoute("");
-            case 1 -> getRoute("/login");
-            case 2 -> getRoute("/signup");
-            default -> getRoute("/?option_not_found");
+        boolean running = true;
+        while (running) {
+            switch (readFromConsole(_appView::mainMenu, Integer.class)) {
+                case 0 -> running = false;
+                case 1 -> logIn();
+                case 2 -> signUp();
+                default -> _appView.option_not_found();
+            }
         }
     }
 
     public void userPanel() {
-        switch (readFromConsole(_appView::userPanel, Integer.class)) {
-            case 0 -> getRoute("/logout");
-            case 1 -> getRoute("/account-settings");
-            case 2 -> getRoute("/shipping-address-options");
-            case 3 -> getRoute("/orders");
-            case 4 -> getRoute("/favourites");
-            case 5 -> getRoute("/shopping-cart");
-            case 6 -> getRoute("/products");
-            default -> getRoute("/user-panel?option_not_found");
+        while (true) {
+            switch (readFromConsole(_appView::userPanel, Integer.class)) {
+                case 0 -> logOut();
+                case 1 -> accountSettings();
+                case 2 -> shippingAddressOptions();
+                case 3 -> orders();
+                case 4 -> favourites();
+                case 5 -> shoppingCart();
+                case 6 -> products();
+                default -> _appView.option_not_found();
+            }
         }
     }
 
     public void accountSettings() {
-        switch (readFromConsole(_appView::accountSettings, Integer.class)) {
-            case 0 -> getRoute("/user-panel");
-            case 1 -> getRoute("/account-settings/profile-details");
-            case 2 -> getRoute("/account-settings/edit-profile-details");
-            case 3 -> getRoute("/account-settings/change-password");
-            case 4 -> getRoute("/account-settings/delete-account");
-            default -> getRoute("/account-settings?option_not_found");
+        boolean running = true;
+        while (running) {
+            switch (readFromConsole(_appView::accountSettings, Integer.class)) {
+                case 0 -> running = false;
+                case 1 -> profileDetails();
+                case 2 -> editProfileDetails();
+                case 3 -> changePassword();
+                case 4 -> deleteAccount();
+                default -> accountSettings();
+            }
         }
     }
 
@@ -166,17 +164,9 @@ public class AppController {
 
         Response response = _userController.updateUser(firstname, lastname, email, _session.getId());
         switch (response) {
-            case USER_UPDATE_SUCCESSFUL -> {
-                _appView.user_updated_successfully();
-                if (!email.isEmpty()) {
-                    _session.destroy();
-                    _session = Session.getInstance();
-                    _session.setId(email);
-                }
-                getRoute("/account-settings");
-            }
-            case USER_EXISTS -> getRoute("/account-settings?user_exists");
-            case SOMETHING_WENT_WRONG -> getRoute("/account-settings?something_went_wrong");
+            case USER_UPDATE_SUCCESSFUL -> restart_session(email);
+            case USER_EXISTS -> _appView.user_exists();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
     }
 
@@ -188,11 +178,11 @@ public class AppController {
         Response response = _userController.updateUserPassword(currentPassword, newPassword, confirmPassword, _session.getId());
 
         switch (response) {
-            case USER_NOT_FOUND -> getRoute("/account-settings?user_not_found");
-            case INCORRECT_PASSWORD -> getRoute("/account-settings?incorrect_password");
-            case PASSWORDS_DO_NOT_MATCH -> getRoute("/account-settings?passwords_do_not_match");
-            case PASSWORD_UPDATE_SUCCESSFUL -> getRoute("/account-settings?password_updated_successfully");
-            case SOMETHING_WENT_WRONG -> getRoute("/account-settings?something_went_wrong");
+            case USER_NOT_FOUND -> _appView.user_not_found();
+            case INCORRECT_PASSWORD -> _appView.incorrect_password();
+            case PASSWORDS_DO_NOT_MATCH -> _appView.passwords_do_not_match();
+            case PASSWORD_UPDATE_SUCCESSFUL -> _appView.password_updated_successfully();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
     }
 
@@ -202,22 +192,25 @@ public class AppController {
         Response response = _userController.deleteUser(_session.getId(), password);
 
         switch (response) {
-            case INCORRECT_EMAIL -> getRoute("/account-settings?incorrect_email");
-            case INCORRECT_PASSWORD -> getRoute("/account-settings?incorrect_password");
-            case SOMETHING_WENT_WRONG -> getRoute("/account-settings?something_went_wrong");
-            case USER_DELETE_SUCCESSFUL -> getRoute("/update-session");
+            case INCORRECT_EMAIL -> _appView.incorrect_email();
+            case INCORRECT_PASSWORD -> _appView.incorrect_password();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
+            case USER_DELETE_SUCCESSFUL -> deleteUser();
         }
     }
 
     public void shippingAddressOptions() {
-        switch (readFromConsole(_appView::shippingAddressOptions, Integer.class)) {
-            case 0 -> getRoute("/user-panel");
-            case 1 -> getRoute("/shipping-address-options/view-saved-addresses");
-            case 2 -> getRoute("/shipping-address-options/add-address");
-            case 3 -> getRoute("/shipping-address-options/edit-address");
-            case 4 -> getRoute("/shipping-address-options/delete-address");
-            case 5 -> getRoute("/shipping-address-options/delete-all-addresses");
-            default -> getRoute("/shipping-address-options?option_not_found");
+        boolean running = true;
+        while (running) {
+            switch (readFromConsole(_appView::shippingAddressOptions, Integer.class)) {
+                case 0 -> running = false;
+                case 1 -> viewSavedAddresses();
+                case 2 -> addAddress();
+                case 3 -> editAddress();
+                case 4 -> deleteAddress();
+                case 5 -> deleteAllAddresses();
+                default -> _appView.option_not_found();
+            }
         }
     }
 
@@ -226,7 +219,7 @@ public class AppController {
 
         User user = _userController.getUser(_session.getId());
         List<ShippingAddress> addresses = _shippingAddressController.getAll(user);
-        user.set_shippingAddresses(addresses);
+        //user.set_shoppingCart(addresses);
     }
 
     public void addAddress() {
@@ -247,11 +240,14 @@ public class AppController {
 
 
     public void orders() {
-        switch (readFromConsole(_appView::orders, Integer.class)) {
-            case 0 -> getRoute("/user-panel");
-            case 1 -> getRoute("/orders/view-all-orders");
-            case 2 -> getRoute("/orders/view-order");
-            default -> getRoute("/orders?option_not_found");
+        boolean running = true;
+        while (running) {
+            switch (readFromConsole(_appView::orders, Integer.class)) {
+                case 0 -> running = false;
+                case 1 -> viewAllOrders();
+                case 2 -> viewOrder();
+                default -> _appView.option_not_found();
+            }
         }
     }
 
@@ -265,25 +261,31 @@ public class AppController {
 
 
     public void favourites() {
-        switch (readFromConsole(_appView::favourites, Integer.class)) {
-            case 0 -> getRoute("/user-panel");
-            default -> getRoute("/favourites?option_not_found");
+        boolean running = true;
+        while (running) {
+            if (readFromConsole(_appView::favourites, Integer.class) == 0)
+                running = false;
+            else
+                _appView.option_not_found();
         }
     }
 
     public void shoppingCart() {
-        switch (readFromConsole(_appView::shoppingCart, Integer.class)) {
-            case 0 -> getRoute("/user-panel");
-            default -> getRoute("/shopping-cart?option_not_found");
+        boolean running = true;
+        while (running) {
+            running = readFromConsole(_appView::shoppingCart, Integer.class) == 0;
         }
     }
 
     public void products() {
-        switch (readFromConsole(_appView::products, Integer.class)) {
-            case 0 -> getRoute("/user-panel");
-            case 1 -> getRoute("/products/add-to-favourites");
-            case 2 -> getRoute("/products/add-to-cart");
-            default -> getRoute("/products?option_not_found");
+        boolean running = true;
+        while (running) {
+            switch (readFromConsole(_appView::products, Integer.class)) {
+                case 0 -> running = false;
+                case 1 -> addToFavourites();
+                case 2 -> addToCart();
+                default -> _appView.option_not_found();
+            }
         }
     }
 
@@ -292,12 +294,12 @@ public class AppController {
 
         Integer productId = readFromConsole(_appView::enter_product_id, Integer.class);
 
-        Response response = _userController.addToFavourites(productId, _session.getId());
+        //   Response response = _userController.addToFavourites(productId, _session.getId());
 
-        switch(response) {
-            case PRODUCT_ADD_TO_FAVOURITES -> getRoute("/user-panel?product_added_to_favourites");
-            case PRODUCT_REMOVE_FROM_FAVOURITES -> getRoute("/user-panel?product_removed_to_favourites");
-        }
+//        switch (response) {
+//            case PRODUCT_ADD_TO_FAVOURITES -> _appView.product_added_to_favourites();
+//            case PRODUCT_REMOVE_FROM_FAVOURITES -> _appView.product_removed_from_favourites();
+//        }
     }
 
     public void addToCart() {
@@ -307,25 +309,29 @@ public class AppController {
     public void adminPanel() {
 
         if (!_session.getId().equals("admin@janos"))
-            getRoute("/user-panel");
-
-        switch (readFromConsole(_appView::adminPanel, Integer.class)) {
-            case 0 -> getRoute("/logout");
-            case 1 -> getRoute("/user-options");
-            case 2 -> getRoute("/product-options");
-            case 3 -> getRoute("/order-options");
-            default -> getRoute("/admin-panel?option_not_found");
+            userPanel();
+        while (true) {
+            switch (readFromConsole(_appView::adminPanel, Integer.class)) {
+                case 0 -> logOut();
+                case 1 -> userOptions();
+                case 2 -> productOptions();
+                case 3 -> orderOptions();
+                default -> _appView.option_not_found();
+            }
         }
     }
 
     public void userOptions() {
-        switch (readFromConsole(_appView::userOptions, Integer.class)) {
-            case 0 -> getRoute("/admin-panel");
-            case 1 -> getRoute("/view-all-users");
-            case 2 -> getRoute("/edit-user");
-            case 3 -> getRoute("/remove-user");
-            case 4 -> getRoute("/remove-all-users");
-            default -> getRoute("/user-options?option_not_found");
+        boolean running = true;
+        while (running) {
+            switch (readFromConsole(_appView::userOptions, Integer.class)) {
+                case 0 -> running = false;
+                case 1 -> viewAllUsers();
+                case 2 -> editUser();
+                case 3 -> removeUser();
+                case 4 -> removeAllUsers();
+                default -> _appView.option_not_found();
+            }
         }
     }
 
@@ -349,21 +355,24 @@ public class AppController {
         Response response = _userController.removeALlUsers(adminPassword);
 
         switch (response) {
-            case INCORRECT_PASSWORD -> getRoute("/remove-all-products?incorrect_password");
-            case ALL_PRODUCTS_DELETE_SUCCESSFUL -> getRoute("/admin-panel?all_products_deleted_successfully");
-            case SOMETHING_WENT_WRONG -> getRoute("/admin-panel?something_went_wrong");
+            case INCORRECT_PASSWORD -> _appView.incorrect_password();
+            case ALL_PRODUCTS_DELETE_SUCCESSFUL -> _appView.all_products_deleted_successfully();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
     }
 
     public void productOptions() {
-        switch (readFromConsole(_appView::productOptions, Integer.class)) {
-            case 0 -> getRoute("/admin-panel");
-            case 1 -> getRoute("/view-all-products");
-            case 2 -> getRoute("/add-product");
-            case 3 -> getRoute("/edit-product");
-            case 4 -> getRoute("/remove-product");
-            case 5 -> getRoute("/remove-all-products");
-            default -> getRoute("/product-options?option_not_found");
+        boolean running = true;
+        while (running) {
+            switch (readFromConsole(_appView::productOptions, Integer.class)) {
+                case 0 -> running = false;
+                case 1 -> viewAllProducts();
+                case 2 -> addProduct();
+                case 3 -> editProduct();
+                case 4 -> removeProduct();
+                case 5 -> removeAllProducts();
+                default -> _appView.option_not_found();
+            }
         }
     }
 
@@ -391,10 +400,9 @@ public class AppController {
         Response response = _productController.addProduct(name, price, category, description, stock);
 
         switch (response) {
-            case PRODUCT_CREATE_SUCCESSFUL -> getRoute("/admin-panel?product_added_successfully");
-            case SOMETHING_WENT_WRONG -> getRoute("/admin-panel?something_went_wrong");
+            case PRODUCT_CREATE_SUCCESSFUL -> _appView.product_added_successfully();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
-
     }
 
     public void editProduct() {
@@ -414,9 +422,9 @@ public class AppController {
         Response response = _productController.modify(name, price_str, description, category, stock_str, productId);
 
         switch (response) {
-            case PRODUCT_CREATE_SUCCESSFUL -> getRoute("/edit-product?product_not_found");
-            case PRODUCT_UPDATE_SUCCESSFUL -> getRoute("/admin-panel?product_updated_successfully");
-            case SOMETHING_WENT_WRONG -> getRoute("admin-panel?something_went_wrong");
+            case PRODUCT_NOT_FOUND -> _appView.product_not_found();
+            case PRODUCT_UPDATE_SUCCESSFUL -> _appView.product_updated_successfully();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
     }
 
@@ -426,8 +434,8 @@ public class AppController {
 
         Response response = _productController.removeProduct(productId);
         switch (response) {
-            case PRODUCT_DELETE_SUCCESSFUL -> getRoute("/admin-panel?product_deleted_successfully");
-            case SOMETHING_WENT_WRONG -> getRoute("/admin-panel?something_went_wrong");
+            case PRODUCT_DELETE_SUCCESSFUL -> _appView.product_deleted_successfully();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
     }
 
@@ -438,21 +446,24 @@ public class AppController {
         Response response = _productController.removeAllProducts(adminPassword);
 
         switch (response) {
-            case INCORRECT_PASSWORD -> getRoute("/remove-all-products?incorrect_password");
-            case ALL_PRODUCTS_DELETE_SUCCESSFUL -> getRoute("/admin-panel?all_products_deleted_successfully");
-            case SOMETHING_WENT_WRONG -> getRoute("/admin-panel?something_went_wrong");
+            case INCORRECT_PASSWORD -> _appView.incorrect_password();
+            case ALL_PRODUCTS_DELETE_SUCCESSFUL -> _appView.all_products_deleted_successfully();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
     }
 
 
     public void orderOptions() {
-        switch (readFromConsole(_appView::orderOptions, Integer.class)) {
-            case 0 -> getRoute("/admin-panel");
-            case 1 -> getRoute("/view-all-users-orders");
-            case 2 -> getRoute("/edit order");
-            case 3 -> getRoute("/remove-order");
-            case 4 -> getRoute("/remove-all-orders");
-            default -> getRoute("/order-options?option_not_found");
+        boolean running = true;
+        while (running) {
+            switch (readFromConsole(_appView::orderOptions, Integer.class)) {
+                case 0 -> running = false;
+                case 1 -> viewAllOrders();
+                case 2 -> editOrder();
+                case 3 -> removeOrder();
+                case 4 -> removeAllOrders();
+                default -> _appView.option_not_found();
+            }
         }
     }
 
@@ -481,8 +492,8 @@ public class AppController {
 
         switch (response) {
             case USER_LOGIN_SUCCESSFUL -> setUpSession(email);
-            case INCORRECT_EMAIL -> getRoute("/?incorrect_email");
-            case INCORRECT_PASSWORD -> getRoute("/?incorrect_password");
+            case INCORRECT_EMAIL -> _appView.incorrect_email();
+            case INCORRECT_PASSWORD -> _appView.incorrect_password();
         }
     }
 
@@ -496,14 +507,14 @@ public class AppController {
         Response response = _userController.createUser(firstname, lastname, email, password);
 
         switch (response) {
-            case USER_EXISTS -> getRoute("/?user_exists");
-            case USER_CREATE_SUCCESSFUL -> getRoute("/?user_created_successfully");
-            case SOMETHING_WENT_WRONG -> getRoute("/?something_went_wrong");
+            case USER_EXISTS -> _appView.user_exists();
+            case USER_CREATE_SUCCESSFUL -> _appView.user_created_successfully();
+            case SOMETHING_WENT_WRONG -> _appView.something_went_wrong();
         }
     }
 
     public void logOut() {
         if (_session.destroy())
-            getRoute("/?logout_successful");
+            mainMenu();
     }
 }

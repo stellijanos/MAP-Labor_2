@@ -125,13 +125,13 @@ public class UserController {
 
 //    ---------------------- Observer Pattern
 
-    public Response addToFavourites(Integer productId, String userEmail) {
-        User user = _userRepository.read(userEmail);
-        Product product = _productRepository.read(productId);
-
-        Favourite favourite = new Favourite(user, product);
-
-        return  _favouriteRepository.addToFavourites(favourite) && favourite.addToFavourites()
-                ? Response.PRODUCT_ADD_TO_FAVOURITES : Response.SOMETHING_WENT_WRONG;
-    }
+//    public Response addToFavourites(Integer productId, String userEmail) {
+//        User user = _userRepository.read(userEmail);
+//        Product product = _productRepository.read(productId);
+//
+//        Favourite favourite = new Favourite(user, product);
+//
+//        return  _favouriteRepository.addToFavourites(favourite) && favourite.addToFavourites()
+//                ? Response.PRODUCT_ADD_TO_FAVOURITES : Response.SOMETHING_WENT_WRONG;
+//    }
 }

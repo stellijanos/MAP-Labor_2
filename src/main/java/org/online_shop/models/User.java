@@ -1,23 +1,22 @@
 package org.online_shop.models;
 
 import org.online_shop.controllers.CustomControllerTools;
+import org.online_shop.interfaces.UserObserver;
+import org.online_shop.interfaces.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class User {
+public class User implements Subject {
     private Integer _id;
     private String _firstname;
     private String _lastname;
     private String _email;
     private String _password;
     private final String _createdAt;
-
-    private List<Product> _favourites = new ArrayList<>();
-    private List<Order> _orders = new ArrayList<>();
-    private List<ShippingAddress> _shippingAddresses = new ArrayList<>();
     private ShoppingCart _shoppingCart;
+    private final List<UserObserver> observers = new ArrayList<>();
 
 
     public User() {
@@ -68,18 +67,6 @@ public class User {
         return _createdAt;
     }
 
-    public List<Product> get_favourites() {
-        return _favourites;
-    }
-
-    public List<Order> get_orders() {
-        return _orders;
-    }
-
-    public List<ShippingAddress> get_shippingAddresses() {
-        return _shippingAddresses;
-    }
-
     public ShoppingCart get_shoppingCart() {
         return _shoppingCart;
     }
@@ -88,17 +75,6 @@ public class User {
         this._shoppingCart = shoppingCart;
     }
 
-    public void set_favourites(List<Product> _favourites) {
-        this._favourites = _favourites;
-    }
-
-    public void set_orders(List<Order> _orders) {
-        this._orders = _orders;
-    }
-
-    public void set_shippingAddresses(List<ShippingAddress> _shippingAddresses) {
-        this._shippingAddresses = _shippingAddresses;
-    }
 
     @Override
     public String toString() {
@@ -109,16 +85,24 @@ public class User {
                 ", email='" + _email + '\'' +
                 ", password='" + _password + '\'' +
                 ", createdAt='" + _createdAt + '\'' +
-                ", favourites=" + _favourites +
-                ", orders=" + _orders +
-                ", shippingAddresses=" + _shippingAddresses +
                 ", shoppingCart=" + _shoppingCart +
                 '}';
     }
 
-
-    public boolean addToFavourites(Product product) {
-        return _favourites.add(product);
+    @Override
+    public void add(UserObserver observer) {
+        observers.add(observer);
     }
 
+    @Override
+    public void remove(UserObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (UserObserver observer: observers) {
+            observer.update(_firstname, _lastname, _email, _password, _shoppingCart);
+        }
+    }
 }

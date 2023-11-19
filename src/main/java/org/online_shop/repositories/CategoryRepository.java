@@ -17,7 +17,7 @@ public class CategoryRepository extends Database {
 
         try {
             PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setString(1, category.get_name());
+            prepStmt.setString(1, category.getName());
             return prepStmt.execute();
         } catch (SQLException e) {
             return false;
@@ -33,8 +33,8 @@ public class CategoryRepository extends Database {
             ResultSet resultSet = prepStmt.executeQuery();
             Category category = new Category();
             if (resultSet.next()) {
-                category.set_id(resultSet.getInt("id"));
-                category.set_name(resultSet.getString("name"));
+                category.setId(resultSet.getInt("id"));
+                category.setName(resultSet.getString("name"));
             }
             return category;
         } catch (SQLException e) {
@@ -52,8 +52,8 @@ public class CategoryRepository extends Database {
 
             while (resultSet.next()) {
                 Category category = new Category();
-                category.set_id(resultSet.getInt("id"));
-                category.set_name(resultSet.getString("name"));
+                category.setId(resultSet.getInt("id"));
+                category.setName(resultSet.getString("name"));
                 categories.add(category);
             }
             return categories;
@@ -67,8 +67,8 @@ public class CategoryRepository extends Database {
 
         try {
             PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setString(1, updatedCategory.get_name());
-            prepStmt.setInt(2, updatedCategory.get_id());
+            prepStmt.setString(1, updatedCategory.getName());
+            prepStmt.setInt(2, updatedCategory.getId());
             return prepStmt.execute();
         } catch (SQLException e) {
             return false;

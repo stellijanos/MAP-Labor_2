@@ -17,9 +17,9 @@ public class ShoppingCartItemRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, shoppingCartItem.get_shoppingCart().get_id());
-            stmt.setInt(2, shoppingCartItem.get_product().get_id());
-            stmt.setInt(3, shoppingCartItem.get_quantity());
+            stmt.setInt(1, shoppingCartItem.getShoppingCart().getId());
+            stmt.setInt(2, shoppingCartItem.getProduct().getId());
+            stmt.setInt(3, shoppingCartItem.getQuantity());
 
             return stmt.execute();
         } catch (SQLException e) {
@@ -33,7 +33,7 @@ public class ShoppingCartItemRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, shoppingCart.get_id());
+            stmt.setInt(1, shoppingCart.getId());
 
             ResultSet resultSet = stmt.executeQuery();
             List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
@@ -41,10 +41,10 @@ public class ShoppingCartItemRepository extends Database {
             while (resultSet.next()) {
                 Product product = new Product();
                 ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
-                product.set_id(resultSet.getInt("product_id"));
-                shoppingCartItem.set_product(product);
-                shoppingCartItem.set_shoppingCart(shoppingCart);
-                shoppingCartItem.set_quantity(resultSet.getInt("quantity"));
+                product.setId(resultSet.getInt("product_id"));
+                shoppingCartItem.setProduct(product);
+                shoppingCartItem.setShoppingCart(shoppingCart);
+                shoppingCartItem.setQuantity(resultSet.getInt("quantity"));
 
                 shoppingCartItems.add(shoppingCartItem);
             }
@@ -61,9 +61,9 @@ public class ShoppingCartItemRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, shoppingCartItem.get_quantity());
-            stmt.setInt(2, shoppingCartItem.get_shoppingCart().get_id());
-            stmt.setInt(3, shoppingCartItem.get_product().get_id());
+            stmt.setInt(1, shoppingCartItem.getQuantity());
+            stmt.setInt(2, shoppingCartItem.getShoppingCart().getId());
+            stmt.setInt(3, shoppingCartItem.getProduct().getId());
 
             return stmt.execute();
         } catch (SQLException e) {
@@ -77,8 +77,8 @@ public class ShoppingCartItemRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, shoppingCartItem.get_shoppingCart().get_id());
-            stmt.setInt(2, shoppingCartItem.get_product().get_id());
+            stmt.setInt(1, shoppingCartItem.getShoppingCart().getId());
+            stmt.setInt(2, shoppingCartItem.getProduct().getId());
             return stmt.execute();
         } catch (SQLException e) {
             return false;

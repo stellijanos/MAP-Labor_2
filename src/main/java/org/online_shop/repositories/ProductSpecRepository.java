@@ -17,9 +17,9 @@ public class ProductSpecRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, productSpec.get_product().get_id());
-            stmt.setString(2, productSpec.get_specName());
-            stmt.setString(3, productSpec.get_specValue());
+            stmt.setInt(1, productSpec.getProduct().getId());
+            stmt.setString(2, productSpec.getSpecName());
+            stmt.setString(3, productSpec.getSpecValue());
             return stmt.execute();
         } catch (SQLException e) {
             return false;
@@ -33,15 +33,15 @@ public class ProductSpecRepository extends Database {
             List<ProductSpec> productSpecs = new ArrayList<>();
 
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, product.get_id());
+            stmt.setInt(1, product.getId());
             ResultSet resultSet = stmt.executeQuery();
 
             while (resultSet.next()) {
                 ProductSpec productSpec = new ProductSpec();
-                productSpec.set_product(product);
-                productSpec.set_id(resultSet.getInt("id"));
-                productSpec.set_specName(resultSet.getString("spec_name"));
-                productSpec.set_specValue(resultSet.getString("spec_value"));
+                productSpec.setProduct(product);
+                productSpec.setId(resultSet.getInt("id"));
+                productSpec.setSpecName(resultSet.getString("spec_name"));
+                productSpec.setSpecValue(resultSet.getString("spec_value"));
 
                 productSpecs.add(productSpec);
             }
@@ -58,9 +58,9 @@ public class ProductSpecRepository extends Database {
         try {
 
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setString(1, productSpec.get_specName());
-            stmt.setString(2, productSpec.get_specValue());
-            stmt.setInt(3, productSpec.get_id());
+            stmt.setString(1, productSpec.getSpecName());
+            stmt.setString(2, productSpec.getSpecValue());
+            stmt.setInt(3, productSpec.getId());
 
             return stmt.execute();
 

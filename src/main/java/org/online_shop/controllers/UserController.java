@@ -1,7 +1,5 @@
 package org.online_shop.controllers;
 
-import org.online_shop.models.Favourite;
-import org.online_shop.models.Product;
 import org.online_shop.repositories.Env;
 import org.online_shop.enums.Response;
 import org.online_shop.models.User;
@@ -10,7 +8,6 @@ import org.online_shop.repositories.ProductRepository;
 import org.online_shop.repositories.UserRepository;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -32,12 +29,12 @@ public class UserController {
             return Response.USER_EXISTS;
         }
         User user = new User();
-        user.set_firstname(firstname);
-        user.set_lastname(lastname);
-        user.set_email(email);
-        user.set_password(BCrypt.hashpw(password, BCrypt.gensalt()));
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setEmail(email);
+        user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
 
-        user.set_id(_userRepository.readAll().size() + 1);
+        user.setId(_userRepository.readAll().size() + 1);
 
         return _userRepository.create(user) ? Response.USER_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
@@ -45,13 +42,13 @@ public class UserController {
 
     public boolean isAvailableEmail(String email) {
         User user = _userRepository.read(email);
-        return user.get_email() == null;
+        return user.getEmail() == null;
     }
 
     public Response updateUser(String newFirstname, String newLastname, String newEmail, String currentEmail) {
         User currentUser = _userRepository.read(currentEmail);
 
-        if (currentUser.get_email() == null)
+        if (currentUser.getEmail() == null)
             return Response.USER_NOT_FOUND;
 
         if (!newEmail.isEmpty() && !isAvailableEmail(newEmail))
@@ -61,9 +58,9 @@ public class UserController {
 
         currentUser.notifyObservers();
 
-        updatedUser.set_firstname(newFirstname.isEmpty() ? currentUser.get_firstname() : newFirstname);
-        updatedUser.set_lastname(newLastname.isEmpty() ? currentUser.get_lastname() : newLastname);
-        updatedUser.set_email(newEmail.isEmpty() ? currentUser.get_email() : newEmail);
+        updatedUser.setFirstname(newFirstname.isEmpty() ? currentUser.getFirstname() : newFirstname);
+        updatedUser.setLastname(newLastname.isEmpty() ? currentUser.getLastname() : newLastname);
+        updatedUser.setEmail(newEmail.isEmpty() ? currentUser.getEmail() : newEmail);
 
         return _userRepository.update(updatedUser, currentEmail) ? Response.USER_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
@@ -71,8 +68,8 @@ public class UserController {
     public Response updateUserPassword(String currentPassword, String newPassword, String confirmPassword, String currentEmail) {
         User currentUser = _userRepository.read(currentEmail);
 
-        return currentUser.get_email() == null ? Response.USER_NOT_FOUND :
-                !BCrypt.checkpw(currentPassword, currentUser.get_password()) ? Response.INCORRECT_PASSWORD :
+        return currentUser.getEmail() == null ? Response.USER_NOT_FOUND :
+                !BCrypt.checkpw(currentPassword, currentUser.getPassword()) ? Response.INCORRECT_PASSWORD :
                         !newPassword.equals(confirmPassword) ? Response.PASSWORDS_DO_NOT_MATCH :
                                 _userRepository.updatePassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()), currentEmail) ? Response.PASSWORD_UPDATE_SUCCESSFUL :
                                         Response.SOMETHING_WENT_WRONG;
@@ -81,8 +78,8 @@ public class UserController {
     public Response deleteUser(String email, String password) {
         User user = _userRepository.read(email);
 
-        return user.get_email() == null ? Response.INCORRECT_EMAIL :
-                !BCrypt.checkpw(password, user.get_password()) ? Response.INCORRECT_PASSWORD :
+        return user.getEmail() == null ? Response.INCORRECT_EMAIL :
+                !BCrypt.checkpw(password, user.getPassword()) ? Response.INCORRECT_PASSWORD :
                         _userRepository.delete(email) ? Response.USER_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
@@ -96,8 +93,8 @@ public class UserController {
     public Response logInUser(String email, String password) {
         User user = _userRepository.read(email);
 
-        return user.get_email() == null ? Response.INCORRECT_EMAIL :
-                BCrypt.checkpw(password, user.get_password()) ? Response.USER_LOGIN_SUCCESSFUL : Response.INCORRECT_PASSWORD;
+        return user.getEmail() == null ? Response.INCORRECT_EMAIL :
+                BCrypt.checkpw(password, user.getPassword()) ? Response.USER_LOGIN_SUCCESSFUL : Response.INCORRECT_PASSWORD;
     }
 
     public User getUser(String email) {
@@ -116,10 +113,10 @@ public class UserController {
         Env env = new Env();
         User user = new User();
 
-        user.set_firstname(env.load().get("ADMIN_FIRSTNAME"));
-        user.set_lastname(env.load().get("ADMIN_LASTNAME"));
-        user.set_email(env.load().get("ADMIN_EMAIL"));
-        user.set_password(env.load().get("ADMIN_PASSWORD"));
+        user.setFirstname(env.load().get("ADMIN_FIRSTNAME"));
+        user.setLastname(env.load().get("ADMIN_LASTNAME"));
+        user.setEmail(env.load().get("ADMIN_EMAIL"));
+        user.setPassword(env.load().get("ADMIN_PASSWORD"));
 
         _userRepository.create(user);
     }

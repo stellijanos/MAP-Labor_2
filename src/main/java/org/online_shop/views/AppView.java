@@ -4,7 +4,6 @@ import org.online_shop.models.Category;
 import org.online_shop.models.Product;
 import org.online_shop.models.User;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 public class AppView {
@@ -242,7 +241,7 @@ public class AppView {
     public void account_details(User user) {
         System.out.printf("\n-------------------\n Account details\n-------------------\n" +
                         "Member since: %s\nFirstname:    %s\nLastname:     %s\nEmail:        %s\n",
-                user.get_createdAt(), user.get_firstname(), user.get_lastname(), user.get_email());
+                user.getCreatedAt(), user.getFirstname(), user.getLastname(), user.getEmail());
     }
 
     public void enter_new_password() {

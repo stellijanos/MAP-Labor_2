@@ -18,7 +18,7 @@ public class ProductTest {
         ProductController productController = new ProductController(productRepository);
 
         Category electronics = new Category();
-        electronics.set_name("Electronics");
+        electronics.setName("Electronics");
 
         assertEquals(0, productRepository.readAll().size());
 
@@ -33,7 +33,7 @@ public class ProductTest {
         ProductController productController = new ProductController(productRepository);
 
         Category electronics = new Category();
-        electronics.set_name("Electronics");
+        electronics.setName("Electronics");
 
         assertEquals(0, productRepository.readAll().size());
 
@@ -43,11 +43,11 @@ public class ProductTest {
         Product createdProduct = productController.getProduct(1);
         assertNotNull(createdProduct);
 
-        assertEquals("SmartPhone", createdProduct.get_name());
-        assertEquals((Float) 999.99f, createdProduct.get_price());
-        assertEquals(electronics, createdProduct.get_category());
-        assertEquals("Very good phone", createdProduct.get_description());
-        assertEquals((Integer) 50, createdProduct.get_stock());
+        assertEquals("SmartPhone", createdProduct.getName());
+        assertEquals((Float) 999.99f, createdProduct.getPrice());
+        assertEquals(electronics, createdProduct.getCategory());
+        assertEquals("Very good phone", createdProduct.getDescription());
+        assertEquals((Integer) 50, createdProduct.getStock());
 
     }
 
@@ -57,7 +57,7 @@ public class ProductTest {
         ProductController productController = new ProductController(productRepository);
 
         Category electronics = new Category();
-        electronics.set_name("Electronics");
+        electronics.setName("Electronics");
 
         assertEquals(0, productRepository.readAll().size());
 
@@ -67,20 +67,20 @@ public class ProductTest {
         Product createdProduct = productController.getProduct(1);
 
         Category smartDevices = new Category();
-        smartDevices.set_name("Smart devices");
+        smartDevices.setName("Smart devices");
 
-        createdProduct.set_name("Telephone");
-        createdProduct.set_price(500f);
-        createdProduct.set_category(smartDevices);
-        createdProduct.set_description("It's working");
-        createdProduct.set_stock(10);
+        createdProduct.setName("Telephone");
+        createdProduct.setPrice(500f);
+        createdProduct.setCategory(smartDevices);
+        createdProduct.setDescription("It's working");
+        createdProduct.setStock(10);
 
 
-        assertEquals("Telephone", createdProduct.get_name());
-        assertEquals((Float) 500f, createdProduct.get_price());
-        assertEquals(smartDevices, createdProduct.get_category());
-        assertEquals("It's working", createdProduct.get_description());
-        assertEquals((Integer) 10, createdProduct.get_stock());
+        assertEquals("Telephone", createdProduct.getName());
+        assertEquals((Float) 500f, createdProduct.getPrice());
+        assertEquals(smartDevices, createdProduct.getCategory());
+        assertEquals("It's working", createdProduct.getDescription());
+        assertEquals((Integer) 10, createdProduct.getStock());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class ProductTest {
         ProductController productController = new ProductController(productRepository);
 
         Category electronics = new Category();
-        electronics.set_name("Electronics");
+        electronics.setName("Electronics");
 
         assertEquals(0, productRepository.readAll().size());
 

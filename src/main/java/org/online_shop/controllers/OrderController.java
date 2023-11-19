@@ -17,12 +17,12 @@ public class OrderController {
     public Response createOrder(User user, ShippingAddress shippingAddress, PaymentStrategy payment, String status, Float shippingFee) {
 
         Order order = new Order();
-        order.set_user(user);
-        order.set_shippingAddress(shippingAddress);
+        order.setUser(user);
+        order.setShippingAddress(shippingAddress);
         order.set_paymentMethod(payment);
-        order.set_status(status);
-        order.set_shippingFee(shippingFee);
-        order.set_id(_orderRepository.readAll().size()+1);
+        order.setStatus(status);
+        order.setShippingFee(shippingFee);
+        order.setId(_orderRepository.readAll().size()+1);
 
         return _orderRepository.create(order) ? Response.ORDER_CREATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
     }

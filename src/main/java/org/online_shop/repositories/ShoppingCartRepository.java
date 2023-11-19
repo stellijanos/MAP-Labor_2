@@ -14,7 +14,7 @@ public class ShoppingCartRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, shoppingCart.get_user().get_id());
+            stmt.setInt(1, shoppingCart.getUser().getId());
             return stmt.execute();
         } catch (SQLException e) {
             return false;
@@ -26,13 +26,13 @@ public class ShoppingCartRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, user.get_id());
+            stmt.setInt(1, user.getId());
             ResultSet resultSet = stmt.executeQuery();
             ShoppingCart shoppingCart = new ShoppingCart();
 
             if (resultSet.next()) {
-                shoppingCart.set_user(user);
-                shoppingCart.set_id(resultSet.getInt("id"));
+                shoppingCart.setUser(user);
+                shoppingCart.setId(resultSet.getInt("id"));
             }
             return shoppingCart;
 
@@ -47,8 +47,8 @@ public class ShoppingCartRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1,shoppingCart.get_id());
-            stmt.setInt(2,shoppingCart.get_user().get_id());
+            stmt.setInt(1,shoppingCart.getId());
+            stmt.setInt(2,shoppingCart.getUser().getId());
             return stmt.execute();
         } catch (SQLException e) {
             return false;

@@ -1,6 +1,5 @@
 package org.online_shop.repositories;
 
-import org.online_shop.interfaces.PaymentStrategy;
 import org.online_shop.models.*;
 
 import java.sql.PreparedStatement;
@@ -17,11 +16,11 @@ public class OrderRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, order.get_user().get_id());
-            stmt.setInt(2, order.get_shippingAddress().get_id());
+            stmt.setInt(1, order.getUser().getId());
+            stmt.setInt(2, order.getShippingAddress().getId());
             stmt.setInt(3, order.get_paymentMethod().getId());
-            stmt.setString(4, order.get_status());
-            stmt.setFloat(5, order.get_shippingFee());
+            stmt.setString(4, order.getStatus());
+            stmt.setFloat(5, order.getShippingFee());
             return stmt.execute();
         } catch (SQLException e) {
             return false;
@@ -56,7 +55,7 @@ public class OrderRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, user.get_id());
+            stmt.setInt(1, user.getId());
 
             List<Order> orders = new ArrayList<>();
 
@@ -64,13 +63,13 @@ public class OrderRepository extends Database {
 
             while (resultSet.next()) {
                 ShippingAddress shippingAddress = new ShippingAddress();
-                shippingAddress.set_id(resultSet.getInt("shipping_address_id"));
+                shippingAddress.setId(resultSet.getInt("shipping_address_id"));
                 Order order = new Order();
-                order.set_user(user);
-                order.set_id(resultSet.getInt("id"));
-                order.set_status(resultSet.getString("status"));
-                order.set_shippingFee(resultSet.getFloat("shipping_fee"));
-                order.set_shippingAddress(shippingAddress);
+                order.setUser(user);
+                order.setId(resultSet.getInt("id"));
+                order.setStatus(resultSet.getString("status"));
+                order.setShippingFee(resultSet.getFloat("shipping_fee"));
+                order.setShippingAddress(shippingAddress);
 
                 orders.add(order);
             }
@@ -87,8 +86,8 @@ public class OrderRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, order.get_id());
-            stmt.setInt(2, order.get_user().get_id());
+            stmt.setInt(1, order.getId());
+            stmt.setInt(2, order.getUser().getId());
             return stmt.execute();
 
         } catch (SQLException e) {

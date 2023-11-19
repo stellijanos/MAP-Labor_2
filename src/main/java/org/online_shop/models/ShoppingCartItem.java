@@ -1,40 +1,40 @@
 package org.online_shop.models;
 
 public class ShoppingCartItem {
-    private ShoppingCart _shoppingCart;
-    private Product _product;
-    private Integer _quantity;
+    private ShoppingCart shoppingCart;
+    private Product product;
+    private Integer quantity;
 
-    public ShoppingCart get_shoppingCart() {
-        return _shoppingCart;
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
     }
 
-    public void set_shoppingCart(ShoppingCart _shoppingCart) {
-        this._shoppingCart = _shoppingCart;
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
-    public Product get_product() {
-        return _product;
+    public Product getProduct() {
+        return product;
     }
 
-    public void set_product(Product product) {
-        this._product = product;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public Integer get_quantity() {
-        return _quantity;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void set_quantity(Integer _quantity) {
-        this._quantity = _quantity;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "ShoppingCartItem{" +
-                "_shoppingCart=" + _shoppingCart +
-                ", product=" + _product +
-                ", _quantity=" + _quantity +
+                "_shoppingCart=" + shoppingCart +
+                ", product=" + product +
+                ", _quantity=" + quantity +
                 '}';
     }
 }

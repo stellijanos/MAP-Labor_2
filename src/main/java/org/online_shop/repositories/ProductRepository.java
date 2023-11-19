@@ -17,12 +17,12 @@ public class ProductRepository extends Database {
                 "VALUES(?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setString(1, product.get_name());
-            prepStmt.setFloat(2, product.get_price());
-            prepStmt.setInt(3, product.get_category().get_id());
-            prepStmt.setString(4, product.get_description());
-            prepStmt.setString(5, product.get_imageLink());
-            prepStmt.setInt(6, product.get_stock());
+            prepStmt.setString(1, product.getName());
+            prepStmt.setFloat(2, product.getPrice());
+            prepStmt.setInt(3, product.getCategory().getId());
+            prepStmt.setString(4, product.getDescription());
+            prepStmt.setString(5, product.getImageLink());
+            prepStmt.setInt(6, product.getStock());
 
             return prepStmt.execute();
         } catch (SQLException e) {
@@ -41,18 +41,18 @@ public class ProductRepository extends Database {
             ResultSet resultSet = prepStmt.executeQuery();
             Product product = new Product();
             while (resultSet.next()) {
-                product.set_id(resultSet.getInt("id"));
-                product.set_name(resultSet.getString("name"));
-                product.set_price(resultSet.getFloat("price"));
-                product.set_description(resultSet.getString("description"));
-                product.set_imageLink(resultSet.getString("image_link"));
-                product.set_stock(resultSet.getInt("stock"));
+                product.setId(resultSet.getInt("id"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getFloat("price"));
+                product.setDescription(resultSet.getString("description"));
+                product.setImageLink(resultSet.getString("image_link"));
+                product.setStock(resultSet.getInt("stock"));
 
                 Category category = new Category();
-                category.set_id(resultSet.getInt("category_id"));
-                category.set_name(resultSet.getString("category_name"));
+                category.setId(resultSet.getInt("category_id"));
+                category.setName(resultSet.getString("category_name"));
 
-                product.set_category(category);
+                product.setCategory(category);
 
             }
             return product;
@@ -74,18 +74,18 @@ public class ProductRepository extends Database {
 
             Product product = new Product();
             while (resultSet.next()) {
-                product.set_id(resultSet.getInt("id"));
-                product.set_name(resultSet.getString("name"));
-                product.set_price(resultSet.getFloat("price"));
-                product.set_description(resultSet.getString("description"));
-                product.set_imageLink(resultSet.getString("image_link"));
-                product.set_stock(resultSet.getInt("stock"));
+                product.setId(resultSet.getInt("id"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getFloat("price"));
+                product.setDescription(resultSet.getString("description"));
+                product.setImageLink(resultSet.getString("image_link"));
+                product.setStock(resultSet.getInt("stock"));
 
                 Category category = new Category();
-                category.set_id(resultSet.getInt("category_id"));
-                category.set_name(resultSet.getString("category_name"));
+                category.setId(resultSet.getInt("category_id"));
+                category.setName(resultSet.getString("category_name"));
 
-                product.set_category(category);
+                product.setCategory(category);
 
                 products.add(product);
             }
@@ -99,12 +99,12 @@ public class ProductRepository extends Database {
         String sql = "UPDATE products SET name=? , price=?, description=?, category_id=?, image_link=? WHERE id=?;";
         try {
             PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setString(1, updatedProduct.get_name());
-            prepStmt.setFloat(2, updatedProduct.get_price());
-            prepStmt.setString(3, updatedProduct.get_description());
-            prepStmt.setInt(4, updatedProduct.get_category().get_id());
-            prepStmt.setString(5, updatedProduct.get_imageLink());
-            prepStmt.setInt(6, updatedProduct.get_id());
+            prepStmt.setString(1, updatedProduct.getName());
+            prepStmt.setFloat(2, updatedProduct.getPrice());
+            prepStmt.setString(3, updatedProduct.getDescription());
+            prepStmt.setInt(4, updatedProduct.getCategory().getId());
+            prepStmt.setString(5, updatedProduct.getImageLink());
+            prepStmt.setInt(6, updatedProduct.getId());
 
             return prepStmt.execute();
         } catch (SQLException e) {

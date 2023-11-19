@@ -1,50 +1,50 @@
 package org.online_shop.models;
 
 public class ProductSpec {
-    private Integer _id;
-    private Product _product;
-    private String _specName;
-    private String _specValue;
+    private Integer id;
+    private Product product;
+    private String specName;
+    private String specValue;
 
-    public Integer get_id() {
-        return _id;
+    public Integer getId() {
+        return id;
     }
 
-    public void set_id(Integer _id) {
-        this._id = _id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Product get_product() {
-        return _product;
+    public Product getProduct() {
+        return product;
     }
 
-    public void set_product(Product product) {
-        this._product = product;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public String get_specName() {
-        return _specName;
+    public String getSpecName() {
+        return specName;
     }
 
-    public void set_specName(String _specName) {
-        this._specName = _specName;
+    public void setSpecName(String specName) {
+        this.specName = specName;
     }
 
-    public String get_specValue() {
-        return _specValue;
+    public String getSpecValue() {
+        return specValue;
     }
 
-    public void set_specValue(String _specValue) {
-        this._specValue = _specValue;
+    public void setSpecValue(String specValue) {
+        this.specValue = specValue;
     }
 
     @Override
     public String toString() {
         return "ProductSpec{" +
-                "id=" + _id +
-                ", product=" + _product +
-                ", specName='" + _specName + '\'' +
-                ", specValue='" + _specValue + '\'' +
+                "id=" + id +
+                ", product=" + product +
+                ", specName='" + specName + '\'' +
+                ", specValue='" + specValue + '\'' +
                 '}';
     }
 }

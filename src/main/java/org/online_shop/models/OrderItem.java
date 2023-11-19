@@ -2,50 +2,50 @@ package org.online_shop.models;
 
 public class OrderItem {
 
-    private Order _order;
-    private Product _product;
-    private Float _price;
-    private Integer _quantity;
+    private Order order;
+    private Product product;
+    private Float price;
+    private Integer quantity;
 
-    public Order get_order() {
-        return _order;
+    public Order getOrder() {
+        return order;
     }
 
-    public void set_order(Order order) {
-        this._order = order;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public Product get_product() {
-        return _product;
+    public Product getProduct() {
+        return product;
     }
 
-    public void set_product(Product product) {
-        this._product = product;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public Float get_price() {
-        return _price;
+    public Float getPrice() {
+        return price;
     }
 
-    public void set_price(Float _price) {
-        this._price = _price;
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
-    public Integer get_quantity() {
-        return _quantity;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void set_quantity(Integer _quantity) {
-        this._quantity = _quantity;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "OrderItem{" +
-                "order=" + _order +
-                ", product=" + _product +
-                ", price=" + _price +
-                ", quantity=" + _quantity +
+                "order=" + order +
+                ", product=" + product +
+                ", price=" + price +
+                ", quantity=" + quantity +
                 '}';
     }
 }

@@ -17,12 +17,12 @@ public class ShippingAddressRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, shippingAddress.get_user().get_id());
-            stmt.setString(2, shippingAddress.get_name());
-            stmt.setString(3, shippingAddress.get_phone());
-            stmt.setString(4, shippingAddress.get_address());
-            stmt.setString(5, shippingAddress.get_city());
-            stmt.setString(6, shippingAddress.get_zipCode());
+            stmt.setInt(1, shippingAddress.getUser().getId());
+            stmt.setString(2, shippingAddress.getName());
+            stmt.setString(3, shippingAddress.getPhone());
+            stmt.setString(4, shippingAddress.getAddress());
+            stmt.setString(5, shippingAddress.getCity());
+            stmt.setString(6, shippingAddress.getZipCode());
 
             return stmt.execute();
 
@@ -39,20 +39,20 @@ public class ShippingAddressRepository extends Database {
 
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, id);
-            stmt.setInt(2, user.get_id());
+            stmt.setInt(2, user.getId());
 
             ResultSet resultSet = stmt.executeQuery();
 
             ShippingAddress shippingAddress = new ShippingAddress();
 
             if (resultSet.next()) {
-                shippingAddress.set_user(user);
-                shippingAddress.set_id(resultSet.getInt("id"));
-                shippingAddress.set_name(resultSet.getString("name"));
-                shippingAddress.set_phone(resultSet.getString("phone"));
-                shippingAddress.set_address(resultSet.getString("address"));
-                shippingAddress.set_city(resultSet.getString("city"));
-                shippingAddress.set_zipCode(resultSet.getString("zipcode"));
+                shippingAddress.setUser(user);
+                shippingAddress.setId(resultSet.getInt("id"));
+                shippingAddress.setName(resultSet.getString("name"));
+                shippingAddress.setPhone(resultSet.getString("phone"));
+                shippingAddress.setAddress(resultSet.getString("address"));
+                shippingAddress.setCity(resultSet.getString("city"));
+                shippingAddress.setZipCode(resultSet.getString("zipcode"));
             }
             return shippingAddress;
 
@@ -69,19 +69,19 @@ public class ShippingAddressRepository extends Database {
         try {
 
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, user.get_id());
+            stmt.setInt(1, user.getId());
             ResultSet resultSet = stmt.executeQuery();
             List<ShippingAddress> shippingAddresses = new ArrayList<>();
 
             while (resultSet.next()) {
                 ShippingAddress shippingAddress = new ShippingAddress();
-                shippingAddress.set_user(user);
-                shippingAddress.set_id(resultSet.getInt("id"));
-                shippingAddress.set_name(resultSet.getString("name"));
-                shippingAddress.set_phone(resultSet.getString("phone"));
-                shippingAddress.set_address(resultSet.getString("address"));
-                shippingAddress.set_city(resultSet.getString("city"));
-                shippingAddress.set_zipCode(resultSet.getString("zipcode"));
+                shippingAddress.setUser(user);
+                shippingAddress.setId(resultSet.getInt("id"));
+                shippingAddress.setName(resultSet.getString("name"));
+                shippingAddress.setPhone(resultSet.getString("phone"));
+                shippingAddress.setAddress(resultSet.getString("address"));
+                shippingAddress.setCity(resultSet.getString("city"));
+                shippingAddress.setZipCode(resultSet.getString("zipcode"));
 
                 shippingAddresses.add(shippingAddress);
             }
@@ -98,12 +98,12 @@ public class ShippingAddressRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setString(1, shippingAddress.get_name());
-            stmt.setString(2, shippingAddress.get_phone());
-            stmt.setString(3, shippingAddress.get_address());
-            stmt.setString(4, shippingAddress.get_city());
-            stmt.setString(5, shippingAddress.get_zipCode());
-            stmt.setInt(6, shippingAddress.get_id());
+            stmt.setString(1, shippingAddress.getName());
+            stmt.setString(2, shippingAddress.getPhone());
+            stmt.setString(3, shippingAddress.getAddress());
+            stmt.setString(4, shippingAddress.getCity());
+            stmt.setString(5, shippingAddress.getZipCode());
+            stmt.setInt(6, shippingAddress.getId());
 
             return stmt.execute();
 
@@ -117,8 +117,8 @@ public class ShippingAddressRepository extends Database {
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, shippingAddress.get_id());
-            stmt.setInt(2, shippingAddress.get_user().get_id());
+            stmt.setInt(1, shippingAddress.getId());
+            stmt.setInt(2, shippingAddress.getUser().getId());
             return stmt.execute();
 
         } catch (SQLException e) {

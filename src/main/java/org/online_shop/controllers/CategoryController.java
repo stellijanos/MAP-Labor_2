@@ -16,8 +16,8 @@ public class CategoryController {
 
     public Response createCategory(String name) {
         Category category = new Category();
-        category.set_name(name);
-        category.set_id(_categoryRepository.readAll().size() + 1);
+        category.setName(name);
+        category.setId(_categoryRepository.readAll().size() + 1);
         return _categoryRepository.create(category) ? Response.CATEGORY_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
@@ -31,11 +31,11 @@ public class CategoryController {
 
     public Response modifyCategory(String name, Integer id) {
         Category currentCategory = _categoryRepository.read(id);
-        if (currentCategory.get_name() == null)
+        if (currentCategory.getName() == null)
             return Response.CATEGORY_NOT_FOUND;
 
         Category updatedCategory = new Category();
-        updatedCategory.set_name(name.isEmpty() ? currentCategory.get_name() : name);
+        updatedCategory.setName(name.isEmpty() ? currentCategory.getName() : name);
         return _categoryRepository.update(updatedCategory) ? Response.CATEGORY_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 

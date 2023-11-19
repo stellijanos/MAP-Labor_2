@@ -5,36 +5,36 @@ import java.util.List;
 
 public class Category {
 
-    private Integer _id;
-    private String _name;
-    private final List<Product> _products = new ArrayList<>();
+    private Integer id;
+    private String name;
+    private final List<Product> products = new ArrayList<>();
 
-    public Integer get_id() {
-        return _id;
+    public Integer getId() {
+        return id;
     }
 
-    public void set_id(Integer id) {
-        this._id = id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String get_name() {
-        return _name;
+    public String getName() {
+        return name;
     }
 
-    public void set_name(String name) {
-        this._name = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public List<Product> get_products() {
-        return _products;
+    public List<Product> getProducts() {
+        return products;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + _id +
-                ", name='" + _name + '\'' +
-                ", products=" + _products +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", products=" + products +
                 '}';
     }
 }

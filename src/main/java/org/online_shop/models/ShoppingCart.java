@@ -6,45 +6,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart implements UserObserver {
-    private Integer _id;
-    private User _user;
-    private final List<ShoppingCartItem> _shoppingCartItems = new ArrayList<>();
+    private Integer id;
+    private User user;
+    private final List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
 
-    public Integer get_id() {
-        return _id;
+    public Integer getId() {
+        return id;
     }
 
-    public void set_id(Integer _id) {
-        this._id = _id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public User get_user() {
-        return _user;
+    public User getUser() {
+        return user;
     }
 
-    public void set_user(User user) {
-        this._user = user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<ShoppingCartItem> get_shoppingCartItems() {
-        return _shoppingCartItems;
+    public List<ShoppingCartItem> getShoppingCartItems() {
+        return shoppingCartItems;
     }
 
     @Override
     public String toString() {
         return "ShoppingCart{" +
-                "id=" + _id +
-                ", user=" + _user +
-                ", shoppingCartItems=" + _shoppingCartItems +
+                "id=" + id +
+                ", user=" + user +
+                ", shoppingCartItems=" + shoppingCartItems +
                 '}';
     }
 
     @Override
     public void update(String firstname, String lastname, String email, String password, ShoppingCart shoppingCart) {
-        _user.set_firstname(firstname);
-        _user.set_lastname(lastname);
-        _user.set_email(email);
-        _user.set_password(password);
-        _user.set_shoppingCart(shoppingCart);
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setShoppingCart(shoppingCart);
     }
 }

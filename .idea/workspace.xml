@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement all repositories with sql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/interfaces/PaymentStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/interfaces/PaymentStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderItemRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,14 +170,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698734405490</updated>
-    </task>
-    <task id="LOCAL-00005" summary="fix MVC design and implement login signup in the cnosole view">
-      <option name="closed" value="true" />
-      <created>1698993975422</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1698993975423</updated>
     </task>
     <task id="LOCAL-00006" summary="implement signUp in controller and also the in Memory Database class">
       <option name="closed" value="true" />
@@ -564,7 +555,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700412745631</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="implement all repositories with sql">
+      <option name="closed" value="true" />
+      <created>1700416466875</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1700416466875</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="UnknownFeatures">

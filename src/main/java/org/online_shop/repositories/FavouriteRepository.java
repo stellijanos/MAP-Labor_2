@@ -14,8 +14,8 @@ public class FavouriteRepository extends Database {
 
         try {
             PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setInt(1, favourite.get_user().get_id());
-            prepStmt.setInt(2, favourite.get_product().get_id());
+            prepStmt.setInt(1, favourite.getUser().getId());
+            prepStmt.setInt(2, favourite.getProduct().getId());
             return prepStmt.execute();
         } catch (SQLException e) {
             return false;
@@ -27,7 +27,7 @@ public class FavouriteRepository extends Database {
 
         try {
             PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setInt(1, user.get_id());
+            prepStmt.setInt(1, user.getId());
             ResultSet resultSet = prepStmt.executeQuery();
             List<Integer> favourites = new ArrayList<>();
             while (resultSet.next()) {
@@ -43,8 +43,8 @@ public class FavouriteRepository extends Database {
         String sql = "DELETE FROM favourites WHERE user_id = ? AND product_id = ?;";
         try {
             PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setInt(1, favourite.get_user().get_id());
-            prepStmt.setInt(2, favourite.get_product().get_id());
+            prepStmt.setInt(1, favourite.getUser().getId());
+            prepStmt.setInt(2, favourite.getProduct().getId());
             return prepStmt.execute();
         } catch (SQLException e) {
             return false;

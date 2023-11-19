@@ -2,29 +2,29 @@ package org.online_shop.models;
 
 public class Favourite {
 
-    private User _user;
-    private Product _product;
+    private final User user;
+    private final Product product;
 
 
-    public Favourite(User _user, Product _product) {
-        this._user = _user;
-        this._product = _product;
+    public Favourite(User user, Product product) {
+        this.user = user;
+        this.product = product;
     }
 
-    public Product get_product() {
-        return _product;
+    public Product getProduct() {
+        return product;
     }
 
-    public User get_user() {
-        return _user;
+    public User getUser() {
+        return user;
     }
 
 
     @Override
     public String toString() {
         return "Favourite{" +
-                " product=" + _product +
-                ", user=" + _user +
+                " product=" + product +
+                ", user=" + user +
                 '}';
     }
 }

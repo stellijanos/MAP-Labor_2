@@ -17,10 +17,10 @@ public class UserRepository extends Database {
 
         try {
             PreparedStatement prepStmt = this.conn().prepareStatement(sql);
-            prepStmt.setString(1, user.get_firstname());
-            prepStmt.setString(2, user.get_lastname());
-            prepStmt.setString(3, user.get_email());
-            prepStmt.setString(4, user.get_password());
+            prepStmt.setString(1, user.getFirstname());
+            prepStmt.setString(2, user.getLastname());
+            prepStmt.setString(3, user.getEmail());
+            prepStmt.setString(4, user.getPassword());
             return prepStmt.execute();
         } catch (SQLException e) {
             return false; // e.printStackTrace();
@@ -35,11 +35,11 @@ public class UserRepository extends Database {
             ResultSet resultSet = prepStmt.executeQuery();
             User user = new User();
             if (resultSet.next()) {
-                user.set_id(resultSet.getInt("id"));
-                user.set_firstname(resultSet.getString("firstname"));
-                user.set_lastname(resultSet.getString("lastname"));
-                user.set_email(resultSet.getString("email"));
-                user.set_password(resultSet.getString("password"));
+                user.setId(resultSet.getInt("id"));
+                user.setFirstname(resultSet.getString("firstname"));
+                user.setLastname(resultSet.getString("lastname"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
             }
             return user;
         } catch (SQLException e) {
@@ -57,11 +57,11 @@ public class UserRepository extends Database {
 
             while (resultSet.next()) {
                 User user = new User();
-                user.set_id(resultSet.getInt("id"));
-                user.set_firstname(resultSet.getString("firstname"));
-                user.set_lastname(resultSet.getString("lastname"));
-                user.set_email(resultSet.getString("email"));
-                user.set_password(resultSet.getString("password"));
+                user.setId(resultSet.getInt("id"));
+                user.setFirstname(resultSet.getString("firstname"));
+                user.setLastname(resultSet.getString("lastname"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
                 users.add(user);
             }
             return users;
@@ -75,10 +75,10 @@ public class UserRepository extends Database {
 
         try {
             PreparedStatement prepStmt = this.conn().prepareStatement(sql);
-            prepStmt.setString(1, updatedUser.get_firstname());
-            prepStmt.setString(2, updatedUser.get_lastname());
-            prepStmt.setString(3, updatedUser.get_email());
-            prepStmt.setString(4, updatedUser.get_password());
+            prepStmt.setString(1, updatedUser.getFirstname());
+            prepStmt.setString(2, updatedUser.getLastname());
+            prepStmt.setString(3, updatedUser.getEmail());
+            prepStmt.setString(4, updatedUser.getPassword());
             prepStmt.setString(5, email);
 
             return prepStmt.execute();

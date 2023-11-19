@@ -38,16 +38,16 @@ public class UserTest {
 
         assertNotNull(createdUser);
 
-        createdUser.set_firstname("Max");
-        createdUser.set_lastname("Mustermann");
-        createdUser.set_email("max.mustermann@gmail.com");
-        createdUser.set_password("max123");
+        createdUser.setFirstname("Max");
+        createdUser.setLastname("Mustermann");
+        createdUser.setEmail("max.mustermann@gmail.com");
+        createdUser.setPassword("max123");
 
 
-        assertEquals("Max", createdUser.get_firstname());
-        assertEquals("Mustermann", createdUser.get_lastname());
-        assertEquals("max.mustermann@gmail.com", createdUser.get_email());
-        assertEquals("max123", createdUser.get_password());
+        assertEquals("Max", createdUser.getFirstname());
+        assertEquals("Mustermann", createdUser.getLastname());
+        assertEquals("max.mustermann@gmail.com", createdUser.getEmail());
+        assertEquals("max123", createdUser.getPassword());
 
     }
 
@@ -57,10 +57,10 @@ public class UserTest {
         UserController userController = new UserController(userRepository);
         User user = userController.getUser("stellijanos@gmail.com");
 
-        assertNull(user.get_id());
-        assertNull(user.get_email());
-        assertNull(user.get_firstname());
-        assertNull(user.get_lastname());
-        assertNull(user.get_password());
+        assertNull(user.getId());
+        assertNull(user.getEmail());
+        assertNull(user.getFirstname());
+        assertNull(user.getLastname());
+        assertNull(user.getPassword());
     }
 }

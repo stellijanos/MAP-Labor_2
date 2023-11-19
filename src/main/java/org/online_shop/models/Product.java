@@ -4,87 +4,87 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
-    private Integer _id;
-    private String _name;
-    private Float _price;
-    private Category _category;
-    private String _description;
-    private String _imageLink;
-    private Integer _stock;
-    private final List<ProductSpec> _productSpecs = new ArrayList<>();
+    private Integer id;
+    private String name;
+    private Float price;
+    private Category category;
+    private String description;
+    private String imageLink;
+    private Integer stock;
+    private final List<ProductSpec> productSpecs = new ArrayList<>();
 
 
-
-    public Integer get_id() {
-        return _id;
+    public Integer getId() {
+        return id;
     }
 
-    public void set_id(Integer _id) {
-        this._id = _id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String get_name() {
-        return _name;
+    public String getName() {
+        return name;
     }
 
-    public void set_name(String _name) {
-        this._name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Float get_price() {
-        return _price;
+    public Float getPrice() {
+        return price;
     }
 
-    public void set_price(Float _price) {
-        this._price = _price;
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
-    public Category get_category() {
-        return _category;
+    public Category getCategory() {
+        return category;
     }
 
-    public void set_category(Category category) {
-        this._category = category;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public String get_description() {
-        return _description;
+    public String getDescription() {
+        return description;
     }
 
-    public void set_description(String _description) {
-        this._description = _description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String get_imageLink() {
-        return _imageLink;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void set_imageLink(String _imageLink) {
-        this._imageLink = _imageLink;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
-    public Integer get_stock() {
-        return _stock;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void set_stock(Integer _stock) {
-        this._stock = _stock;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
-    public List<ProductSpec> get_productSpecs() {
-        return _productSpecs;
+    public List<ProductSpec> getProductSpecs() {
+        return productSpecs;
     }
+
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + _id +
-                ", name='" + _name + '\'' +
-                ", price=" + _price +
-                ", category=" + _category +
-                ", description='" + _description + '\'' +
-                ", imageLink='" + _imageLink + '\'' +
-                ", stock=" + _stock +
-                ", productSpecs=" + _productSpecs +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                ", description='" + description + '\'' +
+                ", imageLink='" + imageLink + '\'' +
+                ", stock=" + stock +
+                ", productSpecs=" + productSpecs +
                 '}';
     }
 }

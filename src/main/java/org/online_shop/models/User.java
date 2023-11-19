@@ -1,6 +1,5 @@
 package org.online_shop.models;
 
-import org.online_shop.controllers.CustomControllerTools;
 import org.online_shop.interfaces.UserObserver;
 import org.online_shop.interfaces.Subject;
 
@@ -9,84 +8,83 @@ import java.util.List;
 
 
 public class User implements Subject {
-    private Integer _id;
-    private String _firstname;
-    private String _lastname;
-    private String _email;
-    private String _password;
-    private final String _createdAt;
-    private ShoppingCart _shoppingCart;
+    private Integer id;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String password;
+    private String createdAt;
+    private ShoppingCart shoppingCart;
     private final List<UserObserver> observers = new ArrayList<>();
     private final List<Product> favourites = new ArrayList<>();
 
-
-    public User() {
-        this._createdAt = CustomControllerTools.getCurrentDateTIme();
+    public Integer getId() {
+        return id;
     }
 
-    public Integer get_id() {
-        return _id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void set_id(Integer _id) {
-        this._id = _id;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public String get_firstname() {
-        return _firstname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public void set_firstname(String _firstname) {
-        this._firstname = _firstname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public String get_lastname() {
-        return _lastname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public void set_lastname(String _lastname) {
-        this._lastname = _lastname;
+    public String getEmail() {
+        return email;
     }
 
-    public String get_email() {
-        return _email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void set_email(String _email) {
-        this._email = _email;
+    public String getPassword() {
+        return password;
     }
 
-    public String get_password() {
-        return _password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void set_password(String _password) {
-        this._password = _password;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public String get_createdAt() {
-        return _createdAt;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public ShoppingCart get_shoppingCart() {
-        return _shoppingCart;
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
     }
 
-    public void set_shoppingCart(ShoppingCart shoppingCart) {
-        this._shoppingCart = shoppingCart;
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + _id +
-                ", firstname='" + _firstname + '\'' +
-                ", lastname='" + _lastname + '\'' +
-                ", email='" + _email + '\'' +
-                ", password='" + _password + '\'' +
-                ", createdAt='" + _createdAt + '\'' +
-                ", shoppingCart=" + _shoppingCart +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", shoppingCart=" + shoppingCart +
                 '}';
     }
 
@@ -103,7 +101,7 @@ public class User implements Subject {
     @Override
     public void notifyObservers() {
         for (UserObserver observer : observers) {
-            observer.update(_firstname, _lastname, _email, _password, _shoppingCart);
+            observer.update(firstname, lastname, email, password, shoppingCart);
         }
     }
 }

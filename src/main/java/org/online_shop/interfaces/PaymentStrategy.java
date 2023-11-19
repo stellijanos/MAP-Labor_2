@@ -1,9 +1,14 @@
 package org.online_shop.interfaces;
 
 public interface PaymentStrategy {
-
     Integer id = null;
-    void pay();
+
+    String type = null;
+    String name = null;
+    String number = null;
+    String cvv = null;
+    void pay(Float amount);
 
     Integer getId();
+
 }

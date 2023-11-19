@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FavouriteRepository extends Database {
+
+    ProductRepository productRepository = new ProductRepository();
     public boolean create(Favourite favourite) {
-        String sql = "INSERT INTO favourites(user_id, product_id) VALUES (? ,?);";
+        String sql = "INSERT INTO favourites(user_id, product_id) VALUES (?, ?);";
 
         try {
             PreparedStatement prepStmt = conn().prepareStatement(sql);
@@ -22,16 +24,15 @@ public class FavouriteRepository extends Database {
         }
     }
 
-    public List<Integer> readAll(User user) {
+    public List<Product> readAll(User user) {
         String sql = "SELECT product_id FROM favourites WHERE user_id = ?;";
-
         try {
             PreparedStatement prepStmt = conn().prepareStatement(sql);
             prepStmt.setInt(1, user.getId());
             ResultSet resultSet = prepStmt.executeQuery();
-            List<Integer> favourites = new ArrayList<>();
+            List<Product> favourites = new ArrayList<>();
             while (resultSet.next()) {
-                favourites.add(resultSet.getInt("product_id"));
+                favourites.add(productRepository.read(resultSet.getInt("product_id")));
             }
             return favourites;
         } catch (SQLException e) {

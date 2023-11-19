@@ -1,5 +1,6 @@
 package org.online_shop.repositories;
 
+import org.online_shop.interfaces.PaymentStrategy;
 import org.online_shop.models.*;
 
 import java.sql.PreparedStatement;
@@ -9,6 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepository extends Database {
+
+    UserRepository userRepository;
+    ShippingAddressRepository shippingAddressRepository;
+
+    public OrderRepository() {
+        userRepository = new UserRepository();
+        shippingAddressRepository = new ShippingAddressRepository();
+    }
 
     public boolean create(Order order) {
         String sql = "INSERT INTO orders (user_id, shipping_address_id, payment_method, status, shipping_fee) " +
@@ -27,26 +36,31 @@ public class OrderRepository extends Database {
         }
     }
 
-    public Order read(Integer id, User user, ShippingAddress shippingAddress) {
+    public Order read(Integer id) {
 
-//        String sql = "SELECT * FROM orders WHERE id = ? AND user_id = ? AND shipping_address_id = ?;";
-//
-//        try {
-//            PreparedStatement stmt = conn().prepareStatement(sql);
-//            stmt.setInt(1, id);
-//            stmt.setInt(2, user.get_id());
-//
-//            ResultSet resultSet = stmt.executeQuery();
-//            Order order = new Order();
-//
-//            if (resultSet.next()) {
-//
-//                PaymentStrategy paymentStrategy = new Card();
-//                order.set_user(user);
+        // , User user, ShippingAddress shippingAddress
+        // AND user_id = ? AND shipping_address_id = ?
+
+        String sql = "SELECT * FROM orders WHERE id = ? ;";
+
+        try {
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet resultSet = stmt.executeQuery();
+            Order order = new Order();
+
+            if (resultSet.next()) {
+                String paymentType = resultSet.getString("payment");
+
+      //          PaymentStrategy paymentStrategy = (paymentType == "card") ? new Card() : new Cash();
+              //  order.setUser(userRepository.read(resultSet.get));
 //                order.set_shippingAddress(shippingAddress);
-//                order.set_paymentMethod(resultSet.getFloat("payment_method"));
-//            }
-//        }
+            //    order.set_paymentMethod(resultSet.getFloat("payment_method"));
+            }
+        } catch (SQLException e) {
+            return new Order();
+        }
         return null;
     }
 

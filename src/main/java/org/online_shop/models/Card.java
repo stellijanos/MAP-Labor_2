@@ -4,14 +4,14 @@ import org.online_shop.interfaces.PaymentStrategy;
 
 public class Card implements PaymentStrategy {
 
-    private final String cardNumber;
-    private final String cardName;
-    private final String cvv;
-
     private Integer id;
+    private final String cardName;
+    private final String number;
+    private final String cvv;
+    private final String type = "card";
 
-    public Card(String cardNumber, String cardName, String cvv) {
-        this.cardNumber = cardNumber;
+    public Card(String number, String cardName, String cvv) {
+        this.number = number;
         this.cardName = cardName;
         this.cvv = cvv;
     }
@@ -19,14 +19,14 @@ public class Card implements PaymentStrategy {
     @Override
     public String toString() {
         return "Card{" +
-                "cardNumber='" + cardNumber + '\'' +
+                "cardNumber='" + number + '\'' +
                 ", cardName='" + cardName + '\'' +
                 ", cvv='" + cvv + '\'' +
                 '}';
     }
 
     @Override
-    public void pay() {
+    public void pay(Float amount) {
 
     }
 

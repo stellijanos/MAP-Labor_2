@@ -12,6 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderItemRepository extends Database {
+
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
+
+    public OrderItemRepository() {
+        productRepository = new ProductRepository();
+        orderRepository = new OrderRepository();
+    }
+
     public boolean create(OrderItem orderItem) {
         String sql = "INSERT INTO order_items(order_id, product_id, price, quantity) VALUES(?, ?, ?, ?);";
 
@@ -37,15 +46,14 @@ public class OrderItemRepository extends Database {
             ResultSet resultSet = prepStmt.executeQuery();
 
             while (resultSet.next()) {
-                Product product = new Product();
-                product.setId(resultSet.getInt("product_id"));
-                order.setId(resultSet.getInt("order_id"));
+
+                order.setId(resultSet.getInt("id"));
                 OrderItem orderItem = new OrderItem();
                 orderItem.setQuantity(resultSet.getInt("quantity"));
                 orderItem.setPrice(resultSet.getFloat("price"));
 
-                orderItem.setOrder(order);
-                orderItem.setProduct(product);
+                orderItem.setOrder(orderRepository.read(resultSet.getInt("order_id")));
+                orderItem.setProduct(productRepository.read(resultSet.getInt("product_id")));
                 orderItems.add(orderItem);
             }
             return orderItems;
@@ -71,24 +79,24 @@ public class OrderItemRepository extends Database {
     }
 
     public boolean delete(Order order, Product product) {
-       String sql = "DELETE FROM order_items WHERE order_id = ? AND product_id = ?;";
+        String sql = "DELETE FROM order_items WHERE order_id = ? AND product_id = ?;";
 
-       try {
-           PreparedStatement stmt = conn().prepareStatement(sql);
-           stmt.setInt(1, order.getId());
-           stmt.setInt(2, product.getId());
-           return stmt.execute();
-       } catch (SQLException e) {
-           return false;
-       }
+        try {
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setInt(1, order.getId());
+            stmt.setInt(2, product.getId());
+            return stmt.execute();
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
-    public boolean deleteAll(Integer orderId) {
+    public boolean deleteAll(Order order) {
         String sql = "DELETE FROM order_items WHERE order_id = ?";
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, orderId);
+            stmt.setInt(1, order.getId());
             return stmt.execute();
         } catch (SQLException e) {
             return false;

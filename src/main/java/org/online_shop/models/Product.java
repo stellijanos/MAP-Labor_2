@@ -1,5 +1,7 @@
 package org.online_shop.models;
 
+import org.online_shop.repositories.ProductRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,11 @@ public class Product {
     private String description;
     private String imageLink;
     private Integer stock;
-    private final List<ProductSpec> productSpecs = new ArrayList<>();
+    private final List<ProductSpec> productSpecs;
+
+    public Product() {
+        productSpecs = new ArrayList<>();
+    }
 
 
     public Integer getId() {
@@ -72,6 +78,10 @@ public class Product {
 
     public List<ProductSpec> getProductSpecs() {
         return productSpecs;
+    }
+
+    public void setProductSpecs(ProductSpec productSpec) {
+        this.productSpecs.add(productSpec);
     }
 
     @Override

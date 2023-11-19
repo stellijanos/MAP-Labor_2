@@ -1,8 +1,8 @@
 package org.online_shop.repositories;
 
-import org.online_shop.models.Category;
 import org.online_shop.models.Database;
 import org.online_shop.models.Product;
+import org.online_shop.models.ProductSpec;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,11 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepository extends Database {
+
+    private final CategoryRepository categoryRepository;
+    private final ProductSpecRepository productSpecRepository;
+
+    public ProductRepository() {
+        this.categoryRepository = new CategoryRepository();
+        this.productSpecRepository = new ProductSpecRepository();
+    }
+
     public boolean create(Product product) {
         String sql = "INSERT INTO products(name, price, category_id, description, image_link, stock) " +
                 "VALUES(?, ?, ?, ?, ?, ?);";
-        try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
+        try (PreparedStatement prepStmt = conn().prepareStatement(sql)) {
             prepStmt.setString(1, product.getName());
             prepStmt.setFloat(2, product.getPrice());
             prepStmt.setInt(3, product.getCategory().getId());
@@ -31,28 +39,24 @@ public class ProductRepository extends Database {
     }
 
     public Product read(Integer id) {
-        String sql = "SELECT p.id, p.name, p.price, p.category_id, p.description, p.image_link, p.stock,\n" +
-                "c.name AS category_name\n" +
-                "FROM products p " +
-                "JOIN categories c on c.id = p.category_id;";
-        try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
+        String sql = "SELECT * FROM products WHERE id = ?;";
+
+        try (PreparedStatement prepStmt = conn().prepareStatement(sql)) {
             prepStmt.setInt(1, id);
             ResultSet resultSet = prepStmt.executeQuery();
             Product product = new Product();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 product.setId(resultSet.getInt("id"));
                 product.setName(resultSet.getString("name"));
                 product.setPrice(resultSet.getFloat("price"));
                 product.setDescription(resultSet.getString("description"));
                 product.setImageLink(resultSet.getString("image_link"));
                 product.setStock(resultSet.getInt("stock"));
+                product.setCategory(categoryRepository.read(resultSet.getInt("category_id")));
 
-                Category category = new Category();
-                category.setId(resultSet.getInt("category_id"));
-                category.setName(resultSet.getString("category_name"));
-
-                product.setCategory(category);
+                List<ProductSpec> productSpecs = productSpecRepository.readAll(product);
+                for (ProductSpec spec : productSpecs)
+                    product.setProductSpecs(spec);
 
             }
             return product;
@@ -62,18 +66,14 @@ public class ProductRepository extends Database {
     }
 
     public List<Product> readAll() {
-        String sql = "SELECT p.id, p.name, p.price, p.category_id, p.description, p.image_link, p.stock,\n" +
-                "c.name AS category_name\n" +
-                "FROM products p " +
-                "JOIN categories c on c.id = p.category_id;";
-        try {
-            Statement stmt = conn().createStatement();
+        String sql = "SELECT * FROM products;";
+        try (Statement stmt = conn().createStatement()) {
             ResultSet resultSet = stmt.executeQuery(sql);
 
             List<Product> products = new ArrayList<>();
 
-            Product product = new Product();
             while (resultSet.next()) {
+                Product product = new Product();
                 product.setId(resultSet.getInt("id"));
                 product.setName(resultSet.getString("name"));
                 product.setPrice(resultSet.getFloat("price"));
@@ -81,11 +81,10 @@ public class ProductRepository extends Database {
                 product.setImageLink(resultSet.getString("image_link"));
                 product.setStock(resultSet.getInt("stock"));
 
-                Category category = new Category();
-                category.setId(resultSet.getInt("category_id"));
-                category.setName(resultSet.getString("category_name"));
-
-                product.setCategory(category);
+                product.setCategory(categoryRepository.read(resultSet.getInt("category_id")));
+                List<ProductSpec> productSpecs = productSpecRepository.readAll(product);
+                for (ProductSpec spec : productSpecs)
+                    product.setProductSpecs(spec);
 
                 products.add(product);
             }
@@ -97,8 +96,7 @@ public class ProductRepository extends Database {
 
     public boolean update(Product updatedProduct) {
         String sql = "UPDATE products SET name=? , price=?, description=?, category_id=?, image_link=? WHERE id=?;";
-        try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
+        try (PreparedStatement prepStmt = conn().prepareStatement(sql)) {
             prepStmt.setString(1, updatedProduct.getName());
             prepStmt.setFloat(2, updatedProduct.getPrice());
             prepStmt.setString(3, updatedProduct.getDescription());
@@ -114,8 +112,7 @@ public class ProductRepository extends Database {
 
     public boolean delete(Integer id) {
         String sql = "DELETE FROM products WHERE id=?;";
-        try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
+        try (PreparedStatement prepStmt = conn().prepareStatement(sql)) {
             prepStmt.setInt(1, id);
 
             return prepStmt.execute();
@@ -126,8 +123,7 @@ public class ProductRepository extends Database {
 
     public boolean deleteAll() {
         String sql = "DELETE FROM products;";
-        try {
-            Statement stmt = conn().createStatement();
+        try (Statement stmt = conn().createStatement()) {
             return stmt.execute(sql);
         } catch (SQLException e) {
             return false;

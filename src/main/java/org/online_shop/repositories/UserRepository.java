@@ -40,6 +40,7 @@ public class UserRepository extends Database {
                 user.setLastname(resultSet.getString("lastname"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPassword(resultSet.getString("password"));
+                user.setCreatedAt(resultSet.getString("created_at"));
             }
             return user;
         } catch (SQLException e) {

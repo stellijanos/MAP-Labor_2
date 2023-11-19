@@ -15,8 +15,13 @@ public class User implements Subject {
     private String password;
     private String createdAt;
     private ShoppingCart shoppingCart;
-    private final List<UserObserver> observers = new ArrayList<>();
-    private final List<Product> favourites = new ArrayList<>();
+    private final List<UserObserver> observers;
+    private final List<Product> favourites;
+
+    public User() {
+        this.observers = new ArrayList<>();
+        this.favourites = new ArrayList<>();
+    }
 
     public Integer getId() {
         return id;
@@ -74,6 +79,17 @@ public class User implements Subject {
         this.shoppingCart = shoppingCart;
     }
 
+    public List<UserObserver> getObservers() {
+        return observers;
+    }
+
+    public List<Product> getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(Product product) {
+        favourites.add(product);
+    }
 
     @Override
     public String toString() {

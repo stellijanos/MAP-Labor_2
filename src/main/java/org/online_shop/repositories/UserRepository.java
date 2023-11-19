@@ -1,7 +1,6 @@
 package org.online_shop.repositories;
 
-import org.online_shop.models.Database;
-import org.online_shop.models.User;
+import org.online_shop.models.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -108,7 +107,6 @@ public class UserRepository extends Database {
         try {
             Statement stmt = this.conn().createStatement();
             return stmt.execute(sql);
-
         } catch (SQLException e) {
             return false;
         }

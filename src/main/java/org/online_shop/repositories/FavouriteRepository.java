@@ -1,37 +1,54 @@
 package org.online_shop.repositories;
 
-import org.online_shop.models.DatabaseInMemory;
-import org.online_shop.models.Favourite;
-import org.online_shop.models.Product;
-import org.online_shop.models.User;
+import org.online_shop.models.*;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FavouriteRepository extends DatabaseInMemory {
+public class FavouriteRepository extends Database {
     public boolean create(Favourite favourite) {
-        return _favourites.add(favourite);
+        String sql = "INSERT INTO favourites(user_id, product_id) VALUES (? ,?);";
+
+        try {
+            PreparedStatement prepStmt = conn().prepareStatement(sql);
+            prepStmt.setInt(1, favourite.get_user().get_id());
+            prepStmt.setInt(2, favourite.get_product().get_id());
+            return prepStmt.execute();
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
-    public List<Favourite> readAll(User user) {
-        return _favourites.stream().filter(favourite -> favourite.get_user().get_id().equals(user.get_id())).collect(Collectors.toList());
+    public List<Integer> readAll(User user) {
+        String sql = "SELECT product_id FROM favourites WHERE user_id = ?;";
+
+        try {
+            PreparedStatement prepStmt = conn().prepareStatement(sql);
+            prepStmt.setInt(1, user.get_id());
+            ResultSet resultSet = prepStmt.executeQuery();
+            List<Integer> favourites = new ArrayList<>();
+            while (resultSet.next()) {
+                favourites.add(resultSet.getInt("product_id"));
+            }
+            return favourites;
+        } catch (SQLException e) {
+            return new ArrayList<>();
+        }
     }
 
     public boolean delete(Favourite favourite) {
-        return _favourites.remove(favourite);
+        String sql = "DELETE FROM favourites WHERE user_id = ? AND product_id = ?;";
+        try {
+            PreparedStatement prepStmt = conn().prepareStatement(sql);
+            prepStmt.setInt(1, favourite.get_user().get_id());
+            prepStmt.setInt(2, favourite.get_product().get_id());
+            return prepStmt.execute();
+        } catch (SQLException e) {
+            return false;
+        }
     }
-
-    public boolean deleteAll() {
-        _favourites.clear();
-        return true;
-    }
-
-    public boolean addToFavourites(Favourite favourite) {
-        return _favourites.add(favourite);
-    }
-
-    public void removeFromFavourites() {
-//        _user.
-    }
-
 }

@@ -13,6 +13,8 @@ public class Product {
     private Integer _stock;
     private final List<ProductSpec> _productSpecs = new ArrayList<>();
 
+
+
     public Integer get_id() {
         return _id;
     }

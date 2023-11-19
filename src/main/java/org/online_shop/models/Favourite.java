@@ -20,15 +20,6 @@ public class Favourite {
     }
 
 
-//    public boolean addToFavourites() {
-//        return notifyObserver();
-//    }
-
-//    public boolean notifyObserver() {
-//        return _user.addToFavourites(_product);
-//    }
-
-
     @Override
     public String toString() {
         return "Favourite{" +

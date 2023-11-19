@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement database connection class">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement observer pattern and define payment strategy pattern">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShippingAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/ShippingAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/UserRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,14 +167,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698734405490</updated>
-    </task>
-    <task id="LOCAL-00001" summary="create initial files for MVC+Repository Design Patterns">
-      <option name="closed" value="true" />
-      <created>1698735609007</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1698735609007</updated>
     </task>
     <task id="LOCAL-00002" summary="create in memory 'database' connection">
       <option name="closed" value="true" />
@@ -567,7 +552,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700325933136</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="implement observer pattern and define payment strategy pattern">
+      <option name="closed" value="true" />
+      <created>1700330086055</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1700330086055</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -585,7 +578,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement deleteAll for product- and category controllers" />
     <MESSAGE value="implement favourite mvc part and fix other mvc parts" />
     <MESSAGE value="implement repositories" />
     <MESSAGE value="implement controllers and fix mvc parts" />
@@ -610,7 +602,8 @@
     <MESSAGE value="simplify controller methods" />
     <MESSAGE value="include mysql dependency" />
     <MESSAGE value="implement database connection class" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement database connection class" />
+    <MESSAGE value="implement observer pattern and define payment strategy pattern" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement observer pattern and define payment strategy pattern" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

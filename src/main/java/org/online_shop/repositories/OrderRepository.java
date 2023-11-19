@@ -1,6 +1,5 @@
 package org.online_shop.repositories;
 
-import org.online_shop.models.DatabaseInMemory;
 import org.online_shop.models.Order;
 import org.online_shop.models.User;
 

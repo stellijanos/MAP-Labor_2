@@ -8,6 +8,8 @@ public class Card implements PaymentStrategy {
     private final String cardName;
     private final String cvv;
 
+    private Integer id;
+
     public Card(String cardNumber, String cardName, String cvv) {
         this.cardNumber = cardNumber;
         this.cardName = cardName;
@@ -26,6 +28,11 @@ public class Card implements PaymentStrategy {
     @Override
     public void pay() {
 
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 
 }

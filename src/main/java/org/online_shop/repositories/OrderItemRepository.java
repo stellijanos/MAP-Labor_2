@@ -25,12 +25,12 @@ public class OrderItemRepository extends Database {
         String sql = "INSERT INTO order_items(order_id, product_id, price, quantity) VALUES(?, ?, ?, ?);";
 
         try {
-            PreparedStatement prepStmt = this.conn().prepareStatement(sql);
-            prepStmt.setInt(1, orderItem.getOrder().getId());
-            prepStmt.setInt(2, orderItem.getProduct().getId());
-            prepStmt.setFloat(3, orderItem.getPrice());
-            prepStmt.setInt(4, orderItem.getQuantity());
-            return prepStmt.execute();
+            PreparedStatement stmt = this.conn().prepareStatement(sql);
+            stmt.setInt(1, orderItem.getOrder().getId());
+            stmt.setInt(2, orderItem.getProduct().getId());
+            stmt.setFloat(3, orderItem.getPrice());
+            stmt.setInt(4, orderItem.getQuantity());
+            return !stmt.execute();
         } catch (SQLException e) {
             return false; // e.printStackTrace();
         }
@@ -41,9 +41,9 @@ public class OrderItemRepository extends Database {
         String sql = "SELECT * FORM order_items WHERE order_id = ?";
         try {
             List<OrderItem> orderItems = new ArrayList<>();
-            PreparedStatement prepStmt = this.conn().prepareStatement(sql);
-            prepStmt.setInt(1, order.getId());
-            ResultSet resultSet = prepStmt.executeQuery();
+            PreparedStatement stmt = this.conn().prepareStatement(sql);
+            stmt.setInt(1, order.getId());
+            ResultSet resultSet = stmt.executeQuery();
 
             while (resultSet.next()) {
 
@@ -66,13 +66,13 @@ public class OrderItemRepository extends Database {
         String sql = "UPDATE order_items SET price = ?, quantity = ? WHERE order_id = ? AND product_id = ?;";
 
         try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setFloat(1, orderItem.getPrice());
-            prepStmt.setInt(2, orderItem.getQuantity());
-            prepStmt.setInt(3, orderItem.getOrder().getId());
-            prepStmt.setInt(4, orderItem.getProduct().getId());
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setFloat(1, orderItem.getPrice());
+            stmt.setInt(2, orderItem.getQuantity());
+            stmt.setInt(3, orderItem.getOrder().getId());
+            stmt.setInt(4, orderItem.getProduct().getId());
 
-            return prepStmt.execute();
+            return !stmt.execute();
         } catch (SQLException e) {
             return false;
         }
@@ -85,7 +85,7 @@ public class OrderItemRepository extends Database {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, order.getId());
             stmt.setInt(2, product.getId());
-            return stmt.execute();
+            return !stmt.execute();
         } catch (SQLException e) {
             return false;
         }
@@ -97,7 +97,7 @@ public class OrderItemRepository extends Database {
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, order.getId());
-            return stmt.execute();
+            return !stmt.execute();
         } catch (SQLException e) {
             return false;
         }

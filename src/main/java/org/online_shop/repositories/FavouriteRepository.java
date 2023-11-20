@@ -15,10 +15,10 @@ public class FavouriteRepository extends Database {
         String sql = "INSERT INTO favourites(user_id, product_id) VALUES (?, ?);";
 
         try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setInt(1, favourite.getUser().getId());
-            prepStmt.setInt(2, favourite.getProduct().getId());
-            return prepStmt.execute();
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setInt(1, favourite.getUser().getId());
+            stmt.setInt(2, favourite.getProduct().getId());
+            return !stmt.execute();
         } catch (SQLException e) {
             return false;
         }
@@ -27,9 +27,9 @@ public class FavouriteRepository extends Database {
     public List<Product> readAll(User user) {
         String sql = "SELECT product_id FROM favourites WHERE user_id = ?;";
         try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setInt(1, user.getId());
-            ResultSet resultSet = prepStmt.executeQuery();
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            ResultSet resultSet = stmt.executeQuery();
             List<Product> favourites = new ArrayList<>();
             while (resultSet.next()) {
                 favourites.add(productRepository.read(resultSet.getInt("product_id")));
@@ -43,10 +43,10 @@ public class FavouriteRepository extends Database {
     public boolean delete(Favourite favourite) {
         String sql = "DELETE FROM favourites WHERE user_id = ? AND product_id = ?;";
         try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setInt(1, favourite.getUser().getId());
-            prepStmt.setInt(2, favourite.getProduct().getId());
-            return prepStmt.execute();
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setInt(1, favourite.getUser().getId());
+            stmt.setInt(2, favourite.getProduct().getId());
+            return !stmt.execute();
         } catch (SQLException e) {
             return false;
         }

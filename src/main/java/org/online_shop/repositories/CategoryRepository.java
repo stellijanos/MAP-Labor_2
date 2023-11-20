@@ -16,9 +16,9 @@ public class CategoryRepository extends Database {
         String sql = "INSERT INTO categories(name) VALUES(?);";
 
         try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setString(1, category.getName());
-            return prepStmt.execute();
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setString(1, category.getName());
+            return !stmt.execute();
         } catch (SQLException e) {
             return false;
         }
@@ -28,9 +28,9 @@ public class CategoryRepository extends Database {
         String sql = "SELECT * FROM categories where id = ?";
 
         try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setInt(1, id);
-            ResultSet resultSet = prepStmt.executeQuery();
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet resultSet = stmt.executeQuery();
             Category category = new Category();
             if (resultSet.next()) {
                 category.setId(resultSet.getInt("id"));
@@ -66,10 +66,10 @@ public class CategoryRepository extends Database {
         String sql = "UPDATE categories SET name = ? WHERE id = ?;";
 
         try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setString(1, updatedCategory.getName());
-            prepStmt.setInt(2, updatedCategory.getId());
-            return prepStmt.execute();
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setString(1, updatedCategory.getName());
+            stmt.setInt(2, updatedCategory.getId());
+            return !stmt.execute();
         } catch (SQLException e) {
             return false;
         }
@@ -79,9 +79,9 @@ public class CategoryRepository extends Database {
         String sql = "DELETE FROM categories WHERE id = ?;";
 
         try {
-            PreparedStatement prepStmt = conn().prepareStatement(sql);
-            prepStmt.setInt(1, id);
-            return prepStmt.execute();
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setInt(1, id);
+            return !stmt.execute();
         } catch (SQLException e) {
             return false;
         }
@@ -92,7 +92,7 @@ public class CategoryRepository extends Database {
 
         try {
             Statement stmt = conn().createStatement();
-            return stmt.execute(sql);
+            return !stmt.execute(sql);
         } catch (SQLException e) {
             return false;
         }

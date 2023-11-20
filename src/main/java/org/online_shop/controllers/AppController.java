@@ -1,7 +1,6 @@
 package org.online_shop.controllers;
 
 import java.lang.Thread;
-import java.lang.reflect.Method;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Objects;
@@ -105,7 +104,7 @@ public class AppController {
 
     // Menu classes
     public void mainMenu() {
-        _userController.createAdmin();
+//        _userController.createAdmin();
         boolean running = true;
         while (running) {
             switch (readFromConsole(_appView::mainMenu, Integer.class)) {

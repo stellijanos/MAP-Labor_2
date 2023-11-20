@@ -22,7 +22,7 @@ public class OrderController {
         order.set_paymentMethod(payment);
         order.setStatus(status);
         order.setShippingFee(shippingFee);
-        order.setId(_orderRepository.readAll().size()+1);
+//        order.setId(_orderRepository.readAll().size()+1);
 
         return _orderRepository.create(order) ? Response.ORDER_CREATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
     }

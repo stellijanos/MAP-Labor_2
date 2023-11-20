@@ -69,9 +69,9 @@ public class UserController {
         User currentUser = _userRepository.read(currentEmail);
 
         return currentUser.getEmail() == null ? Response.USER_NOT_FOUND :
-                !BCrypt.checkpw(currentPassword, currentUser.getPassword()) ? Response.INCORRECT_PASSWORD :
-                        !newPassword.equals(confirmPassword) ? Response.PASSWORDS_DO_NOT_MATCH :
-                                _userRepository.updatePassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()), currentEmail) ? Response.PASSWORD_UPDATE_SUCCESSFUL :
+//                !BCrypt.checkpw(currentPassword, currentUser.getPassword()) ? Response.INCORRECT_PASSWORD :
+//                        !newPassword.equals(confirmPassword) ? Response.PASSWORDS_DO_NOT_MATCH ;
+//                                _userRepository.updatePassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()), currentEmail) ? Response.PASSWORD_UPDATE_SUCCESSFUL :
                                         Response.SOMETHING_WENT_WRONG;
     }
 
@@ -120,5 +120,4 @@ public class UserController {
 
         _userRepository.create(user);
     }
-
 }

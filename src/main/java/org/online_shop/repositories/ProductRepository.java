@@ -24,15 +24,15 @@ public class ProductRepository extends Database {
     public boolean create(Product product) {
         String sql = "INSERT INTO products(name, price, category_id, description, image_link, stock) " +
                 "VALUES(?, ?, ?, ?, ?, ?);";
-        try (PreparedStatement prepStmt = conn().prepareStatement(sql)) {
-            prepStmt.setString(1, product.getName());
-            prepStmt.setFloat(2, product.getPrice());
-            prepStmt.setInt(3, product.getCategory().getId());
-            prepStmt.setString(4, product.getDescription());
-            prepStmt.setString(5, product.getImageLink());
-            prepStmt.setInt(6, product.getStock());
+        try (PreparedStatement stmt = conn().prepareStatement(sql)) {
+            stmt.setString(1, product.getName());
+            stmt.setFloat(2, product.getPrice());
+            stmt.setInt(3, product.getCategory().getId());
+            stmt.setString(4, product.getDescription());
+            stmt.setString(5, product.getImageLink());
+            stmt.setInt(6, product.getStock());
 
-            return prepStmt.execute();
+            return stmt.execute();
         } catch (SQLException e) {
             return false;
         }
@@ -41,9 +41,9 @@ public class ProductRepository extends Database {
     public Product read(Integer id) {
         String sql = "SELECT * FROM products WHERE id = ?;";
 
-        try (PreparedStatement prepStmt = conn().prepareStatement(sql)) {
-            prepStmt.setInt(1, id);
-            ResultSet resultSet = prepStmt.executeQuery();
+        try (PreparedStatement stmt = conn().prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet resultSet = stmt.executeQuery();
             Product product = new Product();
             if (resultSet.next()) {
                 product.setId(resultSet.getInt("id"));
@@ -96,15 +96,15 @@ public class ProductRepository extends Database {
 
     public boolean update(Product updatedProduct) {
         String sql = "UPDATE products SET name=? , price=?, description=?, category_id=?, image_link=? WHERE id=?;";
-        try (PreparedStatement prepStmt = conn().prepareStatement(sql)) {
-            prepStmt.setString(1, updatedProduct.getName());
-            prepStmt.setFloat(2, updatedProduct.getPrice());
-            prepStmt.setString(3, updatedProduct.getDescription());
-            prepStmt.setInt(4, updatedProduct.getCategory().getId());
-            prepStmt.setString(5, updatedProduct.getImageLink());
-            prepStmt.setInt(6, updatedProduct.getId());
+        try (PreparedStatement stmt = conn().prepareStatement(sql)) {
+            stmt.setString(1, updatedProduct.getName());
+            stmt.setFloat(2, updatedProduct.getPrice());
+            stmt.setString(3, updatedProduct.getDescription());
+            stmt.setInt(4, updatedProduct.getCategory().getId());
+            stmt.setString(5, updatedProduct.getImageLink());
+            stmt.setInt(6, updatedProduct.getId());
 
-            return prepStmt.execute();
+            return stmt.execute();
         } catch (SQLException e) {
             return false;
         }
@@ -112,10 +112,10 @@ public class ProductRepository extends Database {
 
     public boolean delete(Integer id) {
         String sql = "DELETE FROM products WHERE id=?;";
-        try (PreparedStatement prepStmt = conn().prepareStatement(sql)) {
-            prepStmt.setInt(1, id);
+        try (PreparedStatement stmt = conn().prepareStatement(sql)) {
+            stmt.setInt(1, id);
 
-            return prepStmt.execute();
+            return stmt.execute();
         } catch (SQLException e) {
             return false;
         }

@@ -17,7 +17,7 @@ public class ShoppingCartController {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         shoppingCart.setUser(user);
-        shoppingCart.setId(_shoppingCartRepository.totalNumber() + 1);
+//        shoppingCart.setId(_shoppingCartRepository.totalNumber() + 1);
 
         return _shoppingCartRepository.create(shoppingCart) ? Response.SHOPPING_CART_CREATE_SUCCESSFUL :
                 Response.SOMETHING_WENT_WRONG;

@@ -16,12 +16,14 @@ public class UserRepository extends Database {
         String sql = "INSERT INTO users(firstname, lastname, email, password) VALUES(?, ?, ?, ?);";
 
         try {
-            PreparedStatement prepStmt = this.conn().prepareStatement(sql);
-            prepStmt.setString(1, user.getFirstname());
-            prepStmt.setString(2, user.getLastname());
-            prepStmt.setString(3, user.getEmail());
-            prepStmt.setString(4, user.getPassword());
-            return prepStmt.execute();
+            PreparedStatement stmt = this.conn().prepareStatement(sql);
+            stmt.setString(1, user.getFirstname());
+            stmt.setString(2, user.getLastname());
+            stmt.setString(3, user.getEmail());
+            stmt.setString(4, user.getPassword());
+
+            return !stmt.execute();
+
         } catch (SQLException e) {
             return false; // e.printStackTrace();
         }
@@ -30,9 +32,9 @@ public class UserRepository extends Database {
     public User read(String email) {
         String sql = "SELECT * FROM users WHERE email = ?;";
         try {
-            PreparedStatement prepStmt = this.conn().prepareStatement(sql);
-            prepStmt.setString(1, email);
-            ResultSet resultSet = prepStmt.executeQuery();
+            PreparedStatement stmt = this.conn().prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet resultSet = stmt.executeQuery();
             User user = new User();
             if (resultSet.next()) {
                 user.setId(resultSet.getInt("id"));
@@ -75,14 +77,16 @@ public class UserRepository extends Database {
         String sql = "UPDATE users SET firstname=?, lastname=?, email=?, password=? WHERE email = ?;";
 
         try {
-            PreparedStatement prepStmt = this.conn().prepareStatement(sql);
-            prepStmt.setString(1, updatedUser.getFirstname());
-            prepStmt.setString(2, updatedUser.getLastname());
-            prepStmt.setString(3, updatedUser.getEmail());
-            prepStmt.setString(4, updatedUser.getPassword());
-            prepStmt.setString(5, email);
+            PreparedStatement stmt = this.conn().prepareStatement(sql);
+            stmt.setString(1, updatedUser.getFirstname());
+            stmt.setString(2, updatedUser.getLastname());
+            stmt.setString(3, updatedUser.getEmail());
+            stmt.setString(4, updatedUser.getPassword());
+            stmt.setString(5, email);
 
-            return prepStmt.execute();
+            int rowsAffected = stmt.executeUpdate();
+
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             return false;
@@ -94,9 +98,11 @@ public class UserRepository extends Database {
 
         String sql = "DELETE FROM users WHERE email = ?;";
         try {
-            PreparedStatement prepStmt = this.conn().prepareStatement(sql);
-            prepStmt.setString(1, email);
-            return prepStmt.execute();
+            PreparedStatement stmt = this.conn().prepareStatement(sql);
+            stmt.setString(1, email);
+            int rowsAffected = stmt.executeUpdate();
+
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             return false;
@@ -107,7 +113,7 @@ public class UserRepository extends Database {
         String sql = "DELETE FROM users;";
         try {
             Statement stmt = this.conn().createStatement();
-            return stmt.execute(sql);
+            return !stmt.execute(sql);
         } catch (SQLException e) {
             return false;
         }

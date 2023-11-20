@@ -6,6 +6,7 @@ import org.online_shop.models.Product;
 import org.online_shop.models.User;
 import org.online_shop.repositories.FavouriteRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavouriteController {
@@ -26,6 +27,7 @@ public class FavouriteController {
         return Response.PRODUCT_ADD_TO_FAVOURITES;
     }
     public List<Favourite> viewAll(User user) {
-        return _favouriteRepository.readAll(user);
+//        return _favouriteRepository.readAll(user);
+        return new ArrayList<>();
     }
 }

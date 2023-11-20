@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="update and improve repository and controller parts">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/builders/OrderBuilder.java" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement builder pattern">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ProductSpecRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ProductSpecRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShippingAddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShippingAddressRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShoppingCartRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +86,7 @@
       <recent name="org.online_shop.interfaces" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ProductTest">
     <configuration name="ProductTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MAP-Labor_2" />
       <extension name="coverage">
@@ -181,14 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698734405490</updated>
-    </task>
-    <task id="LOCAL-00009" summary="implement login session part in AppController and initialise User tests">
-      <option name="closed" value="true" />
-      <created>1699080371310</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1699080371310</updated>
     </task>
     <task id="LOCAL-00010" summary="implement signup test for UserController and UserRepository">
       <option name="closed" value="true" />
@@ -574,7 +569,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700478486132</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="implement builder pattern">
+      <option name="closed" value="true" />
+      <created>1700480349754</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1700480349755</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -592,7 +595,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement routing system for the whole app" />
     <MESSAGE value="use routing system in the app controller" />
     <MESSAGE value="implement more efficient routing system" />
     <MESSAGE value="implement routing system in appcontroller and define all functionalities for app" />
@@ -617,7 +619,8 @@
     <MESSAGE value="rename all private attributes" />
     <MESSAGE value="update and improve repository part" />
     <MESSAGE value="update and improve repository and controller parts" />
-    <option name="LAST_COMMIT_MESSAGE" value="update and improve repository and controller parts" />
+    <MESSAGE value="implement builder pattern" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement builder pattern" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -22,7 +22,8 @@ public class UserRepository extends Database {
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getPassword());
 
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
 
         } catch (SQLException e) {
             return false; // e.printStackTrace();
@@ -84,9 +85,8 @@ public class UserRepository extends Database {
             stmt.setString(4, updatedUser.getPassword());
             stmt.setString(5, email);
 
-            int rowsAffected = stmt.executeUpdate();
-
-            return rowsAffected > 0;
+            int rows = stmt.executeUpdate();
+            return rows > 0;
 
         } catch (SQLException e) {
             return false;
@@ -100,10 +100,8 @@ public class UserRepository extends Database {
         try {
             PreparedStatement stmt = this.conn().prepareStatement(sql);
             stmt.setString(1, email);
-            int rowsAffected = stmt.executeUpdate();
-
-            return rowsAffected > 0;
-
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -113,7 +111,8 @@ public class UserRepository extends Database {
         String sql = "DELETE FROM users;";
         try {
             Statement stmt = this.conn().createStatement();
-            return !stmt.execute(sql);
+            int rows = stmt.executeUpdate(sql);
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }

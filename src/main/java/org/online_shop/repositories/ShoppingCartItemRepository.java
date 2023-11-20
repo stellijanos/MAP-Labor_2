@@ -23,7 +23,8 @@ public class ShoppingCartItemRepository extends Database {
             stmt.setInt(2, shoppingCartItem.getProduct().getId());
             stmt.setInt(3, shoppingCartItem.getQuantity());
 
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -63,7 +64,8 @@ public class ShoppingCartItemRepository extends Database {
             stmt.setInt(2, shoppingCartItem.getShoppingCart().getId());
             stmt.setInt(3, shoppingCartItem.getProduct().getId());
 
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -76,7 +78,8 @@ public class ShoppingCartItemRepository extends Database {
         try (PreparedStatement stmt = conn().prepareStatement(sql)) {
             stmt.setInt(1, shoppingCartItem.getShoppingCart().getId());
             stmt.setInt(2, shoppingCartItem.getProduct().getId());
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }

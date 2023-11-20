@@ -18,7 +18,8 @@ public class FavouriteRepository extends Database {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, favourite.getUser().getId());
             stmt.setInt(2, favourite.getProduct().getId());
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -46,7 +47,8 @@ public class FavouriteRepository extends Database {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, favourite.getUser().getId());
             stmt.setInt(2, favourite.getProduct().getId());
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }

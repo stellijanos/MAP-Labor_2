@@ -20,7 +20,8 @@ public class ProductSpecRepository extends Database {
             stmt.setInt(1, productSpec.getProduct().getId());
             stmt.setString(2, productSpec.getSpecName());
             stmt.setString(3, productSpec.getSpecValue());
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -62,7 +63,8 @@ public class ProductSpecRepository extends Database {
             stmt.setString(2, productSpec.getSpecValue());
             stmt.setInt(3, productSpec.getId());
 
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
 
         } catch (SQLException e) {
             return false;
@@ -75,7 +77,8 @@ public class ProductSpecRepository extends Database {
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, specId);
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }

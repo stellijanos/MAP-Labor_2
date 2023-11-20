@@ -18,7 +18,8 @@ public class CategoryRepository extends Database {
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setString(1, category.getName());
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -69,7 +70,8 @@ public class CategoryRepository extends Database {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setString(1, updatedCategory.getName());
             stmt.setInt(2, updatedCategory.getId());
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -81,7 +83,8 @@ public class CategoryRepository extends Database {
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, id);
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -92,7 +95,8 @@ public class CategoryRepository extends Database {
 
         try {
             Statement stmt = conn().createStatement();
-            return !stmt.execute(sql);
+            int rows = stmt.executeUpdate(sql);
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }

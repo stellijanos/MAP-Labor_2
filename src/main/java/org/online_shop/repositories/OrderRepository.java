@@ -30,7 +30,7 @@ public class OrderRepository extends Database {
             stmt.setInt(3, order.get_paymentMethod().getId());
             stmt.setString(4, order.getStatus());
             stmt.setFloat(5, order.getShippingFee());
-            return stmt.execute();
+            return !stmt.execute();
         } catch (SQLException e) {
             return false;
         }
@@ -102,7 +102,7 @@ public class OrderRepository extends Database {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, order.getId());
             stmt.setInt(2, order.getUser().getId());
-            return stmt.execute();
+            return !stmt.execute();
 
         } catch (SQLException e) {
             return false;

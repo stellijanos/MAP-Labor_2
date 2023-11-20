@@ -15,7 +15,10 @@ public class ShoppingCartRepository extends Database {
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, shoppingCart.getUser().getId());
-            return stmt.execute();
+
+            int rows = stmt.executeUpdate();
+            return rows > 0;
+
         } catch (SQLException e) {
             return false;
         }
@@ -49,7 +52,8 @@ public class ShoppingCartRepository extends Database {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1,shoppingCart.getId());
             stmt.setInt(2,shoppingCart.getUser().getId());
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }

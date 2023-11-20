@@ -32,7 +32,8 @@ public class ProductRepository extends Database {
             stmt.setString(5, product.getImageLink());
             stmt.setInt(6, product.getStock());
 
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -104,7 +105,8 @@ public class ProductRepository extends Database {
             stmt.setString(5, updatedProduct.getImageLink());
             stmt.setInt(6, updatedProduct.getId());
 
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -115,7 +117,8 @@ public class ProductRepository extends Database {
         try (PreparedStatement stmt = conn().prepareStatement(sql)) {
             stmt.setInt(1, id);
 
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -124,7 +127,8 @@ public class ProductRepository extends Database {
     public boolean deleteAll() {
         String sql = "DELETE FROM products;";
         try (Statement stmt = conn().createStatement()) {
-            return stmt.execute(sql);
+            int rows = stmt.executeUpdate(sql);
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }

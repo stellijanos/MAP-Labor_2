@@ -24,7 +24,8 @@ public class ShippingAddressRepository extends Database {
             stmt.setString(5, shippingAddress.getCity());
             stmt.setString(6, shippingAddress.getZipCode());
 
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
 
         } catch (SQLException e) {
             return false;
@@ -105,7 +106,8 @@ public class ShippingAddressRepository extends Database {
             stmt.setString(5, shippingAddress.getZipCode());
             stmt.setInt(6, shippingAddress.getId());
 
-            return stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
 
         } catch (SQLException e) {
             return false;
@@ -119,7 +121,9 @@ public class ShippingAddressRepository extends Database {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, shippingAddress.getId());
             stmt.setInt(2, shippingAddress.getUser().getId());
-            return stmt.execute();
+
+            int rows = stmt.executeUpdate();
+            return rows > 0;
 
         } catch (SQLException e) {
             return false;

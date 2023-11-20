@@ -30,7 +30,8 @@ public class OrderItemRepository extends Database {
             stmt.setInt(2, orderItem.getProduct().getId());
             stmt.setFloat(3, orderItem.getPrice());
             stmt.setInt(4, orderItem.getQuantity());
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false; // e.printStackTrace();
         }
@@ -72,7 +73,8 @@ public class OrderItemRepository extends Database {
             stmt.setInt(3, orderItem.getOrder().getId());
             stmt.setInt(4, orderItem.getProduct().getId());
 
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -85,7 +87,8 @@ public class OrderItemRepository extends Database {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, order.getId());
             stmt.setInt(2, product.getId());
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }
@@ -97,7 +100,8 @@ public class OrderItemRepository extends Database {
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, order.getId());
-            return !stmt.execute();
+            int rows = stmt.executeUpdate();
+            return rows > 0;
         } catch (SQLException e) {
             return false;
         }

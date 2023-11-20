@@ -1,7 +1,5 @@
 package org.online_shop.models;
 
-import org.online_shop.repositories.ProductRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +12,9 @@ public class Product {
     private String imageLink;
     private Integer stock;
     private final List<ProductSpec> productSpecs;
+
+
+
 
     public Product() {
         productSpecs = new ArrayList<>();

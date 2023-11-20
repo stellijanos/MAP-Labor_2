@@ -1,5 +1,6 @@
 package org.online_shop.models;
 
+import org.online_shop.builders.OrderBuilder;
 import org.online_shop.interfaces.PaymentStrategy;
 import org.online_shop.interfaces.UserObserver;
 import org.online_shop.controllers.CustomControllerTools;
@@ -17,10 +18,15 @@ public class Order implements UserObserver {
     private String status;
     private Float shippingFee;
 
-
-    public Order() {
-        date = CustomControllerTools.getCurrentDateTIme();
+    public Order(OrderBuilder orderBuilder) {
+        this.user = orderBuilder.user;
+        this.date = CustomControllerTools.getCurrentDateTIme();
+        this.shippingFee = orderBuilder.shippingFee;
+        this.shippingAddress = orderBuilder.shippingAddress;
+        this.status = orderBuilder.status;
+        this.paymentStrategy = orderBuilder.paymentStrategy;
     }
+
 
     public Integer getId() {
         return id;

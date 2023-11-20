@@ -48,7 +48,7 @@ public class OrderRepository extends Database {
             stmt.setInt(1, id);
 
             ResultSet resultSet = stmt.executeQuery();
-            Order order = new Order();
+//            Order order = new Order();
 
             if (resultSet.next()) {
                 String paymentType = resultSet.getString("payment");
@@ -59,7 +59,7 @@ public class OrderRepository extends Database {
             //    order.set_paymentMethod(resultSet.getFloat("payment_method"));
             }
         } catch (SQLException e) {
-            return new Order();
+//            return new Order();
         }
         return null;
     }
@@ -78,14 +78,14 @@ public class OrderRepository extends Database {
             while (resultSet.next()) {
                 ShippingAddress shippingAddress = new ShippingAddress();
                 shippingAddress.setId(resultSet.getInt("shipping_address_id"));
-                Order order = new Order();
-                order.setUser(user);
-                order.setId(resultSet.getInt("id"));
-                order.setStatus(resultSet.getString("status"));
-                order.setShippingFee(resultSet.getFloat("shipping_fee"));
-                order.setShippingAddress(shippingAddress);
-
-                orders.add(order);
+//                Order order = new Order();
+//                order.setUser(user);
+//                order.setId(resultSet.getInt("id"));
+//                order.setStatus(resultSet.getString("status"));
+//                order.setShippingFee(resultSet.getFloat("shipping_fee"));
+//                order.setShippingAddress(shippingAddress);
+//
+//                orders.add(order);
             }
             return orders;
         } catch (SQLException e) {

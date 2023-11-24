@@ -11,6 +11,7 @@ import java.util.List;
 public class FavouriteRepository extends Database {
 
     ProductRepository productRepository = new ProductRepository();
+
     public boolean create(Favourite favourite) {
         String sql = "INSERT INTO favourites(user_id, product_id) VALUES (?, ?);";
 

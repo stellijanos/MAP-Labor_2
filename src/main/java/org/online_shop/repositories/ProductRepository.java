@@ -58,7 +58,6 @@ public class ProductRepository extends Database {
                 List<ProductSpec> productSpecs = productSpecRepository.readAll(product);
                 for (ProductSpec spec : productSpecs)
                     product.setProductSpecs(spec);
-
             }
             return product;
         } catch (SQLException e) {

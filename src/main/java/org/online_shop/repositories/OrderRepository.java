@@ -27,7 +27,7 @@ public class OrderRepository extends Database {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, order.getUser().getId());
             stmt.setInt(2, order.getShippingAddress().getId());
-            stmt.setInt(3, order.get_paymentMethod().getId());
+            stmt.setInt(3, order.getPaymentMethod().getId());
             stmt.setString(4, order.getStatus());
             stmt.setFloat(5, order.getShippingFee());
             return !stmt.execute();

@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="change sql success execution verification">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="improve and fix repo and builder pattern for order">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/builders/OrderBuilder.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/FavouriteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/FavouriteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/PaymentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,14 +182,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698734405490</updated>
-    </task>
-    <task id="LOCAL-00011" summary="implement user panel and declar their methods">
-      <option name="closed" value="true" />
-      <created>1699127587817</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1699127587817</updated>
     </task>
     <task id="LOCAL-00012" summary="implement appcontroller functionalities and initialise methods in it">
       <option name="closed" value="true" />
@@ -578,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700491587845</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="improve and fix repo and builder pattern for order">
+      <option name="closed" value="true" />
+      <created>1700860961687</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1700860961688</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -596,7 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement more efficient routing system" />
     <MESSAGE value="implement routing system in appcontroller and define all functionalities for app" />
     <MESSAGE value="improve routing system with responses and keep appview only" />
     <MESSAGE value="define all methods in the applications controller" />
@@ -621,7 +617,8 @@
     <MESSAGE value="update and improve repository and controller parts" />
     <MESSAGE value="implement builder pattern" />
     <MESSAGE value="change sql success execution verification" />
-    <option name="LAST_COMMIT_MESSAGE" value="change sql success execution verification" />
+    <MESSAGE value="improve and fix repo and builder pattern for order" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve and fix repo and builder pattern for order" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

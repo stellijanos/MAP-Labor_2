@@ -3,7 +3,6 @@ package org.online_shop.repositories;
 import org.online_shop.models.Database;
 import org.online_shop.models.Order;
 import org.online_shop.models.OrderItem;
-import org.online_shop.models.Product;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,11 +13,9 @@ import java.util.List;
 public class OrderItemRepository extends Database {
 
     private final ProductRepository productRepository;
-    private final OrderRepository orderRepository;
 
     public OrderItemRepository() {
         productRepository = new ProductRepository();
-        orderRepository = new OrderRepository();
     }
 
     public boolean create(OrderItem orderItem) {
@@ -53,7 +50,7 @@ public class OrderItemRepository extends Database {
                 orderItem.setQuantity(resultSet.getInt("quantity"));
                 orderItem.setPrice(resultSet.getFloat("price"));
 
-                orderItem.setOrder(orderRepository.read(resultSet.getInt("order_id")));
+                orderItem.setOrder(order);
                 orderItem.setProduct(productRepository.read(resultSet.getInt("product_id")));
                 orderItems.add(orderItem);
             }
@@ -80,13 +77,13 @@ public class OrderItemRepository extends Database {
         }
     }
 
-    public boolean delete(Order order, Product product) {
+    public boolean delete(Integer orderId, Integer productId) {
         String sql = "DELETE FROM order_items WHERE order_id = ? AND product_id = ?;";
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
-            stmt.setInt(1, order.getId());
-            stmt.setInt(2, product.getId());
+            stmt.setInt(1, orderId);
+            stmt.setInt(2, productId);
             int rows = stmt.executeUpdate();
             return rows > 0;
         } catch (SQLException e) {

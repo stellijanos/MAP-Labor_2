@@ -7,23 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order implements UserObserver {
+
+    private final boolean instance;
     private Integer id;
     private User user;
     private ShippingAddress shippingAddress;
-    private final List<OrderItem> orderItems;
+    private List<OrderItem> orderItems;
     private PaymentStrategy paymentStrategy;
     private String date;
     private String status;
     private Float shippingFee;
 
 
-    public Order(List<OrderItem> items) {
+    public Order() {
+        this.instance = true;
+    }
+
+    public Order orderItems(List<OrderItem> items) throws Exception {
+        if (!this.instance)
+            throw new Exception("Order does not exist");
         this.orderItems = items;
+        return this;
     }
 
     public Order user(User _user) throws Exception {
         if (this.orderItems == null)
-            throw new Exception("Order does not exist!");
+            throw new Exception("Order items do not exist!");
         this.setUser(_user);
         return this;
     }

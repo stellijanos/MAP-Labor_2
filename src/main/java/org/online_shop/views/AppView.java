@@ -2,6 +2,7 @@ package org.online_shop.views;
 
 import org.online_shop.models.Category;
 import org.online_shop.models.Product;
+import org.online_shop.models.ShippingAddress;
 import org.online_shop.models.User;
 
 import java.util.List;
@@ -363,6 +364,7 @@ public class AppView {
     public void remove_all_users() {
         System.out.println("Remove all users");
     }
+
     public void add_to_favourites() {
         System.out.println("\n-------------------\nAdd to favourites\n-------------------\n");
     }
@@ -371,8 +373,40 @@ public class AppView {
     public void product_added_to_favourites() {
         System.out.println("Product added to favourites");
     }
+
     public void product_removed_from_favourites() {
         System.out.println("Product removed from favourites");
     }
 
+    public void print_addresses(List<ShippingAddress> addresses) {
+        System.out.println(addresses);
+    }
+
+    public void addAddress() {
+        System.out.println("------------------\nAdd Address\n------------------\n");
+    }
+
+    public void enter_name() {
+        System.out.println("Enter name: ");
+    }
+
+    public void enter_phone() {
+        System.out.println("Enter phone: ");
+    }
+
+    public void enter_address() {
+        System.out.println("Enter street and number: ");
+    }
+
+    public void enter_city() {
+        System.out.println("Enter city: ");
+    }
+
+    public void enter_zipcode() {
+        System.out.println("Enter zipcode: ");
+    }
+
+    public void shipping_address_created_successfully() {
+        System.out.println("Shipping address created successfully!");
+    }
 }

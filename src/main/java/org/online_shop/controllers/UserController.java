@@ -106,18 +106,4 @@ public class UserController {
         return _userRepository.readAll();
     }
 
-
-    // hardcode admin values until real database connection does not exist
-    public void createAdmin() {
-
-        Env env = new Env();
-        User user = new User();
-
-        user.setFirstname(env.load().get("ADMIN_FIRSTNAME"));
-        user.setLastname(env.load().get("ADMIN_LASTNAME"));
-        user.setEmail(env.load().get("ADMIN_EMAIL"));
-        user.setPassword(env.load().get("ADMIN_PASSWORD"));
-
-        _userRepository.create(user);
-    }
 }

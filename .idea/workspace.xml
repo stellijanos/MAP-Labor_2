@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="improve and fix repo and builder pattern for order">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="improve payment and fix order repo parts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/PaymentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShippingAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShippingAddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +85,7 @@
       <recent name="org.online_shop.interfaces" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ProductTest">
     <configuration name="ProductTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MAP-Labor_2" />
       <extension name="coverage">
@@ -166,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProductTest" />
         <item itemvalue="JUnit.ProductTest.test_update" />
-        <item itemvalue="JUnit.ProductTest.test_delete" />
         <item itemvalue="JUnit.ProductTest.test_read" />
+        <item itemvalue="JUnit.ProductTest.test_delete" />
         <item itemvalue="JUnit.ProductTest.test_create" />
+        <item itemvalue="JUnit.ProductTest" />
       </list>
     </recent_temporary>
   </component>
@@ -182,14 +183,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698734405490</updated>
-    </task>
-    <task id="LOCAL-00012" summary="implement appcontroller functionalities and initialise methods in it">
-      <option name="closed" value="true" />
-      <created>1699133921718</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1699133921718</updated>
     </task>
     <task id="LOCAL-00013" summary="implement ENV and implement parts from MVC user part">
       <option name="closed" value="true" />
@@ -575,7 +568,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700860961688</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="improve payment and fix order repo parts">
+      <option name="closed" value="true" />
+      <created>1700862999600</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1700862999601</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -593,7 +594,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement routing system in appcontroller and define all functionalities for app" />
     <MESSAGE value="improve routing system with responses and keep appview only" />
     <MESSAGE value="define all methods in the applications controller" />
     <MESSAGE value="define all routes in the main menu" />
@@ -618,7 +618,8 @@
     <MESSAGE value="implement builder pattern" />
     <MESSAGE value="change sql success execution verification" />
     <MESSAGE value="improve and fix repo and builder pattern for order" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve and fix repo and builder pattern for order" />
+    <MESSAGE value="improve payment and fix order repo parts" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve payment and fix order repo parts" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

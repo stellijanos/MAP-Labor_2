@@ -409,4 +409,24 @@ public class AppView {
     public void shipping_address_created_successfully() {
         System.out.println("Shipping address created successfully!");
     }
+
+    public void enter_shipping_address_number() {
+        System.out.println("Enter shipping address number: ");
+    }
+
+    public void shipping_address_does_not_exist() {
+        System.out.println("Shipping address does not exist!");
+    }
+
+    public void shipping_address_updated_successfully() {
+        System.out.println("Shipping address updated successfully!");
+    }
+
+    public void shipping_address_deleted_successfully() {
+        System.out.println("Shipping address deleted successfully!");
+    }
+
+    public void all_shipping_addresses_deleted_successfully() {
+        System.out.println("All shipping addresses deleted successfully!");
+    }
 }

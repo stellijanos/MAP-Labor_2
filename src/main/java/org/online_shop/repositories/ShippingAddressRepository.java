@@ -130,4 +130,18 @@ public class ShippingAddressRepository extends Database {
         }
     }
 
+    public boolean deleteAll(User user) {
+        String sql = "DELETE FROM shipping_addresses WHERE user_id = ?;";
+
+        try {
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+
+            int rows = stmt.executeUpdate();
+            return rows > 0;
+
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }

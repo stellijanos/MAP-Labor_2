@@ -239,15 +239,47 @@ public class AppController {
     }
 
     public void editAddress() {
+        Integer id = readFromConsole(appView::enter_shipping_address_number, Integer.class);
 
+        String name = readFromConsole(appView::enter_name, String.class);
+        String phone = readFromConsole(appView::enter_phone, String.class);
+        String address  = readFromConsole(appView::enter_address, String.class);
+        String city = readFromConsole(appView::enter_city, String.class);
+        String zipcode = readFromConsole(appView::enter_zipcode, String.class);
+        User user = userController.getUser(session.getId());
+
+        Response response = shippingAddressController.modify(id, name, phone, address, city, zipcode, user);
+
+        switch (response) {
+            case SHOPPING_CART_DOES_NOT_EXIST -> appView.shipping_address_does_not_exist();
+            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
+            case SHIPPING_ADDRESS_UPDATED_SUCCESSFULLY -> appView.shipping_address_updated_successfully();
+        }
     }
 
     public void deleteAddress() {
+        Integer id = readFromConsole(appView::enter_shipping_address_number, Integer.class);
+        User user = userController.getUser(session.getId());
 
+        Response response = shippingAddressController.remove(id, user);
+
+        switch (response) {
+            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
+            case SHIPPING_ADDRESS_DELETED_SUCCESSFULLY -> appView.shipping_address_deleted_successfully();
+        }
     }
 
     public void deleteAllAddresses() {
+        String password = readFromConsole(appView::enter_password, String.class);
+        User user = userController.getUser(session.getId());
 
+        Response response = shippingAddressController.removeAll(password, user);
+
+        switch (response) {
+            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
+            case INCORRECT_PASSWORD -> appView.incorrect_password();
+            case ALL_SHIPPING_ADDRESSES_DELETED_SUCCESSFULLY -> appView.all_shipping_addresses_deleted_successfully();
+        }
     }
 
 

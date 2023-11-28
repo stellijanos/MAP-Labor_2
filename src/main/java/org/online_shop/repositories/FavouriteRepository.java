@@ -26,6 +26,20 @@ public class FavouriteRepository extends Database {
         }
     }
 
+    public Product read(Integer productId, User user) {
+        String sql = "SELECT product_id FROM favourites WHERE product_id = ? AND user_id = ? ;";
+        try {
+            PreparedStatement stmt = conn().prepareStatement(sql);
+            stmt.setInt(1, productId);
+            stmt.setInt(2, user.getId());
+            ResultSet resultSet = stmt.executeQuery();
+            return resultSet.next() ? productRepository.read(resultSet.getInt("product_id"))
+                    : new Product();
+        } catch (SQLException e) {
+            return new Product();
+        }
+    }
+
     public List<Product> readAll(User user) {
         String sql = "SELECT product_id FROM favourites WHERE user_id = ?;";
         try {

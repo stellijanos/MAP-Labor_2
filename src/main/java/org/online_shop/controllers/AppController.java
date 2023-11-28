@@ -1,6 +1,5 @@
 package org.online_shop.controllers;
 
-import java.awt.color.ICC_ColorSpace;
 import java.lang.Thread;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -69,13 +68,6 @@ public class AppController {
                 throw new RuntimeException(e);
             }
         }
-    }
-
-
-    public void quit() {
-        appView.print_goodBye();
-        System.out.println(userController.listAllUsers());
-        System.exit(0);
     }
 
 
@@ -225,14 +217,14 @@ public class AppController {
 
         String name = readFromConsole(appView::enter_name, String.class);
         String phone = readFromConsole(appView::enter_phone, String.class);
-        String address  = readFromConsole(appView::enter_address, String.class);
+        String address = readFromConsole(appView::enter_address, String.class);
         String city = readFromConsole(appView::enter_city, String.class);
         String zipcode = readFromConsole(appView::enter_zipcode, String.class);
         User user = userController.getUser(session.getId());
 
         Response response = shippingAddressController.addAddress(name, phone, address, city, zipcode, user);
 
-        switch(response) {
+        switch (response) {
             case SHIPPING_ADDRESS_CREATED_SUCCESSFULLY -> appView.shipping_address_created_successfully();
             case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
         }
@@ -243,7 +235,7 @@ public class AppController {
 
         String name = readFromConsole(appView::enter_name, String.class);
         String phone = readFromConsole(appView::enter_phone, String.class);
-        String address  = readFromConsole(appView::enter_address, String.class);
+        String address = readFromConsole(appView::enter_address, String.class);
         String city = readFromConsole(appView::enter_city, String.class);
         String zipcode = readFromConsole(appView::enter_zipcode, String.class);
         User user = userController.getUser(session.getId());
@@ -296,11 +288,27 @@ public class AppController {
     }
 
     public void viewAllOrders() {
+        User user = userController.getUser(session.getId());
+        List<Order> orders = orderController.getAll(user);
+        appView.view_all_orders(orders);
 
+        while (true) {
+            if (readFromConsole(appView::print_back, Integer.class) == 0)
+                break;
+        }
     }
 
     public void viewOrder() {
 
+        Integer id = readFromConsole(appView::enter_order_id, Integer.class);
+        Order order = orderController.get(id, userController.getUser(session.getId()));
+
+        appView.print_order(order);
+
+        while (true) {
+            if (readFromConsole(appView::print_back, Integer.class) == 0)
+                break;
+        }
     }
 
 
@@ -338,12 +346,12 @@ public class AppController {
 
         Integer productId = readFromConsole(appView::enter_product_id, Integer.class);
 
-        //   Response response = _userController.addToFavourites(productId, _session.getId());
+        Response response = favouriteController.addOrRemoveToFavourites(session.getId(), productId);
 
-//        switch (response) {
-//            case PRODUCT_ADD_TO_FAVOURITES -> _appView.product_added_to_favourites();
-//            case PRODUCT_REMOVE_FROM_FAVOURITES -> _appView.product_removed_from_favourites();
-//        }
+        switch (response) {
+            case PRODUCT_ADD_TO_FAVOURITES -> appView.product_added_to_favourites();
+            case PRODUCT_REMOVE_FROM_FAVOURITES -> appView.product_removed_from_favourites();
+        }
     }
 
     public void addToCart() {

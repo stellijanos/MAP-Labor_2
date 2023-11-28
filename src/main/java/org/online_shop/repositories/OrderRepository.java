@@ -1,6 +1,5 @@
 package org.online_shop.repositories;
 
-import org.online_shop.interfaces.PaymentStrategy;
 import org.online_shop.models.*;
 
 import java.sql.PreparedStatement;
@@ -40,33 +39,28 @@ public class OrderRepository extends Database {
 
     public Order read(Integer id, User user) {
 
-        String sql = "SELECT * FROM orders WHERE id = ? ;";
+        String sql = "SELECT * FROM orders WHERE id = ? and user_id = ?;";
 
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, id);
+            stmt.setInt(2, user.getId());
 
             ResultSet resultSet = stmt.executeQuery();
 
             Order order = new Order();
 
             if (resultSet.next()) {
-                order.setId(resultSet.getInt("id"));
                 order.setUser(user);
-                order.setDate(String.valueOf(resultSet.getDate("date")));
                 order.setShippingAddress(shippingAddressRepository.read(resultSet.getInt("shipping_address_id"), user));
+                order.setId(resultSet.getInt("id"));
+                order.setStatus(resultSet.getString("status"));
                 order.setShippingFee(resultSet.getFloat("shipping_fee"));
-                order.setPaymentMethod(paymentRepository.read(resultSet.getInt("payment")));
-
-                String paymentType = resultSet.getString("payment");
-
-                //          PaymentStrategy paymentStrategy = (paymentType == "card") ? new Card() : new Cash();
-                //  order.setUser(userRepository.read(resultSet.get));
-//                order.set_shippingAddress(shippingAddress);
-                //    order.set_paymentMethod(resultSet.getFloat("payment_method"));
+                order.setPaymentMethod(paymentRepository.read(resultSet.getInt("payment_id")));
             }
+
         } catch (SQLException e) {
-//            return new Order();
+            return new Order();
         }
         return null;
     }
@@ -77,22 +71,21 @@ public class OrderRepository extends Database {
         try {
             PreparedStatement stmt = conn().prepareStatement(sql);
             stmt.setInt(1, user.getId());
+            ResultSet resultSet = stmt.executeQuery();
 
             List<Order> orders = new ArrayList<>();
 
-            ResultSet resultSet = stmt.executeQuery();
-
             while (resultSet.next()) {
-                ShippingAddress shippingAddress = new ShippingAddress();
-                shippingAddress.setId(resultSet.getInt("shipping_address_id"));
-//                Order order = new Order();
-//                order.setUser(user);
-//                order.setId(resultSet.getInt("id"));
-//                order.setStatus(resultSet.getString("status"));
-//                order.setShippingFee(resultSet.getFloat("shipping_fee"));
-//                order.setShippingAddress(shippingAddress);
-//
-//                orders.add(order);
+                Order order = new Order();
+
+                order.setUser(user);
+                order.setShippingAddress(shippingAddressRepository.read(resultSet.getInt("shipping_address_id"), user));
+                order.setId(resultSet.getInt("id"));
+                order.setStatus(resultSet.getString("status"));
+                order.setShippingFee(resultSet.getFloat("shipping_fee"));
+                order.setPaymentMethod(paymentRepository.read(resultSet.getInt("payment_id")));
+
+                orders.add(order);
             }
             return orders;
         } catch (SQLException e) {

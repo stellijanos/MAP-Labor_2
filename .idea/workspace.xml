@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement add shipping address and simplify user mvc">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement shipping address options and mvc part also">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShippingAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShippingAddressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShippingAddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/ShippingAddressRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,14 +179,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698734405490</updated>
-    </task>
-    <task id="LOCAL-00014" summary="implement user update method">
-      <option name="closed" value="true" />
-      <created>1699220114506</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1699220114506</updated>
     </task>
     <task id="LOCAL-00015" summary="fix user update functionality">
       <option name="closed" value="true" />
@@ -576,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700946622152</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="implement shipping address options and mvc part also">
+      <option name="closed" value="true" />
+      <created>1701117236762</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1701117236763</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -594,7 +590,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="define all methods in the applications controller" />
     <MESSAGE value="define all routes in the main menu" />
     <MESSAGE value="fix models" />
     <MESSAGE value="fix models so that they have 1:M relationships" />
@@ -619,7 +614,8 @@
     <MESSAGE value="improve and fix repo and builder pattern for order" />
     <MESSAGE value="improve payment and fix order repo parts" />
     <MESSAGE value="implement add shipping address and simplify user mvc" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement add shipping address and simplify user mvc" />
+    <MESSAGE value="implement shipping address options and mvc part also" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement shipping address options and mvc part also" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

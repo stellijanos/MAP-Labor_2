@@ -1,9 +1,6 @@
 package org.online_shop.views;
 
-import org.online_shop.models.Category;
-import org.online_shop.models.Product;
-import org.online_shop.models.ShippingAddress;
-import org.online_shop.models.User;
+import org.online_shop.models.*;
 
 import java.util.List;
 
@@ -428,5 +425,17 @@ public class AppView {
 
     public void all_shipping_addresses_deleted_successfully() {
         System.out.println("All shipping addresses deleted successfully!");
+    }
+
+    public void view_all_orders(List<Order> orders) {
+        System.out.println(orders);
+    }
+
+    public void enter_order_id() {
+        System.out.println("Enter order id: ");
+    }
+
+    public void print_order(Order order) {
+        System.out.println(order);
     }
 }

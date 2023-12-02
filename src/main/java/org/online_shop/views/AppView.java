@@ -438,4 +438,15 @@ public class AppView {
     public void print_order(Order order) {
         System.out.println(order);
     }
+
+
+    public void add_to_cart() {
+        System.out.println("--------------------------\nAdd to cart\n--------------------------\n" +
+                "Structure: <product id>&<quantity>");
+    }
+
+    public void product_Added_to_cart_successully() {
+        System.out.println("Product added to cart successfully!");
+    }
+
 }

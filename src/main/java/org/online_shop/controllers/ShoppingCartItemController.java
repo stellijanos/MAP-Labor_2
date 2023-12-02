@@ -18,7 +18,7 @@ public class ShoppingCartItemController {
         return this._shoppingCartItemRepository.readAll(shoppingCart);
     }
 
-    public Response addToShoppingCart(Integer shoppingCartId, Integer productId, Integer quantity) {
+    public Response addToCart(Integer shoppingCartId, Integer productId, Integer quantity) {
         return Response.SOMETHING_WENT_WRONG;
 
     }

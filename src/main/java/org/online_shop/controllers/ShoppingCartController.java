@@ -23,6 +23,11 @@ public class ShoppingCartController {
                 Response.SOMETHING_WENT_WRONG;
     }
 
+    public ShoppingCart get(User user) {
+        return _shoppingCartRepository.read(user);
+    }
+
+
     public Response deleteShoppingCart(User user) {
         ShoppingCart shoppingCart = _shoppingCartRepository.read(user);
         return shoppingCart.getUser().getEmail() == null ? Response.SHOPPING_CART_DOES_NOT_EXIST :

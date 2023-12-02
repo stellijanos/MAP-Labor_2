@@ -36,6 +36,15 @@ public class AppController {
         }
     }
 
+
+    private Integer parseIntegerOrDefaultValue(String value, Integer defaultValue) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
     private void setUpSession(String email) {
         session = Session.getInstance();
         session.setId(email);
@@ -354,8 +363,27 @@ public class AppController {
         }
     }
 
-    public void addToCart() {
 
+    public void addToCart() {
+        List<String> productIdAndQuantity = List.of(readFromConsole(appView::add_to_cart, String.class).split("&"));
+
+        Integer productId = parseIntegerOrDefaultValue(productIdAndQuantity.get(0), -1);
+        Integer quantity = productIdAndQuantity.size() == 1 ? -1 : parseIntegerOrDefaultValue(productIdAndQuantity.get(1), -1) ;
+
+        User user = userController.getUser(session.getId());
+        ShoppingCart shoppingCart = shoppingCartController.get(user);
+
+        if (shoppingCart.getUser().getEmail() == null) {
+            shoppingCart = new ShoppingCart();
+            shoppingCart.setUser(user);
+        }
+
+        Response response = shoppingCartItemController.addToCart(shoppingCart.getId(), productId, quantity);
+
+        switch (response) {
+            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
+            case PRODUCT_ADDED_TO_CART_SUCCESSFULLY -> appView.product_Added_to_cart_successully();
+        }
     }
 
     public void adminPanel() {

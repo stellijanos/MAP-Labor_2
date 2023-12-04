@@ -36,6 +36,13 @@ public class AppController {
         }
     }
 
+    private void back() {
+        while (true) {
+            if (readFromConsole(appView::print_back, Integer.class) == 0)
+                break;
+        }
+    }
+
 
     private Integer parseIntegerOrDefaultValue(String value, Integer defaultValue) {
         try {
@@ -143,11 +150,7 @@ public class AppController {
 
     public void profileDetails() {
         appView.account_details(userController.getUser(session.getId()));
-
-        while (true) {
-            if (readFromConsole(appView::print_back, Integer.class) == 0)
-                break;
-        }
+        back();
     }
 
     public void editProfileDetails() {
@@ -209,16 +212,10 @@ public class AppController {
 
 
     public void viewSavedAddresses() {
-
         User user = userController.getUser(session.getId());
         List<ShippingAddress> addresses = shippingAddressController.getAll(user);
         appView.print_addresses(addresses);
-
-        while (true) {
-            if (readFromConsole(appView::print_back, Integer.class) == 0)
-                break;
-        }
-
+        back();
     }
 
     public void addAddress() {
@@ -300,11 +297,7 @@ public class AppController {
         User user = userController.getUser(session.getId());
         List<Order> orders = orderController.getAll(user);
         appView.view_all_orders(orders);
-
-        while (true) {
-            if (readFromConsole(appView::print_back, Integer.class) == 0)
-                break;
-        }
+        back();
     }
 
     public void viewOrder() {
@@ -313,29 +306,16 @@ public class AppController {
         Order order = orderController.get(id, userController.getUser(session.getId()));
 
         appView.print_order(order);
-
-        while (true) {
-            if (readFromConsole(appView::print_back, Integer.class) == 0)
-                break;
-        }
+        back();
     }
 
 
     public void favourites() {
-        boolean running = true;
-        while (running) {
-            if (readFromConsole(appView::favourites, Integer.class) == 0)
-                running = false;
-            else
-                appView.option_not_found();
-        }
+        back();
     }
 
     public void shoppingCart() {
-        boolean running = true;
-        while (running) {
-            running = readFromConsole(appView::shoppingCart, Integer.class) == 0;
-        }
+        back();
     }
 
     public void products() {
@@ -421,12 +401,9 @@ public class AppController {
 
         List<User> users = userController.getAll();
 
-        appView.list_all_users(users);
-
-        boolean running = true;
-        while (running) {
-            running = readFromConsole(appView::shoppingCart, Integer.class) == 0;
-        }
+        for (User user: userController.getAll())
+            appView.list_all_users(user);
+        back();
     }
 
     public void editUser() {
@@ -488,12 +465,9 @@ public class AppController {
     }
 
     public void viewAllProducts() {
-        appView.view_all_products(productController.getALl());
-
-        boolean running = true;
-        while (running) {
-            running = readFromConsole(appView::shoppingCart, Integer.class) == 0;
-        }
+        for (Product product: productController.getALl())
+            appView.view_all_products(product);
+        back();
     }
 
     public void addProduct() {
@@ -584,10 +558,7 @@ public class AppController {
 
 //        appView.view_all_users_orders(orders);
 
-        boolean running = true;
-        while (running) {
-            running = readFromConsole(appView::shoppingCart, Integer.class) == 0;
-        }
+        back();
     }
 
     public void editOrder() {

@@ -287,8 +287,8 @@ public class AppView {
     }
 
 
-    public void view_all_products(List<Product> products) {
-        System.out.println(products);
+    public void view_all_products(Product product) {
+        System.out.println(product);
     }
 
     public void add_product() {
@@ -453,8 +453,8 @@ public class AppView {
         System.out.println("-------------------------\nHere are all the users\n-------------------------\n");
     }
 
-    public void list_all_users(List<User> users) {
-        System.out.println(users);
+    public void list_all_users(User user) {
+        System.out.println(user);
     }
 
     public void edit_user() {

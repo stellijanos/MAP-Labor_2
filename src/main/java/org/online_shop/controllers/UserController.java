@@ -16,7 +16,6 @@ public class UserController {
 
     private final UserRepository _userRepository;
     private final FavouriteRepository _favouriteRepository = new FavouriteRepository();
-
     private final ProductRepository _productRepository = new ProductRepository();
 
 
@@ -72,7 +71,7 @@ public class UserController {
 //                !BCrypt.checkpw(currentPassword, currentUser.getPassword()) ? Response.INCORRECT_PASSWORD :
 //                        !newPassword.equals(confirmPassword) ? Response.PASSWORDS_DO_NOT_MATCH ;
 //                                _userRepository.updatePassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()), currentEmail) ? Response.PASSWORD_UPDATE_SUCCESSFUL :
-                                        Response.SOMETHING_WENT_WRONG;
+                Response.SOMETHING_WENT_WRONG;
     }
 
     public Response deleteUser(String email, String password) {
@@ -81,6 +80,13 @@ public class UserController {
         return user.getEmail() == null ? Response.INCORRECT_EMAIL :
                 !BCrypt.checkpw(password, user.getPassword()) ? Response.INCORRECT_PASSWORD :
                         _userRepository.delete(email) ? Response.USER_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+    }
+
+    public Response deleteUser(String email) {
+        User user = _userRepository.read(email);
+
+        return user.getEmail() == null ? Response.INCORRECT_EMAIL :
+                _userRepository.delete(email) ? Response.USER_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
 
@@ -102,7 +108,7 @@ public class UserController {
         return _userRepository.read(email);
     }
 
-    public List<User> listAllUsers() {
+    public List<User> getAll() {
         return _userRepository.readAll();
     }
 

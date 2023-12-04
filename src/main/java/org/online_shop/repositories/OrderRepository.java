@@ -5,6 +5,7 @@ import org.online_shop.models.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,33 @@ public class OrderRepository extends Database {
         }
         return null;
     }
+
+//    public Order readAll() {
+//        String sql = "SELECT * FROM orders";
+//
+//        try {
+//            Statement stmt = conn().createStatement();
+//            ResultSet resultSet = stmt.executeQuery(sql);
+//
+//            List<Order> orders = new ArrayList<>();
+//
+//            while (resultSet.next()) {
+//                Order order = new Order();
+//
+//                order.setUser(user);
+//                order.setShippingAddress(shippingAddressRepository.read(resultSet.getInt("shipping_address_id"), user));
+//                order.setId(resultSet.getInt("id"));
+//                order.setStatus(resultSet.getString("status"));
+//                order.setShippingFee(resultSet.getFloat("shipping_fee"));
+//                order.setPaymentMethod(paymentRepository.read(resultSet.getInt("payment_id")));
+//
+//                orders.add(order);
+//            }
+//            return orders;
+//        } catch (SQLException e) {
+//            return new ArrayList<>();
+//        }
+//    }
 
     public List<Order> readAll(User user) {
         String sql = "SELECT * FROM orders WHERE user_id = ?;";

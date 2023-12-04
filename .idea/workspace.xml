@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement orders and favourites mvc part">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement options in appcontroller">
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/DatabaseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/PaymentStrategyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/ShoppingCartItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/enums/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,8 +88,8 @@
       <recent name="org.online_shop.interfaces" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductTest">
-    <configuration name="ProductTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.PaymentStrategyTest.test_getId">
+    <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MAP-Labor_2" />
       <extension name="coverage">
         <pattern>
@@ -96,13 +98,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.online_shop" />
-      <option name="MAIN_CLASS_NAME" value="org.online_shop.ProductTest" />
+      <option name="MAIN_CLASS_NAME" value="org.online_shop.DatabaseTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductTest.test_create" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DatabaseTest.test_connection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MAP-Labor_2" />
       <extension name="coverage">
         <pattern>
@@ -111,14 +113,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.online_shop" />
-      <option name="MAIN_CLASS_NAME" value="org.online_shop.ProductTest" />
-      <option name="METHOD_NAME" value="test_create" />
+      <option name="MAIN_CLASS_NAME" value="org.online_shop.DatabaseTest" />
+      <option name="METHOD_NAME" value="test_connection" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductTest.test_delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PaymentStrategyTest.test_getId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MAP-Labor_2" />
       <extension name="coverage">
         <pattern>
@@ -127,8 +129,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.online_shop" />
-      <option name="MAIN_CLASS_NAME" value="org.online_shop.ProductTest" />
-      <option name="METHOD_NAME" value="test_delete" />
+      <option name="MAIN_CLASS_NAME" value="org.online_shop.PaymentStrategyTest" />
+      <option name="METHOD_NAME" value="test_getId" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -168,11 +170,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PaymentStrategyTest.test_getId" />
+        <item itemvalue="JUnit.DatabaseTest" />
+        <item itemvalue="JUnit.DatabaseTest.test_connection" />
         <item itemvalue="JUnit.ProductTest.test_update" />
         <item itemvalue="JUnit.ProductTest.test_read" />
-        <item itemvalue="JUnit.ProductTest.test_delete" />
-        <item itemvalue="JUnit.ProductTest.test_create" />
-        <item itemvalue="JUnit.ProductTest" />
       </list>
     </recent_temporary>
   </component>
@@ -184,14 +186,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698734405490</updated>
-    </task>
-    <task id="LOCAL-00016" summary="implement delete user method">
-      <option name="closed" value="true" />
-      <created>1699270019597</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1699270019597</updated>
     </task>
     <task id="LOCAL-00017" summary="simplify console read and implement Session using Singleton">
       <option name="closed" value="true" />
@@ -577,7 +571,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701163334040</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="implement options in appcontroller">
+      <option name="closed" value="true" />
+      <created>1701546882853</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1701546882853</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -595,7 +597,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix models" />
     <MESSAGE value="fix models so that they have 1:M relationships" />
     <MESSAGE value="fix repos in relation to models" />
     <MESSAGE value="modify controller and repo" />
@@ -620,7 +621,8 @@
     <MESSAGE value="implement add shipping address and simplify user mvc" />
     <MESSAGE value="implement shipping address options and mvc part also" />
     <MESSAGE value="implement orders and favourites mvc part" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement orders and favourites mvc part" />
+    <MESSAGE value="implement options in appcontroller" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement options in appcontroller" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -7,6 +7,7 @@ import org.online_shop.models.ShippingAddress;
 import org.online_shop.models.User;
 import org.online_shop.repositories.OrderRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderController {
@@ -35,6 +36,11 @@ public class OrderController {
 
     public List<Order> getAll(User user) {
         return _orderRepository.readAll(user);
+    }
+
+    public List<Order> getAll() {
+//        return _orderRepository.readAll();
+        return new ArrayList<>();
     }
 
 }

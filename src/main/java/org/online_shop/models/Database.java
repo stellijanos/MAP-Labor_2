@@ -18,7 +18,7 @@ public class Database {
         dbName = env.load().get("DB_NAME");
     }
 
-    protected Connection conn() {
+    public Connection conn() {
         loadCredentials();
 
         String url = "jdbc:mysql://" + dbServer + ":3306/" + dbName;

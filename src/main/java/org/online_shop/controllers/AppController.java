@@ -368,7 +368,7 @@ public class AppController {
         List<String> productIdAndQuantity = List.of(readFromConsole(appView::add_to_cart, String.class).split("&"));
 
         Integer productId = parseIntegerOrDefaultValue(productIdAndQuantity.get(0), -1);
-        Integer quantity = productIdAndQuantity.size() == 1 ? -1 : parseIntegerOrDefaultValue(productIdAndQuantity.get(1), -1) ;
+        Integer quantity = productIdAndQuantity.size() == 1 ? -1 : parseIntegerOrDefaultValue(productIdAndQuantity.get(1), -1);
 
         User user = userController.getUser(session.getId());
         ShoppingCart shoppingCart = shoppingCartController.get(user);
@@ -417,15 +417,46 @@ public class AppController {
 
 
     public void viewAllUsers() {
+        appView.view_all_users();
 
+        List<User> users = userController.getAll();
+
+        appView.list_all_users(users);
+
+        boolean running = true;
+        while (running) {
+            running = readFromConsole(appView::shoppingCart, Integer.class) == 0;
+        }
     }
 
     public void editUser() {
+        appView.edit_user();
 
+        String userEmail = readFromConsole(appView::enter_user_email, String.class);
+        String firstname = readFromConsole(appView::enter_firstname, String.class);
+        String lastname = readFromConsole(appView::enter_lastname, String.class);
+        String email = readFromConsole(appView::enter_email, String.class);
+
+        Response response = userController.updateUser(firstname, lastname, email, userEmail);
+
+        switch (response) {
+            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
+            case USER_NOT_FOUND -> appView.user_not_found();
+            case USER_EXISTS -> appView.user_exists();
+            case USER_UPDATE_SUCCESSFUL -> appView.user_updated_successfully();
+        }
     }
 
     public void removeUser() {
+        appView.remove_user();
 
+        String userEmail = readFromConsole(appView::enter_user_email, String.class);
+        Response response = userController.deleteUser(userEmail);
+        switch (response) {
+            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
+            case INCORRECT_EMAIL -> appView.incorrect_email();
+            case USER_DELETE_SUCCESSFUL -> appView.user_deleted_successfully();
+        }
     }
 
     public void removeAllUsers() {
@@ -459,9 +490,9 @@ public class AppController {
     public void viewAllProducts() {
         appView.view_all_products(productController.getALl());
 
-        while (true) {
-            if (readFromConsole(appView::print_back, Integer.class) == 0)
-                userPanel();
+        boolean running = true;
+        while (running) {
+            running = readFromConsole(appView::shoppingCart, Integer.class) == 0;
         }
     }
 
@@ -538,7 +569,7 @@ public class AppController {
         while (running) {
             switch (readFromConsole(appView::orderOptions, Integer.class)) {
                 case 0 -> running = false;
-                case 1 -> viewAllOrders();
+                case 1 -> viewAllUsersOrders();
                 case 2 -> editOrder();
                 case 3 -> removeOrder();
                 case 4 -> removeAllOrders();
@@ -549,6 +580,14 @@ public class AppController {
 
     public void viewAllUsersOrders() {
 
+        List<Order> orders = orderController.getAll();
+
+//        appView.view_all_users_orders(orders);
+
+        boolean running = true;
+        while (running) {
+            running = readFromConsole(appView::shoppingCart, Integer.class) == 0;
+        }
     }
 
     public void editOrder() {

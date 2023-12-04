@@ -449,4 +449,24 @@ public class AppView {
         System.out.println("Product added to cart successfully!");
     }
 
+    public void view_all_users() {
+        System.out.println("-------------------------\nHere are all the users\n-------------------------\n");
+    }
+
+    public void list_all_users(List<User> users) {
+        System.out.println(users);
+    }
+
+    public void edit_user() {
+        System.out.println("----------------------\nEdit user\n----------------------");
+    }
+
+    public void enter_user_email() {
+        System.out.println("Enter user id: ");
+    }
+
+    public void remove_user() {
+        System.out.println("----------------------\nRemove user\n----------------------");
+    }
+
 }

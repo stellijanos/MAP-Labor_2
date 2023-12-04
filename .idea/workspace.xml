@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement options in appcontroller">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/DatabaseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/PaymentStrategyTest.java" afterDir="false" />
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement options in appcontroller and tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,14 +178,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698734405490</updated>
-    </task>
-    <task id="LOCAL-00017" summary="simplify console read and implement Session using Singleton">
-      <option name="closed" value="true" />
-      <created>1699431190638</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1699431190638</updated>
     </task>
     <task id="LOCAL-00018" summary="simplify session handling in AppController">
       <option name="closed" value="true" />
@@ -579,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701546882853</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="implement options in appcontroller and tests">
+      <option name="closed" value="true" />
+      <created>1701674639498</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1701674639498</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -597,7 +589,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix models so that they have 1:M relationships" />
     <MESSAGE value="fix repos in relation to models" />
     <MESSAGE value="modify controller and repo" />
     <MESSAGE value="implement product crud part in app controller" />
@@ -622,7 +613,8 @@
     <MESSAGE value="implement shipping address options and mvc part also" />
     <MESSAGE value="implement orders and favourites mvc part" />
     <MESSAGE value="implement options in appcontroller" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement options in appcontroller" />
+    <MESSAGE value="implement options in appcontroller and tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement options in appcontroller and tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,49 +1,65 @@
 package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import com.online_shop.MAP_Labor_2_Spring.enums.Response;
-import org.online_shop.models.Category;
-import com.online_shop.MAP_Labor_2_Spring.models.repositories.CategoryRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.Category;
+import com.online_shop.MAP_Labor_2_Spring.repositories.CategoryRepository;
+import com.online_shop.MAP_Labor_2_Spring.repositories.Env;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Objects;
 
+@RestController
+@RequestMapping("/api/categories")
 public class CategoryController {
 
-    private final CategoryRepository _categoryRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
-    public CategoryController(CategoryRepository categoryRepository) {
-        _categoryRepository = categoryRepository;
+
+    @PostMapping("/create")
+    public @ResponseBody Response create(
+            @RequestParam(name = "token") String token,
+            @RequestBody Category category
+    ) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return Response.INVALID_TOKEN;
+        categoryRepository.save(category);
+        return Response.CATEGORY_CREATE_SUCCESSFUL;
     }
 
-    public Response createCategory(String name) {
-        Category category = new Category();
-        category.setName(name);
-        category.setId(_categoryRepository.readAll().size() + 1);
-        return _categoryRepository.create(category) ? Response.CATEGORY_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+    @GetMapping("/{id}")
+    public @ResponseBody Category read(@RequestParam String token, @PathVariable Integer id) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return new Category();
+        return categoryRepository.findById(id).orElse(new Category());
     }
 
-    public Category getCategory(Integer id) {
-        return _categoryRepository.read(id);
+    @GetMapping
+    public @ResponseBody Iterable<Category> readAll(@RequestParam String token) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return new ArrayList<>();
+        return categoryRepository.findAll();
     }
 
-    public List<Category> getAllCategories() {
-        return _categoryRepository.readAll();
-    }
-
-    public Response modifyCategory(String name, Integer id) {
-        Category currentCategory = _categoryRepository.read(id);
-        if (currentCategory.getName() == null)
+    @PutMapping("/{id}")
+    public @ResponseBody Response update(@RequestParam String token, @RequestBody Category category) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return Response.INVALID_TOKEN;
+        Category current = categoryRepository.findById(category.getId()).orElse(new Category());
+        if (current.getName() == null) {
             return Response.CATEGORY_NOT_FOUND;
-
-        Category updatedCategory = new Category();
-        updatedCategory.setName(name.isEmpty() ? currentCategory.getName() : name);
-        return _categoryRepository.update(updatedCategory) ? Response.CATEGORY_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+        }
+        categoryRepository.save(category);
+        return Response.CATEGORY_UPDATE_SUCCESSFUL;
     }
 
-    public Response removeCategory(Integer id) {
-        return _categoryRepository.delete(id) ? Response.CATEGORY_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
-    }
-
-    public Response removeAllCategories() {
-        return _categoryRepository.deleteAll() ? Response.ALL_CATEGORIES_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+    @DeleteMapping("/{id}")
+    public @ResponseBody Response delete(@RequestParam String token, @RequestBody Category category) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return Response.INVALID_TOKEN;
+        categoryRepository.delete(category);
+        return Response.CATEGORY_DELETE_SUCCESSFUL;
     }
 }

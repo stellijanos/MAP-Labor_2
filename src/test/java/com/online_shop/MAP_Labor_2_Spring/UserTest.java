@@ -1,5 +1,6 @@
 package org.online_shop;
 
+import com.online_shop.MAP_Labor_2_Spring.services.UserService;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -14,7 +15,7 @@ public class UserTest {
 
     @Test
     public void test_signUp() {
-        UserRepository userRepository = new UserRepository();
+        UserService userRepository = new UserService(new U);
         UserController userController = new UserController(userRepository);
 
         assertEquals(0, userRepository.readAll().size());

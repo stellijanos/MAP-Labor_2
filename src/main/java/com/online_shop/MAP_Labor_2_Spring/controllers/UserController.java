@@ -1,115 +1,76 @@
 package com.online_shop.MAP_Labor_2_Spring.controllers;
 
-import com.online_shop.MAP_Labor_2_Spring.models.repositories.Env;
 import com.online_shop.MAP_Labor_2_Spring.enums.Response;
-import org.online_shop.models.User;
-import com.online_shop.MAP_Labor_2_Spring.models.repositories.FavouriteRepository;
-import com.online_shop.MAP_Labor_2_Spring.models.repositories.ProductRepository;
-import com.online_shop.MAP_Labor_2_Spring.models.repositories.UserRepository;
-
-import java.util.List;
-
+import com.online_shop.MAP_Labor_2_Spring.models.User;
+import com.online_shop.MAP_Labor_2_Spring.repositories.Env;
+import com.online_shop.MAP_Labor_2_Spring.repositories.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Objects;
 
+@RestController
+@RequestMapping("/api/users")
 public class UserController {
 
-    private final UserRepository _userRepository;
-    private final FavouriteRepository _favouriteRepository = new FavouriteRepository();
-    private final ProductRepository _productRepository = new ProductRepository();
+    @Autowired
+    private UserRepository userRepository;
 
 
-    public UserController(UserRepository userRepository) {
-        _userRepository = userRepository;
-    }
+    @PostMapping("/create")
+    public @ResponseBody Response create(
+            @RequestParam(name = "token") String token,
+            @RequestBody User user) {
 
-    public Response createUser(String firstname, String lastname, String email, String password) {
-        if (logInUser(email, password) == Response.USER_LOGIN_SUCCESSFUL) {
-            return Response.USER_EXISTS;
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return Response.INVALID_TOKEN;
+
+        User current = userRepository.findByEmail(user.getEmail());
+        if (current.getEmail() != null) {
+            return Response.USER_ALREADY_EXISTS;
         }
-        User user = new User();
-        user.setFirstname(firstname);
-        user.setLastname(lastname);
-        user.setEmail(email);
-        user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
-
-        user.setId(_userRepository.readAll().size() + 1);
-
-        return _userRepository.create(user) ? Response.USER_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+        userRepository.save(user);
+        return Response.USER_CREATE_SUCCESSFUL;
     }
 
-
-    public boolean isAvailableEmail(String email) {
-        User user = _userRepository.read(email);
-        return user.getEmail() == null;
+    @GetMapping("/{email}")
+    public @ResponseBody User read(
+            @RequestParam(name = "token") String token,
+            @PathVariable String email) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return new User();
+        return userRepository.findByEmail(email);
     }
 
-    public Response updateUser(String newFirstname, String newLastname, String newEmail, String currentEmail) {
-        User currentUser = _userRepository.read(currentEmail);
-
-        if (currentUser.getEmail() == null)
-            return Response.USER_NOT_FOUND;
-
-        if (!newEmail.isEmpty() && !isAvailableEmail(newEmail))
-            return Response.USER_EXISTS;
-
-        User updatedUser = new User();
-
-        currentUser.notifyObservers();
-
-        updatedUser.setFirstname(newFirstname.isEmpty() ? currentUser.getFirstname() : newFirstname);
-        updatedUser.setLastname(newLastname.isEmpty() ? currentUser.getLastname() : newLastname);
-        updatedUser.setEmail(newEmail.isEmpty() ? currentUser.getEmail() : newEmail);
-
-        return _userRepository.update(updatedUser, currentEmail) ? Response.USER_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+    @GetMapping
+    public @ResponseBody Iterable<User> readAll(@RequestParam(name = "token") String token) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return new ArrayList<>();
+        return userRepository.findAll();
     }
 
-    public Response updateUserPassword(String currentPassword, String newPassword, String confirmPassword, String currentEmail) {
-        User currentUser = _userRepository.read(currentEmail);
-
-        return currentUser.getEmail() == null ? Response.USER_NOT_FOUND :
-//                !BCrypt.checkpw(currentPassword, currentUser.getPassword()) ? Response.INCORRECT_PASSWORD :
-//                        !newPassword.equals(confirmPassword) ? Response.PASSWORDS_DO_NOT_MATCH ;
-//                                _userRepository.updatePassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()), currentEmail) ? Response.PASSWORD_UPDATE_SUCCESSFUL :
-                Response.SOMETHING_WENT_WRONG;
+    @PutMapping("/{email}")
+    public @ResponseBody Response update(@RequestParam String token, @PathVariable String email, @RequestBody User user) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return Response.INVALID_TOKEN;
+        User updated = userRepository.updateByEmail(email, user);
+        return updated.getEmail() != null ? Response.USER_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
     }
 
-    public Response deleteUser(String email, String password) {
-        User user = _userRepository.read(email);
-
-        return user.getEmail() == null ? Response.INCORRECT_EMAIL :
-                !BCrypt.checkpw(password, user.getPassword()) ? Response.INCORRECT_PASSWORD :
-                        _userRepository.delete(email) ? Response.USER_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+    @DeleteMapping("/{email}")
+    public @ResponseBody Response delete(
+            @RequestParam String token,
+            @RequestParam String current_password,
+            @RequestParam String hashed_password,
+            @PathVariable String email
+            ) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return Response.INVALID_TOKEN;
+        if (!BCrypt.checkpw(current_password, hashed_password))
+            return Response.INCORRECT_PASSWORD;
+        userRepository.deleteByEmail(email);
+        return Response.USER_DELETE_SUCCESSFUL;
     }
-
-    public Response deleteUser(String email) {
-        User user = _userRepository.read(email);
-
-        return user.getEmail() == null ? Response.INCORRECT_EMAIL :
-                _userRepository.delete(email) ? Response.USER_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
-    }
-
-
-    public Response removeALlUsers(String adminPassword) {
-        Env env = new Env();
-        return !BCrypt.checkpw(adminPassword, env.load().get("ADMIN_PASSWORD")) ?
-                Response.INCORRECT_PASSWORD : _userRepository.deleteAll() ? Response.ALL_USERS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
-    }
-
-    public Response logInUser(String email, String password) {
-        User user = _userRepository.read(email);
-
-        return user.getEmail() == null ? Response.INCORRECT_EMAIL :
-                BCrypt.checkpw(password, user.getPassword()) ? Response.USER_LOGIN_SUCCESSFUL : Response.INCORRECT_PASSWORD;
-    }
-
-    public User getUser(String email) {
-
-        return _userRepository.read(email);
-    }
-
-    public List<User> getAll() {
-        return _userRepository.readAll();
-    }
-
 }

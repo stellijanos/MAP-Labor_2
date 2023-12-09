@@ -1,4 +1,4 @@
-package org.online_shop.enums;
+package com.online_shop.MAP_Labor_2_Spring.enums;
 
 public enum Response {
     USER_EXISTS,

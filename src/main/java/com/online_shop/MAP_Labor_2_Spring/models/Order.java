@@ -2,7 +2,6 @@ package com.online_shop.MAP_Labor_2_Spring.models;
 
 import com.online_shop.MAP_Labor_2_Spring.interfaces.UserObserver;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Order implements UserObserver {

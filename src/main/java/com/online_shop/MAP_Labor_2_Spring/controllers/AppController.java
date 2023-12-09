@@ -1,4 +1,4 @@
-package org.online_shop.controllers;
+package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import java.lang.Thread;
 import java.util.InputMismatchException;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-import org.online_shop.enums.Response;
+import com.online_shop.MAP_Labor_2_Spring.enums.Response;
 import org.online_shop.models.*;
 import org.online_shop.repositories.*;
 import org.online_shop.views.AppView;

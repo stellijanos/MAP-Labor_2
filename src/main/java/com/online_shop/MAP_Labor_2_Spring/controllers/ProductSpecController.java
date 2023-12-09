@@ -1,7 +1,7 @@
-package org.online_shop.controllers;
+package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import org.online_shop.models.ProductSpec;
-import org.online_shop.repositories.ProductSpecRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.ProductSpecRepository;
 
 public class ProductSpecController {
 

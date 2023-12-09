@@ -1,11 +1,11 @@
-package org.online_shop.controllers;
+package com.online_shop.MAP_Labor_2_Spring.controllers;
 
-import org.online_shop.enums.Response;
+import com.online_shop.MAP_Labor_2_Spring.enums.Response;
 import org.online_shop.interfaces.PaymentStrategy;
 import org.online_shop.models.Order;
 import org.online_shop.models.ShippingAddress;
 import org.online_shop.models.User;
-import org.online_shop.repositories.OrderRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.OrderRepository;
 
 import java.util.ArrayList;
 import java.util.List;

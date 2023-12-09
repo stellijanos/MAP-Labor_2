@@ -1,10 +1,10 @@
-package org.online_shop.controllers;
+package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import org.mindrot.jbcrypt.BCrypt;
-import org.online_shop.enums.Response;
+import com.online_shop.MAP_Labor_2_Spring.enums.Response;
 import org.online_shop.models.ShippingAddress;
 import org.online_shop.models.User;
-import org.online_shop.repositories.ShippingAddressRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.ShippingAddressRepository;
 
 import java.util.List;
 

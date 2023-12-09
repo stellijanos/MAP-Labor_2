@@ -1,4 +1,4 @@
-package org.online_shop.controllers;
+package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import org.jetbrains.annotations.NotNull;
 

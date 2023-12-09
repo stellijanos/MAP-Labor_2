@@ -1,14 +1,13 @@
-package org.online_shop.controllers;
+package com.online_shop.MAP_Labor_2_Spring.controllers;
 
-import org.online_shop.enums.Response;
+import com.online_shop.MAP_Labor_2_Spring.enums.Response;
 import org.online_shop.models.Favourite;
 import org.online_shop.models.Product;
 import org.online_shop.models.User;
-import org.online_shop.repositories.FavouriteRepository;
-import org.online_shop.repositories.ProductRepository;
-import org.online_shop.repositories.UserRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.FavouriteRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.ProductRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.UserRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FavouriteController {

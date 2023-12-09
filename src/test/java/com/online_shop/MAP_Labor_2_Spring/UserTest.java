@@ -4,9 +4,9 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-import org.online_shop.controllers.UserController;
+import com.online_shop.MAP_Labor_2_Spring.controllers.UserController;
 import org.online_shop.models.User;
-import org.online_shop.repositories.UserRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.UserRepository;
 
 
 public class UserTest {

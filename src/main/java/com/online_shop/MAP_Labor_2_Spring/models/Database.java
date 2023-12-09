@@ -1,6 +1,6 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
-import org.online_shop.repositories.Env;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.Env;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

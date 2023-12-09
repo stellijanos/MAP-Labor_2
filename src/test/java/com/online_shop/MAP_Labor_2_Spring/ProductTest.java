@@ -4,10 +4,10 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-import org.online_shop.controllers.ProductController;
+import com.online_shop.MAP_Labor_2_Spring.controllers.ProductController;
 import org.online_shop.models.Category;
 import org.online_shop.models.Product;
-import org.online_shop.repositories.ProductRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.ProductRepository;
 
 
 public class ProductTest {

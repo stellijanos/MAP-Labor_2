@@ -1,6 +1,6 @@
-package org.online_shop.controllers;
+package com.online_shop.MAP_Labor_2_Spring.controllers;
 
-import org.online_shop.repositories.OrderItemRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.OrderItemRepository;
 
 public class OrderItemController {
     private OrderItemRepository _orderItemRepository;

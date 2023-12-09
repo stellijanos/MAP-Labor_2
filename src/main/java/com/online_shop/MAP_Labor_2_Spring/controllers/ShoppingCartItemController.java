@@ -1,9 +1,9 @@
-package org.online_shop.controllers;
+package com.online_shop.MAP_Labor_2_Spring.controllers;
 
-import org.online_shop.enums.Response;
+import com.online_shop.MAP_Labor_2_Spring.enums.Response;
 import org.online_shop.models.ShoppingCart;
 import org.online_shop.models.ShoppingCartItem;
-import org.online_shop.repositories.ShoppingCartItemRepository;
+import com.online_shop.MAP_Labor_2_Spring.models.repositories.ShoppingCartItemRepository;
 
 import java.util.List;
 

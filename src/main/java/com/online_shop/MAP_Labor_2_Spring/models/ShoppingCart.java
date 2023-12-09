@@ -1,12 +1,24 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
-import org.online_shop.interfaces.UserObserver;
+import com.online_shop.MAP_Labor_2_Spring.interfaces.UserObserver;
+import jakarta.persistence.*;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class ShoppingCart implements UserObserver {
+
+
+    @Setter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Setter
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
     private final List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
 
@@ -14,16 +26,8 @@ public class ShoppingCart implements UserObserver {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public User getUser() {
         return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public List<ShoppingCartItem> getShoppingCartItems() {

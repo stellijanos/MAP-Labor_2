@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement options in appcontroller">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/DatabaseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/online_shop/PaymentStrategyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/models/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/repositories/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/online_shop/views/AppView.java" afterDir="false" />
-    </list>
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement options in appcontroller and tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,40 +13,24 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;stellijanos&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="a0e51f8a-96ca-4dcc-9fd6-bb189ae47c8c" />
-        <option name="url" value="https://github.com/stellijanos/MAP-Labor_2.git" />
-      </UrlAndAccount>
     </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
+  &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2XWALSpNwNgSUvKYgQEoWogegi8" />
+  <component name="ProjectId" id="2ZIZ6voW1BE2LNvNjJKHSbbwTP2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -64,568 +38,50 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.DemoApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Facultatea de mate info/Semestrul 3/MAP/Laborator/MAP-Labor_2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="org.online_shop.controllers" />
-      <recent name="org.online_shop.models" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="org.online_shop.interfaces" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JUnit.PaymentStrategyTest.test_getId">
-    <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MAP-Labor_2" />
+  <component name="RunManager">
+    <configuration name="DemoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.online_shop.MAP_Labor_2_Spring.DemoApplication" />
+      <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.online_shop.*" />
+          <option name="PATTERN" value="com.online_shop.MAP_Labor_2_Spring.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.online_shop" />
-      <option name="MAIN_CLASS_NAME" value="org.online_shop.DatabaseTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DatabaseTest.test_connection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MAP-Labor_2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.online_shop.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.online_shop" />
-      <option name="MAIN_CLASS_NAME" value="org.online_shop.DatabaseTest" />
-      <option name="METHOD_NAME" value="test_connection" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PaymentStrategyTest.test_getId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MAP-Labor_2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.online_shop.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.online_shop" />
-      <option name="MAIN_CLASS_NAME" value="org.online_shop.PaymentStrategyTest" />
-      <option name="METHOD_NAME" value="test_getId" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProductTest.test_read" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MAP-Labor_2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.online_shop.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.online_shop" />
-      <option name="MAIN_CLASS_NAME" value="org.online_shop.ProductTest" />
-      <option name="METHOD_NAME" value="test_read" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProductTest.test_update" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MAP-Labor_2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.online_shop.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.online_shop" />
-      <option name="MAIN_CLASS_NAME" value="org.online_shop.ProductTest" />
-      <option name="METHOD_NAME" value="test_update" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PaymentStrategyTest.test_getId" />
-        <item itemvalue="JUnit.DatabaseTest" />
-        <item itemvalue="JUnit.DatabaseTest.test_connection" />
-        <item itemvalue="JUnit.ProductTest.test_update" />
-        <item itemvalue="JUnit.ProductTest.test_read" />
+        <item itemvalue="Application.DemoApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-8336523bb0d9-657b72ed" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="" />
-      <created>1698734405490</created>
+      <changelist id="5ee42d44-8713-4dd3-b4de-ec53fa59e04d" name="Changes" comment="" />
+      <created>1702111381951</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1698734405490</updated>
+      <updated>1702111381951</updated>
     </task>
-    <task id="LOCAL-00017" summary="simplify console read and implement Session using Singleton">
-      <option name="closed" value="true" />
-      <created>1699431190638</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1699431190638</updated>
-    </task>
-    <task id="LOCAL-00018" summary="simplify session handling in AppController">
-      <option name="closed" value="true" />
-      <created>1699435911290</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1699435911290</updated>
-    </task>
-    <task id="LOCAL-00019" summary="implement user password update">
-      <option name="closed" value="true" />
-      <created>1699438586062</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1699438586062</updated>
-    </task>
-    <task id="LOCAL-00020" summary="implement and modify parts of app controller and product controller">
-      <option name="closed" value="true" />
-      <created>1699446483891</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1699446483892</updated>
-    </task>
-    <task id="LOCAL-00021" summary="implement constructor for all controllers">
-      <option name="closed" value="true" />
-      <created>1699517365441</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1699517365441</updated>
-    </task>
-    <task id="LOCAL-00022" summary="implement product controller and simplify other controllers">
-      <option name="closed" value="true" />
-      <created>1699548184710</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1699548184710</updated>
-    </task>
-    <task id="LOCAL-00023" summary="implement category controller and fix other controllers">
-      <option name="closed" value="true" />
-      <created>1699555967386</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1699555967386</updated>
-    </task>
-    <task id="LOCAL-00024" summary="implement deleteAll for product- and category controllers">
-      <option name="closed" value="true" />
-      <created>1699556550378</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1699556550378</updated>
-    </task>
-    <task id="LOCAL-00025" summary="implement favourite mvc part and fix other mvc parts">
-      <option name="closed" value="true" />
-      <created>1699558206104</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1699558206104</updated>
-    </task>
-    <task id="LOCAL-00026" summary="implement repositories">
-      <option name="closed" value="true" />
-      <created>1699647153119</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1699647153119</updated>
-    </task>
-    <task id="LOCAL-00027" summary="implement controllers and fix mvc parts">
-      <option name="closed" value="true" />
-      <created>1699650478000</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1699650478000</updated>
-    </task>
-    <task id="LOCAL-00028" summary="implement shopping cart related mvc part">
-      <option name="closed" value="true" />
-      <created>1699691668289</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1699691668289</updated>
-    </task>
-    <task id="LOCAL-00029" summary="simplify whole project and use only object types">
-      <option name="closed" value="true" />
-      <created>1699695453380</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1699695453380</updated>
-    </task>
-    <task id="LOCAL-00030" summary="remove primitive Data types in repos and models and use advanced methods">
-      <option name="closed" value="true" />
-      <created>1699699434290</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1699699434290</updated>
-    </task>
-    <task id="LOCAL-00031" summary="implement routing system for the whole app">
-      <option name="closed" value="true" />
-      <created>1699710422983</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1699710422983</updated>
-    </task>
-    <task id="LOCAL-00032" summary="use routing system in the app controller">
-      <option name="closed" value="true" />
-      <created>1699771222841</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1699771222841</updated>
-    </task>
-    <task id="LOCAL-00033" summary="implement more efficient routing system">
-      <option name="closed" value="true" />
-      <created>1699771950411</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1699771950411</updated>
-    </task>
-    <task id="LOCAL-00034" summary="implement routing system in appcontroller and define all functionalities for app">
-      <option name="closed" value="true" />
-      <created>1699780452738</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1699780452738</updated>
-    </task>
-    <task id="LOCAL-00035" summary="improve routing system with responses and keep appview only">
-      <option name="closed" value="true" />
-      <created>1699785512063</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1699785512063</updated>
-    </task>
-    <task id="LOCAL-00036" summary="define all methods in the applications controller">
-      <option name="closed" value="true" />
-      <created>1699786907006</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1699786907006</updated>
-    </task>
-    <task id="LOCAL-00037" summary="define all routes in the main menu">
-      <option name="closed" value="true" />
-      <created>1699797825440</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1699797825440</updated>
-    </task>
-    <task id="LOCAL-00038" summary="fix models">
-      <option name="closed" value="true" />
-      <created>1699808222734</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1699808222734</updated>
-    </task>
-    <task id="LOCAL-00039" summary="fix models so that they have 1:M relationships">
-      <option name="closed" value="true" />
-      <created>1699814431943</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1699814431943</updated>
-    </task>
-    <task id="LOCAL-00040" summary="fix models so that they have 1:M relationships">
-      <option name="closed" value="true" />
-      <created>1699815971081</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1699815971081</updated>
-    </task>
-    <task id="LOCAL-00041" summary="fix repos in relation to models">
-      <option name="closed" value="true" />
-      <created>1699816803139</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1699816803139</updated>
-    </task>
-    <task id="LOCAL-00042" summary="modify controller and repo">
-      <option name="closed" value="true" />
-      <created>1699857500826</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1699857500826</updated>
-    </task>
-    <task id="LOCAL-00043" summary="implement product crud part in app controller">
-      <option name="closed" value="true" />
-      <created>1699859526667</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1699859526667</updated>
-    </task>
-    <task id="LOCAL-00044" summary="implement bcrypt and other admin methods">
-      <option name="closed" value="true" />
-      <created>1699868079487</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1699868079487</updated>
-    </task>
-    <task id="LOCAL-00045" summary="implement tests for Product mvc part and upgrade app controller">
-      <option name="closed" value="true" />
-      <created>1699870853125</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1699870853125</updated>
-    </task>
-    <task id="LOCAL-00046" summary="implement observer design pattern for users and favourites">
-      <option name="closed" value="true" />
-      <created>1699878900733</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1699878900733</updated>
-    </task>
-    <task id="LOCAL-00047" summary="simplify controller methods">
-      <option name="closed" value="true" />
-      <created>1699879312639</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1699879312639</updated>
-    </task>
-    <task id="LOCAL-00048" summary="include mysql dependency">
-      <option name="closed" value="true" />
-      <created>1699879512543</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1699879512543</updated>
-    </task>
-    <task id="LOCAL-00049" summary="implement database connection class">
-      <option name="closed" value="true" />
-      <created>1700325933136</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1700325933136</updated>
-    </task>
-    <task id="LOCAL-00050" summary="implement observer pattern and define payment strategy pattern">
-      <option name="closed" value="true" />
-      <created>1700330086055</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1700330086055</updated>
-    </task>
-    <task id="LOCAL-00051" summary="implement repository with sql">
-      <option name="closed" value="true" />
-      <created>1700381325477</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1700381325478</updated>
-    </task>
-    <task id="LOCAL-00052" summary="implement other repositories with sql">
-      <option name="closed" value="true" />
-      <created>1700388552171</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1700388552172</updated>
-    </task>
-    <task id="LOCAL-00053" summary="implement all repositories with sql">
-      <option name="closed" value="true" />
-      <created>1700412745630</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1700412745631</updated>
-    </task>
-    <task id="LOCAL-00054" summary="implement all repositories with sql">
-      <option name="closed" value="true" />
-      <created>1700416466875</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1700416466875</updated>
-    </task>
-    <task id="LOCAL-00055" summary="rename all private attributes">
-      <option name="closed" value="true" />
-      <created>1700417659209</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1700417659209</updated>
-    </task>
-    <task id="LOCAL-00056" summary="update and improve repository part">
-      <option name="closed" value="true" />
-      <created>1700437295707</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1700437295707</updated>
-    </task>
-    <task id="LOCAL-00057" summary="update and improve repository and controller parts">
-      <option name="closed" value="true" />
-      <created>1700478486131</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1700478486132</updated>
-    </task>
-    <task id="LOCAL-00058" summary="implement builder pattern">
-      <option name="closed" value="true" />
-      <created>1700480349754</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1700480349755</updated>
-    </task>
-    <task id="LOCAL-00059" summary="change sql success execution verification">
-      <option name="closed" value="true" />
-      <created>1700491587845</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1700491587845</updated>
-    </task>
-    <task id="LOCAL-00060" summary="improve and fix repo and builder pattern for order">
-      <option name="closed" value="true" />
-      <created>1700860961687</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1700860961688</updated>
-    </task>
-    <task id="LOCAL-00061" summary="improve payment and fix order repo parts">
-      <option name="closed" value="true" />
-      <created>1700862999600</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1700862999601</updated>
-    </task>
-    <task id="LOCAL-00062" summary="implement add shipping address and simplify user mvc">
-      <option name="closed" value="true" />
-      <created>1700946622151</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1700946622152</updated>
-    </task>
-    <task id="LOCAL-00063" summary="implement shipping address options and mvc part also">
-      <option name="closed" value="true" />
-      <created>1701117236762</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1701117236763</updated>
-    </task>
-    <task id="LOCAL-00064" summary="implement orders and favourites mvc part">
-      <option name="closed" value="true" />
-      <created>1701163334040</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1701163334040</updated>
-    </task>
-    <task id="LOCAL-00065" summary="implement options in appcontroller">
-      <option name="closed" value="true" />
-      <created>1701546882853</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1701546882853</updated>
-    </task>
-    <option name="localTasksCounter" value="66" />
     <servers />
-  </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix models so that they have 1:M relationships" />
-    <MESSAGE value="fix repos in relation to models" />
-    <MESSAGE value="modify controller and repo" />
-    <MESSAGE value="implement product crud part in app controller" />
-    <MESSAGE value="implement bcrypt and other admin methods" />
-    <MESSAGE value="implement tests for Product mvc part and upgrade app controller" />
-    <MESSAGE value="implement observer design pattern for users and favourites" />
-    <MESSAGE value="simplify controller methods" />
-    <MESSAGE value="include mysql dependency" />
-    <MESSAGE value="implement database connection class" />
-    <MESSAGE value="implement observer pattern and define payment strategy pattern" />
-    <MESSAGE value="implement repository with sql" />
-    <MESSAGE value="implement other repositories with sql" />
-    <MESSAGE value="implement all repositories with sql" />
-    <MESSAGE value="rename all private attributes" />
-    <MESSAGE value="update and improve repository part" />
-    <MESSAGE value="update and improve repository and controller parts" />
-    <MESSAGE value="implement builder pattern" />
-    <MESSAGE value="change sql success execution verification" />
-    <MESSAGE value="improve and fix repo and builder pattern for order" />
-    <MESSAGE value="improve payment and fix order repo parts" />
-    <MESSAGE value="implement add shipping address and simplify user mvc" />
-    <MESSAGE value="implement shipping address options and mvc part also" />
-    <MESSAGE value="implement orders and favourites mvc part" />
-    <MESSAGE value="implement options in appcontroller" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement options in appcontroller" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

@@ -1,19 +1,56 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
+import com.online_shop.MAP_Labor_2_Spring.interfaces.PaymentStrategy;
 import com.online_shop.MAP_Labor_2_Spring.interfaces.UserObserver;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
+@Entity
+@ToString
+@Table(name = "orders")
 public class Order implements UserObserver {
 
     private final boolean instance;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Getter
+    @Setter
     private User user;
+
+    @OneToOne
+    @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
+    @Setter
+    @Getter
     private ShippingAddress shippingAddress;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @Getter
+    @Setter
     private List<OrderItem> orderItems;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @Getter
+    @Setter
     private PaymentStrategy paymentStrategy;
+    @Setter
+    @Getter
     private String date;
+    @Setter
+    @Getter
     private String status;
+    @Setter
+    @Getter
     private Float shippingFee;
 
 
@@ -52,7 +89,7 @@ public class Order implements UserObserver {
     public Order payment(PaymentStrategy paymentStrategy) throws Exception {
         if (this.shippingFee == null)
             throw new Exception("Order has not shipping fee!");
-        this.setPaymentMethod(paymentStrategy);
+        this.setPaymentStrategy(paymentStrategy);
         return this;
     }
 
@@ -63,87 +100,12 @@ public class Order implements UserObserver {
         return this;
     }
 
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public ShippingAddress getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(ShippingAddress shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public PaymentStrategy getPaymentMethod() {
-        return paymentStrategy;
-    }
-
-    public void setPaymentMethod(PaymentStrategy paymentMethod) {
-        this.paymentStrategy = paymentMethod;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Float getShippingFee() {
-        return shippingFee;
-    }
-
-    public void setShippingFee(Float shippingFee) {
-        this.shippingFee = shippingFee;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", user=" + user +
-                ", shippingAddress=" + shippingAddress +
-                ", orderItems=" + orderItems +
-                ", paymentMethod='" + paymentStrategy + '\'' +
-                ", date='" + date + '\'' +
-                ", status='" + status + '\'' +
-                ", shippingFee=" + shippingFee +
-                '}';
-    }
-
     @Override
     public void update(String firstname, String lastname, String email, String password, ShoppingCart shoppingCart) {
         user.setFirstname(firstname);
         user.setLastname(lastname);
         user.setEmail(email);
         user.setPassword(password);
-        user.setShoppingCart(shoppingCart);
+        user.set$shoppingCart(shoppingCart);
     }
 }

@@ -95,6 +95,6 @@ public class ShippingAddress implements UserObserver {
         this.user.setLastname(lastname);
         this.user.setEmail(email);
         this.user.setPassword(password);
-        this.user.setShoppingCart(shoppingCart);
+        this.user.set$shoppingCart(shoppingCart);
     }
 }

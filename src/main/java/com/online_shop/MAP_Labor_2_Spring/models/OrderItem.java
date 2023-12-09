@@ -1,51 +1,26 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@Entity
+@ToString
+@Table(name = "order_items")
 public class OrderItem {
-
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Order order;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Product product;
+    @Column(name = "price", precision = 10, scale = 2, nullable = false)
     private Float price;
+    @Column(name = "quantity")
     private Integer quantity;
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderItem{" +
-                "order=" + order +
-                ", product=" + product +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
-    }
 }

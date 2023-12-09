@@ -4,7 +4,6 @@ import com.online_shop.MAP_Labor_2_Spring.enums.Response;
 import org.online_shop.models.Favourite;
 import org.online_shop.models.Product;
 import org.online_shop.models.User;
-import com.online_shop.MAP_Labor_2_Spring.models.repositories.FavouriteRepository;
 import com.online_shop.MAP_Labor_2_Spring.models.repositories.ProductRepository;
 import com.online_shop.MAP_Labor_2_Spring.models.repositories.UserRepository;
 

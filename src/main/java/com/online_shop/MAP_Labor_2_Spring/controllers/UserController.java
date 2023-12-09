@@ -39,9 +39,7 @@ public class UserController {
     public @ResponseBody User read(
             @RequestParam(name = "token") String token,
             @PathVariable String email) {
-        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
-            return new User();
-        return userRepository.findByEmail(email);
+        return (!Objects.equals(Env.load().get("API_TOKEN"), token)) ? new User() : userRepository.findByEmail(email);
     }
 
     @GetMapping
@@ -65,7 +63,7 @@ public class UserController {
             @RequestParam String current_password,
             @RequestParam String hashed_password,
             @PathVariable String email
-            ) {
+    ) {
         if (!Objects.equals(Env.load().get("API_TOKEN"), token))
             return Response.INVALID_TOKEN;
         if (!BCrypt.checkpw(current_password, hashed_password))

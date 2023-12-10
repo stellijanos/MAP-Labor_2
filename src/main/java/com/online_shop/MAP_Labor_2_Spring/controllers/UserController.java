@@ -20,7 +20,7 @@ public class UserController {
 
 
     @PostMapping("/create")
-    public @ResponseBody Response create(
+    public @ResponseBody Response createUser(
             @RequestParam(name = "token") String token,
             @RequestBody User user) {
 
@@ -36,21 +36,23 @@ public class UserController {
     }
 
     @GetMapping("/{email}")
-    public @ResponseBody User read(
-            @RequestParam(name = "token") String token,
-            @PathVariable String email) {
+    public @ResponseBody User getUser(
+            @PathVariable String email,
+            @RequestParam(name = "token") String token
+            ) {
         return (!Objects.equals(Env.load().get("API_TOKEN"), token)) ? new User() : userRepository.findByEmail(email);
     }
 
     @GetMapping
-    public @ResponseBody Iterable<User> readAll(@RequestParam(name = "token") String token) {
+    public @ResponseBody Iterable<User> getAll(@RequestParam(name = "token") String token) {
         if (!Objects.equals(Env.load().get("API_TOKEN"), token))
             return new ArrayList<>();
         return userRepository.findAll();
     }
 
     @PutMapping("/{email}")
-    public @ResponseBody Response update(@RequestParam String token, @PathVariable String email, @RequestBody User user) {
+    public @ResponseBody Response updateUser(@RequestParam String token, @PathVariable String email,
+                                             @RequestBody User user) {
         if (!Objects.equals(Env.load().get("API_TOKEN"), token))
             return Response.INVALID_TOKEN;
         User updated = userRepository.updateByEmail(email, user);
@@ -58,15 +60,11 @@ public class UserController {
     }
 
     @DeleteMapping("/{email}")
-    public @ResponseBody Response delete(
-            @RequestParam String token,
-            @RequestParam String current_password,
-            @RequestParam String hashed_password,
-            @PathVariable String email
-    ) {
+    public @ResponseBody Response deleteUser(@PathVariable String email, @RequestParam String token,
+                                             @RequestParam String current_password) {
         if (!Objects.equals(Env.load().get("API_TOKEN"), token))
             return Response.INVALID_TOKEN;
-        if (!BCrypt.checkpw(current_password, hashed_password))
+        if (!BCrypt.checkpw(current_password, userRepository.findByEmail(email).getPassword()))
             return Response.INCORRECT_PASSWORD;
         userRepository.deleteByEmail(email);
         return Response.USER_DELETE_SUCCESSFUL;

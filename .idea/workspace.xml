@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement categpry mvc and repo part and fix other parts">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="make all repos interface and implement some controllers">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/ShoppingCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/ShoppingCartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/ShoppingCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/ShoppingCartRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702153969688</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="make all repos interface and implement some controllers">
+      <option name="closed" value="true" />
+      <created>1702155831439</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702155831439</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,6 +185,7 @@
     <MESSAGE value="add repo to versioned files" />
     <MESSAGE value="implement database entities in spring" />
     <MESSAGE value="implement categpry mvc and repo part and fix other parts" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement categpry mvc and repo part and fix other parts" />
+    <MESSAGE value="make all repos interface and implement some controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="make all repos interface and implement some controllers" />
   </component>
 </project>

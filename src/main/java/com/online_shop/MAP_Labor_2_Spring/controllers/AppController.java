@@ -7,25 +7,27 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import com.online_shop.MAP_Labor_2_Spring.enums.Response;
-import org.online_shop.models.*;
-import org.online_shop.repositories.*;
-import org.online_shop.views.AppView;
+import com.online_shop.MAP_Labor_2_Spring.models.*;
+import com.online_shop.MAP_Labor_2_Spring.repositories.*;
+import com.online_shop.MAP_Labor_2_Spring.views.AppView;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 public class AppController {
 
     private final AppView appView = new AppView();
-    private final CategoryController categoryController = new CategoryController(new CategoryRepository());
-    private final FavouriteController favouriteController = new FavouriteController(new FavouriteRepository());
-    private final OrderController orderController = new OrderController(new OrderRepository());
-    private final OrderItemController orderItemController = new OrderItemController(new OrderItemRepository());
-    private final ProductController productController = new ProductController(new ProductRepository());
-    private final ProductSpecController productSpecController = new ProductSpecController(new ProductSpecRepository());
-    private final ShippingAddressController shippingAddressController = new ShippingAddressController(new ShippingAddressRepository());
-    private final ShoppingCartController shoppingCartController = new ShoppingCartController(new ShoppingCartRepository());
-    private final ShoppingCartItemController shoppingCartItemController = new ShoppingCartItemController(new ShoppingCartItemRepository());
-    private final UserController userController = new UserController(new UserRepository());
+    private final CategoryController categoryController = new CategoryController();
+    private final FavouriteController favouriteController = new FavouriteController();
+    private final OrderController orderController = new OrderController();
+    private final OrderItemController orderItemController = new OrderItemController();
+    private final ProductController productController = new ProductController();
+    private final ProductSpecController productSpecController = new ProductSpecController();
+    private final ShippingAddressController shippingAddressController = new ShippingAddressController();
+    private final ShoppingCartController shoppingCartController = new ShoppingCartController();
+    private final ShoppingCartItemController shoppingCartItemController = new ShoppingCartItemController();
+    private final UserController userController = new UserController();
     private Session session;
+    private final String token = "janos";
 
 
     private void sleep(Integer milliseconds) {
@@ -56,9 +58,7 @@ public class AppController {
         session = Session.getInstance();
         session.setId(email);
         appView.login_successful();
-
-        Env env = new Env();
-        if (Objects.equals(env.load().get("ADMIN_EMAIL"), email))
+        if (Objects.equals(Env.load().get("ADMIN_EMAIL"), email))
             adminPanel();
         userPanel();
     }
@@ -149,7 +149,7 @@ public class AppController {
 
 
     public void profileDetails() {
-        appView.account_details(userController.getUser(session.getId()));
+        appView.account_details(userController.getUser(session.getId(), token));
         back();
     }
 
@@ -157,8 +157,15 @@ public class AppController {
         String firstname = readFromConsole(appView::enter_new_firstname, String.class);
         String lastname = readFromConsole(appView::enter_new_lastname, String.class);
         String email = readFromConsole(appView::enter_new_email, String.class);
+        String password = readFromConsole(appView::enter_new_password, String.class);
 
-        Response response = userController.updateUser(firstname, lastname, email, session.getId());
+        User user = userController.getUser(session.getId(), token);
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setEmail(email);
+        user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+
+        Response response = userController.updateUser(token, session.getId(), user);
         switch (response) {
             case USER_UPDATE_SUCCESSFUL -> restartSession(email);
             case USER_EXISTS -> appView.user_exists();
@@ -166,26 +173,27 @@ public class AppController {
         }
     }
 
+    // deprecated, will be removed
     public void changePassword() {
-        String currentPassword = readFromConsole(appView::enter_password, String.class);
-        String newPassword = readFromConsole(appView::enter_new_password, String.class);
-        String confirmPassword = readFromConsole(appView::confirm_password, String.class);
-
-        Response response = userController.updateUserPassword(currentPassword, newPassword, confirmPassword, session.getId());
-
-        switch (response) {
-            case USER_NOT_FOUND -> appView.user_not_found();
-            case INCORRECT_PASSWORD -> appView.incorrect_password();
-            case PASSWORDS_DO_NOT_MATCH -> appView.passwords_do_not_match();
-            case PASSWORD_UPDATE_SUCCESSFUL -> appView.password_updated_successfully();
-            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-        }
+//        String currentPassword = readFromConsole(appView::enter_password, String.class);
+//        String newPassword = readFromConsole(appView::enter_new_password, String.class);
+//        String confirmPassword = readFromConsole(appView::confirm_password, String.class);
+//
+//        Response response = userController.updateUserPassword(currentPassword, newPassword, confirmPassword, session.getId());
+//
+//        switch (response) {
+//            case USER_NOT_FOUND -> appView.user_not_found();
+//            case INCORRECT_PASSWORD -> appView.incorrect_password();
+//            case PASSWORDS_DO_NOT_MATCH -> appView.passwords_do_not_match();
+//            case PASSWORD_UPDATE_SUCCESSFUL -> appView.password_updated_successfully();
+//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
+//        }
     }
 
     public void deleteAccount() {
         String password = readFromConsole(appView::enter_password, String.class);
 
-        Response response = userController.deleteUser(session.getId(), password);
+        Response response = userController.deleteUser(session.getId(), token, password);
 
         switch (response) {
             case INCORRECT_EMAIL -> appView.incorrect_email();
@@ -212,7 +220,7 @@ public class AppController {
 
 
     public void viewSavedAddresses() {
-        User user = userController.getUser(session.getId());
+        User user = userController.getUser(session.getId(), token);
         List<ShippingAddress> addresses = shippingAddressController.getAll(user);
         appView.print_addresses(addresses);
         back();
@@ -226,7 +234,7 @@ public class AppController {
         String address = readFromConsole(appView::enter_address, String.class);
         String city = readFromConsole(appView::enter_city, String.class);
         String zipcode = readFromConsole(appView::enter_zipcode, String.class);
-        User user = userController.getUser(session.getId());
+        User user = userController.getUser(session.getId(), token);
 
         Response response = shippingAddressController.addAddress(name, phone, address, city, zipcode, user);
 
@@ -244,7 +252,7 @@ public class AppController {
         String address = readFromConsole(appView::enter_address, String.class);
         String city = readFromConsole(appView::enter_city, String.class);
         String zipcode = readFromConsole(appView::enter_zipcode, String.class);
-        User user = userController.getUser(session.getId());
+        User user = userController.getUser(session.getId(), token);
 
         Response response = shippingAddressController.modify(id, name, phone, address, city, zipcode, user);
 
@@ -257,7 +265,7 @@ public class AppController {
 
     public void deleteAddress() {
         Integer id = readFromConsole(appView::enter_shipping_address_number, Integer.class);
-        User user = userController.getUser(session.getId());
+        User user = userController.getUser(session.getId(), token);
 
         Response response = shippingAddressController.remove(id, user);
 
@@ -269,7 +277,7 @@ public class AppController {
 
     public void deleteAllAddresses() {
         String password = readFromConsole(appView::enter_password, String.class);
-        User user = userController.getUser(session.getId());
+        User user = userController.getUser(session.getId(), token);
 
         Response response = shippingAddressController.removeAll(password, user);
 
@@ -294,7 +302,7 @@ public class AppController {
     }
 
     public void viewAllOrders() {
-        User user = userController.getUser(session.getId());
+        User user = userController.getUser(session.getId(), token);
         List<Order> orders = orderController.getAll(user);
         appView.view_all_orders(orders);
         back();
@@ -303,7 +311,7 @@ public class AppController {
     public void viewOrder() {
 
         Integer id = readFromConsole(appView::enter_order_id, Integer.class);
-        Order order = orderController.get(id, userController.getUser(session.getId()));
+        Order order = orderController.get(id, userController.getUser(session.getId(), token));
 
         appView.print_order(order);
         back();
@@ -350,7 +358,7 @@ public class AppController {
         Integer productId = parseIntegerOrDefaultValue(productIdAndQuantity.get(0), -1);
         Integer quantity = productIdAndQuantity.size() == 1 ? -1 : parseIntegerOrDefaultValue(productIdAndQuantity.get(1), -1);
 
-        User user = userController.getUser(session.getId());
+        User user = userController.getUser(session.getId(), token);
         ShoppingCart shoppingCart = shoppingCartController.get(user);
 
         if (shoppingCart.getUser().getEmail() == null) {
@@ -398,10 +406,7 @@ public class AppController {
 
     public void viewAllUsers() {
         appView.view_all_users();
-
-        List<User> users = userController.getAll();
-
-        for (User user: userController.getAll())
+        for (User user : (List<User>) userController.getAll(token))
             appView.list_all_users(user);
         back();
     }
@@ -414,7 +419,13 @@ public class AppController {
         String lastname = readFromConsole(appView::enter_lastname, String.class);
         String email = readFromConsole(appView::enter_email, String.class);
 
-        Response response = userController.updateUser(firstname, lastname, email, userEmail);
+        User user = userController.getUser(userEmail, token);
+
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setEmail(email);
+
+        Response response = userController.updateUser(token, userEmail, user);
 
         switch (response) {
             case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
@@ -424,11 +435,12 @@ public class AppController {
         }
     }
 
+
     public void removeUser() {
         appView.remove_user();
 
         String userEmail = readFromConsole(appView::enter_user_email, String.class);
-        Response response = userController.deleteUser(userEmail);
+        Response response = userController.deleteUser(userEmail, token);
         switch (response) {
             case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
             case INCORRECT_EMAIL -> appView.incorrect_email();
@@ -465,7 +477,7 @@ public class AppController {
     }
 
     public void viewAllProducts() {
-        for (Product product: productController.getALl())
+        for (Product product : productController.getALl())
             appView.view_all_products(product);
         back();
     }

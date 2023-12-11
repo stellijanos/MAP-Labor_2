@@ -39,7 +39,7 @@ public class UserController {
     public @ResponseBody User getUser(
             @PathVariable String email,
             @RequestParam(name = "token") String token
-            ) {
+    ) {
         return (!Objects.equals(Env.load().get("API_TOKEN"), token)) ? new User() : userRepository.findByEmail(email);
     }
 
@@ -60,13 +60,24 @@ public class UserController {
     }
 
     @DeleteMapping("/{email}")
-    public @ResponseBody Response deleteUser(@PathVariable String email, @RequestParam String token,
-                                             @RequestParam String current_password) {
+    public @ResponseBody Response deleteUser(@PathVariable String email, @RequestParam String password, @RequestParam String token) {
         if (!Objects.equals(Env.load().get("API_TOKEN"), token))
             return Response.INVALID_TOKEN;
-        if (!BCrypt.checkpw(current_password, userRepository.findByEmail(email).getPassword()))
+
+        if (!BCrypt.checkpw(password, userRepository.findByEmail(email).getPassword()) && !Objects.equals(Env.load().get("ADMIN_PASSWORD"), password))
             return Response.INCORRECT_PASSWORD;
         userRepository.deleteByEmail(email);
         return Response.USER_DELETE_SUCCESSFUL;
+    }
+
+    @DeleteMapping("/all")
+    public @ResponseBody Response deleteAllUsers(@RequestParam String password ,@RequestParam String token) {
+        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
+            return Response.INVALID_TOKEN;
+
+        if (!Objects.equals(Env.load().get("ADMIN_PASSWORD"), password))
+            return Response.INCORRECT_PASSWORD;
+        userRepository.deleteAll();
+        return Response.ALL_USERS_DELETE_SUCCESSFUL;
     }
 }

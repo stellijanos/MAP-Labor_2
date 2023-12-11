@@ -1,48 +1,39 @@
 package com.online_shop.MAP_Labor_2_Spring.controllers;
 
+import com.online_shop.MAP_Labor_2_Spring.models.Category;
+import com.online_shop.MAP_Labor_2_Spring.models.Product;
+import com.online_shop.MAP_Labor_2_Spring.repositories.Env;
+import com.online_shop.MAP_Labor_2_Spring.repositories.ProductRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import com.online_shop.MAP_Labor_2_Spring.enums.Response;
-import org.online_shop.models.Category;
-import org.online_shop.models.Product;
-import com.online_shop.MAP_Labor_2_Spring.models.repositories.Env;
-import com.online_shop.MAP_Labor_2_Spring.models.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/api/products")
 public class ProductController {
 
-    private final ProductRepository _productRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
-    public ProductController(ProductRepository productRepository) {
-        _productRepository = productRepository;
-    }
-
-    public Response addProduct(String name, Float price, Category category, String description, Integer stock) {
-
-        Product product = new Product();
-
-        product.setName(name);
-        product.setPrice(price);
-        product.setCategory(category);
-        product.setDescription(description);
-        product.setStock(stock);
-        product.setId(_productRepository.readAll().size() + 1);
-        product.setImageLink(generateImageLink(name));
-
-        return _productRepository.create(product) ? Response.PRODUCT_CREATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+    @PostMapping("/create")
+    public void createProduct(@RequestBody Product product) {
+        productRepository.save(product);
     }
 
     public Product getProduct(Integer id) {
-        return _productRepository.read(id);
+        return productRepository.findById(id).orElse(null);
     }
 
     public List<Product> getALl() {
-        return _productRepository.readAll();
+        return (List<Product>) productRepository.findAll();
     }
 
     public Response modify(String name, String price_str, String description, Category category, String stock_str, Integer id) {
 
-        Product currentProduct = _productRepository.read(id);
+        Product currentProduct = productRepository.findById(id).orElse(new Product());
         if (currentProduct.getName() == null) {
             return Response.PRODUCT_NOT_FOUND;
         }
@@ -56,17 +47,21 @@ public class ProductController {
         updatedProduct.setStock(stock_str.isEmpty() ? currentProduct.getStock() : Integer.parseInt(stock_str));
         updatedProduct.setCategory(category.getName().isEmpty() ? currentProduct.getCategory() : category);
 
-        return _productRepository.update(updatedProduct) ? Response.PRODUCT_UPDATE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+        productRepository.save(updatedProduct);
+        return Response.PRODUCT_UPDATE_SUCCESSFUL;
     }
 
-    public Response removeProduct(Integer id) {
-        return _productRepository.delete(id) ? Response.PRODUCT_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+    @DeleteMapping("/{id}")
+    public void removeProduct(Integer id) {
+        productRepository.deleteById(id);
     }
 
     public Response removeAllProducts(String adminPassword) {
-        Env env = new Env();
-        return !BCrypt.checkpw(adminPassword, env.load().get("ADMIN_PASSWORD")) ?
-                Response.INCORRECT_PASSWORD : _productRepository.deleteAll() ? Response.ALL_PRODUCTS_DELETE_SUCCESSFUL : Response.SOMETHING_WENT_WRONG;
+
+        if (!BCrypt.checkpw(adminPassword, Env.load().get("ADMIN_PASSWORD")))
+                return Response.INCORRECT_PASSWORD;
+        productRepository.deleteAll();
+        return Response.ALL_PRODUCTS_DELETE_SUCCESSFUL;
     }
 
     public String generateImageLink(String name) {

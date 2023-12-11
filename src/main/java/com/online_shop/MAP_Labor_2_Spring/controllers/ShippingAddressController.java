@@ -1,74 +1,44 @@
 package com.online_shop.MAP_Labor_2_Spring.controllers;
 
+import com.online_shop.MAP_Labor_2_Spring.models.ShippingAddress;
+import com.online_shop.MAP_Labor_2_Spring.repositories.ShippingAddressRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import com.online_shop.MAP_Labor_2_Spring.enums.Response;
-import org.online_shop.models.ShippingAddress;
-import org.online_shop.models.User;
-import com.online_shop.MAP_Labor_2_Spring.models.repositories.ShippingAddressRepository;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 public class ShippingAddressController {
 
-    private final ShippingAddressRepository _shippingAddressRepository;
+    private ShippingAddressRepository shippingAddressRepository;
 
-    public ShippingAddressController(ShippingAddressRepository shippingAddressRepository) {
-        this._shippingAddressRepository = shippingAddressRepository;
+    public @ResponseBody void createAddress(@RequestBody ShippingAddress shippingAddress) {
+        shippingAddressRepository.save(shippingAddress);
     }
 
-    public Response addAddress(String name, String phone, String address, String city, String zipcode, User user) {
-
-        ShippingAddress shippingAddress = new ShippingAddress();
-        shippingAddress.setUser(user);
-        shippingAddress.setName(name);
-        shippingAddress.setPhone(phone);
-        shippingAddress.setAddress(address);
-        shippingAddress.setCity(city);
-        shippingAddress.setZipCode(zipcode);
-
-        return _shippingAddressRepository.create(shippingAddress)
-                ? Response.SHIPPING_ADDRESS_CREATED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+    @GetMapping("/{id}")
+    public ShippingAddress getAddress(@PathVariable Integer id) {
+        return shippingAddressRepository.findById(id).orElse(null);
     }
 
-    public ShippingAddress getAddress(Integer id, User user) {
-        return _shippingAddressRepository.read(id, user);
+
+    @GetMapping
+    public @ResponseBody List<ShippingAddress> getAllAddresses() {
+        return (List<ShippingAddress>) shippingAddressRepository.findAll();
     }
 
-    public List<ShippingAddress> getAll(User user) {
-        return _shippingAddressRepository.readAll(user);
+    @PutMapping("/{id}")
+    public @ResponseBody void update(@RequestBody ShippingAddress shippingAddress) {
+        shippingAddressRepository.save(shippingAddress);
     }
 
-    public Response modify(Integer id, String name, String phone, String address, String city, String zipcode, User user) {
-
-        ShippingAddress current = _shippingAddressRepository.read(id, user);
-        if (current.getName().isEmpty())
-            return Response.SHIPPING_ADDRESS_NOT_FOUND;
-
-        ShippingAddress updated = new ShippingAddress();
-        updated.setId(id);
-        updated.setName(name.isEmpty() ? current.getName() : name);
-        updated.setPhone(phone.isEmpty() ? current.getPhone() : phone);
-        updated.setAddress(address.isEmpty() ? current.getAddress() : address);
-        updated.setCity(city.isEmpty() ? current.getCity() : city);
-        updated.setZipCode(zipcode.isEmpty() ? current.getZipCode() : zipcode);
-        updated.setUser(user);
-
-        return _shippingAddressRepository.update(updated)
-                ? Response.SHIPPING_ADDRESS_UPDATED_SUCCESSFULLY: Response.SOMETHING_WENT_WRONG;
+    @DeleteMapping("/{id}")
+    public @ResponseBody void delete(@PathVariable Integer id) {
+        shippingAddressRepository.deleteById(id);
     }
 
-    public Response remove(Integer id, User user) {
-        ShippingAddress current = _shippingAddressRepository.read(id, user);
-        if (current.getName().isEmpty())
-            return Response.SHIPPING_ADDRESS_NOT_FOUND;
-        return _shippingAddressRepository.delete(current)
-                ? Response.SHIPPING_ADDRESS_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
+    @DeleteMapping
+    public void deleteAll() {
+         shippingAddressRepository.deleteAll();
     }
-
-    public Response removeAll(String password, User user) {
-        return (!BCrypt.checkpw(password, user.getPassword()))
-                ? Response.INCORRECT_PASSWORD : _shippingAddressRepository.deleteAll(user)
-                ? Response.ALL_SHIPPING_ADDRESSES_DELETED_SUCCESSFULLY : Response.SOMETHING_WENT_WRONG;
-    }
-
 }

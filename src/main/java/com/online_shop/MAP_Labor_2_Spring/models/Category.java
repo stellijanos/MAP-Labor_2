@@ -1,7 +1,6 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,15 +8,15 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
+@Setter
 @Getter
 @Entity
 @ToString
 @Table(name = "categories")
 public class Category {
-
-    @Setter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Setter
     private String name;
-    private final List<Product> products = new ArrayList<>();
+//    private List<Product> products = new ArrayList<>();
 }

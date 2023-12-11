@@ -25,9 +25,8 @@ public class Session {
             sessionId = id;
     }
 
-    public boolean destroy() {
+    public void destroy() {
         this.sessionId = null;
         instance = null;
-        return true;
     }
 }

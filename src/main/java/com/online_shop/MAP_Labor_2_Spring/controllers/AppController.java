@@ -1,57 +1,56 @@
-package com.online_shop.MAP_Labor_2_Spring.controllers;
-
-import java.lang.Thread;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
-
-import com.online_shop.MAP_Labor_2_Spring.enums.Response;
-import com.online_shop.MAP_Labor_2_Spring.models.*;
-import com.online_shop.MAP_Labor_2_Spring.repositories.*;
-import com.online_shop.MAP_Labor_2_Spring.views.AppView;
-import org.mindrot.jbcrypt.BCrypt;
-
-
-public class AppController {
-
-    private final AppView appView = new AppView();
-    private final CategoryController categoryController = new CategoryController();
-    private final OrderController orderController = new OrderController();
-    private final OrderItemController orderItemController = new OrderItemController();
-    private final ProductController productController = new ProductController();
-    private final ProductSpecController productSpecController = new ProductSpecController();
-    private final ShippingAddressController shippingAddressController = new ShippingAddressController();
-    private final ShoppingCartController shoppingCartController = new ShoppingCartController();
-    private final ShoppingCartItemController shoppingCartItemController = new ShoppingCartItemController();
-    private final UserController userController = new UserController();
-    private Session session;
-    private final String token = "janos";
-
-
-    private void sleep(Integer milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void back() {
-        while (true) {
-            if (readFromConsole(appView::print_back, Integer.class) == 0)
-                break;
-        }
-    }
-
-
-    private Integer parseIntegerOrDefaultValue(String value, Integer defaultValue) {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            return defaultValue;
-        }
-    }
+//package com.online_shop.MAP_Labor_2_Spring.controllers;
+//
+//import java.lang.Thread;
+//import java.util.InputMismatchException;
+//import java.util.List;
+//import java.util.Objects;
+//import java.util.Scanner;
+//
+//import com.online_shop.MAP_Labor_2_Spring.enums.Response;
+//import com.online_shop.MAP_Labor_2_Spring.models.*;
+//import com.online_shop.MAP_Labor_2_Spring.repositories.*;
+//import com.online_shop.MAP_Labor_2_Spring.views.AppView;
+//import org.mindrot.jbcrypt.BCrypt;
+//
+//public class AppController {
+//
+//    private final AppView appView = new AppView();
+//    private final CategoryController categoryController = new CategoryController();
+//    private final OrderController orderController = new OrderController();
+//    private final OrderItemController orderItemController = new OrderItemController();
+//    private final ProductController productController = new ProductController();
+//    private final ProductSpecController productSpecController = new ProductSpecController();
+//    private final ShippingAddressController shippingAddressController = new ShippingAddressController();
+//    private final ShoppingCartController shoppingCartController = new ShoppingCartController();
+//    private final ShoppingCartItemController shoppingCartItemController = new ShoppingCartItemController();
+//    private final UserController userController = new UserController();
+//    private Session session;
+//    private final String token = "janos";
+//
+//
+//    private void sleep(Integer milliseconds) {
+//        try {
+//            Thread.sleep(milliseconds);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    private void back() {
+//        while (true) {
+//            if (readFromConsole(appView::print_back, Integer.class) == 0)
+//                break;
+//        }
+//    }
+//
+//
+//    private Integer parseIntegerOrDefaultValue(String value, Integer defaultValue) {
+//        try {
+//            return Integer.parseInt(value);
+//        } catch (NumberFormatException e) {
+//            return defaultValue;
+//        }
+//    }
 
 //    private void setUpSession(String email) {
 //        session = Session.getInstance();
@@ -61,51 +60,51 @@ public class AppController {
 //            adminPanel();
 //        userPanel();
 //    }
-
-    private <T> T readFromConsole(Runnable message, Class<T> type) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            try {
-                message.run();
-
-                if (type.equals(String.class))
-                    return type.cast(scanner.nextLine());
-                if (type.equals(Integer.class))
-                    return type.cast(scanner.nextInt());
-                if (type.equals(Float.class))
-                    return type.cast(scanner.nextFloat());
-
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter valid option.");
-                sleep(500);
-                scanner.nextLine(); // clear the input buffer
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-
-    public void restartSession(String email) {
-        if (!email.isEmpty()) {
-            session.destroy();
-            session = Session.getInstance();
-            session.setId(email);
-        }
-        appView.user_updated_successfully();
-    }
+//
+//    private <T> T readFromConsole(Runnable message, Class<T> type) {
+//        Scanner scanner = new Scanner(System.in);
+//        while (true) {
+//            try {
+//                message.run();
+//
+//                if (type.equals(String.class))
+//                    return type.cast(scanner.nextLine());
+//                if (type.equals(Integer.class))
+//                    return type.cast(scanner.nextInt());
+//                if (type.equals(Float.class))
+//                    return type.cast(scanner.nextFloat());
+//
+//            } catch (InputMismatchException e) {
+//                System.out.println("Invalid input. Please enter valid option.");
+//                sleep(500);
+//                scanner.nextLine(); // clear the input buffer
+//            } catch (Exception e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    }
+//
+//
+//    public void restartSession(String email) {
+//        if (!email.isEmpty()) {
+//            session.destroy();
+//            session = Session.getInstance();
+//            session.setId(email);
+//        }
+//        appView.user_updated_successfully();
+//    }
 
 //    public void deleteUser() {
 //        logOut();
 //        appView.user_deleted_successfully();
 //    }
 
-    public void run() {
-        mainMenu();
-    }
+//    public void run() {
+//        mainMenu();
+//    }
 
     // Menu classes
-    public void mainMenu() {
+//    public void mainMenu() {
 //        boolean running = true;
 //        while (running) {
 //            switch (readFromConsole(appView::mainMenu, Integer.class)) {
@@ -115,7 +114,7 @@ public class AppController {
 //                default -> appView.option_not_found();
 //            }
 //        }
-    }
+//    }
 //
 //    public void userPanel() {
 //        while (true) {
@@ -618,7 +617,7 @@ public class AppController {
 //        if (session.destroy())
 //            mainMenu();
 //    }
-}
+//}
 
 /*
         Product product = new Product();

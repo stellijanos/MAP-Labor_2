@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface ShippingAddressRepository extends CrudRepository<ShippingAddress, Long> {
-    List<ShippingAddress> findAllByUserId(Integer userId);
+    List<ShippingAddress> findAllByUserId(Long userId);
 }

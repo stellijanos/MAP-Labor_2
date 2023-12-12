@@ -1,7 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
 
-//import com.online_shop.MAP_Labor_2_Spring.interfaces.UserObserver;
+import com.online_shop.MAP_Labor_2_Spring.interfaces.UserObserver;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +26,11 @@ public class ShippingAddress /*implements UserObserver*/ {
     private String address;
     private String city;
     private String zipcode;
+
+//    @Override
+//    public void update(User user) {
+//        setUser(user);
+//    }
 }
 
 //    private List<Order> orders = new ArrayList<>();

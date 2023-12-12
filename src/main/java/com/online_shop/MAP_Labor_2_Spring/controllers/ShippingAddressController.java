@@ -28,7 +28,7 @@ public class ShippingAddressController {
     }
 
     @GetMapping("/user/{user_id}")
-    public @ResponseBody List<ShippingAddress> getAllAddressByUserId(@PathVariable Integer user_id) {
+    public @ResponseBody List<ShippingAddress> getAllAddressByUserId(@PathVariable Long user_id) {
         return shippingAddressRepository.findAllByUserId(user_id);
     }
 

@@ -17,7 +17,7 @@ import java.util.*;
 @Entity
 @ToString
 @Table(name="users")
-public class User implements Subject {
+public class User /*implements Subject*/ {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,46 +34,29 @@ public class User implements Subject {
     @OneToMany(mappedBy = "user")
     Set<ShippingAddress> shippingAddresses = new HashSet<>();
 
-    @JsonIgnore
-    private final List<UserObserver> observers = new ArrayList<>();
-
-    @Override
-    public void add(UserObserver observer) {
-        this.observers.add(observer);
-    }
-
-    @Override
-    public void remove(UserObserver observer) {
-        this.observers.remove(observer);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (UserObserver userObserver: observers) {
-            userObserver.update(this);
-        }
-    }
+//    @JsonIgnore
+//    private final List<UserObserver> observers = new ArrayList<>();
+//
+//    @Override
+//    public void add(UserObserver observer) {
+//        this.observers.add(observer);
+//    }
+//
+//    @Override
+//    public void remove(UserObserver observer) {
+//        this.observers.remove(observer);
+//    }
+//
+//    @Override
+//    public void notifyObservers() {
+//        for (UserObserver userObserver: observers) {
+//            userObserver.update(this);
+//        }
+//    }
 }
 
 
-//import com.online_shop.MAP_Labor_2_Spring.interfaces.Subject;
-//import com.online_shop.MAP_Labor_2_Spring.interfaces.UserObserver;
-//import jakarta.persistence.*;
-//import lombok.Getter;
-//import lombok.Setter;
-//import lombok.ToString;
-//
-//import java.time.LocalDateTime;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//@Getter
-//@Setter
-//@Entity
-//@ToString
-//@Table(name = "users")
-//public class User /*implements Subject*/ {
-//
+
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long id;
@@ -105,20 +88,3 @@ public class User implements Subject {
 //        $favourites.remove(product);
 //    }
 //
-//    @Override
-//    public void add(UserObserver observer) {
-//        $observers.add(observer);
-//    }
-//
-//    @Override
-//    public void remove(UserObserver observer) {
-//        $observers.remove(observer);
-//    }
-//
-//    @Override
-//    public void notifyObservers() {
-//        for (UserObserver observer : $observers) {
-//            observer.update(firstname, lastname, email, password, $shoppingCart);
-//        }
-//    }
-//}

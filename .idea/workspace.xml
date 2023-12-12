@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="commented out all the code">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="make user as observable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/DemoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/CategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/ShippingAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/ShippingAddressController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShippingAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShippingAddress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/CategoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/ShippingAddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/ShippingAddressRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/UserRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702287901894</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="make user as observable">
+      <option name="closed" value="true" />
+      <created>1702401780941</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1702401780941</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,6 +250,7 @@
     <MESSAGE value="implement all in spring boot" />
     <MESSAGE value="add app view" />
     <MESSAGE value="commented out all the code" />
-    <option name="LAST_COMMIT_MESSAGE" value="commented out all the code" />
+    <MESSAGE value="make user as observable" />
+    <option name="LAST_COMMIT_MESSAGE" value="make user as observable" />
   </component>
 </project>

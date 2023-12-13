@@ -16,7 +16,7 @@ import java.util.*;
 @Getter
 @Entity
 @ToString
-@Table(name="users")
+@Table(name = "users")
 public class User /*implements Subject*/ {
 
     @Id
@@ -31,7 +31,7 @@ public class User /*implements Subject*/ {
     private LocalDateTime created_at;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     Set<ShippingAddress> shippingAddresses = new HashSet<>();
 
 //    @JsonIgnore
@@ -54,7 +54,6 @@ public class User /*implements Subject*/ {
 //        }
 //    }
 }
-
 
 
 //    @Id

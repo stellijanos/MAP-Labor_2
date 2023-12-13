@@ -29,8 +29,6 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody final User user) {
-        if (userRepository.existsById(user.getId()))
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
         return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(user));
     }
 
@@ -49,7 +47,7 @@ public class UserController {
     @PutMapping("/{user_id}")
     public ResponseEntity<User> updateUser(@PathVariable final Long user_id, @RequestBody User user) {
         return userRepository.findById(user_id)
-                .map(existingUser -> ResponseEntity.ok().body(userRepository.save(user)))
+                .map(existingUser -> ResponseEntity.ok(userRepository.save(user)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -57,7 +55,7 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@PathVariable final Long user_id) {
         return userRepository.findById(user_id)
                 .map(user -> {
-                    userRepository.deleteById(user_id);
+                    userRepository.delete(user);
                     return ResponseEntity.ok().body("User deleted successfully!");
                 }).orElse(ResponseEntity.notFound().build());
     }

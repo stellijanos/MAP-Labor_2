@@ -60,7 +60,56 @@ public class ProductController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
+
+    @GetMapping("/{product_id}/specs")
+    public ResponseEntity<Iterable<ProductSpec>> getAllProductSpecs(@PathVariable final Long product_id) {
+        return productRepository.findById(product_id)
+                .map(product -> ResponseEntity.ok(productSpecRepository.findAllByProductId(product_id)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/{product_id}/specs")
+    public ResponseEntity<ProductSpec> createProductSpec(@PathVariable final Long product_id, @RequestBody final ProductSpec productSpec) {
+        return productRepository.findById(product_id)
+                .map(product -> {
+                    productSpec.setProduct(product);
+                    return ResponseEntity.status(HttpStatus.CREATED).body(productSpecRepository.save(productSpec));
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{product_id}/specs/{spec_id}")
+    public ResponseEntity<ProductSpec> getProductSpec(@PathVariable final Long product_id, @PathVariable final Long spec_id) {
+        return productRepository.findById(product_id)
+                .map(product -> productSpecRepository.findById(spec_id)
+                        .map(productSpec -> ResponseEntity.ok().body(productSpec))
+                        .orElse(ResponseEntity.notFound().build()))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{product_id}/specs/{spec_id}")
+    public ResponseEntity<ProductSpec> updateProductSpec(@PathVariable final Long product_id, @PathVariable final Long spec_id, @RequestBody final ProductSpec productSpec) {
+        return productRepository.findById(product_id)
+                .map(product -> productSpecRepository.findById(spec_id)
+                        .map(existingProductSpec -> ResponseEntity.ok().body(productSpecRepository.save(productSpec)))
+                        .orElse(ResponseEntity.notFound().build()))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{product_id}/specs/{spec_id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable final Long product_id, @PathVariable final Long spec_id) {
+        return productRepository.findById(product_id)
+                .map(product-> productSpecRepository.findById(spec_id)
+                        .map(productSpec -> {
+                            productSpecRepository.deleteById(spec_id);
+                            return ResponseEntity.ok().body("Product spec deleted successfully");
+                        })
+                        .orElse(ResponseEntity.notFound().build()))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
     public String generateImageLink(String name) {
         return name + CustomControllerTools.getCurrentDateTIme();
     }
+
 }

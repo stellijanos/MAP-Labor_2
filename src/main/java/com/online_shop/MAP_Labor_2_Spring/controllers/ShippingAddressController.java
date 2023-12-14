@@ -20,7 +20,7 @@ public class ShippingAddressController {
     }
 
     @GetMapping
-    public @ResponseBody List<ShippingAddress> getAll() {
+    public @ResponseBody List<ShippingAddress> getAllShippingAddresses() {
         return (List<ShippingAddress>) shippingAddressRepository.findAll();
     }
 

@@ -1,7 +1,9 @@
 package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import com.online_shop.MAP_Labor_2_Spring.models.Product;
+import com.online_shop.MAP_Labor_2_Spring.models.ProductSpec;
 import com.online_shop.MAP_Labor_2_Spring.repositories.ProductRepository;
+import com.online_shop.MAP_Labor_2_Spring.repositories.ProductSpecRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,13 @@ public class ProductController {
 
 
     private final ProductRepository productRepository;
+    private final ProductSpecRepository productSpecRepository;
 
     @Autowired
-    public ProductController(ProductRepository productRepository) {
+    public ProductController(ProductRepository productRepository, ProductSpecRepository productSpecRepository) {
         this.productRepository = productRepository;
+        this.productSpecRepository = productSpecRepository;
+
     }
 
     @PostMapping

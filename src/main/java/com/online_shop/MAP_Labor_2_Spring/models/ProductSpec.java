@@ -1,6 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class ProductSpec {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
@@ -24,5 +26,4 @@ public class ProductSpec {
     private String specName;
     @Column(name = "spec_value")
     private String specValue;
-
 }

@@ -1,0 +1,58 @@
+package com.online_shop.MAP_Labor_2_Spring.services;
+
+import com.online_shop.MAP_Labor_2_Spring.models.Category;
+import com.online_shop.MAP_Labor_2_Spring.repositories.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+public class CategoryService {
+
+    private final CategoryRepository categoryRepository;
+
+    @Autowired
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
+
+    public ResponseEntity<Category> createCategory(Category category) {
+        return categoryRepository.existsByName(category.getName()) ? ResponseEntity.status(HttpStatus.CONFLICT).build()
+                : ResponseEntity.ok(categoryRepository.save(category));
+    }
+
+    public ResponseEntity<Category> getCategory(Long id) {
+        return categoryRepository.findById(id)
+                .map( category -> ResponseEntity.ok().body(category))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    public ResponseEntity<Iterable<Category>> getAllCategories() {
+        return ResponseEntity.ok(categoryRepository.findAll());
+    }
+
+    public ResponseEntity<Category> updateCategory(Category category) {
+
+        Optional<Category> optionalCategory = categoryRepository.findById(category.getId());
+
+        if (optionalCategory.isEmpty())
+            return ResponseEntity.status(404).build();
+
+        Category existingCategory = optionalCategory.get();
+
+        if (!existingCategory.getName().equals(category.getName()) && categoryRepository.existsByName(category.getName()))
+            return ResponseEntity.status(409).build();
+
+        existingCategory.setName(category.getName());
+
+        return ResponseEntity.ok().body(categoryRepository.save(category));
+    }
+
+    public ResponseEntity<String> deleteCategory(Long id) {
+        categoryRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Category deleted successfully!");
+    }
+}

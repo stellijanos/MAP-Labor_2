@@ -54,9 +54,8 @@ public class UserService {
         existingUser.setLastname(user.getLastname());
         existingUser.setPassword(user.getPassword());
 
-        if (!existingUser.getEmail().equals(user.getEmail())) {
-            if (userRepository.existsByEmail(user.getEmail()))
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        if (!existingUser.getEmail().equals(user.getEmail()) && userRepository.existsByEmail(user.getEmail())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
         }
         existingUser.setEmail(user.getEmail());
         return ResponseEntity.ok(userRepository.save(user));

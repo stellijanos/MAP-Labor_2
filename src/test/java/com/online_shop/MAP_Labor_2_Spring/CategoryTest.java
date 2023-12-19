@@ -33,11 +33,11 @@ public class CategoryTest {
         List<Category> users = new ArrayList<>();
 
         Category c1 = new Category();
-        c1.setId(1l);
+        c1.setId(1L);
         c1.setName("Electronics");
 
         Category c2 = new Category();
-        c1.setId(2l);
+        c1.setId(2L);
         c1.setName("Toys");
 
 
@@ -46,7 +46,7 @@ public class CategoryTest {
 
         when(categoryRepository.findAll()).thenReturn(users);
 
-        List<Category> result = categoryController.getAllCategories();
+        List<Category> result = (List<Category>) categoryController.getAllCategories().getBody();
 
         assert result != null;
         assertEquals(2, result.size());
@@ -59,5 +59,3 @@ public class CategoryTest {
 
     }
 }
-
-

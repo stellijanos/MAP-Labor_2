@@ -1,48 +1,45 @@
 package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import com.online_shop.MAP_Labor_2_Spring.models.Category;
-import com.online_shop.MAP_Labor_2_Spring.repositories.CategoryRepository;
+import com.online_shop.MAP_Labor_2_Spring.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
 
-    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
 
     @Autowired
-    public CategoryController(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @PostMapping("/create")
-    public @ResponseBody Category createCategory(@RequestBody Category category) {
-        return categoryRepository.save(category);
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+        return categoryService.createCategory(category);
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody Category getCategory(@PathVariable Long id) {
-        return categoryRepository.findById(id).orElse(new Category());
+    public ResponseEntity<Category> getCategory(@PathVariable Long id) {
+        return categoryService.getCategory(id);
     }
 
     @GetMapping
-    public @ResponseBody List<Category> getAllCategories() {
-        return (List<Category>) categoryRepository.findAll();
+    public ResponseEntity<Iterable<Category>> getAllCategories() {
+        return categoryService.getAllCategories();
     }
 
-    @PutMapping("/{id}")
-    public @ResponseBody Category updateCategory(@PathVariable Long id, @RequestBody final Category category) {
-        return categoryRepository.save(category);
+    @PutMapping
+    public ResponseEntity<Category> updateCategory(@RequestBody final Category category) {
+        return categoryService.updateCategory(category);
     }
 
     @DeleteMapping("/{id}")
-    public @ResponseBody ResponseEntity<String> deleteCategory(@PathVariable Long id) {
-        categoryRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Category deleted successfully!");
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
+        return categoryService.deleteCategory(id);
     }
 }

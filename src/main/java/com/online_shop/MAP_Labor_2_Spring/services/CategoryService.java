@@ -5,11 +5,11 @@ import com.online_shop.MAP_Labor_2_Spring.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
@@ -48,7 +48,7 @@ public class CategoryService {
 
         existingCategory.setName(category.getName());
 
-        return ResponseEntity.ok().body(categoryRepository.save(category));
+        return ResponseEntity.ok(categoryRepository.save(category));
     }
 
     public ResponseEntity<String> deleteCategory(Long id) {

@@ -31,8 +31,12 @@ public class User /*implements Subject*/ {
     private LocalDateTime created_at;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Set<ShippingAddress> shippingAddresses = new HashSet<>();
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private ShoppingCart shoppingCart;
 
 //    @JsonIgnore
 //    private final List<UserObserver> observers = new ArrayList<>();

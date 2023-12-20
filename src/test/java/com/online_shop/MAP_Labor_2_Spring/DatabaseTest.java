@@ -1,6 +1,5 @@
 package com.online_shop.MAP_Labor_2_Spring;
 
-import com.online_shop.MAP_Labor_2_Spring.models.Database;
 import org.junit.*;
 import static org.junit.Assert.*;
 

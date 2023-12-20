@@ -1,37 +1,35 @@
 package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import com.online_shop.MAP_Labor_2_Spring.models.ShippingAddress;
-import com.online_shop.MAP_Labor_2_Spring.repositories.ShippingAddressRepository;
+import com.online_shop.MAP_Labor_2_Spring.services.ShippingAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
 @RequestMapping("/api/shipping_addresses")
 public class ShippingAddressController {
 
-    private final ShippingAddressRepository shippingAddressRepository;
+    private final ShippingAddressService shippingAddressService;
 
     @Autowired
-    public ShippingAddressController(ShippingAddressRepository shippingAddressRepository) {
-        this.shippingAddressRepository = shippingAddressRepository;
+    public ShippingAddressController(ShippingAddressService shippingAddressService) {
+        this.shippingAddressService = shippingAddressService;
     }
 
     @GetMapping
-    public @ResponseBody List<ShippingAddress> getAllShippingAddresses() {
-        return (List<ShippingAddress>) shippingAddressRepository.findAll();
+    public ResponseEntity<Iterable<ShippingAddress>> getAllShippingAddresses() {
+        return shippingAddressService.getAllShippingAddresses();
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody ShippingAddress update(@RequestBody ShippingAddress shippingAddress) {
-        return shippingAddressRepository.save(shippingAddress);
+    public ResponseEntity<ShippingAddress> update(@RequestBody ShippingAddress shippingAddress) {
+        return shippingAddressService.update(shippingAddress);
     }
 
     @DeleteMapping("/{id}")
-    public @ResponseBody void delete(@PathVariable Long id) {
-        shippingAddressRepository.deleteById(id);
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        return shippingAddressService.delete(id);
     }
-
 }

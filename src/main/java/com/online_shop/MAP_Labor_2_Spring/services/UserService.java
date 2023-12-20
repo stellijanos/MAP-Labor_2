@@ -24,7 +24,7 @@ public class UserService {
         this.shippingAddressRepository = shippingAddressRepository;
     }
 
-    public ResponseEntity<User> createUser(@RequestBody final User user) {
+    public ResponseEntity<User> createUser(User user) {
 
         if (userRepository.existsByEmail(user.getEmail()))
             return ResponseEntity.status(HttpStatus.CONFLICT).body(null);

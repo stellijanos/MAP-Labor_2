@@ -1,6 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.online_shop.MAP_Labor_2_Spring.interfaces.UserObserver;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +19,8 @@ public class ShippingAddress /*implements UserObserver*/ {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
     private String name;

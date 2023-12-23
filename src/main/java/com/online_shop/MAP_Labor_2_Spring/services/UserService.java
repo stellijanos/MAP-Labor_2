@@ -1,14 +1,17 @@
 package com.online_shop.MAP_Labor_2_Spring.services;
 
 import com.online_shop.MAP_Labor_2_Spring.models.ShippingAddress;
+import com.online_shop.MAP_Labor_2_Spring.models.ShoppingCart;
+import com.online_shop.MAP_Labor_2_Spring.models.ShoppingCartItem;
 import com.online_shop.MAP_Labor_2_Spring.models.User;
 import com.online_shop.MAP_Labor_2_Spring.repositories.ShippingAddressRepository;
+import com.online_shop.MAP_Labor_2_Spring.repositories.ShoppingCartItemRepository;
+import com.online_shop.MAP_Labor_2_Spring.repositories.ShoppingCartRepository;
 import com.online_shop.MAP_Labor_2_Spring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,11 +21,21 @@ public class UserService {
     private final UserRepository userRepository;
     private final ShippingAddressRepository shippingAddressRepository;
 
+    private final ShoppingCartRepository shoppingCartRepository;
+    private final ShoppingCartItemRepository shoppingCartItemRepository;
+
     @Autowired
-    public UserService(UserRepository userRepository, ShippingAddressRepository shippingAddressRepository) {
+    public UserService(UserRepository userRepository,
+                       ShippingAddressRepository shippingAddressRepository,
+                       ShoppingCartRepository shoppingCartRepository,
+                       ShoppingCartItemRepository shoppingCartItemRepository) {
         this.userRepository = userRepository;
         this.shippingAddressRepository = shippingAddressRepository;
+        this.shoppingCartRepository = shoppingCartRepository;
+        this.shoppingCartItemRepository = shoppingCartItemRepository;
     }
+
+
 
     public ResponseEntity<User> createUser(User user) {
 
@@ -121,4 +134,31 @@ public class UserService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting shipping address");
         }
     }
+
+
+    public ResponseEntity<ShoppingCart> createShoppingCart(Long user_id) {
+
+        Optional<User> user = userRepository.findById(user_id);
+        if (user.isEmpty())
+            return ResponseEntity.notFound().build();
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user.get());
+
+        return ResponseEntity.ok(shoppingCartRepository.save(shoppingCart));
+    }
+
+    public ResponseEntity<String> deleteShoppingCart(Long user_id) {
+        if (!userRepository.existsById(user_id) || !shoppingCartRepository.existsByUserId(user_id))
+            return ResponseEntity.notFound().build();
+        shoppingCartRepository.deleteByUserId(user_id);
+        return ResponseEntity.ok("Shopping cart deleted successfully!");
+
+    }
+
+    public ResponseEntity<ShoppingCartItem> createShoppingCartItem(Long user_id, ShoppingCartItem shoppingCartItem) {
+        if (!userRepository.existsById(user_id))
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(shoppingCartItemRepository.save(shoppingCartItem));
+    }
+
 }

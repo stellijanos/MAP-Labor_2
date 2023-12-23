@@ -4,23 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement models in spring">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement all models in spring with their relationships">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/interfaces/PaymentStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Card.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Cash.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/OrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ProductSpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ProductSpec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShippingAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShippingAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShoppingCartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShoppingCartItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/OrderItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/PaymentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/ShoppingCartController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/ShoppingCartItemController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/ShoppingCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/ShoppingCartRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/services/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,7 +373,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703326601236</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="implement all models in spring with their relationships">
+      <option name="closed" value="true" />
+      <created>1703365769511</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1703365769511</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -417,6 +418,7 @@
     <MESSAGE value="remove database test" />
     <MESSAGE value="implement another part of model, service repo and controllers" />
     <MESSAGE value="implement models in spring" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement models in spring" />
+    <MESSAGE value="implement all models in spring with their relationships" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement all models in spring with their relationships" />
   </component>
 </project>

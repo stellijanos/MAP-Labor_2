@@ -1,6 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import com.online_shop.MAP_Labor_2_Spring.models.ShippingAddress;
+import com.online_shop.MAP_Labor_2_Spring.models.ShoppingCart;
 import com.online_shop.MAP_Labor_2_Spring.models.User;
 import com.online_shop.MAP_Labor_2_Spring.repositories.ShippingAddressRepository;
 import com.online_shop.MAP_Labor_2_Spring.repositories.UserRepository;
@@ -68,5 +69,17 @@ public class UserController {
     @DeleteMapping("/{user_id}/shipping_addresses/{shipping_address_id}")
     public ResponseEntity<String> deleteShippingAddress(@PathVariable final Long user_id, @PathVariable final Long shipping_address_id) {
         return userService.deleteShippingAddress(user_id, shipping_address_id);
+    }
+
+
+    @PostMapping("users/{user_id}/shopping_cart")
+    public ResponseEntity<ShoppingCart> createShoppingCart(@PathVariable Long user_id) {
+        return userService.createShoppingCart(user_id);
+    }
+
+    @GetMapping("users/{user_id}/shopping_cart_items")
+    public ResponseEntity<ShoppingCart> getShoppingCart(@PathVariable Long user_id) {
+//        return userService.getSh
+        return null;
     }
 }

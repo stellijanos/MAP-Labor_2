@@ -1,6 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring.controllers;
 
 import com.online_shop.MAP_Labor_2_Spring.models.Category;
+import com.online_shop.MAP_Labor_2_Spring.models.Product;
 import com.online_shop.MAP_Labor_2_Spring.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,4 +43,10 @@ public class CategoryController {
     public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
         return categoryService.deleteCategory(id);
     }
+
+    @GetMapping("/{id}/products")
+    public ResponseEntity<Iterable<Product>> getAllProductsByCategory(@PathVariable Long id) {
+        return categoryService.getAllProductsByCategory(id);
+    }
+
 }

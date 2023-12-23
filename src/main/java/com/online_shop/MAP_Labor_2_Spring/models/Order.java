@@ -1,12 +1,15 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
 
-import com.online_shop.MAP_Labor_2_Spring.interfaces.PaymentStrategy;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -22,24 +25,28 @@ public class Order  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @ManyToOne
+    private String payment;
+
+    @Column(columnDefinition = "DATETIME")
+    @CreationTimestamp
+    private LocalDateTime date;
+    private String status;
+    @Column(name="shipping_fee")
+    private Float shippingFee;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToOne
+    @JsonIgnore
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<OrderItem> orderItems = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
     private ShippingAddress shippingAddress;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<OrderItem> orderItems;
-
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-    private PaymentStrategy payment;
-    private String date;
-    private String status;
-    private Float shippingFee;
 
 
     public Order() {
@@ -74,10 +81,10 @@ public class Order  {
         return this;
     }
 
-    public Order payment(PaymentStrategy paymentStrategy) throws Exception {
+    public Order payment(String payment) throws Exception {
         if (this.shippingFee == null)
             throw new Exception("Order has not shipping fee!");
-        this.setPayment(paymentStrategy);
+        this.setPayment(payment);
         return this;
     }
 

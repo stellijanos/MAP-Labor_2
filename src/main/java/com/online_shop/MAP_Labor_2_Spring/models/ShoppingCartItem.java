@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Setter
 @Getter
 @Entity
@@ -16,16 +17,16 @@ public class ShoppingCartItem {
     @EmbeddedId
     private ShoppingCartItemKey id;
 
-    @ManyToOne
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("shoppingCartId")
     @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id")
     private ShoppingCart shoppingCart;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("productId")
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
-
-    @Column(name = "quantity")
-    private Integer quantity;
 }

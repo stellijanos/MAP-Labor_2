@@ -15,20 +15,17 @@ public class OrderItem {
 
     @EmbeddedId
     private OrderItemKey id;
+    private Integer quantity;
+    private Float price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("orderId")
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("productId")
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
-    @Column(name = "quantity")
-    private Integer quantity;
-
-    @Column(name = "price", precision = 10, scale = 2, nullable = false)
-    private Float price;
 }

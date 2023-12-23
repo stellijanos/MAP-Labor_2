@@ -16,11 +16,12 @@ public class ProductSpec {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
     @Column(name = "spec_name")
     private String specName;
     @Column(name = "spec_value")
     private String specValue;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 }

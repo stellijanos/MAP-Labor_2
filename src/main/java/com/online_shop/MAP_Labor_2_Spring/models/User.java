@@ -16,7 +16,7 @@ import java.util.*;
 @Entity
 @ToString
 @Table(name = "users")
-public class User /*implements Subject*/ {
+public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

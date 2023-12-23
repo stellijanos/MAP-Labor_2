@@ -11,21 +11,5 @@ import lombok.ToString;
 @Entity
 @ToString
 @Table(name = "payments")
-public class Cash implements PaymentStrategy {
-
-    @Id
-    @Getter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
-    private String type;
-
-
-    @Override
-    public void processPayment() {
-        System.out.println("Payment is cash");
-    }
+public class Cash extends PaymentStrategy {
 }

@@ -9,26 +9,12 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "payments")
-public class Card implements PaymentStrategy {
+public class Card extends PaymentStrategy {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name ="user_id", referencedColumnName = "id")
-    private User user;
-    private String type;
     private String name;
     private String card_number;
     private Integer cvv;
     private Integer expiration_month;
     private Integer expiration_year;
 
-
-    @Override
-    public void processPayment() {
-
-    }
 }

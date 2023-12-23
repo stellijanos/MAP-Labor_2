@@ -1,25 +1,34 @@
-//package com.online_shop.MAP_Labor_2_Spring.composite_keys;
-//
-//import com.online_shop.MAP_Labor_2_Spring.models.Order;
-//import com.online_shop.MAP_Labor_2_Spring.models.Product;
-//import jakarta.persistence.Embeddable;
-//import jakarta.persistence.JoinColumn;
-//import jakarta.persistence.ManyToOne;
-//import lombok.Getter;
-//import lombok.Setter;
-//
-//import java.io.Serializable;
-//
-//@Setter
-//@Getter
-//@Embeddable
-//public class OrderItemKey implements Serializable {
-//    @ManyToOne
-//    @JoinColumn(name = "order_id", referencedColumnName = "id", insertable = false, updatable = false)
-//    private Order order;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
-//    private Product product;
-//}
-//
+package com.online_shop.MAP_Labor_2_Spring.composite_keys;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+@Embeddable
+@Getter
+@Setter
+public class OrderItemKey implements Serializable {
+    @Column(name = "order_id")
+    Long orderId;
+
+    @Column(name = "product_id")
+    Long productId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ShoppingCartItemKey that)) return false;
+        return Objects.equals(getOrderId(), that.getShoppingCartId()) &&
+                Objects.equals(getProductId(), that.getProductId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOrderId(), getProductId());
+    }
+}
+

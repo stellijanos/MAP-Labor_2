@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement another part of model, service repo and controllers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/ShoppingCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/controllers/ShoppingCartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/interfaces/PaymentStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/interfaces/PaymentStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Cash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Cash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShippingAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/ShippingAddress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/User.java" afterDir="false" />
     </list>
@@ -356,7 +354,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703067974176</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="implement another part of model, service repo and controllers">
+      <option name="closed" value="true" />
+      <created>1703325027736</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1703325027736</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

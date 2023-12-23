@@ -44,7 +44,7 @@
 //    @DeleteMapping("/{email}")
 //    public @ResponseBody Response delete(
 //            @RequestParam String token,
-//            @RequestParam Integer id
+//            @RequestParam Long id
 //    ) {
 //        if (!Objects.equals(Env.load().get("API_TOKEN"), token))
 //            return Response.INVALID_TOKEN;

@@ -1,8 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.online_shop.MAP_Labor_2_Spring.interfaces.Subject;
-import com.online_shop.MAP_Labor_2_Spring.interfaces.UserObserver;
+import com.online_shop.MAP_Labor_2_Spring.interfaces.PaymentStrategy;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +32,10 @@ public class User /*implements Subject*/ {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Set<ShippingAddress> shippingAddresses = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    Set<PaymentStrategy> payments = new HashSet<>();
 
     @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)

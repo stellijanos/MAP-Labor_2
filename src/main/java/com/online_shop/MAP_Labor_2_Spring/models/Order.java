@@ -1,56 +1,41 @@
 //package com.online_shop.MAP_Labor_2_Spring.models;
 //
-//import com.online_shop.MAP_Labor_2_Spring.interfaces.PaymentStrategy;
-//import com.online_shop.MAP_Labor_2_Spring.interfaces.UserObserver;
+//
 //import jakarta.persistence.*;
 //import lombok.Getter;
 //import lombok.Setter;
 //import lombok.ToString;
 //
-//import java.util.List;
 //
+//@Getter
+//@Setter
 //@Entity
 //@ToString
 //@Table(name = "orders")
-//public class Order implements UserObserver {
+//public class Order  {
 //
+//    @Transient
 //    private final boolean instance;
 //
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Getter
-//    @Setter
 //    private Integer id;
 //
 //    @ManyToOne
 //    @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    @Getter
-//    @Setter
 //    private User user;
 //
 //    @OneToOne
 //    @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
-//    @Setter
-//    @Getter
 //    private ShippingAddress shippingAddress;
 //
 //    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-//    @Getter
-//    @Setter
 //    private List<OrderItem> orderItems;
 //
 //    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-//    @Getter
-//    @Setter
-//    private PaymentStrategy paymentStrategy;
-//    @Setter
-//    @Getter
+//    private PaymentStrategy payment;
 //    private String date;
-//    @Setter
-//    @Getter
 //    private String status;
-//    @Setter
-//    @Getter
 //    private Float shippingFee;
 //
 //

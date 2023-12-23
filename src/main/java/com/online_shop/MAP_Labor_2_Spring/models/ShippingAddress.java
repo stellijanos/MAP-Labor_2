@@ -13,7 +13,7 @@ import lombok.ToString;
 @Entity
 @ToString
 @Table(name = "shipping_addresses")
-public class ShippingAddress /*implements UserObserver*/ {
+public class ShippingAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

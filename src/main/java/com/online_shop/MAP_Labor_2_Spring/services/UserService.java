@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -104,16 +103,16 @@ public class UserService {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<List<ShippingAddress>> getAllShippingAddresses(Long user_id) {
+    public ResponseEntity<Iterable<ShippingAddress>> getAllShippingAddresses(Long user_id) {
         return userRepository.existsById(user_id) ? ResponseEntity.ok().body(shippingAddressRepository.findAllByUserId(user_id))
                 : ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity<ShippingAddress> updateShippingAddress(Long user_id, Long shipping_address_id, ShippingAddress shippingAddress) {
+    public ResponseEntity<ShippingAddress> updateShippingAddress(Long user_id, ShippingAddress shippingAddress) {
         if (!userRepository.existsById(user_id))
             return ResponseEntity.notFound().build();
 
-        Optional<ShippingAddress> shippingAddressOptional = shippingAddressRepository.findById(shipping_address_id);
+        Optional<ShippingAddress> shippingAddressOptional = shippingAddressRepository.findById(shippingAddress.getId());
         if (shippingAddressOptional.isEmpty())
             return ResponseEntity.notFound().build();
 
@@ -172,6 +171,14 @@ public class UserService {
         if (!userRepository.existsById(user_id))
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(shoppingCartItemRepository.save(shoppingCartItem));
+    }
+
+    public ResponseEntity<ShoppingCart> getShoppingCart(Long user_id) {
+        if (!userRepository.existsById(user_id))
+            return ResponseEntity.notFound().build();
+        return shoppingCartRepository.findByUserId(user_id).map(
+                cart -> ResponseEntity.ok().body(cart)
+        ).orElse(ResponseEntity.notFound().build());
     }
 
 }

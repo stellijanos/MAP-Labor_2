@@ -63,13 +63,13 @@ public class UserController {
     }
 
     @GetMapping("/{user_id}/shipping_addresses")
-    public ResponseEntity<List<ShippingAddress>> getAllShippingAddresses(@PathVariable final Long user_id) {
+    public ResponseEntity<Iterable<ShippingAddress>> getAllShippingAddresses(@PathVariable final Long user_id) {
         return userService.getAllShippingAddresses(user_id);
     }
 
-    @PutMapping("/{user_id}/shipping_addresses/{shipping_address_id}")
-    public ResponseEntity<ShippingAddress> updateShippingAddress(@PathVariable final Long user_id, @PathVariable final Long shipping_address_id, @RequestBody final ShippingAddress shippingAddress) {
-        return userService.updateShippingAddress(user_id, shipping_address_id, shippingAddress);
+    @PutMapping("/{user_id}/shipping_addresses")
+    public ResponseEntity<ShippingAddress> updateShippingAddress(@PathVariable final Long user_id, @RequestBody final ShippingAddress shippingAddress) {
+        return userService.updateShippingAddress(user_id, shippingAddress);
     }
 
     @DeleteMapping("/{user_id}/shipping_addresses/{shipping_address_id}")
@@ -85,7 +85,7 @@ public class UserController {
 
     @GetMapping("users/{user_id}/shopping_cart_items")
     public ResponseEntity<ShoppingCart> getShoppingCart(@PathVariable Long user_id) {
-//        return userService.getSh
-        return null;
+        return userService.getShoppingCart(user_id);
+
     }
 }

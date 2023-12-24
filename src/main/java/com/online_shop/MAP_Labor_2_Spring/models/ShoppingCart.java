@@ -24,7 +24,6 @@ public class ShoppingCart {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ShoppingCartItem> shoppingCartItems= new HashSet<>();
 

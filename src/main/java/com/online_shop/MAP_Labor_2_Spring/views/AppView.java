@@ -379,8 +379,8 @@ public class AppView {
         System.out.println("Product removed from favourites");
     }
 
-    public void print_addresses(List<ShippingAddress> addresses) {
-        System.out.println(addresses);
+    public void print_address(ShippingAddress address) {
+        System.out.println(address);
     }
 
     public void addAddress() {
@@ -473,4 +473,14 @@ public class AppView {
         System.out.println("----------------------\nRemove user\n----------------------");
     }
 
+    public void not_found() {
+        System.out.println("Not found!");
+    }
+    public void bad_request() {
+        System.out.println("Bad request!");
+    }
+
+    public void internal_server_error() {
+        System.out.println("Internal server error!");
+    }
 }

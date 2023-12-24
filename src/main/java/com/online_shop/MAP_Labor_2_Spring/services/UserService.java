@@ -8,6 +8,7 @@ import com.online_shop.MAP_Labor_2_Spring.repositories.ShippingAddressRepository
 import com.online_shop.MAP_Labor_2_Spring.repositories.ShoppingCartItemRepository;
 import com.online_shop.MAP_Labor_2_Spring.repositories.ShoppingCartRepository;
 import com.online_shop.MAP_Labor_2_Spring.repositories.UserRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,18 @@ public class UserService {
         this.shoppingCartItemRepository = shoppingCartItemRepository;
     }
 
+
+    public ResponseEntity<User> loginUser(User user) {
+
+        Optional<User> existing = userRepository.findByEmail(user.getEmail());
+        if (existing.isEmpty())
+            return ResponseEntity.notFound().build();
+        User current = existing.get();
+        System.out.println(user.getPassword() + ' ' + current.getPassword());
+        if (!BCrypt.checkpw(user.getPassword(), current.getPassword()))
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        return ResponseEntity.ok(current);
+    }
 
 
     public ResponseEntity<User> createUser(User user) {

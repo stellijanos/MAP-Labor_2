@@ -4,7 +4,7 @@ package com.online_shop.MAP_Labor_2_Spring.models;
 public class Session {
 
     private static Session instance;
-    private String sessionId;
+    private Long sessionId;
 
     private Session() {
     }
@@ -16,17 +16,18 @@ public class Session {
         return instance;
     }
 
-    public String getId() {
+    public Long getId() {
         return sessionId;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         if (sessionId == null)
             sessionId = id;
     }
 
-    public void destroy() {
+    public boolean destroy() {
         this.sessionId = null;
         instance = null;
+        return true;
     }
 }

@@ -48,5 +48,4 @@ public class CategoryController {
     public ResponseEntity<Iterable<Product>> getAllProductsByCategory(@PathVariable Long id) {
         return categoryService.getAllProductsByCategory(id);
     }
-
 }

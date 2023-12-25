@@ -3,17 +3,12 @@ package com.online_shop.MAP_Labor_2_Spring.controllers;
 import com.online_shop.MAP_Labor_2_Spring.models.ShippingAddress;
 import com.online_shop.MAP_Labor_2_Spring.models.ShoppingCart;
 import com.online_shop.MAP_Labor_2_Spring.models.User;
-import com.online_shop.MAP_Labor_2_Spring.repositories.ShippingAddressRepository;
-import com.online_shop.MAP_Labor_2_Spring.repositories.UserRepository;
 import com.online_shop.MAP_Labor_2_Spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")

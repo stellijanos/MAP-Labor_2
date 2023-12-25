@@ -44,5 +44,14 @@ public class User {
     @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Product> favourites = new HashSet<>();
 
+    public void addToFavourites(Product product) {
+        this.favourites.add(product);
+        product.getUsers().add(this);
+    }
+
+    public void removeFromFavourites(Product product) {
+        this.favourites.remove(product);
+        product.getUsers().remove(this);
+    }
 
 }

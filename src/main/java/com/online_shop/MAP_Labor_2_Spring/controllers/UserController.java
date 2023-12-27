@@ -72,15 +72,4 @@ public class UserController {
         return userService.deleteShippingAddress(user_id, shipping_address_id);
     }
 
-
-    @PostMapping("users/{user_id}/shopping_cart")
-    public ResponseEntity<ShoppingCart> createShoppingCart(@PathVariable Long user_id) {
-        return userService.createShoppingCart(user_id);
-    }
-
-    @GetMapping("users/{user_id}/shopping_cart_items")
-    public ResponseEntity<ShoppingCart> getShoppingCart(@PathVariable Long user_id) {
-        return userService.getShoppingCart(user_id);
-
-    }
 }

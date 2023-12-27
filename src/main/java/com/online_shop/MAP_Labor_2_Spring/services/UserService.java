@@ -1,8 +1,6 @@
 package com.online_shop.MAP_Labor_2_Spring.services;
 
 import com.online_shop.MAP_Labor_2_Spring.models.ShippingAddress;
-import com.online_shop.MAP_Labor_2_Spring.models.ShoppingCart;
-import com.online_shop.MAP_Labor_2_Spring.models.ShoppingCartItem;
 import com.online_shop.MAP_Labor_2_Spring.models.User;
 import com.online_shop.MAP_Labor_2_Spring.repositories.ShippingAddressRepository;
 import com.online_shop.MAP_Labor_2_Spring.repositories.ShoppingCartItemRepository;
@@ -21,18 +19,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final ShippingAddressRepository shippingAddressRepository;
 
-    private final ShoppingCartRepository shoppingCartRepository;
-    private final ShoppingCartItemRepository shoppingCartItemRepository;
-
     @Autowired
-    public UserService(UserRepository userRepository,
-                       ShippingAddressRepository shippingAddressRepository,
-                       ShoppingCartRepository shoppingCartRepository,
-                       ShoppingCartItemRepository shoppingCartItemRepository) {
+    public UserService(UserRepository userRepository, ShippingAddressRepository shippingAddressRepository) {
         this.userRepository = userRepository;
         this.shippingAddressRepository = shippingAddressRepository;
-        this.shoppingCartRepository = shoppingCartRepository;
-        this.shoppingCartItemRepository = shoppingCartItemRepository;
     }
 
 
@@ -145,40 +135,6 @@ public class UserService {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting shipping address");
         }
-    }
-
-
-    public ResponseEntity<ShoppingCart> createShoppingCart(Long user_id) {
-
-        Optional<User> user = userRepository.findById(user_id);
-        if (user.isEmpty())
-            return ResponseEntity.notFound().build();
-        ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.setUser(user.get());
-
-        return ResponseEntity.ok(shoppingCartRepository.save(shoppingCart));
-    }
-
-    public ResponseEntity<String> deleteShoppingCart(Long user_id) {
-        if (!userRepository.existsById(user_id) || !shoppingCartRepository.existsByUserId(user_id))
-            return ResponseEntity.notFound().build();
-        shoppingCartRepository.deleteByUserId(user_id);
-        return ResponseEntity.ok("Shopping cart deleted successfully!");
-
-    }
-
-    public ResponseEntity<ShoppingCartItem> createShoppingCartItem(Long user_id, ShoppingCartItem shoppingCartItem) {
-        if (!userRepository.existsById(user_id))
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(shoppingCartItemRepository.save(shoppingCartItem));
-    }
-
-    public ResponseEntity<ShoppingCart> getShoppingCart(Long user_id) {
-        if (!userRepository.existsById(user_id))
-            return ResponseEntity.notFound().build();
-        return shoppingCartRepository.findByUserId(user_id).map(
-                cart -> ResponseEntity.ok().body(cart)
-        ).orElse(ResponseEntity.notFound().build());
     }
 
 }

@@ -1,5 +1,6 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.online_shop.MAP_Labor_2_Spring.composite_keys.OrderItemKey;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public class OrderItem {
     private Integer quantity;
     private Float price;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("orderId")
     @JoinColumn(name = "order_id", referencedColumnName = "id")

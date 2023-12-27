@@ -46,4 +46,10 @@ public class ShippingAddressService {
         shippingAddressRepository.deleteById(id);
         return ResponseEntity.ok().body("Shipping Address deleted successfully!");
     }
+
+    public ResponseEntity<ShippingAddress> getShippingAddress(Long id) {
+        return shippingAddressRepository.findById(id)
+                .map(address -> ResponseEntity.ok().body(address))
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

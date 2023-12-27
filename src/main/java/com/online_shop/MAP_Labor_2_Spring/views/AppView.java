@@ -487,4 +487,9 @@ public class AppView {
     public void product_already_exists() {
         System.out.println("Product already exists");
     }
+
+    public void shopping_cart_options() {
+        System.out.println("0. Back\n" +
+                "1. Create order");
+    }
 }

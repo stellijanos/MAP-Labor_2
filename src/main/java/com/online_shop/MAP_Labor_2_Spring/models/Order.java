@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity
 @ToString
 @Table(name = "orders")
-public class Order  {
+public class Order {
 
     @Transient
     private final boolean instance;
@@ -32,7 +32,7 @@ public class Order  {
     @CreationTimestamp
     private LocalDateTime date;
     private String status;
-    @Column(name="shipping_fee")
+    @Column(name = "shipping_fee")
     private Float shippingFee;
 
     @ManyToOne(fetch = FetchType.EAGER)

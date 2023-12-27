@@ -23,6 +23,11 @@ public class ShippingAddressController {
         return shippingAddressService.getAllShippingAddresses();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ShippingAddress> getShippingAddress(@PathVariable Long id) {
+        return shippingAddressService.getShippingAddress(id);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<ShippingAddress> update(@RequestBody ShippingAddress shippingAddress) {
         return shippingAddressService.update(shippingAddress);

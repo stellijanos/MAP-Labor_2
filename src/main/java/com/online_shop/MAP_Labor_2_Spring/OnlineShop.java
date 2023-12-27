@@ -402,7 +402,66 @@ public class OnlineShop {
             for (ShoppingCartItem item : shoppingCart.getShoppingCartItems())
                 System.out.println(item);
         }
-        back();
+
+        boolean running = true;
+        while (running) {
+            switch (readFromConsole(appView::shopping_cart_options, Integer.class)) {
+                case 0 -> running = false;
+                case 1 -> createOrder();
+                default -> appView.option_not_found();
+            }
+        }
+    }
+
+    public static void createOrder() {
+
+        ResponseEntity<ShoppingCart> cartOptional = shoppingCartController.getShoppingCart(session.getId());
+
+        if (cartOptional.getStatusCode().equals(HttpStatus.NOT_FOUND)) return;
+
+        List<ShoppingCartItem> items = (List<ShoppingCartItem>) Objects.requireNonNull(cartOptional.getBody()).getShoppingCartItems();
+
+        Set<OrderItem> orderItems = new HashSet<>();
+
+        for (ShoppingCartItem item : items) {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setProduct(item.getProduct());
+            orderItem.setQuantity(item.getQuantity());
+            orderItem.setPrice(item.getProduct().getPrice());
+
+            orderItems.add(orderItem);
+        }
+
+        List<ShippingAddress> addresses = (List<ShippingAddress>) shippingAddressController.getAllShippingAddresses().getBody();
+
+        ShippingAddress shippingAddress = null;
+
+        while (shippingAddress == null) {
+
+
+            Long id = readFromConsole(appView::enter_shipping_address_number, Long.class);
+
+            shippingAddress = shippingAddressController.getShippingAddress(id).getBody();
+        }
+
+        try {
+            Order order = new Order()
+                    .orderItems(orderItems)
+                    .user(userController.getUser(session.getId()).getBody())
+                    .shippingAddress(shippingAddress)
+                    .shippingFee(15F)
+                    .payment("card")
+                    .status("Registered");
+
+            ResponseEntity<Order> response = orderController.createOrder(session.getId(), order);
+
+            System.out.println(response);
+
+        } catch (Exception e) {
+            return;
+        }
+
+
     }
 
     public static void products() {
@@ -462,9 +521,6 @@ public class OnlineShop {
             switch (readFromConsole(appView::userOptions, Integer.class)) {
                 case 0 -> running = false;
                 case 1 -> viewAllUsers();
-                case 2 -> editUser();
-                case 3 -> removeUser();
-                case 4 -> removeAllUsers();
                 default -> appView.option_not_found();
             }
         }
@@ -472,61 +528,15 @@ public class OnlineShop {
 
 
     public static void viewAllUsers() {
-//        appView.view_all_users();
-//        for (User user : (List<User>) userController.getAll(token))
-//            appView.list_all_users(user);
-//        back();
+        appView.view_all_users();
+        List<User> users = (List<User>) userController.getAllUsers().getBody();
+        if (users != null) {
+            for (User user : users)
+                appView.list_all_users(user);
+        }
+        back();
     }
 
-    public static void editUser() {
-        appView.edit_user();
-
-        String userEmail = readFromConsole(appView::enter_user_email, String.class);
-        String firstname = readFromConsole(appView::enter_firstname, String.class);
-        String lastname = readFromConsole(appView::enter_lastname, String.class);
-        String email = readFromConsole(appView::enter_email, String.class);
-
-        ResponseEntity<User> response = userController.getUser(session.getId());
-//
-//        user.setFirstname(firstname);
-//        user.setLastname(lastname);
-//        user.setEmail(email);
-//
-//        Response response = userController.updateUser(token, userEmail, user);
-//
-//        switch (response) {
-//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-//            case USER_NOT_FOUND -> appView.user_not_found();
-//            case USER_EXISTS -> appView.user_exists();
-//            case USER_UPDATE_SUCCESSFUL -> appView.user_updated_successfully();
-//        }
-    }
-
-
-    public static void removeUser() {
-        appView.remove_user();
-
-        String userEmail = readFromConsole(appView::enter_user_email, String.class);
-//        Response response = userController.deleteUser(userEmail, token, Env.load().get("ADMIN_PASSWORD"));
-//        switch (response) {
-//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-//            case INCORRECT_EMAIL -> appView.incorrect_email();
-//            case USER_DELETE_SUCCESSFUL -> appView.user_deleted_successfully();
-//        }
-    }
-
-    public static void removeAllUsers() {
-        appView.remove_all_users();
-        String adminPassword = readFromConsole(appView::enter_password, String.class);
-
-//        Response response = userController.deleteAllUsers(adminPassword);
-//
-//        switch (response) {
-//            case INCORRECT_PASSWORD -> appView.incorrect_password();
-//            case ALL_PRODUCTS_DELETE_SUCCESSFUL -> appView.all_products_deleted_successfully();
-//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-//        }
-    }
 
     public static void productOptions() {
         boolean running = true;

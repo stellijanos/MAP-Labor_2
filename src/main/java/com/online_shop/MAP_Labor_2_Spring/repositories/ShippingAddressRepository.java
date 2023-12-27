@@ -10,5 +10,6 @@ import java.util.Optional;
 
 public interface ShippingAddressRepository extends CrudRepository<ShippingAddress, Long> {
 
+    void deleteAllByUserId(Long user_id);
     List<ShippingAddress> findAllByUserId(Long userId);
 }

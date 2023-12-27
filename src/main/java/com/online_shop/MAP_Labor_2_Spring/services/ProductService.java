@@ -92,6 +92,11 @@ public class ProductService {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    public ResponseEntity<String> deleteAllProducts() {
+        productRepository.deleteAll();
+        return ResponseEntity.ok().body("All products deleted successfully!");
+    }
+
     public String generateImageLink(String name) {
         return name + CustomControllerTools.getCurrentDateTIme();
     }

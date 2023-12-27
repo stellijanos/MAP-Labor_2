@@ -24,7 +24,7 @@ public class FavouriteController {
     }
 
     @PostMapping("/{user_id}/favourites/{product_id}")
-    public ResponseEntity<Product> addOrRemoveFavourit(@PathVariable Long user_id, @PathVariable Long product_id) {
+    public ResponseEntity<Product> addOrRemoveFavourite(@PathVariable Long user_id, @PathVariable Long product_id) {
         return favouriteService.addOrRemoveFavourite(user_id, product_id);
     }
 

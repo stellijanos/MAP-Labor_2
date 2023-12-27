@@ -71,4 +71,9 @@ public class ProductController {
         return productService.deleteProductSpec(product_id, spec_id);
     }
 
+    @DeleteMapping
+    public ResponseEntity<String> deleteAllProducts() {
+        return productService.deleteAllProducts();
+    }
+
 }

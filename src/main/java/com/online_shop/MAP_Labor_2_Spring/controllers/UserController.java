@@ -72,4 +72,8 @@ public class UserController {
         return userService.deleteShippingAddress(user_id, shipping_address_id);
     }
 
+    @DeleteMapping("/{user_id}/shipping_addresses")
+    public ResponseEntity<String> deleteAllShippingAddress(@PathVariable final Long user_id) {
+        return userService.deleteAllShippingAddresses(user_id);
+    }
 }

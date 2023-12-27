@@ -137,4 +137,11 @@ public class UserService {
         }
     }
 
+    public ResponseEntity<String> deleteAllShippingAddresses(Long user_id) {
+        return userRepository.findById(user_id)
+                .map(user -> {
+                    shippingAddressRepository.deleteAllByUserId(user_id);
+                    return ResponseEntity.ok().body("Shipping addresses deleted successfully");
+                }).orElse(ResponseEntity.notFound().build());
+    }
 }

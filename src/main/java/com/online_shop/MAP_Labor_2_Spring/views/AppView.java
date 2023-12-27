@@ -483,4 +483,8 @@ public class AppView {
     public void internal_server_error() {
         System.out.println("Internal server error!");
     }
+
+    public void product_already_exists() {
+        System.out.println("Product already exists");
+    }
 }

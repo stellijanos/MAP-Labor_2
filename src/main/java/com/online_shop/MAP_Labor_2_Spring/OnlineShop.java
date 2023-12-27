@@ -1,11 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring;
 
-import com.online_shop.MAP_Labor_2_Spring.controllers.ShippingAddressController;
-import com.online_shop.MAP_Labor_2_Spring.controllers.UserController;
-import com.online_shop.MAP_Labor_2_Spring.models.Order;
-import com.online_shop.MAP_Labor_2_Spring.models.Session;
-import com.online_shop.MAP_Labor_2_Spring.models.ShippingAddress;
-import com.online_shop.MAP_Labor_2_Spring.models.User;
+import com.online_shop.MAP_Labor_2_Spring.controllers.*;
+import com.online_shop.MAP_Labor_2_Spring.models.*;
 import com.online_shop.MAP_Labor_2_Spring.repositories.Env;
 import com.online_shop.MAP_Labor_2_Spring.views.AppView;
 import org.mindrot.jbcrypt.BCrypt;
@@ -20,24 +16,39 @@ import java.util.*;
 
 
 @SpringBootApplication
-public class DemoApplication {
+public class OnlineShop {
 
     private static UserController userController;
     private static ShippingAddressController shippingAddressController;
+    private static OrderController orderController;
+    private static FavouriteController favouriteController;
+    private static ShoppingCartController shoppingCartController;
+    private static ProductController productController;
+    private static CategoryController categoryController;
 
     private static final AppView appView = new AppView();
 
     @Autowired
-    public DemoApplication(UserController userController,
-                           ShippingAddressController shippingAddressController) {
-        DemoApplication.userController = userController;
-        DemoApplication.shippingAddressController = shippingAddressController;
+    public OnlineShop(UserController userController,
+                      ShippingAddressController shippingAddressController,
+                      OrderController orderController,
+                      FavouriteController favouriteController,
+                      ShoppingCartController shoppingCartController,
+                      ProductController productController,
+                      CategoryController categoryController) {
+        OnlineShop.userController = userController;
+        OnlineShop.shippingAddressController = shippingAddressController;
+        OnlineShop.orderController = orderController;
+        OnlineShop.favouriteController = favouriteController;
+        OnlineShop.shoppingCartController = shoppingCartController;
+        OnlineShop.productController = productController;
+        OnlineShop.categoryController = categoryController;
     }
 
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
-        DemoApplication.run();
+        SpringApplication.run(OnlineShop.class, args);
+        OnlineShop.run();
     }
 
     private static void sleep(Integer milliseconds) {
@@ -329,26 +340,19 @@ public class DemoApplication {
         String password = readFromConsole(appView::enter_password, String.class);
         ResponseEntity<User> response = userController.getUser(session.getId());
 
-//        if (response.getStatusCode().equals(HttpStatus.NOT_FOUND))
-//            appView.not_found();
-//        else if(response.getStatusCode().equals(HttpStatus.OK)) {
-//            User user = response.getBody();
-//
-//            if (!BCrypt.checkpw(password, user.getPassword())) {
-//                appView.incorrect_password();
-//            }
-//            ResponseEntity<String> result = userController.deleteAllShippingAddresses(session.getId());
-//        }
-//
-//
-//
-//
-//
-//        switch (response) {
-//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-//            case INCORRECT_PASSWORD -> appView.incorrect_password();
-//            case ALL_SHIPPING_ADDRESSES_DELETED_SUCCESSFULLY -> appView.all_shipping_addresses_deleted_successfully();
-//        }
+        if (response.getStatusCode().equals(HttpStatus.NOT_FOUND))
+            appView.not_found();
+        else if (response.getStatusCode().equals(HttpStatus.OK)) {
+            User user = response.getBody();
+
+            if (user != null && !BCrypt.checkpw(password, user.getPassword())) {
+                appView.incorrect_password();
+            }
+            ResponseEntity<String> result = userController.deleteAllShippingAddress(session.getId());
+
+            if (result.getStatusCode().equals(HttpStatus.NOT_FOUND)) appView.not_found();
+            else appView.print_message(result.getBody());
+        }
     }
 
 
@@ -365,27 +369,39 @@ public class DemoApplication {
     }
 
     public static void viewAllOrders() {
-//        ResponseEntity<User> user = userController.getUser(session.getId());
-//        ResponseEntity<List<Order>> orders = userController.
-//        appView.view_all_orders(orders);
+        ResponseEntity<Iterable<Order>> orders = orderController.getAllOrders(session.getId());
+        if (orders.getStatusCode().equals(HttpStatus.NOT_FOUND)) appView.not_found();
+        else {
+            for (Order order : Objects.requireNonNull(orders.getBody())) {
+                System.out.println(order);
+            }
+        }
         back();
     }
 
     public static void viewOrder() {
-
-//        Integer id = readFromConsole(appView::enter_order_id, Integer.class);
-//        Order order = orderController.get(id, userController.getUser(session.getId()));
-//
-//        appView.print_order(order);
-//        back();
+        Long id = readFromConsole(appView::enter_order_id, Long.class);
+        Order order = orderController.getOrder(session.getId(), id).getBody();
+        appView.print_order(order);
+        back();
     }
 
 
     public static void favourites() {
+        Iterable<Product> products = favouriteController.getAllFavouriteProducts(session.getId()).getBody();
+        if (products != null) {
+            for (Product product : products)
+                System.out.println(product);
+        }
         back();
     }
 
     public static void shoppingCart() {
+        ShoppingCart shoppingCart = shoppingCartController.getShoppingCart(session.getId()).getBody();
+        if (shoppingCart != null) {
+            for (ShoppingCartItem item : shoppingCart.getShoppingCartItems())
+                System.out.println(item);
+        }
         back();
     }
 
@@ -404,49 +420,37 @@ public class DemoApplication {
     public static void addToFavourites() {
         appView.add_to_favourites();
 
-        Integer productId = readFromConsole(appView::enter_product_id, Integer.class);
+        Long product_id = readFromConsole(appView::enter_product_id, Long.class);
 
-//        Response response = favouriteController.addOrRemoveToFavourites(session.getId(), productId);
-//
-//        switch (response) {
-//            case PRODUCT_ADD_TO_FAVOURITES -> appView.product_added_to_favourites();
-//            case PRODUCT_REMOVE_FROM_FAVOURITES -> appView.product_removed_from_favourites();
-//        }
+        List<Product> favourites = (List<Product>) favouriteController.getAllFavouriteProducts(session.getId()).getBody();
+        if (favourites != null) {
+            Product product = favourites.stream().filter(fav -> fav.getId().equals(product_id)).findFirst().orElse(null);
+            ResponseEntity<Product> response = favouriteController.addOrRemoveFavourite(session.getId(), product_id);
+            if (product == null) appView.product_added_to_favourites();
+            else appView.product_removed_from_favourites();
+        }
     }
 
 
     public static void addToCart() {
-        List<String> productIdAndQuantity = List.of(readFromConsole(appView::add_to_cart, String.class).split("&"));
+        appView.add_to_cart();
 
-//        Integer productId = parseIntegerOrDefaultValue(productIdAndQuantity.get(0), -1);
-//        Integer quantity = productIdAndQuantity.size() == 1 ? -1 : parseIntegerOrDefaultValue(productIdAndQuantity.get(1), -1);
-//
-//        User user = userController.getUser(session.getId(), token);
-//        ShoppingCart shoppingCart = shoppingCartController.get(user);
-//
-//        if (shoppingCart.getUser().getEmail() == null) {
-//            shoppingCart = new ShoppingCart();
-//            shoppingCart.setUser(user);
-//        }
-//
-//        Response response = shoppingCartItemController.addToCart(shoppingCart.getId(), productId, quantity);
-//
-//        switch (response) {
-//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-//            case PRODUCT_ADDED_TO_CART_SUCCESSFULLY -> appView.product_Added_to_cart_successully();
-//        }
+        Long product_id = readFromConsole(appView::enter_product_id, Long.class);
+
+        ResponseEntity<ShoppingCartItem> response = shoppingCartController.addToShoppingCart(session.getId(), product_id, 1);
+
+        HttpStatusCode statusCode = response.getStatusCode();
+
+        if (statusCode.equals(HttpStatus.NOT_FOUND)) appView.not_found();
+        else System.out.println(response.getBody());
     }
 
     public static void adminPanel() {
-
-        if (!session.getId().equals("admin@janos"))
-            userPanel();
         while (true) {
             switch (readFromConsole(appView::adminPanel, Integer.class)) {
                 case 0 -> logOut();
                 case 1 -> userOptions();
                 case 2 -> productOptions();
-                case 3 -> orderOptions();
                 default -> appView.option_not_found();
             }
         }
@@ -540,8 +544,11 @@ public class DemoApplication {
     }
 
     public static void viewAllProducts() {
-//        for (Product product : productController.getALl())
-//            appView.view_all_products(product);
+        List<Product> products = (List<Product>) productController.getAllProducts().getBody();
+        if (products != null) {
+            for (Product product : products)
+                System.out.println(product);
+        }
         back();
     }
 
@@ -549,105 +556,79 @@ public class DemoApplication {
         appView.add_product();
         String name = readFromConsole(appView::enter_product_name, String.class);
         Float price = readFromConsole(appView::enter_product_price, Float.class);
+        String description = readFromConsole(appView::enter_product_description, String.class);
+        Integer stock = readFromConsole(appView::enter_stock, Integer.class);
 
-//        appView.view_all_categories(categoryController.getAllCategories());
-//        Category category = categoryController.getCategory(readFromConsole(appView::select_category, Integer.class));
-//
-//        String description = readFromConsole(appView::enter_product_description, String.class);
-//
-//        Integer stock = readFromConsole(appView::enter_stock, Integer.class);
-//
-//        Response response = productController.createProduct(name, price, category, description, stock);
-//
-//        switch (response) {
-//            case PRODUCT_CREATE_SUCCESSFUL -> appView.product_added_successfully();
-//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-//        }
+        List<Category> categories = (List<Category>) categoryController.getAllCategories().getBody();
+
+        appView.view_all_categories(categories);
+        Category category = null;
+
+        while (category == null) {
+            category = categoryController.getCategory(readFromConsole(appView::select_category, Long.class)).getBody();
+        }
+
+        Product product = new Product();
+
+        product.setName(name);
+        product.setPrice(price);
+        product.setCategory(category);
+        product.setDescription(description);
+        product.setStock(stock);
+
+        ResponseEntity<Product> response = productController.createProduct(product);
+
+        if (response.getStatusCode().equals(HttpStatus.CONFLICT)) appView.product_already_exists();
+        else appView.product_added_successfully();
     }
 
     public static void editProduct() {
         appView.edit_product();
 
-        Integer productId = readFromConsole(appView::enter_product_id, Integer.class);
+        Long productId = readFromConsole(appView::enter_product_id, Long.class);
 
         String name = readFromConsole(appView::enter_product_name, String.class);
-        String price_str = readFromConsole(appView::enter_product_price, String.class);
+        Float price = readFromConsole(appView::enter_product_price, Float.class);
         String description = readFromConsole(appView::enter_product_description, String.class);
-//        appView.view_all_categories(categoryController.getAllCategories());
-//
-//        Category category = categoryController.getCategory(readFromConsole(appView::select_category, Integer.class));
-//
-//        String stock_str = readFromConsole(appView::enter_stock, String.class);
-//
-//        Response response = productController.modify(name, price_str, description, category, stock_str, productId);
-//
-//        switch (response) {
-//            case PRODUCT_NOT_FOUND -> appView.product_not_found();
-//            case PRODUCT_UPDATE_SUCCESSFUL -> appView.product_updated_successfully();
-//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-//        }
+        List<Category> categories = (List<Category>) categoryController.getAllCategories().getBody();
+
+        appView.view_all_categories(categories);
+        Category category = null;
+
+        while (category == null) {
+            category = categoryController.getCategory(readFromConsole(appView::select_category, Long.class)).getBody();
+        }
+
+        Product product = new Product();
+        product.setId(productId);
+        product.setName(name);
+        product.setPrice(price);
+        product.setDescription(description);
+        product.setCategory(category);
+
+        ResponseEntity<Product> response = productController.updateProduct(product);
+        System.out.println(response.getBody());
     }
 
     public static void removeProduct() {
         appView.remove_product();
-        Integer productId = readFromConsole(appView::enter_product_id, Integer.class);
-//
-//        Response response = productController.removeProduct(productId);
-//        switch (response) {
-//            case PRODUCT_DELETE_SUCCESSFUL -> appView.product_deleted_successfully();
-//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-//        }
+        Long productId = readFromConsole(appView::enter_product_id, Long.class);
+        ResponseEntity<String> response = productController.deleteProduct(productId);
+        System.out.println(response);
     }
 
     public static void removeAllProducts() {
         appView.remove_all_products();
         String adminPassword = readFromConsole(appView::enter_password, String.class);
 
-//        Response response = productController.removeAllProducts(adminPassword);
-//
-//        switch (response) {
-//            case INCORRECT_PASSWORD -> appView.incorrect_password();
-//            case ALL_PRODUCTS_DELETE_SUCCESSFUL -> appView.all_products_deleted_successfully();
-//            case SOMETHING_WENT_WRONG -> appView.something_went_wrong();
-//        }
-    }
-
-
-    public static void orderOptions() {
-        boolean running = true;
-        while (running) {
-            switch (readFromConsole(appView::orderOptions, Integer.class)) {
-                case 0 -> running = false;
-                case 1 -> viewAllUsersOrders();
-                case 2 -> editOrder();
-                case 3 -> removeOrder();
-                case 4 -> removeAllOrders();
-                default -> appView.option_not_found();
-            }
+        if (!BCrypt.checkpw(adminPassword, Env.load().get("ADMIN_PASSWORD"))) {
+            System.out.println("Incorrect password");
+            return;
         }
+        ResponseEntity<String> response = productController.deleteAllProducts();
+
+        System.out.println(response);
     }
-
-    public static void viewAllUsersOrders() {
-
-//        List<Order> orders = orderController.getAll();
-
-//        appView.view_all_users_orders(orders);
-
-        back();
-    }
-
-    public static void editOrder() {
-
-    }
-
-    public static void removeOrder() {
-
-    }
-
-    public static void removeAllOrders() {
-
-    }
-
 
     public static void logOut() {
         if (session.destroy())

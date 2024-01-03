@@ -3,8 +3,6 @@ package com.online_shop.MAP_Labor_2_Spring.services;
 import com.online_shop.MAP_Labor_2_Spring.models.ShippingAddress;
 import com.online_shop.MAP_Labor_2_Spring.models.User;
 import com.online_shop.MAP_Labor_2_Spring.repositories.ShippingAddressRepository;
-import com.online_shop.MAP_Labor_2_Spring.repositories.ShoppingCartItemRepository;
-import com.online_shop.MAP_Labor_2_Spring.repositories.ShoppingCartRepository;
 import com.online_shop.MAP_Labor_2_Spring.repositories.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +23,11 @@ public class UserService {
         this.shippingAddressRepository = shippingAddressRepository;
     }
 
-
     public ResponseEntity<User> loginUser(User user) {
-
         Optional<User> existing = userRepository.findByEmail(user.getEmail());
         if (existing.isEmpty())
             return ResponseEntity.notFound().build();
         User current = existing.get();
-        System.out.println(user.getPassword() + ' ' + current.getPassword());
         if (!BCrypt.checkpw(user.getPassword(), current.getPassword()))
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         return ResponseEntity.ok(current);

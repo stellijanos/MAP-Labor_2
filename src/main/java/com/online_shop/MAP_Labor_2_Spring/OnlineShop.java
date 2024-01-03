@@ -17,6 +17,10 @@ import java.util.*;
 
 @SpringBootApplication
 public class OnlineShop {
+    public static void main(String[] args) {
+        SpringApplication.run(OnlineShop.class, args);
+        mainMenu();
+    }
 
     private static UserController userController;
     private static ShippingAddressController shippingAddressController;
@@ -27,6 +31,7 @@ public class OnlineShop {
     private static CategoryController categoryController;
 
     private static final AppView appView = new AppView();
+    private static Session session;
 
     @Autowired
     public OnlineShop(UserController userController,
@@ -45,11 +50,6 @@ public class OnlineShop {
         OnlineShop.categoryController = categoryController;
     }
 
-
-    public static void main(String[] args) {
-        SpringApplication.run(OnlineShop.class, args);
-        OnlineShop.run();
-    }
 
     private static void sleep(Integer milliseconds) {
         try {
@@ -84,56 +84,32 @@ public class OnlineShop {
         }
     }
 
-    private static Session session;
-
-
-    private static void back() {
-        while (true) {
-            if (readFromConsole(appView::print_back, Integer.class) == 0)
-                break;
-        }
-    }
-
-
-    private Integer parseIntegerOrDefaultValue(String value, Integer defaultValue) {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            return defaultValue;
-        }
-    }
-
-
-    private static void setUpSession(User user) {
-        session = Session.getInstance();
-        session.setId(user.getId());
-        appView.login_successful();
-        if (Objects.equals(Env.load().get("ADMIN_EMAIL"), user.getEmail()))
-            adminPanel();
-        userPanel();
-    }
-
 
     public void restartSession(User user) {
-        if (!user.getEmail().isEmpty()) {
-            session.destroy();
-            session = Session.getInstance();
-            session.setId(user.getId());
-        }
-        appView.user_updated_successfully();
+        if (user.getEmail().isEmpty())
+            appView.user_updated_successfully();
+        session.destroy();
+        session = Session.getInstance();
+        session.setId(user.getId());
     }
 
+    private static void back() {
+        while (readFromConsole(appView::print_back, Integer.class) != 0) {
+        }
+    }
 
     public static void mainMenu() {
-        boolean running = true;
-        while (running) {
+        while (true)
             switch (readFromConsole(appView::mainMenu, Integer.class)) {
-                case 0 -> running = false;
+                case 0 -> quit();
                 case 1 -> logIn();
                 case 2 -> signUp();
                 default -> appView.option_not_found();
             }
-        }
+    }
+
+    public static void quit() {
+        System.exit(0);
     }
 
     public static void logIn() {
@@ -146,11 +122,11 @@ public class OnlineShop {
 
         ResponseEntity<User> response = userController.loginUser(user);
         HttpStatusCode statusCode = response.getStatusCode();
-
         if (statusCode.equals(HttpStatus.NOT_FOUND)) appView.incorrect_email();
         else if (statusCode.equals(HttpStatus.UNAUTHORIZED)) appView.incorrect_password();
-        else if (statusCode.equals(HttpStatus.OK)) setUpSession(Objects.requireNonNull(response.getBody()));
-
+        else if (statusCode.equals(HttpStatus.OK))
+            if (response.getBody() != null) setUpSession(response.getBody());
+            else appView.not_found();
     }
 
     public static void signUp() {
@@ -174,9 +150,18 @@ public class OnlineShop {
         else appView.user_created_successfully();
     }
 
+    private static void setUpSession(User user) {
+        session = Session.getInstance();
+        session.setId(user.getId());
+        appView.login_successful();
+        if (Objects.equals(Env.load().get("ADMIN_EMAIL"), user.getEmail()))
+            adminPanel();
+        userPanel();
+    }
+
 
     public static void userPanel() {
-        while (true) {
+        while (true)
             switch (readFromConsole(appView::userPanel, Integer.class)) {
                 case 0 -> logOut();
                 case 1 -> accountSettings();
@@ -187,31 +172,30 @@ public class OnlineShop {
                 case 6 -> products();
                 default -> appView.option_not_found();
             }
-        }
     }
 
+    public static void logOut() {
+        if (session.destroy()) mainMenu();
+    }
 
     public static void accountSettings() {
         boolean running = true;
-        while (running) {
+        while (running)
             switch (readFromConsole(appView::accountSettings, Integer.class)) {
                 case 0 -> running = false;
-                case 1 -> profileDetails();
-                case 2 -> editProfileDetails();
-//                case 3 -> changePassword();
+                case 1 -> accountDetails();
+                case 2 -> editAccountDetails();
                 case 4 -> deleteAccount();
-                default -> accountSettings();
+                default -> appView.option_not_found();
             }
-        }
     }
 
-
-    public static void profileDetails() {
+    public static void accountDetails() {
         appView.account_details(userController.getUser(session.getId()).getBody());
         back();
     }
 
-    public static void editProfileDetails() {
+    public static void editAccountDetails() {
         String firstname = readFromConsole(appView::enter_new_firstname, String.class);
         String lastname = readFromConsole(appView::enter_new_lastname, String.class);
         String email = readFromConsole(appView::enter_new_email, String.class);
@@ -247,28 +231,25 @@ public class OnlineShop {
 
     public static void shippingAddressOptions() {
         boolean running = true;
-        while (running) {
+        while (running)
             switch (readFromConsole(appView::shippingAddressOptions, Integer.class)) {
                 case 0 -> running = false;
-                case 1 -> viewSavedAddresses();
+                case 1 -> viewAddresses();
                 case 2 -> addAddress();
                 case 3 -> editAddress();
                 case 4 -> deleteAddress();
                 case 5 -> deleteAllAddresses();
                 default -> appView.option_not_found();
             }
-        }
     }
 
 
-    public static void viewSavedAddresses() {
-        ResponseEntity<Iterable<ShippingAddress>> addresses = userController.getAllShippingAddresses(session.getId());
+    public static void viewAddresses() {
+        List<ShippingAddress> addresses = (List<ShippingAddress>) userController.getAllShippingAddresses(session.getId()).getBody();
 
-        if (addresses.getStatusCode().equals(HttpStatus.NOT_FOUND))
-            return;
-
-        for (ShippingAddress shippingAddress : Objects.requireNonNull(addresses.getBody()))
-            appView.print_address(shippingAddress);
+        if (addresses != null)
+            for (ShippingAddress shippingAddress : addresses)
+                appView.print_address(shippingAddress);
         back();
     }
 
@@ -414,66 +395,78 @@ public class OnlineShop {
     }
 
     public static void createOrder() {
-
-        ResponseEntity<ShoppingCart> cartOptional = shoppingCartController.getShoppingCart(session.getId());
-
-        if (cartOptional.getStatusCode().equals(HttpStatus.NOT_FOUND)) return;
-
-        List<ShoppingCartItem> items = (List<ShoppingCartItem>) Objects.requireNonNull(cartOptional.getBody()).getShoppingCartItems();
-
-        Set<OrderItem> orderItems = new HashSet<>();
-
-        for (ShoppingCartItem item : items) {
-            OrderItem orderItem = new OrderItem();
-            orderItem.setProduct(item.getProduct());
-            orderItem.setQuantity(item.getQuantity());
-            orderItem.setPrice(item.getProduct().getPrice());
-
-            orderItems.add(orderItem);
-        }
-
-        List<ShippingAddress> addresses = (List<ShippingAddress>) shippingAddressController.getAllShippingAddresses().getBody();
-
-        ShippingAddress shippingAddress = null;
-
-        while (shippingAddress == null) {
-
-
-            Long id = readFromConsole(appView::enter_shipping_address_number, Long.class);
-
-            shippingAddress = shippingAddressController.getShippingAddress(id).getBody();
-        }
-
         try {
-            Order order = new Order()
-                    .orderItems(orderItems)
-                    .user(userController.getUser(session.getId()).getBody())
-                    .shippingAddress(shippingAddress)
-                    .shippingFee(15F)
-                    .payment("card")
-                    .status("Registered");
+            ResponseEntity<ShoppingCart> cartOptional = shoppingCartController.getShoppingCart(session.getId());
 
-            ResponseEntity<Order> response = orderController.createOrder(session.getId(), order);
+            if (cartOptional.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
+                return;
+            }
 
-            System.out.println(response);
+            ShoppingCart cart = cartOptional.getBody();
+            if (cart == null || cart.getShoppingCartItems() == null || cart.getShoppingCartItems().isEmpty()) {
+                return;
+            }
 
+            Set<OrderItem> orderItems = new HashSet<>();
+            for (ShoppingCartItem item : cart.getShoppingCartItems()) {
+                OrderItem orderItem = new OrderItem();
+                orderItem.setProduct(item.getProduct());
+                orderItem.setQuantity(item.getQuantity());
+                orderItem.setPrice(item.getProduct().getPrice());
+
+                orderItems.add(orderItem);
+            }
+
+            ResponseEntity<Iterable<ShippingAddress>> addressesResponse = shippingAddressController.getAllShippingAddresses();
+            List<ShippingAddress> addresses = (List<ShippingAddress>) addressesResponse.getBody();
+
+            if (addresses != null) {
+                for (ShippingAddress address : addresses) {
+                    System.out.println(address);
+                }
+            }
+
+            ShippingAddress shippingAddress = null;
+            while (shippingAddress == null) {
+                Long id = readFromConsole(appView::enter_shipping_address_number, Long.class);
+                ResponseEntity<ShippingAddress> addressResponse = shippingAddressController.getShippingAddress(id);
+                if (addressResponse.getStatusCode().equals(HttpStatus.OK)) {
+                    shippingAddress = addressResponse.getBody();
+                }
+            }
+
+            ResponseEntity<User> userResponse = userController.getUser(session.getId());
+            if (userResponse.getStatusCode().equals(HttpStatus.OK)) {
+                User user = userResponse.getBody();
+
+                Payment card = new Card();
+
+                Order order = new Order()
+                        .orderItems(orderItems)
+                        .user(user)
+                        .shippingAddress(shippingAddress)
+                        .shippingFee(15F)
+                        .payment(card)
+                        .status("Registered");
+
+                ResponseEntity<Order> response = orderController.createOrder(session.getId(), order);
+
+                System.out.println(response);
+            }
         } catch (Exception e) {
-            return;
+//            e.printStackTrace();
         }
-
-
     }
 
     public static void products() {
         boolean running = true;
-        while (running) {
+        while (running)
             switch (readFromConsole(appView::products, Integer.class)) {
                 case 0 -> running = false;
                 case 1 -> addToFavourites();
                 case 2 -> addToCart();
                 default -> appView.option_not_found();
             }
-        }
     }
 
     public static void addToFavourites() {
@@ -517,13 +510,12 @@ public class OnlineShop {
 
     public static void userOptions() {
         boolean running = true;
-        while (running) {
+        while (running)
             switch (readFromConsole(appView::userOptions, Integer.class)) {
                 case 0 -> running = false;
                 case 1 -> viewAllUsers();
                 default -> appView.option_not_found();
             }
-        }
     }
 
 
@@ -540,7 +532,7 @@ public class OnlineShop {
 
     public static void productOptions() {
         boolean running = true;
-        while (running) {
+        while (running)
             switch (readFromConsole(appView::productOptions, Integer.class)) {
                 case 0 -> running = false;
                 case 1 -> viewAllProducts();
@@ -550,15 +542,13 @@ public class OnlineShop {
                 case 5 -> removeAllProducts();
                 default -> appView.option_not_found();
             }
-        }
     }
 
     public static void viewAllProducts() {
         List<Product> products = (List<Product>) productController.getAllProducts().getBody();
-        if (products != null) {
+        if (products != null)
             for (Product product : products)
                 System.out.println(product);
-        }
         back();
     }
 
@@ -574,9 +564,8 @@ public class OnlineShop {
         appView.view_all_categories(categories);
         Category category = null;
 
-        while (category == null) {
+        while (category == null)
             category = categoryController.getCategory(readFromConsole(appView::select_category, Long.class)).getBody();
-        }
 
         Product product = new Product();
 
@@ -605,9 +594,8 @@ public class OnlineShop {
         appView.view_all_categories(categories);
         Category category = null;
 
-        while (category == null) {
+        while (category == null)
             category = categoryController.getCategory(readFromConsole(appView::select_category, Long.class)).getBody();
-        }
 
         Product product = new Product();
         product.setId(productId);
@@ -640,18 +628,9 @@ public class OnlineShop {
         System.out.println(response);
     }
 
-    public static void logOut() {
-        if (session.destroy())
-            mainMenu();
-    }
-
     public static void deleteUser() {
         logOut();
         appView.user_deleted_successfully();
-    }
-
-    public static void run() {
-        mainMenu();
     }
 
 }

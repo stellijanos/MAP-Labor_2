@@ -26,8 +26,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String payment;
-
     @Column(columnDefinition = "DATETIME")
     @CreationTimestamp
     private LocalDateTime date;
@@ -45,6 +43,9 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
     private ShippingAddress shippingAddress;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
 
 
     public Order() {
@@ -79,7 +80,7 @@ public class Order {
         return this;
     }
 
-    public Order payment(String payment) throws Exception {
+    public Order payment(Payment payment) throws Exception {
         if (this.shippingFee == null)
             throw new Exception("Order has not shipping fee!");
         this.setPayment(payment);

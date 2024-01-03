@@ -3,7 +3,9 @@ package com.online_shop.MAP_Labor_2_Spring.services;
 import com.online_shop.MAP_Labor_2_Spring.models.Order;
 import com.online_shop.MAP_Labor_2_Spring.repositories.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
@@ -29,7 +31,7 @@ public class OrderService {
 
     public ResponseEntity<Iterable<Order>> getAllOrders(Long user_id) {
         return userRepository.findById(user_id)
-                .map(user -> ResponseEntity.ok(orderRepository.finAllByUserId(user_id)))
+                .map(user -> ResponseEntity.ok(orderRepository.findAllByUserId(user_id)))
                 .orElse(ResponseEntity.notFound().build());
     }
 

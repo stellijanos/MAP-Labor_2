@@ -1,36 +1,33 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.context.annotation.EnableMBeanExport;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "payments")
-public class Payment {
+public abstract class Payment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String type;
-    private Float aomunt;
-
+    private Float amount;
 
     @OneToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
-    public void pay() {
-    }
+    public void pay(){}
 
     @Override
     public String toString() {
         return "Payment{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", aomunt=" + aomunt +
+                ", amount=" + amount +
                 ", order=" + order +
                 '}';
     }

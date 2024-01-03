@@ -3,22 +3,24 @@ package com.online_shop.MAP_Labor_2_Spring;
 
 import com.online_shop.MAP_Labor_2_Spring.controllers.UserController;
 import com.online_shop.MAP_Labor_2_Spring.models.User;
-import com.online_shop.MAP_Labor_2_Spring.repositories.UserRepository;
+import com.online_shop.MAP_Labor_2_Spring.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 public class UserTest {
     @Mock
-    private UserRepository userRepository;
+    private UserService userService;
 
     @InjectMocks
     private UserController userController;
@@ -29,7 +31,7 @@ public class UserTest {
     }
 
     @Test
-    void test_getAllClients() {
+    void test_getAllUsers() {
         List<User> users = new ArrayList<>();
 
         User u1 = new User();
@@ -48,11 +50,13 @@ public class UserTest {
         users.add(u1);
         users.add(u2);
 
-        when(userRepository.findAll()).thenReturn(users);
+        ResponseEntity<Iterable<User>> finalUsers = ResponseEntity.ok(users);
+
+        when(userService.getAllUsers()).thenReturn(finalUsers);
 
         Iterable<User> result = userController.getAllUsers().getBody();
 
-        assert result != null;
+        assertNotNull(result);
         assertEquals(2, ((List<User>) result).size());
 
         assertEquals(u1.getId(), users.get(0).getId());

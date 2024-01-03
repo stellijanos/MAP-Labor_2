@@ -1,35 +1,39 @@
-//package org.online_shop;
-//
-//import org.junit.*;
-//import org.online_shop.interfaces.PaymentStrategy;
-//
-//import static org.junit.Assert.*;
-//
-//public class PaymentStrategyTest {
-//
-//    private class TestPaymentStrategy implements PaymentStrategy {
-//        private Integer id = 123;
-//        private String type = "Credit";
-//        private String name = "John Doe";
-//        private String number = "1234567890123456";
-//        private String cvv = "123";
-//
-//        @Override
-//        public void pay(Float amount) {
-//            // Implement pay method logic for testing
-//        }
-//
-//        @Override
-//        public Integer getId() {
-//            return id;
-//        }
-//    }
-//
-//    @Test
-//    public void test_getId() {
-//        PaymentStrategy paymentStrategy = new TestPaymentStrategy();
-//        Integer expectedId = 123;
-//        assertEquals(expectedId, paymentStrategy.getId());
-//    }
-//
-//}
+package com.online_shop.MAP_Labor_2_Spring;
+
+import com.online_shop.MAP_Labor_2_Spring.models.Payment;
+import org.junit.*;
+
+import static org.junit.Assert.*;
+
+public class PaymentStrategyTest {
+
+    private static class TestPayment extends Payment {
+        private Long id = 1L;
+        private String type = "cash";
+        private String name = "John Doe";
+
+        @Override
+        public void pay() {
+            System.out.println("Paying with test");
+        }
+
+    }
+
+    @Test
+    public void test_getId() {
+        Payment paymentStrategy = new TestPayment();
+        paymentStrategy.setId(1L);
+        paymentStrategy.setName("John Doe");
+        paymentStrategy.setAmount(123.45F);
+        paymentStrategy.setType("test");
+
+        Long expectedId = 1L;
+        Float expectedAmount = 123.45F;
+
+        assertEquals(expectedId, paymentStrategy.getId());
+        assertEquals(expectedAmount, paymentStrategy.getAmount());
+        assertEquals("John Doe", paymentStrategy.getName());
+        assertEquals("test", paymentStrategy.getType());
+    }
+
+}

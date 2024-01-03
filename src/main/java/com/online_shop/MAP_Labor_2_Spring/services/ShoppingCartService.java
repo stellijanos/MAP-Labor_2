@@ -10,9 +10,11 @@ import com.online_shop.MAP_Labor_2_Spring.repositories.ShoppingCartRepository;
 import com.online_shop.MAP_Labor_2_Spring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ShoppingCartService {
 
     private final ShoppingCartRepository shoppingCartRepository;

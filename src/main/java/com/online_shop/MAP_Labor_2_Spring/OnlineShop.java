@@ -1,6 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring;
 
 import com.online_shop.MAP_Labor_2_Spring.controllers.*;
+import com.online_shop.MAP_Labor_2_Spring.design_patterns.PaymentFactory;
 import com.online_shop.MAP_Labor_2_Spring.models.*;
 import com.online_shop.MAP_Labor_2_Spring.repositories.Env;
 import com.online_shop.MAP_Labor_2_Spring.views.AppView;
@@ -14,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
-
+// Design Patterns: Strategy, Factory, Observer, Singleton, Builder
 @SpringBootApplication
 public class OnlineShop {
     public static void main(String[] args) {
@@ -51,9 +52,9 @@ public class OnlineShop {
     }
 
 
-    private static void sleep(Integer milliseconds) {
+    private static void sleep() {
         try {
-            Thread.sleep(milliseconds);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -76,7 +77,7 @@ public class OnlineShop {
 
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter valid option.");
-                sleep(500);
+                sleep();
                 scanner.nextLine(); // clear the input buffer
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -85,7 +86,7 @@ public class OnlineShop {
     }
 
 
-    public void restartSession(User user) {
+    public static void restartSession(User user) {
         if (user.getEmail().isEmpty())
             appView.user_updated_successfully();
         session.destroy();
@@ -109,6 +110,7 @@ public class OnlineShop {
     }
 
     public static void quit() {
+        appView.print_goodBye();
         System.exit(0);
     }
 
@@ -191,7 +193,7 @@ public class OnlineShop {
     }
 
     public static void accountDetails() {
-        appView.account_details(userController.getUser(session.getId()).getBody());
+        appView.account_details(Objects.requireNonNull(userController.getUser(session.getId()).getBody()));
         back();
     }
 
@@ -213,8 +215,10 @@ public class OnlineShop {
         HttpStatusCode statusCode = response.getStatusCode();
         if (statusCode.equals(HttpStatus.NOT_FOUND)) appView.user_not_found();
         else if (statusCode.equals(HttpStatus.CONFLICT)) appView.user_exists();
-        else if (statusCode.equals(HttpStatus.OK)) appView.user_updated_successfully();
-
+        else if (statusCode.equals(HttpStatus.OK)) {
+            OnlineShop.restartSession(user);
+            appView.user_updated_successfully();
+        }
     }
 
 
@@ -439,14 +443,16 @@ public class OnlineShop {
             if (userResponse.getStatusCode().equals(HttpStatus.OK)) {
                 User user = userResponse.getBody();
 
-                Payment card = new Card();
+                String paymentType = readFromConsole(appView::cashOrCard, String.class);
+                PaymentFactory paymentFactory = new PaymentFactory();
+                Payment payment = paymentFactory.createPayment(paymentType);
 
                 Order order = new Order()
                         .orderItems(orderItems)
                         .user(user)
                         .shippingAddress(shippingAddress)
                         .shippingFee(15F)
-                        .payment(card)
+                        .payment(payment)
                         .status("Registered");
 
                 ResponseEntity<Order> response = orderController.createOrder(session.getId(), order);

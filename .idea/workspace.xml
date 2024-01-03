@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement all functionalities for the app and strategy pattern">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/design_patterns/PaymentFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/models/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/repositories/PaymentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/services/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/services/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/services/ShoppingCartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/services/ShoppingCartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/CategoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/CategoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/PaymentStrategyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/PaymentStrategyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/ProductTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/ProductTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/OnlineShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/online_shop/MAP_Labor_2_Spring/OnlineShop.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,28 +43,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DemoApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.OnlineShop.executor": "Run",
-    "JUnit.CategoryTest.executor": "Run",
-    "JUnit.ClientTest.executor": "Run",
-    "JUnit.DatabaseTest.test_connection.executor": "Run",
-    "JUnit.MAP_Labor_2_Spring in MAP-Labor_2.executor": "Run",
-    "JUnit.PaymentStrategyTest.test_getId.executor": "Run",
-    "JUnit.ProductTest.executor": "Run",
-    "JUnit.ProductTest.test_getAllClients.executor": "Run",
-    "JUnit.UserTest.executor": "Run",
-    "JUnit.com.online_shop.MAP_Labor_2_Spring in MAP-Labor_2.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Facultatea de mate info/Semestrul 3/MAP/Laborator/MAP-Labor_2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DemoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OnlineShop.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CategoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ClientTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseTest.test_connection.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MAP_Labor_2_Spring in MAP-Labor_2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PaymentStrategyTest.test_getId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductTest.test_getAllClients.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.com.online_shop.MAP_Labor_2_Spring in MAP-Labor_2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Facultatea de mate info/Semestrul 3/MAP/Laborator/MAP-Labor_2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.online_shop.MAP_Labor_2_Spring" />
@@ -455,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704308762753</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="implement test">
+      <option name="closed" value="true" />
+      <created>1704312192595</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1704312192595</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement database entities in spring" />
     <MESSAGE value="implement categpry mvc and repo part and fix other parts" />
     <MESSAGE value="make all repos interface and implement some controllers" />
     <MESSAGE value="fix appcontroller" />
@@ -495,6 +495,7 @@
     <MESSAGE value="implement all restcontrollers" />
     <MESSAGE value="implement all functionalities for the app" />
     <MESSAGE value="implement all functionalities for the app and strategy pattern" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement all functionalities for the app and strategy pattern" />
+    <MESSAGE value="implement test" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement test" />
   </component>
 </project>

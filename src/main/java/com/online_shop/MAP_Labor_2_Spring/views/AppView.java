@@ -6,20 +6,21 @@ import java.util.List;
 
 public class AppView {
     public String enterOption() {
-        return "\n\nEnter option please:\n";
+        return "\n\nEnter option please:\n>>>";
     }
 
     public void mainMenu() {
-        System.out.println("\n------------------------------------------------\n" +
-                "@author Janos Stelli" +
-                "\n------------------------------------------------\n" +
-                "Welcome to the online shop" +
-                "\n------------------------------------------------\n" +
-                "Options:\n" +
-                "0. Quit App\n" +
-                "1. LogIn\n" +
-                "2. SignUp" +
-                enterOption()
+        System.out.println("""
+                ------------------------------------------------
+                @author Janos Stelli
+                ------------------------------------------------
+                Welcome to the online shop
+                ------------------------------------------------
+                Options:
+                0. Quit App
+                1. LogIn
+                2. SignUp
+                """ + enterOption()
         );
     }
 
@@ -36,43 +37,49 @@ public class AppView {
     }
 
     public void userPanel() {
-        System.out.println("\n------------------------------\n" +
-                "User Panel\n------------------------------\n" +
-                "0. LogOut\n" +
-                "1. Account settings\n" +
-                "2. Shipping Address options\n" +
-                "3. Orders\n" +
-                "4. Favourites\n" +
-                "5. ShoppingCart\n" +
-                "6. Products" +
-                enterOption()
+        System.out.println("""
+                ------------------------------
+                User Panel
+                ------------------------------
+                0. LogOut
+                1. Account settings
+                2. Shipping Address options
+                3. Orders
+                4. Favourites
+                5. ShoppingCart
+                6. Products
+                """ + enterOption()
         );
     }
 
     // userPanel option 1
     public void accountSettings() {
-        System.out.println("\n------------------------------\n" +
-                "Account settings\n------------------------------\n" +
-                "0. Back\n" +
-                "1. View profile details\n" +
-                "2. Edit profile details\n" +
-                "3. Change password\n" +
-                "4. Delete account" +
-                enterOption()
+        System.out.println("""
+                ------------------------------
+                Account settings
+                ------------------------------
+                0. Back
+                1. View profile details
+                2. Edit profile details
+                3. Change password
+                4. Delete account
+                """ + enterOption()
         );
     }
 
     // userPanel option 2
     public void shippingAddressOptions() {
-        System.out.println("\n------------------------------\n" +
-                "Shipping Address options\n------------------------------\n" +
-                "0. Back\n" +
-                "1. View saved addresses\n" +
-                "2. Add address\n" +
-                "3. Edit address\n" +
-                "4. Delete address\n" +
-                "5. Delete all addresses" +
-                enterOption()
+        System.out.println("""
+                ------------------------------
+                Shipping Address options
+                ------------------------------
+                0. Back
+                1. View saved addresses
+                2. Add address
+                3. Edit address
+                4. Delete address
+                5. Delete all addresses
+                """ + enterOption()
         );
     }
 
@@ -83,7 +90,7 @@ public class AppView {
                 "0. Back\n" +
                 "1. View all orders\n" +
                 "2. View order\n" +
-                "Enter option: "
+                enterOption()
         );
     }
 
@@ -95,31 +102,36 @@ public class AppView {
                 "\n---------------------\n" +
                 "Options:" +
                 "0. Back" +
-                "\n---------------------\n");
+                "\n---------------------\n" +
+                enterOption()
+        );
     }
 
     // userPanel option 5
 
     public void shoppingCart() {
-        System.out.println("\n---------------------\n" +
-                "Shopping cart" +
-                "\n---------------------\n" +
-                "Options:" +
-                "0. Back" +
-                "\n---------------------\n");
+        System.out.println("""
+                ---------------------
+                Shopping cart
+                ---------------------
+                Options:
+                0. Back
+                --------------------
+                """ +
+                enterOption()
+        );
     }
 
     // userPanel option 6
 
     public void products() {
-        System.out.println("\n---------------------\n" +
-                "Products" +
-                "\n---------------------\n" +
-                "Options:" +
-                "0. Back" +
-                "1. Add To Favourites" +
-                "2. Add To Cart" +
-                "\n---------------------\n");
+        System.out.println("""
+                ---------------------
+                Products
+                ---------------------
+                Options:0. Back1. Add To Favourites2. Add To Cart
+                ---------------------
+                """);
     }
 
     public void print_adminOption() {
@@ -127,12 +139,15 @@ public class AppView {
     }
 
     public void adminPanel() {
-        System.out.println("\n------------------------------\n" +
-                "Admin Panel\n------------------------------\n" +
-                "0. Back\n" +
-                "1. User options\n" +
-                "2. Product options\n" +
-                "3. Order options" +
+        System.out.println("""
+                ------------------------------
+                Admin Panel
+                ------------------------------
+                0. Back
+                1. User options
+                2. Product option
+                3. Order options
+                """ +
                 enterOption()
         );
     }
@@ -241,9 +256,14 @@ public class AppView {
     }
 
     public void account_details(User user) {
-//        System.out.printf("\n-------------------\n Account details\n-------------------\n" +
-//                        "Member since: %s\nFirstname:    %s\nLastname:     %s\nEmail:        %s\n",
-//                user.getCreatedAt(), user.getFirstname(), user.getLastname(), user.getEmail());
+        System.out.printf("""
+                        -------------------
+                        Account details
+                        -------------------
+                        Firstname: %s
+                        Lastname:  %s
+                        Email:     %s
+                       """, user.getFirstname(), user.getLastname(), user.getEmail());
     }
 
     public void enter_new_password() {
@@ -491,5 +511,9 @@ public class AppView {
     public void shopping_cart_options() {
         System.out.println("0. Back\n" +
                 "1. Create order");
+    }
+
+    public void cashOrCard() {
+        System.out.println("Cash or card? \n >>>");
     }
 }

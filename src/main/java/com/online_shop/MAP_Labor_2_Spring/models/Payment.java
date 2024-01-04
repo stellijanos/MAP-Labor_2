@@ -1,5 +1,6 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public abstract class Payment {
     private String type;
     private Float amount;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;

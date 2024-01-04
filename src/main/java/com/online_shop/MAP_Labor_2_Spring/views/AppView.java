@@ -10,7 +10,7 @@ public class AppView {
     }
 
     public void mainMenu() {
-        System.out.println("""
+        System.out.print("""
                 ------------------------------------------------
                 @author Janos Stelli
                 ------------------------------------------------
@@ -37,7 +37,7 @@ public class AppView {
     }
 
     public void userPanel() {
-        System.out.println("""
+        System.out.print("""
                 ------------------------------
                 User Panel
                 ------------------------------
@@ -54,7 +54,7 @@ public class AppView {
 
     // userPanel option 1
     public void accountSettings() {
-        System.out.println("""
+        System.out.print("""
                 ------------------------------
                 Account settings
                 ------------------------------
@@ -69,7 +69,7 @@ public class AppView {
 
     // userPanel option 2
     public void shippingAddressOptions() {
-        System.out.println("""
+        System.out.print("""
                 ------------------------------
                 Shipping Address options
                 ------------------------------
@@ -85,7 +85,7 @@ public class AppView {
 
     // userPanel option 3
     public void orders() {
-        System.out.println("\n------------------------------\n" +
+        System.out.print("\n------------------------------\n" +
                 "Shipping Address options\n------------------------------\n" +
                 "0. Back\n" +
                 "1. View all orders\n" +
@@ -97,7 +97,7 @@ public class AppView {
     // userPanel option 4
 
     public void favourites() {
-        System.out.println("\n---------------------\n" +
+        System.out.print("\n---------------------\n" +
                 "Shopping cart" +
                 "\n---------------------\n" +
                 "Options:" +
@@ -110,7 +110,7 @@ public class AppView {
     // userPanel option 5
 
     public void shoppingCart() {
-        System.out.println("""
+        System.out.print("""
                 ---------------------
                 Shopping cart
                 ---------------------
@@ -125,13 +125,17 @@ public class AppView {
     // userPanel option 6
 
     public void products() {
-        System.out.println("""
+        System.out.print("""
                 ---------------------
                 Products
                 ---------------------
-                Options:0. Back1. Add To Favourites2. Add To Cart
+                Options:
+                0. Back
+                1. Add To Favourite
+                s2. Add To Cart
                 ---------------------
-                """);
+                """ + enterOption()
+        );
     }
 
     public void print_adminOption() {
@@ -139,7 +143,7 @@ public class AppView {
     }
 
     public void adminPanel() {
-        System.out.println("""
+        System.out.print("""
                 ------------------------------
                 Admin Panel
                 ------------------------------
@@ -147,14 +151,13 @@ public class AppView {
                 1. User options
                 2. Product option
                 3. Order options
-                """ +
-                enterOption()
+                """ + enterOption()
         );
     }
 
     // adminPanel option 1
     public void userOptions() {
-        System.out.println("\n------------------------------\n" +
+        System.out.print("\n------------------------------\n" +
                 "User options\n------------------------------\n" +
                 "0. Back\n" +
                 "1. View all users\n" +
@@ -167,7 +170,7 @@ public class AppView {
 
     // adminPanel option 2
     public void productOptions() {
-        System.out.println("\n------------------------------\n" +
+        System.out.print("\n------------------------------\n" +
                 "Product options\n------------------------------\n" +
                 "0. Back\n" +
                 "1. View all products\n" +
@@ -180,7 +183,7 @@ public class AppView {
     }
 
     public void orderOptions() {
-        System.out.println("\n------------------------------\n" +
+        System.out.print("\n------------------------------\n" +
                 "User options\n------------------------------\n" +
                 "0. Back\n" +
                 "1. View all users orders\n" +
@@ -257,13 +260,13 @@ public class AppView {
 
     public void account_details(User user) {
         System.out.printf("""
-                        -------------------
-                        Account details
-                        -------------------
-                        Firstname: %s
-                        Lastname:  %s
-                        Email:     %s
-                       """, user.getFirstname(), user.getLastname(), user.getEmail());
+                 -------------------
+                 Account details
+                 -------------------
+                 Firstname: %s
+                 Lastname:  %s
+                 Email:     %s
+                """, user.getFirstname(), user.getLastname(), user.getEmail());
     }
 
     public void enter_new_password() {
@@ -496,6 +499,7 @@ public class AppView {
     public void not_found() {
         System.out.println("Not found!");
     }
+
     public void bad_request() {
         System.out.println("Bad request!");
     }

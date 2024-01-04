@@ -1,6 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring;
 
 import com.online_shop.MAP_Labor_2_Spring.controllers.*;
+import com.online_shop.MAP_Labor_2_Spring.design_patterns.OrderDecorator;
 import com.online_shop.MAP_Labor_2_Spring.design_patterns.PaymentFactory;
 import com.online_shop.MAP_Labor_2_Spring.models.*;
 import com.online_shop.MAP_Labor_2_Spring.repositories.Env;
@@ -15,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
-// Design Patterns: Strategy, Factory, Observer, Singleton, Builder
+// Design Patterns: Strategy, Factory, Observer, Singleton, Builder, Decorator
 @SpringBootApplication
 public class OnlineShop {
     public static void main(String[] args) {
@@ -62,7 +63,7 @@ public class OnlineShop {
 
     private static <T> T readFromConsole(Runnable message, Class<T> type) {
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        while (true)
             try {
                 message.run();
 
@@ -82,7 +83,6 @@ public class OnlineShop {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }
     }
 
 
@@ -455,7 +455,10 @@ public class OnlineShop {
                         .payment(payment)
                         .status("Registered");
 
-                ResponseEntity<Order> response = orderController.createOrder(session.getId(), order);
+                OrderDecorator orderDecorator = new OrderDecorator(order);
+                Order finalOrder = orderDecorator.getOrder();
+
+                ResponseEntity<Order> response = orderController.createOrder(session.getId(), finalOrder);
 
                 System.out.println(response);
             }

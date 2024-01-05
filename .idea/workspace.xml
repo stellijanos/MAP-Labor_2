@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement decorator design pattern">
+    <list default="true" id="e005606d-1c95-4191-8b85-ad407aa28822" name="Changes" comment="implement tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/CategoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/CategoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/ProductTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/ProductTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +57,7 @@
     "JUnit.PaymentStrategyTest.test_getId.executor": "Run",
     "JUnit.ProductTest.executor": "Run",
     "JUnit.ProductTest.test_createProduct.executor": "Run",
+    "JUnit.ProductTest.test_deleteProduct.executor": "Run",
     "JUnit.ProductTest.test_getAllClients.executor": "Run",
     "JUnit.ProductTest.test_getProductById.executor": "Run",
     "JUnit.ProductTest.test_updateProduct.executor": "Run",
@@ -76,27 +76,11 @@
       <recent name="com.online_shop.MAP_Labor_2_Spring" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductTest.test_deleteProduct">
+  <component name="RunManager" selected="JUnit.MAP_Labor_2_Spring in MAP-Labor_2">
     <configuration name="MAP_Labor_2_Spring in MAP-Labor_2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MAP-Labor_2" />
       <option name="TEST_OBJECT" value="directory" />
       <dir value="$PROJECT_DIR$/src/test/java/com/online_shop/MAP_Labor_2_Spring" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProductTest.test_createProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MAP-Labor_2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.online_shop.MAP_Labor_2_Spring.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.online_shop.MAP_Labor_2_Spring" />
-      <option name="MAIN_CLASS_NAME" value="com.online_shop.MAP_Labor_2_Spring.ProductTest" />
-      <option name="METHOD_NAME" value="test_createProduct" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -149,13 +133,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MAP-Labor_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.online_shop.MAP_Labor_2_Spring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.online_shop.MAP_Labor_2_Spring" />
+      <option name="MAIN_CLASS_NAME" value="com.online_shop.MAP_Labor_2_Spring.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MAP_Labor_2_Spring in MAP-Labor_2" />
+        <item itemvalue="JUnit.UserTest" />
         <item itemvalue="JUnit.ProductTest.test_deleteProduct" />
         <item itemvalue="JUnit.ProductTest.test_updateProduct" />
         <item itemvalue="JUnit.ProductTest.test_getProductById" />
-        <item itemvalue="JUnit.ProductTest.test_createProduct" />
-        <item itemvalue="JUnit.MAP_Labor_2_Spring in MAP-Labor_2" />
       </list>
     </recent_temporary>
   </component>
@@ -479,7 +478,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704398226352</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="implement tests">
+      <option name="closed" value="true" />
+      <created>1704440415097</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1704440415098</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -494,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix appcontroller" />
     <MESSAGE value="implement all in spring boot" />
     <MESSAGE value="add app view" />
     <MESSAGE value="commented out all the code" />
@@ -519,6 +525,7 @@
     <MESSAGE value="implement test" />
     <MESSAGE value="implement factory design pattern" />
     <MESSAGE value="implement decorator design pattern" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement decorator design pattern" />
+    <MESSAGE value="implement tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement tests" />
   </component>
 </project>

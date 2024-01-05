@@ -14,8 +14,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 public class UserTest {
@@ -28,6 +27,28 @@ public class UserTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+    }
+
+
+    @Test
+    void test_createUser() {
+        User user = new User();
+        user.setId(1L);
+        user.setFirstname("John");
+        user.setLastname("Doe");
+        user.setEmail("john@example.com");
+
+        when(userService.createUser(user)).thenReturn(ResponseEntity.status(201).body(user));
+
+        ResponseEntity<User> response = userController.createUser(user);
+
+        assertNotNull(response);
+        assertEquals(201, response.getStatusCode().value());
+
+        User createdUser = response.getBody();
+        assertNotNull(createdUser);
+        assertEquals(1L, createdUser.getId());
+        assertEquals("John", createdUser.getFirstname());
     }
 
     @Test
@@ -69,5 +90,56 @@ public class UserTest {
         assertEquals(u2.getFirstname(), users.get(1).getFirstname());
         assertEquals(u2.getLastname(), users.get(1).getLastname());
         assertEquals(u2.getEmail(), users.get(1).getEmail());
+    }
+
+    @Test
+    void test_getUser() {
+        long userId = 1L;
+        User user = new User();
+        user.setId(userId);
+        user.setFirstname("John");
+        user.setLastname("Doe");
+        user.setEmail("john@example.com");
+
+        when(userService.getUser(userId)).thenReturn(ResponseEntity.ok(user));
+
+        ResponseEntity<User> response = userController.getUser(userId);
+
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCode().value());
+
+        User fetchedUser = response.getBody();
+        assertNotNull(fetchedUser);
+        assertEquals(1L, fetchedUser.getId());
+        assertEquals("John", fetchedUser.getFirstname());
+    }
+
+    @Test
+    void test_updateUser() {
+        long userId = 1L;
+        User user = new User();
+        user.setId(userId);
+        user.setFirstname("Updated John");
+        user.setLastname("Updated Doe");
+        user.setEmail("updatedjohn@example.com");
+
+        when(userService.updateUser(user)).thenReturn(ResponseEntity.ok(user));
+
+        ResponseEntity<User> response = userController.updateUser(user);
+
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCode().value());
+
+        User updatedUser = response.getBody();
+        assertNotNull(updatedUser);
+        assertEquals(1L, updatedUser.getId());
+        assertEquals("Updated John", updatedUser.getFirstname());
+    }
+
+    @Test
+    void test_deleteUser() {
+        long userId = 1L;
+        ResponseEntity<?> response = userController.deleteUser(userId);
+        assertNull(response);
     }
 }

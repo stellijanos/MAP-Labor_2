@@ -4,7 +4,6 @@ package com.online_shop.MAP_Labor_2_Spring;
 import com.online_shop.MAP_Labor_2_Spring.controllers.ProductController;
 import com.online_shop.MAP_Labor_2_Spring.models.Category;
 import com.online_shop.MAP_Labor_2_Spring.models.Product;
-import com.online_shop.MAP_Labor_2_Spring.repositories.ProductRepository;
 import com.online_shop.MAP_Labor_2_Spring.services.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +15,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 public class ProductTest {
@@ -30,6 +28,34 @@ public class ProductTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    void test_createProduct() {
+        Category electronics = new Category();
+        electronics.setName("Electronics");
+
+        Product product = new Product();
+        product.setId(1L);
+        product.setName("Laptop");
+        product.setPrice(2500F);
+        product.setCategory(electronics);
+        product.setStock(50);
+        product.setDescription("Very good laptop.");
+        product.setImageLink("/laptop1.png");
+
+        when(productService.createProduct(product)).thenReturn(ResponseEntity.status(201).body(product));
+
+        ResponseEntity<Product> response = productController.createProduct(product);
+
+        assertNotNull(response);
+        assertEquals(201, response.getStatusCode().value());
+
+        Product createdProduct = response.getBody();
+        assertNotNull(createdProduct);
+        assertEquals(1L, createdProduct.getId());
+        assertEquals("Laptop", createdProduct.getName());
+
     }
 
     @Test
@@ -84,5 +110,70 @@ public class ProductTest {
         assertEquals(p2.getStock(), products.get(1).getStock());
         assertEquals(p2.getDescription(), products.get(1).getDescription());
         assertEquals(p2.getImageLink(), products.get(1).getImageLink());
+    }
+
+
+    @Test
+    void test_getProductById() {
+        long productId = 1L;
+        Category electronics = new Category();
+        electronics.setName("Electronics");
+
+        Product product = new Product();
+        product.setId(productId);
+        product.setName("Laptop");
+        product.setPrice(2500F);
+        product.setCategory(electronics);
+        product.setStock(50);
+        product.setDescription("Very good laptop.");
+        product.setImageLink("/laptop1.png");
+
+        when(productService.getProduct(productId)).thenReturn(ResponseEntity.ok(product));
+
+        ResponseEntity<Product> response = productController.getProduct(productId);
+
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCode().value());
+
+        Product fetchedProduct = response.getBody();
+        assertNotNull(fetchedProduct);
+        assertEquals(1L, fetchedProduct.getId());
+        assertEquals("Laptop", fetchedProduct.getName());
+
+    }
+
+    @Test
+    void test_updateProduct() {
+        long productId = 1L;
+        Category electronics = new Category();
+        electronics.setName("Electronics");
+
+        Product product = new Product();
+        product.setId(productId);
+        product.setName("Updated Laptop");
+        product.setPrice(3000F);
+        product.setCategory(electronics);
+        product.setStock(60);
+        product.setDescription("Improved laptop.");
+        product.setImageLink("/laptop2.png");
+
+        when(productService.updateProduct(product)).thenReturn(ResponseEntity.ok(product));
+
+        ResponseEntity<Product> response = productController.updateProduct(product);
+
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCode().value());
+
+        Product updatedProduct = response.getBody();
+        assertNotNull(updatedProduct);
+        assertEquals(1L, updatedProduct.getId());
+        assertEquals("Updated Laptop", updatedProduct.getName());
+    }
+
+    @Test
+    void test_deleteProduct() {
+        long productId = 1L;
+        ResponseEntity<String> response = productController.deleteProduct(productId);
+        assertNull(response);
     }
 }

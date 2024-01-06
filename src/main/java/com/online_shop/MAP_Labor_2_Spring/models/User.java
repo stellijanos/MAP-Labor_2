@@ -24,9 +24,9 @@ public class User {
     private String lastname;
     private String email;
     private String password;
-//    @Column(columnDefinition = "DATETIME")
-//    @CreationTimestamp
-//    private LocalDateTime created_at;
+    @Column(columnDefinition = "DATETIME")
+    @CreationTimestamp
+    private LocalDateTime created_at;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -40,7 +40,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Order> orders = new HashSet<>();
 
-//    @JsonIgnore
+    @JsonIgnore
     @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Product> favourites = new HashSet<>();
 

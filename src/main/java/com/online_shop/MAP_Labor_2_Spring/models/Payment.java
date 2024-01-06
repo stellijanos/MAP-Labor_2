@@ -18,9 +18,9 @@ public abstract class Payment {
     private Float amount;
 
     @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
     private Order order;
+
 
     public void pay(){}
 

@@ -9,6 +9,7 @@ public class Session {
     private Session() {
     }
 
+
     public static synchronized Session getInstance() {
         if (instance == null) {
             instance = new Session();

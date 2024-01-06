@@ -1,6 +1,7 @@
 package com.online_shop.MAP_Labor_2_Spring.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +34,7 @@ public class Order {
     @Column(name = "shipping_fee")
     private Float shippingFee;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
@@ -44,9 +46,9 @@ public class Order {
     @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
     private ShippingAddress shippingAddress;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "payment_id", referencedColumnName = "id")
     private Payment payment;
-
 
     public Order() {
         this.instance = true;
